@@ -1,0 +1,13 @@
+.account-active{
+    border-left: 3px solid var(--primary);
+    a{
+        color: var(--primary);
+    }
+}
+
+.vdp-datepicker{
+    .form-control[readonly]:not(.nom) {
+        background-color: #f5f5ff;
+        opacity: 1;
+    }
+}

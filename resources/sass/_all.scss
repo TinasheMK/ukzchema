@@ -1,0 +1,63 @@
+.nav-brand {
+    img {
+        height: 40px !important;
+    }
+}
+
+.complete-reg-form {
+    max-width: 400px;
+}
+
+.sidebar[data-color="primary"]:after,
+.off-canvas-sidebar[data-color="primary"]:after {
+    background: var(--base);
+}
+
+.sidebar[data-active-color="primary"] .nav li.active>a,
+.sidebar[data-active-color="primary"] .nav li.active>a i,
+.sidebar[data-active-color="primary"] .nav li.active>a[data-toggle="collapse"],
+.sidebar[data-active-color="primary"] .nav li.active>a[data-toggle="collapse"] i,
+.sidebar[data-active-color="primary"] .nav li.active>a[data-toggle="collapse"]~div>ul>li.active .sidebar-mini-icon,
+.sidebar[data-active-color="primary"] .nav li.active>a[data-toggle="collapse"]~div>ul>li.active>a,
+.off-canvas-sidebar[data-active-color="primary"] .nav li.active>a,
+.off-canvas-sidebar[data-active-color="primary"] .nav li.active>a i,
+.off-canvas-sidebar[data-active-color="primary"] .nav li.active>a[data-toggle="collapse"],
+.off-canvas-sidebar[data-active-color="primary"] .nav li.active>a[data-toggle="collapse"] i,
+.off-canvas-sidebar[data-active-color="primary"] .nav li.active>a[data-toggle="collapse"]~div>ul>li.active .sidebar-mini-icon,
+.off-canvas-sidebar[data-active-color="primary"] .nav li.active>a[data-toggle="collapse"]~div>ul>li.active>a {
+    color: var(--secondary);
+    opacity: 1;
+}
+
+.sidebar .nav li>a,
+.off-canvas-sidebar .nav li>a {
+    text-transform: unset;
+    font-size: 14px;
+}
+
+.counter {
+    position: absolute;
+    color: var(--light);
+    background: var(--danger);
+    border-radius: 100%;
+    bottom: 18px;
+    left: 20px;
+    height: 25px;
+}
+
+.radix-btn.btn-sm {
+    color: var(--light);
+    background-color: var(--primary);
+}
+
+.card-title {
+    margin-top: 0;
+}
+
+.obituary-img {
+    height: 250px;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    border-radius: 10px 10px 0 0;
+}

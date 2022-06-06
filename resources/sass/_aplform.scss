@@ -1,0 +1,37 @@
+.apply-form-nav {
+    ul {
+        border-left: 3px solid rgba(11, 7, 87, 0.3);
+        li {
+            position: relative;
+            a {
+                &::before {
+                    content: "";
+                    width: 3px;
+                    height: 31px;
+                    position: absolute;
+                    left: -3px;
+                    top: 0;
+                }
+                &.active-step{
+                    margin-left: 10px;
+                    color: var(--primary);
+                    font-weight: bold;
+                }
+                &.active-step::before{
+                    background: var(--primary);
+                }
+            }
+        }
+    }
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+
+.close:active{
+    outline: none;
+}
