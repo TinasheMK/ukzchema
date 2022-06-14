@@ -27,7 +27,7 @@ class UsersTableSeeder extends Seeder
         // dd($a);
         fclose($file);
 
-        $id = 2822;
+        $id = 282;
 
         foreach($a as $user){
 

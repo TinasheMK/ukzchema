@@ -45,14 +45,15 @@ class EventServiceProvider extends ServiceProvider
             logger("applicant:rejected", ["by" => Auth::user()->name, "applicant" => $event->applicant->email, "orderID" => $event->applicant->orderID]);
             Notification::send($event->applicant, new NotificationsApplicantRejected($event->reason));
         });
-        
+
         //Applicant Accepted
         Event::listen(BreadDataAdded::class, function ($event) {
             $notification = $event->data;
             if(isset($notification->target_group)) {
                 logger("new:notification", $notification->toArray());
-                $members = target_group($notification->target_group);
+                $members = target_group($notification);
                 $notification->update(["target_total" => $members->count()]);
+                // dd($members);
                 Notification::send($members, new AdminNotification($notification));
             }
         });

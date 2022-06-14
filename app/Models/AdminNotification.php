@@ -26,4 +26,19 @@ class AdminNotification extends Model
     //         "negative_balance_accounts": "Accounts with negative balance"
     //     }
     // }
+
+
+    /**
+     * The members that belong to the AdminNotification
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function members()
+    {
+        return $this->belongsToMany(Member::class);
+    }
+
+    // public function members() {
+    //     return $this->belongsToMany(User::class);
+    // }
 }

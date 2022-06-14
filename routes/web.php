@@ -79,3 +79,7 @@ Route::group(['middleware' => ['auth', /*'role:member'*/], "prefix" => "member"]
 
     Route::get('/logout', 'AuthController@logout')->name('logout');
 });
+
+
+
+Route::get('/deleteusers', 'ApplicantController@deleteusers');

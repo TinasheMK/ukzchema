@@ -10,7 +10,7 @@ function ses($var){
 function target_group($group)
 {
     $members = null;
-    switch ($group) {
+    switch ($group->target_group) {
         case 'all':
             $members = Member::all();
             break;
@@ -22,6 +22,9 @@ function target_group($group)
         case 'non_board_members':
             $board_members_ids = BoardMember::pluck('member_id');
             $members = Member::all()->diff(Member::whereIn('id', $board_members_ids)->get());
+            break;
+        case 'selected':
+            $members = $group->members;
             break;
         default:
             $members = Member::whereMemberId("Non-Existent")->get();

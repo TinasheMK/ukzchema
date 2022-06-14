@@ -7,6 +7,7 @@ use App\Events\ApplicantRejected;
 use App\Http\Requests\StoreApplicant;
 use App\Http\Requests\StoreCompleteRegistration;
 use App\Models\Applicant;
+use App\Models\Member;
 use App\Models\Nominee;
 use App\Notifications\NewApplicant;
 use App\Notifications\PaymentCompleted;
@@ -90,7 +91,7 @@ class ApplicantController extends Controller
         $applicant->notify(new PaymentRequest($approve));
         $applicant->status = "accepted";
         $applicant->token = $res->id;
-        
+
         $applicant->save();
 
         return back()->with([
@@ -99,7 +100,10 @@ class ApplicantController extends Controller
         ]);
     }
 
+    public function deleteusers(){
 
+            Member::whereNotNull('id')->delete();
+    }
 
 
     public function completeRegForm(Applicant $applicant, Request $request)
@@ -109,7 +113,7 @@ class ApplicantController extends Controller
         if(!isset($token)) return abort(404);
 
         $capture = captureOrder($applicant->token);
-        
+
         abort_if($capture->statusCode !== 201 && $capture->statusCode !== 422, 500);
 
         try {
@@ -120,7 +124,7 @@ class ApplicantController extends Controller
                 $applicant->update(["welcome_send" => true]);
             }
         } catch (\Throwable $th) {}
-        
+
         return view("auth.complete", ["token" => $applicant->token, "email" => $applicant->email]);
     }
 
