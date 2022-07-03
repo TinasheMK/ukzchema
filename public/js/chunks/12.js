@@ -1,1 +1,720 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[12],{18:function(t,e,r){"use strict";r.d(e,"b",(function(){return l})),r.d(e,"a",(function(){return c}));var n=r(24),o=r.n(n),i=r(19),a=r.n(i);function s(t,e,r,n,o,i,a){try{var s=t[i](a),l=s.value}catch(t){return void r(t)}s.done?e(l):Promise.resolve(l).then(n,o)}var l=function(t){return new Promise((function(e,r){a.a.post("/api/join",t).then(function(){var t,r=(t=o.a.mark((function t(r){var n;return o.a.wrap((function(t){for(;;)switch(t.prev=t.next){case 0:return n=r.data,t.abrupt("return",e(n));case 2:case"end":return t.stop()}}),t)})),function(){var e=this,r=arguments;return new Promise((function(n,o){var i=t.apply(e,r);function a(t){s(i,n,o,a,l,"next",t)}function l(t){s(i,n,o,a,l,"throw",t)}a(void 0)}))});return function(t){return r.apply(this,arguments)}}()).catch((function(t){return console.log(Object.keys(t)),r(t)}))}))},c=function(t){return a.a.post("/api/unique-email",{email:t})}},191:function(t,e,r){var n=function(t){"use strict";var e=Object.prototype,r=e.hasOwnProperty,n="function"==typeof Symbol?Symbol:{},o=n.iterator||"@@iterator",i=n.asyncIterator||"@@asyncIterator",a=n.toStringTag||"@@toStringTag";function s(t,e,r){return Object.defineProperty(t,e,{value:r,enumerable:!0,configurable:!0,writable:!0}),t[e]}try{s({},"")}catch(t){s=function(t,e,r){return t[e]=r}}function l(t,e,r,n){var o=e&&e.prototype instanceof m?e:m,i=Object.create(o.prototype),a=new C(n||[]);return i._invoke=function(t,e,r){var n="suspendedStart";return function(o,i){if("executing"===n)throw new Error("Generator is already running");if("completed"===n){if("throw"===o)throw i;return E()}for(r.method=o,r.arg=i;;){var a=r.delegate;if(a){var s=b(a,r);if(s){if(s===u)continue;return s}}if("next"===r.method)r.sent=r._sent=r.arg;else if("throw"===r.method){if("suspendedStart"===n)throw n="completed",r.arg;r.dispatchException(r.arg)}else"return"===r.method&&r.abrupt("return",r.arg);n="executing";var l=c(t,e,r);if("normal"===l.type){if(n=r.done?"completed":"suspendedYield",l.arg===u)continue;return{value:l.arg,done:r.done}}"throw"===l.type&&(n="completed",r.method="throw",r.arg=l.arg)}}}(t,r,a),i}function c(t,e,r){try{return{type:"normal",arg:t.call(e,r)}}catch(t){return{type:"throw",arg:t}}}t.wrap=l;var u={};function m(){}function d(){}function f(){}var v={};v[o]=function(){return this};var h=Object.getPrototypeOf,p=h&&h(h($([])));p&&p!==e&&r.call(p,o)&&(v=p);var g=f.prototype=m.prototype=Object.create(v);function y(t){["next","throw","return"].forEach((function(e){s(t,e,(function(t){return this._invoke(e,t)}))}))}function _(t,e){var n;this._invoke=function(o,i){function a(){return new e((function(n,a){!function n(o,i,a,s){var l=c(t[o],t,i);if("throw"!==l.type){var u=l.arg,m=u.value;return m&&"object"==typeof m&&r.call(m,"__await")?e.resolve(m.__await).then((function(t){n("next",t,a,s)}),(function(t){n("throw",t,a,s)})):e.resolve(m).then((function(t){u.value=t,a(u)}),(function(t){return n("throw",t,a,s)}))}s(l.arg)}(o,i,n,a)}))}return n=n?n.then(a,a):a()}}function b(t,e){var r=t.iterator[e.method];if(void 0===r){if(e.delegate=null,"throw"===e.method){if(t.iterator.return&&(e.method="return",e.arg=void 0,b(t,e),"throw"===e.method))return u;e.method="throw",e.arg=new TypeError("The iterator does not provide a 'throw' method")}return u}var n=c(r,t.iterator,e.arg);if("throw"===n.type)return e.method="throw",e.arg=n.arg,e.delegate=null,u;var o=n.arg;return o?o.done?(e[t.resultName]=o.value,e.next=t.nextLoc,"return"!==e.method&&(e.method="next",e.arg=void 0),e.delegate=null,u):o:(e.method="throw",e.arg=new TypeError("iterator result is not an object"),e.delegate=null,u)}function w(t){var e={tryLoc:t[0]};1 in t&&(e.catchLoc=t[1]),2 in t&&(e.finallyLoc=t[2],e.afterLoc=t[3]),this.tryEntries.push(e)}function x(t){var e=t.completion||{};e.type="normal",delete e.arg,t.completion=e}function C(t){this.tryEntries=[{tryLoc:"root"}],t.forEach(w,this),this.reset(!0)}function $(t){if(t){var e=t[o];if(e)return e.call(t);if("function"==typeof t.next)return t;if(!isNaN(t.length)){var n=-1,i=function e(){for(;++n<t.length;)if(r.call(t,n))return e.value=t[n],e.done=!1,e;return e.value=void 0,e.done=!0,e};return i.next=i}}return{next:E}}function E(){return{value:void 0,done:!0}}return d.prototype=g.constructor=f,f.constructor=d,d.displayName=s(f,a,"GeneratorFunction"),t.isGeneratorFunction=function(t){var e="function"==typeof t&&t.constructor;return!!e&&(e===d||"GeneratorFunction"===(e.displayName||e.name))},t.mark=function(t){return Object.setPrototypeOf?Object.setPrototypeOf(t,f):(t.__proto__=f,s(t,a,"GeneratorFunction")),t.prototype=Object.create(g),t},t.awrap=function(t){return{__await:t}},y(_.prototype),_.prototype[i]=function(){return this},t.AsyncIterator=_,t.async=function(e,r,n,o,i){void 0===i&&(i=Promise);var a=new _(l(e,r,n,o),i);return t.isGeneratorFunction(r)?a:a.next().then((function(t){return t.done?t.value:a.next()}))},y(g),s(g,a,"Generator"),g[o]=function(){return this},g.toString=function(){return"[object Generator]"},t.keys=function(t){var e=[];for(var r in t)e.push(r);return e.reverse(),function r(){for(;e.length;){var n=e.pop();if(n in t)return r.value=n,r.done=!1,r}return r.done=!0,r}},t.values=$,C.prototype={constructor:C,reset:function(t){if(this.prev=0,this.next=0,this.sent=this._sent=void 0,this.done=!1,this.delegate=null,this.method="next",this.arg=void 0,this.tryEntries.forEach(x),!t)for(var e in this)"t"===e.charAt(0)&&r.call(this,e)&&!isNaN(+e.slice(1))&&(this[e]=void 0)},stop:function(){this.done=!0;var t=this.tryEntries[0].completion;if("throw"===t.type)throw t.arg;return this.rval},dispatchException:function(t){if(this.done)throw t;var e=this;function n(r,n){return a.type="throw",a.arg=t,e.next=r,n&&(e.method="next",e.arg=void 0),!!n}for(var o=this.tryEntries.length-1;o>=0;--o){var i=this.tryEntries[o],a=i.completion;if("root"===i.tryLoc)return n("end");if(i.tryLoc<=this.prev){var s=r.call(i,"catchLoc"),l=r.call(i,"finallyLoc");if(s&&l){if(this.prev<i.catchLoc)return n(i.catchLoc,!0);if(this.prev<i.finallyLoc)return n(i.finallyLoc)}else if(s){if(this.prev<i.catchLoc)return n(i.catchLoc,!0)}else{if(!l)throw new Error("try statement without catch or finally");if(this.prev<i.finallyLoc)return n(i.finallyLoc)}}}},abrupt:function(t,e){for(var n=this.tryEntries.length-1;n>=0;--n){var o=this.tryEntries[n];if(o.tryLoc<=this.prev&&r.call(o,"finallyLoc")&&this.prev<o.finallyLoc){var i=o;break}}i&&("break"===t||"continue"===t)&&i.tryLoc<=e&&e<=i.finallyLoc&&(i=null);var a=i?i.completion:{};return a.type=t,a.arg=e,i?(this.method="next",this.next=i.finallyLoc,u):this.complete(a)},complete:function(t,e){if("throw"===t.type)throw t.arg;return"break"===t.type||"continue"===t.type?this.next=t.arg:"return"===t.type?(this.rval=this.arg=t.arg,this.method="return",this.next="end"):"normal"===t.type&&e&&(this.next=e),u},finish:function(t){for(var e=this.tryEntries.length-1;e>=0;--e){var r=this.tryEntries[e];if(r.finallyLoc===t)return this.complete(r.completion,r.afterLoc),x(r),u}},catch:function(t){for(var e=this.tryEntries.length-1;e>=0;--e){var r=this.tryEntries[e];if(r.tryLoc===t){var n=r.completion;if("throw"===n.type){var o=n.arg;x(r)}return o}}throw new Error("illegal catch attempt")},delegateYield:function(t,e,r){return this.delegate={iterator:$(t),resultName:e,nextLoc:r},"next"===this.method&&(this.arg=void 0),u}},t}(t.exports);try{regeneratorRuntime=n}catch(t){Function("r","regeneratorRuntime = r")(n)}},24:function(t,e,r){t.exports=r(191)},275:function(t,e,r){"use strict";r.r(e);var n=r(3),o=r(9),i=r(18),a={components:{Datepicker:function(){return r.e(0).then(r.bind(null,274))}},data:function(){return{phone:"",phone_locked:!1,phone_error:!1,form:{},email_taken:!1,submitted:!1,date_invalid:!1,validating_email:!1}},validations:{form:{first_name:{required:n.required},last_name:{required:n.required},street:{required:n.required},email:{required:n.required,email:n.email},phone:{required:n.required},city:{required:n.required},country:{required:n.required},gender:{required:n.required},dob:{required:n.required}}},methods:{handlePersonal:function(){var t=this;if(this.submitted=!0,this.$v.$touch(),this.phone_error=!this.validPhone(this.form.phone),this.$v.$invalid||this.phone_error)return this.scrollErrorToView();this.validating_email=!0,Object(i.a)(this.form.email).then((function(e){var r=e.data;if(r&&r.unique)return t.$emit("done",t.form);t.email_taken=!0,t.scrollErrorToView()})).catch((function(e){console.error({err:e}),t.email_taken=!0,t.scrollErrorToView()})).finally((function(){t.submitted=!1,t.validating_email=!1}))},checkDateValidity:function(t){var e=moment().subtract(16,"years");moment(t).isAfter(e)?this.date_invalid=!0:this.date_invalid=!1},validPhone:function(t){if(!t)return!1;var e=Object(o.b)(t);return!!e&&(e&&e.isValid())},scrollErrorToView:function(){setTimeout((function(){var t=$(".is-invalid").first();$(t).focus()}),100)},clearEmailErr:function(){var t=this;setTimeout((function(){t.email_taken=!1}),5e3)}},watch:{phone:function(t){var e=this;this.form.phone=t,this.phone_locked||(this.phone_locked=!0,setTimeout((function(){return e.phone_locked=!1}),10),this.phone=(new o.a).input(t),this.validPhone(t)&&(this.phone_error=!1))}}},s=r(1),l=Object(s.a)(a,(function(){var t=this,e=t.$createElement,r=t._self._c||e;return r("div",[r("form",{on:{submit:function(t){return t.preventDefault(),null(t)}}},[r("div",{staticClass:"row"},[t._m(0),t._v(" "),r("div",{staticClass:"col-12 col-lg-4"},[r("input",{directives:[{name:"model",rawName:"v-model",value:t.form.first_name,expression:"form.first_name"}],staticClass:"form-control mb-30 bg-gray",class:{"is-invalid":t.submitted&&t.$v.form.first_name.$error},attrs:{type:"text",name:"first_name",id:"first_name",placeholder:"First Name"},domProps:{value:t.form.first_name},on:{input:function(e){e.target.composing||t.$set(t.form,"first_name",e.target.value)}}})]),t._v(" "),r("div",{staticClass:"col-12 col-lg-4"},[r("input",{directives:[{name:"model",rawName:"v-model",value:t.form.middle_names,expression:"form.middle_names"}],staticClass:"form-control mb-30 bg-gray",attrs:{type:"text",name:"middle_names",placeholder:"Middle Names"},domProps:{value:t.form.middle_names},on:{input:function(e){e.target.composing||t.$set(t.form,"middle_names",e.target.value)}}})]),t._v(" "),r("div",{staticClass:"col-12 col-lg-4"},[r("input",{directives:[{name:"model",rawName:"v-model",value:t.form.last_name,expression:"form.last_name"}],staticClass:"form-control mb-30 bg-gray",class:{"is-invalid":t.submitted&&t.$v.form.last_name.$error},attrs:{type:"text",name:"last_name",placeholder:"Last Name"},domProps:{value:t.form.last_name},on:{input:function(e){e.target.composing||t.$set(t.form,"last_name",e.target.value)}}})]),t._v(" "),r("div",{staticClass:"col-12 col-lg-6"},[r("datepicker",{attrs:{format:"dd MMMM yyyy",initialView:"year",name:"dob",placeholder:"Date of Birth","input-class":t.date_invalid||t.submitted&&t.$v.form.dob.$error?"form-control is-invalid":"mb-30 form-control"},on:{selected:function(e){return t.checkDateValidity(e)}},model:{value:t.form.dob,callback:function(e){t.$set(t.form,"dob",e)},expression:"form.dob"}}),t._v(" "),t.date_invalid||t.form.dob?t._e():r("div",{staticClass:"mb-30"}),t._v(" "),t.date_invalid&&t.form.dob?r("div",{staticClass:"mb-30 mt-2 invalid-feedback d-block"},[t._v("\n                    You must be 16 years or older\n                ")]):t._e()],1),t._v(" "),r("div",{staticClass:"col-12 col-lg-6"},[r("select",{directives:[{name:"model",rawName:"v-model",value:t.form.gender,expression:"form.gender"}],staticClass:"custom-select form-control mb-30 bg-gray selectpicker",class:{"is-invalid":t.submitted&&t.$v.form.gender.$error},attrs:{id:"gender"},on:{change:function(e){var r=Array.prototype.filter.call(e.target.options,(function(t){return t.selected})).map((function(t){return"_value"in t?t._value:t.value}));t.$set(t.form,"gender",e.target.multiple?r:r[0])}}},[r("option",{attrs:{value:"undefined",disabled:"",selected:""}},[t._v("\n                        Gender\n                    ")]),t._v(" "),r("option",{attrs:{value:"m"}},[t._v("Male")]),t._v(" "),r("option",{attrs:{value:"f"}},[t._v("Female")])])])]),t._v(" "),r("div",{staticClass:"row"},[t._m(1),t._v(" "),r("div",{staticClass:"col-12 col-lg-6"},[r("input",{directives:[{name:"model",rawName:"v-model",value:t.form.email,expression:"form.email"}],staticClass:"form-control bg-gray",class:{"is-invalid":t.email_taken||t.submitted&&t.$v.form.email.$error},attrs:{id:"email",type:"email",placeholder:"Email Address"},domProps:{value:t.form.email},on:{focus:function(e){return t.clearEmailErr()},input:function(e){e.target.composing||t.$set(t.form,"email",e.target.value)}}}),t._v(" "),t.email_taken?t._e():r("div",{staticClass:"mb-30"}),t._v(" "),t.email_taken?r("div",{staticClass:"mb-30 mt-2 invalid-feedback d-block"},[t._v("\n                    Email already taken\n                ")]):t._e()]),t._v(" "),r("div",{staticClass:"col-12 col-lg-6"},[r("input",{directives:[{name:"model",rawName:"v-model",value:t.phone,expression:"phone"}],staticClass:"form-control bg-gray",class:{"is-invalid":t.submitted&&t.phone_error},attrs:{type:"tel",name:"phone",placeholder:"Mobile Number"},domProps:{value:t.phone},on:{input:function(e){e.target.composing||(t.phone=e.target.value)}}}),t._v(" "),t._m(2)])]),t._v(" "),r("div",{staticClass:"row"},[t._m(3),t._v(" "),r("div",{staticClass:"col-12 col-lg-6"},[r("input",{directives:[{name:"model",rawName:"v-model",value:t.form.street,expression:"form.street"}],staticClass:"form-control mb-30 bg-gray",class:{"is-invalid":t.submitted&&t.$v.form.street.$error},attrs:{type:"text",id:"street",name:"street",placeholder:"Address Line 1"},domProps:{value:t.form.street},on:{input:function(e){e.target.composing||t.$set(t.form,"street",e.target.value)}}})]),t._v(" "),r("div",{staticClass:"col-12 col-lg-6"},[r("input",{directives:[{name:"model",rawName:"v-model",value:t.form.apartment,expression:"form.apartment"}],staticClass:"form-control mb-30 bg-gray",attrs:{type:"text",id:"apartment",name:"apartment",placeholder:"Address Line 2"},domProps:{value:t.form.apartment},on:{input:function(e){e.target.composing||t.$set(t.form,"apartment",e.target.value)}}})]),t._v(" "),r("div",{staticClass:"col-12 col-lg-4"},[r("input",{directives:[{name:"model",rawName:"v-model",value:t.form.city,expression:"form.city"}],staticClass:"form-control mb-30 bg-gray",class:{"is-invalid":t.submitted&&t.$v.form.city.$error},attrs:{type:"text",name:"city",placeholder:"City"},domProps:{value:t.form.city},on:{input:function(e){e.target.composing||t.$set(t.form,"city",e.target.value)}}})]),t._v(" "),r("div",{staticClass:"col-12 col-lg-4"},[r("country-select",{staticClass:"custom-select form-control mb-30 bg-gray",class:{"is-invalid":t.submitted&&t.$v.form.country.$error},attrs:{country:t.form.country,whiteList:["GB","IE"],countryName:!0,topCountry:"GB"},model:{value:t.form.country,callback:function(e){t.$set(t.form,"country",e)},expression:"form.country"}})],1),t._v(" "),r("div",{staticClass:"col-12 col-lg-4"},[r("input",{directives:[{name:"model",rawName:"v-model",value:t.form.zip,expression:"form.zip"}],staticClass:"form-control mb-30 bg-gray",attrs:{type:"text",name:"zip",placeholder:"ZIP/Postal code"},domProps:{value:t.form.zip},on:{input:function(e){e.target.composing||t.$set(t.form,"zip",e.target.value)}}})])]),t._v(" "),r("div",{staticClass:"col-12 text-right"},[r("button",{staticClass:"btn radix-btn",attrs:{type:"button",disabled:t.submitted&&t.validating_email},on:{click:function(e){return t.handlePersonal()}}},[t._v("\n                Next Step\n            ")])])])])}),[function(){var t=this.$createElement,e=this._self._c||t;return e("div",{staticClass:"col-12"},[e("label",{staticClass:"font-weight-bold",attrs:{for:"first_name"}},[this._v("Full Name:")])])},function(){var t=this.$createElement,e=this._self._c||t;return e("div",{staticClass:"col-12"},[e("label",{staticClass:"font-weight-bold",attrs:{for:"email"}},[this._v("Contact:")])])},function(){var t=this.$createElement,e=this._self._c||t;return e("div",{staticClass:"mb-30 mt-1"},[this._v("\n                    With country code\n                    "),e("small",[this._v("e.g +44")])])},function(){var t=this.$createElement,e=this._self._c||t;return e("div",{staticClass:"col-12"},[e("label",{staticClass:"font-weight-bold",attrs:{for:"street"}},[this._v("Physical Address:")])])}],!1,null,null,null);e.default=l.exports}}]);
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[12],{
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/member/NomineesForm.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/member/NomineesForm.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+__webpack_require__(/*! ../../libs/bootstrap-notify */ "./resources/js/libs/bootstrap-notify.js");
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ["route", "nominees", "can_update", "maximum_nominees"],
+  components: {
+    Datepicker: function Datepicker() {
+      return __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! vuejs-datepicker */ "./node_modules/vuejs-datepicker/dist/vuejs-datepicker.esm.js"));
+    }
+  },
+  data: function data() {
+    return {
+      form: {},
+      date: {},
+      unlocked: !!this.can_update,
+      nominee_vacant: 0,
+      updated_nominees: this.nominees,
+      del_full_name: null,
+      max_nominees: 0,
+      del_route: null
+    };
+  },
+  mounted: function mounted() {
+    this.max_nominees = Number(this.maximum_nominees);
+    console.log(this.can_update, this.max_nominees);
+    this.nominee_vacant = this.max_nominees - this.nominees.length;
+
+    if (!this.unlocked) {
+      this.alertLocked();
+    }
+  },
+  methods: {
+    add: function add() {
+      this.nominee_vacant -= 1;
+      this.updated_nominees.push({
+        full_name: null,
+        id: new Date().getTime() + '_new'
+      });
+    },
+    del: function del(nominee) {
+      if (isNaN(nominee.id)) {
+        this.updated_nominees = this.updated_nominees.filter(function (n) {
+          return n.id !== nominee.id;
+        });
+        this.nominee_vacant = 3 - this.updated_nominees.length;
+        return;
+      }
+
+      this.del_full_name = nominee.full_name;
+      this.del_route = "".concat(this.route, "/").concat(nominee.id);
+      setTimeout(function () {
+        return $('#remove_nominee').modal('show');
+      }, 20);
+    },
+    alertLocked: function alertLocked() {
+      $.notify({
+        icon: "nc-icon nc-bell-55",
+        message: "You cannot update nominees at the moment"
+      }, {
+        type: "info",
+        timer: 2000,
+        placement: {
+          from: "top",
+          align: "right"
+        }
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/member/NomineesForm.vue?vue&type=style&index=0&lang=css&":
+/*!*************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/member/NomineesForm.vue?vue&type=style&index=0&lang=css& ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.dob {\r\n  background-color: #ffffff !important;\r\n  color: #7d7a75 !important;\r\n  cursor: pointer !important;\n}\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/member/NomineesForm.vue?vue&type=style&index=0&lang=css&":
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/member/NomineesForm.vue?vue&type=style&index=0&lang=css& ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./NomineesForm.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/member/NomineesForm.vue?vue&type=style&index=0&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/member/NomineesForm.vue?vue&type=template&id=b7e291c0&":
+/*!**********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/member/NomineesForm.vue?vue&type=template&id=b7e291c0& ***!
+  \**********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c(
+      "form",
+      { attrs: { action: _vm.route, method: "POST" } },
+      [
+        _vm._t("default"),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "row" },
+          [
+            _vm._l(_vm.updated_nominees, function(nominee, i) {
+              return _c("div", { key: nominee.id, staticClass: "col-md-6" }, [
+                _c("div", { staticClass: "card" }, [
+                  _c("div", { staticClass: "card-header" }, [
+                    _c("h5", { staticClass: "card-title" }, [
+                      _vm._v(
+                        "\n              Nominee " +
+                          _vm._s(i + 1) +
+                          "\n              "
+                      ),
+                      _vm.unlocked
+                        ? _c(
+                            "span",
+                            {
+                              staticClass: "close text-danger",
+                              on: {
+                                click: function($event) {
+                                  return _vm.del(nominee)
+                                }
+                              }
+                            },
+                            [
+                              _c("i", {
+                                staticClass: "fa fa-trash",
+                                attrs: { "aria-hidden": "true" }
+                              })
+                            ]
+                          )
+                        : _vm._e()
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "card-body" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-md-12" }, [
+                        _c("input", {
+                          attrs: {
+                            type: "hidden",
+                            name: "nominees[" + i + "][id]"
+                          },
+                          domProps: { value: nominee.id }
+                        }),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "form-group" }, [
+                          _c("label", [_vm._v("Full Name")]),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: nominee.full_name,
+                                expression: "nominee.full_name"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              required: "",
+                              name: "nominees[" + i + "][full_name]",
+                              type: "text",
+                              disabled: !_vm.unlocked
+                            },
+                            domProps: { value: nominee.full_name },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  nominee,
+                                  "full_name",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          })
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-12" }, [
+                        _c("div", { staticClass: "form-group" }, [
+                          _c(
+                            "label",
+                            { attrs: { for: "exampleInputEmail1" } },
+                            [_vm._v("Email address")]
+                          ),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: nominee.email,
+                                expression: "nominee.email"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              name: "nominees[" + i + "][email]",
+                              type: "email",
+                              disabled: !_vm.unlocked
+                            },
+                            domProps: { value: nominee.email },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(nominee, "email", $event.target.value)
+                              }
+                            }
+                          })
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-12" }, [
+                        _c(
+                          "div",
+                          { staticClass: "form-group" },
+                          [
+                            _c("label", [_vm._v("Date of Birth")]),
+                            _vm._v(" "),
+                            _c("datepicker", {
+                              attrs: {
+                                format: "dd MMMM yyyy",
+                                initialView: "year",
+                                disabled: !_vm.unlocked,
+                                name: "nominees[" + i + "][dob]",
+                                "input-class": _vm.unlocked
+                                  ? "form-control dob"
+                                  : "form-control nom"
+                              },
+                              model: {
+                                value: nominee.dob,
+                                callback: function($$v) {
+                                  _vm.$set(nominee, "dob", $$v)
+                                },
+                                expression: "nominee.dob"
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-12" }, [
+                        _c("div", { staticClass: "form-group" }, [
+                          _c("label", [_vm._v("Zimbabwean By")]),
+                          _vm._v(" "),
+                          _c(
+                            "select",
+                            {
+                              staticClass: "form-control select2",
+                              attrs: {
+                                disabled: !_vm.unlocked,
+                                required: "",
+                                name: "nominees[" + i + "][zimbabwean_by]"
+                              }
+                            },
+                            [
+                              _c(
+                                "option",
+                                {
+                                  attrs: { value: "birth" },
+                                  domProps: {
+                                    selected: nominee.zimbabwean_by === "birth"
+                                  }
+                                },
+                                [_vm._v("Birth")]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "option",
+                                {
+                                  attrs: { value: "descent" },
+                                  domProps: {
+                                    selected:
+                                      nominee.zimbabwean_by === "descent"
+                                  }
+                                },
+                                [_vm._v("Descent")]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "option",
+                                {
+                                  attrs: { value: "spouse" },
+                                  domProps: {
+                                    selected: nominee.zimbabwean_by === "spouse"
+                                  }
+                                },
+                                [_vm._v("Spouse")]
+                              )
+                            ]
+                          )
+                        ])
+                      ])
+                    ])
+                  ])
+                ])
+              ])
+            }),
+            _vm._v(" "),
+            _vm.can_update && _vm.nominee_vacant >= 1
+              ? _c("div", { staticClass: "col-md-6" }, [
+                  _c("div", { staticClass: "card card-user text-center p-3" }, [
+                    _c("p", { staticClass: "mt-3 mb-2" }, [
+                      _vm._v(
+                        "\n            Click button to add new nominee details\n            "
+                      ),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c("small", { staticClass: "text-muted" }, [
+                        _vm._v(
+                          "You can add " +
+                            _vm._s(_vm.nominee_vacant) +
+                            " more nominee" +
+                            _vm._s(_vm.nominee_vacant === 1 ? "" : "s")
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary btn-round",
+                        attrs: { type: "button" },
+                        on: {
+                          click: function($event) {
+                            return _vm.add()
+                          }
+                        }
+                      },
+                      [_vm._v("Add Nominee")]
+                    )
+                  ])
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.can_update && _vm.nominee_vacant !== 3
+              ? _c("div", { staticClass: "col-12 text-center" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary btn-round",
+                      attrs: { type: "submit" }
+                    },
+                    [_vm._v("Update Changes")]
+                  )
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _c("div", {
+              staticClass: "clearfix",
+              staticStyle: { "margin-bottom": "110px" }
+            })
+          ],
+          2
+        )
+      ],
+      2
+    ),
+    _vm._v(" "),
+    _vm.can_update
+      ? _c(
+          "div",
+          {
+            staticClass: "modal fade modal-danger",
+            attrs: { id: "remove_nominee" }
+          },
+          [
+            _c("div", { staticClass: "modal-dialog" }, [
+              _c("div", { staticClass: "modal-content" }, [
+                _c("div", { staticClass: "modal-header bg-danger" }, [
+                  _c("h4", { staticClass: "modal-title mt-0" }, [
+                    _vm._v("\n            Are you sure you want to remove "),
+                    _c("strong", [_vm._v(_vm._s(_vm.del_full_name))]),
+                    _vm._v(" from your nominees list?\n          ")
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "close",
+                      attrs: {
+                        type: "button",
+                        "data-dismiss": "modal",
+                        "aria-hidden": "true"
+                      }
+                    },
+                    [_vm._v("×")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c(
+                  "form",
+                  { attrs: { action: _vm.del_route, method: "POST" } },
+                  [
+                    _vm._t("default"),
+                    _vm._v(" "),
+                    _c("input", {
+                      attrs: {
+                        type: "hidden",
+                        name: "_method",
+                        value: "DELETE"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _vm._m(0)
+                  ],
+                  2
+                )
+              ])
+            ])
+          ]
+        )
+      : _vm._e()
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-footer" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-default",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("Cancel")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        { staticClass: "btn btn-danger", attrs: { type: "submit" } },
+        [_vm._v("Delete")]
+      )
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/member/NomineesForm.vue":
+/*!*********************************************************!*\
+  !*** ./resources/js/components/member/NomineesForm.vue ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _NomineesForm_vue_vue_type_template_id_b7e291c0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./NomineesForm.vue?vue&type=template&id=b7e291c0& */ "./resources/js/components/member/NomineesForm.vue?vue&type=template&id=b7e291c0&");
+/* harmony import */ var _NomineesForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./NomineesForm.vue?vue&type=script&lang=js& */ "./resources/js/components/member/NomineesForm.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _NomineesForm_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./NomineesForm.vue?vue&type=style&index=0&lang=css& */ "./resources/js/components/member/NomineesForm.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _NomineesForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _NomineesForm_vue_vue_type_template_id_b7e291c0___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _NomineesForm_vue_vue_type_template_id_b7e291c0___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/member/NomineesForm.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/member/NomineesForm.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/components/member/NomineesForm.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_NomineesForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./NomineesForm.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/member/NomineesForm.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_NomineesForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/member/NomineesForm.vue?vue&type=style&index=0&lang=css&":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/components/member/NomineesForm.vue?vue&type=style&index=0&lang=css& ***!
+  \******************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_NomineesForm_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader!../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./NomineesForm.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/member/NomineesForm.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_NomineesForm_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_NomineesForm_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_NomineesForm_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_NomineesForm_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_NomineesForm_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./resources/js/components/member/NomineesForm.vue?vue&type=template&id=b7e291c0&":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/components/member/NomineesForm.vue?vue&type=template&id=b7e291c0& ***!
+  \****************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NomineesForm_vue_vue_type_template_id_b7e291c0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./NomineesForm.vue?vue&type=template&id=b7e291c0& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/member/NomineesForm.vue?vue&type=template&id=b7e291c0&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NomineesForm_vue_vue_type_template_id_b7e291c0___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NomineesForm_vue_vue_type_template_id_b7e291c0___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ })
+
+}]);

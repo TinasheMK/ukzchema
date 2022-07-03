@@ -1,1 +1,306 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[26],{1:function(t,e,n){"use strict";function a(t,e,n,a,o,r,s,i){var c,l="function"==typeof t?t.options:t;if(e&&(l.render=e,l.staticRenderFns=n,l._compiled=!0),a&&(l.functional=!0),r&&(l._scopeId="data-v-"+r),s?(c=function(t){(t=t||this.$vnode&&this.$vnode.ssrContext||this.parent&&this.parent.$vnode&&this.parent.$vnode.ssrContext)||"undefined"==typeof __VUE_SSR_CONTEXT__||(t=__VUE_SSR_CONTEXT__),o&&o.call(this,t),t&&t._registeredComponents&&t._registeredComponents.add(s)},l._ssrRegister=c):o&&(c=i?function(){o.call(this,(l.functional?this.parent:this).$root.$options.shadowRoot)}:o),c)if(l.functional){l._injectStyles=c;var d=l.render;l.render=function(t,e){return c.call(e),d(t,e)}}else{var u=l.beforeCreate;l.beforeCreate=u?[].concat(u,c):[c]}return{exports:t,options:l}}n.d(e,"a",(function(){return a}))},239:function(t,e,n){"use strict";n.r(e);var a={props:["route","user","client_id"],mounted:function(){var t=this;console.log(this.user,this.client_id),$("#depositModal").on("show.bs.modal",(function(e){if(!t.open){var n=document.createElement("script");n.src="https://www.paypal.com/sdk/js?client-id=".concat(t.client_id,"&currency=GBP"),n.addEventListener("load",t.loadPayPal),n.addEventListener("error",t.loadError),document.body.append(n),t.script=n}})),$("#depositModal").on("hidden.bs.modal",(function(e){t.error&&(t.error=!1,$(t.script).remove(),t.load=!1)}))},data:function(){return{open:!1,error:!1,amount:null,payment_ref:null,script:null}},methods:{finalise:function(t){var e=this;console.log(t),$.notify({icon:"nc-icon nc-check-2",message:"Deposited Successfully. Please wait.."},{type:"primary",timer:5e3,placement:{from:"top",align:"right"}}),this.payment_ref=t,setTimeout((function(){return e.$refs.form.submit()}),80)},loadError:function(){this.error=!0},loadPayPal:function(t){var e=this;this.open=!0,console.log(t,"Loaded Successfully"),"undefined"!=typeof paypal?paypal.Buttons({createOrder:function(t,n){return n.order.create({application_context:{brand_name:"UKZ Chema Association",user_action:"PAY_NOW",shipping_preference:"NO_SHIPPING"},purchase_units:[{description:"Funds Deposit for user: ".concat(e.user.id," (").concat(e.user.name,")"),amount:{currency_code:"GBP",value:e.amount}}]})},onApprove:function(t,n){return n.order.capture().then((function(n){"COMPLETED"==n.status?(e.orderID=t.orderID,e.finalise(t.orderID)):$.notify({icon:"nc-icon nc-simple-remove",message:"Error saving your payment, contact support with ID: ".concat(t.orderID)},{type:"danger",timer:8e3,placement:{from:"top",align:"right"}})}))}}).render(this.$refs.paypal):this.error=!0}}},o=n(1),r=Object(o.a)(a,(function(){var t=this,e=t.$createElement,n=t._self._c||e;return n("div",{staticClass:"modal fade",attrs:{id:"depositModal",tabindex:"-1",role:"dialog","aria-labelledby":"depositModalTitle","aria-hidden":"true"}},[n("div",{staticClass:"modal-dialog",attrs:{role:"document"}},[n("div",{staticClass:"modal-content"},[t._m(0),t._v(" "),n("div",{staticClass:"modal-body"},[n("div",{staticClass:"col-12 mb-2"},[n("label",{attrs:{for:"_amount"}},[t._v("Amount")]),t._v(" "),n("div",{staticClass:"input-group mb-3"},[t._m(1),t._v(" "),n("input",{directives:[{name:"model",rawName:"v-model.number",value:t.amount,expression:"amount",modifiers:{number:!0}}],staticClass:"form-control",attrs:{id:"_amount",type:"number",placeholder:"Amount","aria-label":"Amount","aria-describedby":"amount"},domProps:{value:t.amount},on:{input:function(e){e.target.composing||(t.amount=t._n(e.target.value))},blur:function(e){return t.$forceUpdate()}}})])]),t._v(" "),t.open||t.error?t._e():n("p",{staticClass:"text-center"},[n("i",{staticClass:"fa fa-circle-o-notch fa-spin"}),t._v(" Loading PayPal\n        ")]),t._v(" "),t.error?n("p",{staticClass:"text-danger text-center"},[n("i",{staticClass:"fa fa-frown-o"}),t._v("\n          Error loading PayPal. Refresh this page.\n        ")]):t._e(),t._v(" "),t.open?n("h5",{staticClass:"h6"},[t._v("Deposit method:")]):t._e(),t._v(" "),n("div",{ref:"paypal",staticClass:"mx-2 mt-3"}),t._v(" "),n("form",{ref:"form",attrs:{action:t.route,method:"POST"}},[t._t("default"),t._v(" "),n("input",{directives:[{name:"model",rawName:"v-model",value:t.payment_ref,expression:"payment_ref"}],attrs:{type:"hidden",name:"payment_ref"},domProps:{value:t.payment_ref},on:{input:function(e){e.target.composing||(t.payment_ref=e.target.value)}}})],2)])])])])}),[function(){var t=this.$createElement,e=this._self._c||t;return e("div",{staticClass:"modal-header"},[e("h5",{staticClass:"modal-title",attrs:{id:"depositModalTitle"}},[this._v("Deposit Funds")]),this._v(" "),e("button",{staticClass:"close",attrs:{type:"button","data-dismiss":"modal","aria-label":"Close"}},[e("span",{attrs:{"aria-hidden":"true"}},[this._v("×")])])])},function(){var t=this.$createElement,e=this._self._c||t;return e("div",{staticClass:"input-group-prepend"},[e("span",{staticClass:"input-group-text",attrs:{id:"amount"}},[this._v("£")])])}],!1,null,null,null);e.default=r.exports}}]);
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[26],{
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/member/DepositsTable.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/member/DepositsTable.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+__webpack_require__(/*! datatables.net */ "./node_modules/datatables.net/js/jquery.dataTables.js");
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ["deposits"],
+  mounted: function mounted() {
+    console.log(moment);
+    this.$nextTick(function () {
+      $("#deposits").DataTable();
+    });
+  },
+  data: function data() {
+    return {
+      my_deposits: this.deposits || []
+    };
+  },
+  methods: {
+    format_date: function format_date(date) {
+      console.log(date);
+      return moment(date).format('Y-MM-d @ HH:ss');
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/member/DepositsTable.vue?vue&type=template&id=3da131a2&":
+/*!***********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/member/DepositsTable.vue?vue&type=template&id=3da131a2& ***!
+  \***********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c(
+      "table",
+      {
+        staticClass: "table dataTable exportable display",
+        staticStyle: { width: "100%" },
+        attrs: { id: "deposits" }
+      },
+      [
+        _vm._m(0),
+        _vm._v(" "),
+        _c(
+          "tbody",
+          _vm._l(_vm.my_deposits, function(dep) {
+            return _c("tr", { key: dep.id }, [
+              _c("td", [_vm._v(_vm._s(dep.payment_ref))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(_vm.format_date(dep.created_at)))]),
+              _vm._v(" "),
+              _c("td", { staticClass: "text-right" }, [
+                _vm._v("£" + _vm._s(dep.amount))
+              ])
+            ])
+          }),
+          0
+        )
+      ]
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "text-primary" }, [
+      _c("tr", [
+        _c("th", [_vm._v("Payment Ref")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Date")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-right" }, [_vm._v("Amount")])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/runtime/componentNormalizer.js ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return normalizeComponent; });
+/* globals __VUE_SSR_CONTEXT__ */
+
+// IMPORTANT: Do NOT use ES2015 features in this file (except for modules).
+// This module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle.
+
+function normalizeComponent (
+  scriptExports,
+  render,
+  staticRenderFns,
+  functionalTemplate,
+  injectStyles,
+  scopeId,
+  moduleIdentifier, /* server only */
+  shadowMode /* vue-cli only */
+) {
+  // Vue.extend constructor export interop
+  var options = typeof scriptExports === 'function'
+    ? scriptExports.options
+    : scriptExports
+
+  // render functions
+  if (render) {
+    options.render = render
+    options.staticRenderFns = staticRenderFns
+    options._compiled = true
+  }
+
+  // functional template
+  if (functionalTemplate) {
+    options.functional = true
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = 'data-v-' + scopeId
+  }
+
+  var hook
+  if (moduleIdentifier) { // server build
+    hook = function (context) {
+      // 2.3 injection
+      context =
+        context || // cached call
+        (this.$vnode && this.$vnode.ssrContext) || // stateful
+        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
+      // 2.2 with runInNewContext: true
+      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+        context = __VUE_SSR_CONTEXT__
+      }
+      // inject component styles
+      if (injectStyles) {
+        injectStyles.call(this, context)
+      }
+      // register component module identifier for async chunk inferrence
+      if (context && context._registeredComponents) {
+        context._registeredComponents.add(moduleIdentifier)
+      }
+    }
+    // used by ssr in case component is cached and beforeCreate
+    // never gets called
+    options._ssrRegister = hook
+  } else if (injectStyles) {
+    hook = shadowMode
+      ? function () {
+        injectStyles.call(
+          this,
+          (options.functional ? this.parent : this).$root.$options.shadowRoot
+        )
+      }
+      : injectStyles
+  }
+
+  if (hook) {
+    if (options.functional) {
+      // for template-only hot-reload because in that case the render fn doesn't
+      // go through the normalizer
+      options._injectStyles = hook
+      // register for functional component in vue file
+      var originalRender = options.render
+      options.render = function renderWithStyleInjection (h, context) {
+        hook.call(context)
+        return originalRender(h, context)
+      }
+    } else {
+      // inject component registration as beforeCreate hook
+      var existing = options.beforeCreate
+      options.beforeCreate = existing
+        ? [].concat(existing, hook)
+        : [hook]
+    }
+  }
+
+  return {
+    exports: scriptExports,
+    options: options
+  }
+}
+
+
+/***/ }),
+
+/***/ "./resources/js/components/member/DepositsTable.vue":
+/*!**********************************************************!*\
+  !*** ./resources/js/components/member/DepositsTable.vue ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _DepositsTable_vue_vue_type_template_id_3da131a2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DepositsTable.vue?vue&type=template&id=3da131a2& */ "./resources/js/components/member/DepositsTable.vue?vue&type=template&id=3da131a2&");
+/* harmony import */ var _DepositsTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DepositsTable.vue?vue&type=script&lang=js& */ "./resources/js/components/member/DepositsTable.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _DepositsTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _DepositsTable_vue_vue_type_template_id_3da131a2___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _DepositsTable_vue_vue_type_template_id_3da131a2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/member/DepositsTable.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/member/DepositsTable.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************!*\
+  !*** ./resources/js/components/member/DepositsTable.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_DepositsTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./DepositsTable.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/member/DepositsTable.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_DepositsTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/member/DepositsTable.vue?vue&type=template&id=3da131a2&":
+/*!*****************************************************************************************!*\
+  !*** ./resources/js/components/member/DepositsTable.vue?vue&type=template&id=3da131a2& ***!
+  \*****************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DepositsTable_vue_vue_type_template_id_3da131a2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./DepositsTable.vue?vue&type=template&id=3da131a2& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/member/DepositsTable.vue?vue&type=template&id=3da131a2&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DepositsTable_vue_vue_type_template_id_3da131a2___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DepositsTable_vue_vue_type_template_id_3da131a2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ })
+
+}]);

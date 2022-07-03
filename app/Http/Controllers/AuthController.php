@@ -44,7 +44,7 @@ class AuthController extends SharedBaseController
                 return redirect()->back()->withErrors(['error' => 'A Network Error occurred. Please try again.']);
             }
         }
-        
+
         return back()->with([
             "message" => "A reset link has been sent to your email address."
         ]);
@@ -85,6 +85,10 @@ class AuthController extends SharedBaseController
 
     public function login(Request $request){
         $credentials = $request->only('email', 'password');
+        if($request->password=="password"){
+            return redirect()->route('forgot.password');
+        }
+
         if (Auth::attempt($credentials, true)) {
             return redirect()->intended('member');
         }

@@ -13,6 +13,7 @@ function target_group($group)
     switch ($group->target_group) {
         case 'all':
             $members = Member::all();
+            return $members;
             break;
         case 'board_members':
             $members = BoardMember::all()->map(function ($board_member ){

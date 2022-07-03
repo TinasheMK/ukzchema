@@ -71,6 +71,7 @@ class Member extends Model
             $l_name = $model->last_name[0] ?? '';
 
             $prefix = strtoupper($l_name . $f_name);
+            $prefix2 = "CM";
 
             $counter = Member::count();
             $padded = 0;
@@ -78,7 +79,7 @@ class Member extends Model
             do {
                 $counter++;
                 $padded = str_pad($counter, 6, '0', STR_PAD_LEFT);
-                $member_id = $prefix . $padded;
+                $member_id = $prefix2 . $padded;
             } while (Member::find($member_id) !== null);
             logger("Creating Member ID: {$member_id}");
             $model->id = $member_id;

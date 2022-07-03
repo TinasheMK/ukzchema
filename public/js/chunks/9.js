@@ -1,1 +1,373 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[9],{17:function(t,e,r){var n=r(221);"string"==typeof n&&(n=[[t.i,n,""]]);var i={hmr:!0,transform:void 0,insertInto:void 0};r(8)(n,i);n.locals&&(t.exports=n.locals)},18:function(t,e,r){"use strict";r.d(e,"b",(function(){return a})),r.d(e,"a",(function(){return u}));var n=r(24),i=r.n(n),o=r(19),s=r.n(o);function c(t,e,r,n,i,o,s){try{var c=t[o](s),a=c.value}catch(t){return void r(t)}c.done?e(a):Promise.resolve(a).then(n,i)}var a=function(t){return new Promise((function(e,r){s.a.post("/api/join",t).then(function(){var t,r=(t=i.a.mark((function t(r){var n;return i.a.wrap((function(t){for(;;)switch(t.prev=t.next){case 0:return n=r.data,t.abrupt("return",e(n));case 2:case"end":return t.stop()}}),t)})),function(){var e=this,r=arguments;return new Promise((function(n,i){var o=t.apply(e,r);function s(t){c(o,n,i,s,a,"next",t)}function a(t){c(o,n,i,s,a,"throw",t)}s(void 0)}))});return function(t){return r.apply(this,arguments)}}()).catch((function(t){return console.log(Object.keys(t)),r(t)}))}))},u=function(t){return s.a.post("/api/unique-email",{email:t})}},220:function(t,e,r){"use strict";var n=r(17);r.n(n).a},221:function(t,e,r){(t.exports=r(7)(!1)).push([t.i,".disable-select{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;cursor:pointer}",""])},278:function(t,e,r){"use strict";r.r(e);var n=r(3),i=r(18);function o(t,e){var r=Object.keys(t);if(Object.getOwnPropertySymbols){var n=Object.getOwnPropertySymbols(t);e&&(n=n.filter((function(e){return Object.getOwnPropertyDescriptor(t,e).enumerable}))),r.push.apply(r,n)}return r}function s(t){for(var e=1;e<arguments.length;e++){var r=null!=arguments[e]?arguments[e]:{};e%2?o(Object(r),!0).forEach((function(e){c(t,e,r[e])})):Object.getOwnPropertyDescriptors?Object.defineProperties(t,Object.getOwnPropertyDescriptors(r)):o(Object(r)).forEach((function(e){Object.defineProperty(t,e,Object.getOwnPropertyDescriptor(r,e))}))}return t}function c(t,e,r){return e in t?Object.defineProperty(t,e,{value:r,enumerable:!0,configurable:!0,writable:!0}):t[e]=r,t}var a=function(t){return t},u={props:["forms"],data:function(){return{submitted:!1,form:{}}},validations:{form:{read_constitution:{required:n.required,mustBeTrue:a},certify_details:{required:n.required,mustBeTrue:a},uk_resident:{required:n.required,mustBeTrue:a}}},methods:{submit:function(){var t=this;if(this.submitted=!0,this.$v.$touch(),!this.$v.$invalid){var e=this.$loading.show({backgroundColor:"#000",color:"#5679fa",canCancel:!1}),r=s(s({},this.forms),this.form);Object(i.b)(r).then((function(r){var n=r.route;if(e.hide(),!n)return t.$vToastify.error("Oops! Something went wrong. Try again or Contact support");window.location.replace(n)})).catch((function(r){var n="Oops! Failed to submit. Try again or contact support";try{var i=r.response.data,o=i.errors,s=i.message;s&&(n=s),o&&Object.keys(o).forEach((function(e){setTimeout((function(){t.$vToastify.error(o[e][0])}),1e3)}))}catch(t){}t.$vToastify.error(n),e.hide()}))}}}},l=(r(220),r(1)),d=Object(l.a)(u,(function(){var t=this,e=t.$createElement,r=t._self._c||e;return r("div",[r("div",{staticClass:"custom-control custom-checkbox mt-3 mr-sm-2"},[r("input",{directives:[{name:"model",rawName:"v-model",value:t.form.read_constitution,expression:"form.read_constitution"}],staticClass:"custom-control-input",class:{"is-invalid":t.submitted&&!t.form.read_constitution},attrs:{id:"const",type:"checkbox"},domProps:{checked:Array.isArray(t.form.read_constitution)?t._i(t.form.read_constitution,null)>-1:t.form.read_constitution},on:{change:function(e){var r=t.form.read_constitution,n=e.target,i=!!n.checked;if(Array.isArray(r)){var o=t._i(r,null);n.checked?o<0&&t.$set(t.form,"read_constitution",r.concat([null])):o>-1&&t.$set(t.form,"read_constitution",r.slice(0,o).concat(r.slice(o+1)))}else t.$set(t.form,"read_constitution",i)}}}),t._v(" "),t._m(0)]),t._v(" "),r("div",{staticClass:"custom-control custom-checkbox mt-3 mr-sm-2"},[r("input",{directives:[{name:"model",rawName:"v-model",value:t.form.certify_details,expression:"form.certify_details"}],staticClass:"custom-control-input",class:{"is-invalid":t.submitted&&!t.form.certify_details},attrs:{id:"info",type:"checkbox"},domProps:{checked:Array.isArray(t.form.certify_details)?t._i(t.form.certify_details,null)>-1:t.form.certify_details},on:{change:function(e){var r=t.form.certify_details,n=e.target,i=!!n.checked;if(Array.isArray(r)){var o=t._i(r,null);n.checked?o<0&&t.$set(t.form,"certify_details",r.concat([null])):o>-1&&t.$set(t.form,"certify_details",r.slice(0,o).concat(r.slice(o+1)))}else t.$set(t.form,"certify_details",i)}}}),t._v(" "),r("label",{staticClass:"custom-control-label disable-select",attrs:{for:"info"}},[t._v("I certify that the information provided is true and correct in all respect")])]),t._v(" "),r("div",{staticClass:"custom-control custom-checkbox mt-3 mr-sm-2"},[r("input",{directives:[{name:"model",rawName:"v-model",value:t.form.uk_resident,expression:"form.uk_resident"}],staticClass:"custom-control-input",class:{"is-invalid":t.submitted&&!t.form.uk_resident},attrs:{id:"resident",type:"checkbox"},domProps:{checked:Array.isArray(t.form.uk_resident)?t._i(t.form.uk_resident,null)>-1:t.form.uk_resident},on:{change:function(e){var r=t.form.uk_resident,n=e.target,i=!!n.checked;if(Array.isArray(r)){var o=t._i(r,null);n.checked?o<0&&t.$set(t.form,"uk_resident",r.concat([null])):o>-1&&t.$set(t.form,"uk_resident",r.slice(0,o).concat(r.slice(o+1)))}else t.$set(t.form,"uk_resident",i)}}}),t._v(" "),r("label",{staticClass:"custom-control-label disable-select",attrs:{for:"resident"}},[t._v("I live in the United Kingdom. All nominees live in the UK")])]),t._v(" "),r("div",{staticClass:"row mt-3"},[r("div",{staticClass:"col-12 text-center",on:{click:function(e){return t.submit()}}},[r("button",{staticClass:"btn radix-btn"},[t._v("Submit Details")])])])])}),[function(){var t=this.$createElement,e=this._self._c||t;return e("label",{staticClass:"custom-control-label disable-select",attrs:{for:"const"}},[this._v("\n      I have read and understand the\n      "),e("a",{attrs:{href:"/constitution"}},[this._v("Constitution")]),this._v(" of UKZ Chema Association\n    ")])}],!1,null,null,null);e.default=d.exports}}]);
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[9],{
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/member/ObituaryView.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/member/ObituaryView.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ["obituary", "user", "route", "donated", "lifespan"],
+  mounted: function mounted() {
+    console.log(this.obituary);
+  },
+  methods: {
+    photo: function photo(url) {
+      return window.location.origin + url;
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/member/ObituaryView.vue?vue&type=style&index=0&lang=css&":
+/*!*************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/member/ObituaryView.vue?vue&type=style&index=0&lang=css& ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.obt-name{\r\n    font-size: 20px;\n}\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/member/ObituaryView.vue?vue&type=style&index=0&lang=css&":
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/member/ObituaryView.vue?vue&type=style&index=0&lang=css& ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./ObituaryView.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/member/ObituaryView.vue?vue&type=style&index=0&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/member/ObituaryView.vue?vue&type=template&id=c7608d60&":
+/*!**********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/member/ObituaryView.vue?vue&type=template&id=c7608d60& ***!
+  \**********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("ul", { staticClass: "list-unstyled team-members" }, [
+    _c("li", [
+      _c("div", { staticClass: "row position-relative" }, [
+        _c("div", { staticClass: "col-12 col-sm-3 mr-0 text-center mb-2" }, [
+          _c("img", {
+            staticClass: "mr-3",
+            attrs: {
+              src: _vm.user.base + "storage/" + _vm.obituary.photo,
+              height: "140px",
+              alt: ""
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-12 col-sm-9 ml-0" }, [
+          _c("p", { staticClass: "mb-0" }, [
+            _c("small", [_vm._v(_vm._s(_vm.lifespan))])
+          ]),
+          _vm._v(" "),
+          _c("h5", { staticClass: "mt-0" }, [
+            _vm._v(_vm._s(_vm.obituary.full_name) + " "),
+            _vm.donated
+              ? _c("span", { staticClass: "badge badge-success" }, [
+                  _vm._v("Paid")
+                ])
+              : _vm._e()
+          ]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v(
+              _vm._s(_vm._f("truncate")(_vm.obituary.biography, 150)) +
+                "\n          "
+            ),
+            _c("br"),
+            _vm._v(" "),
+            _c("small", { staticClass: "text-muted mt-2" }, [
+              _vm._v("Posted on " + _vm._s(_vm.obituary.created_at))
+            ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass: "stretched-link",
+              attrs: { href: _vm.route + "/" + _vm.obituary.id }
+            },
+            [_vm._v("View")]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("hr")
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/runtime/componentNormalizer.js ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return normalizeComponent; });
+/* globals __VUE_SSR_CONTEXT__ */
+
+// IMPORTANT: Do NOT use ES2015 features in this file (except for modules).
+// This module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle.
+
+function normalizeComponent (
+  scriptExports,
+  render,
+  staticRenderFns,
+  functionalTemplate,
+  injectStyles,
+  scopeId,
+  moduleIdentifier, /* server only */
+  shadowMode /* vue-cli only */
+) {
+  // Vue.extend constructor export interop
+  var options = typeof scriptExports === 'function'
+    ? scriptExports.options
+    : scriptExports
+
+  // render functions
+  if (render) {
+    options.render = render
+    options.staticRenderFns = staticRenderFns
+    options._compiled = true
+  }
+
+  // functional template
+  if (functionalTemplate) {
+    options.functional = true
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = 'data-v-' + scopeId
+  }
+
+  var hook
+  if (moduleIdentifier) { // server build
+    hook = function (context) {
+      // 2.3 injection
+      context =
+        context || // cached call
+        (this.$vnode && this.$vnode.ssrContext) || // stateful
+        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
+      // 2.2 with runInNewContext: true
+      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+        context = __VUE_SSR_CONTEXT__
+      }
+      // inject component styles
+      if (injectStyles) {
+        injectStyles.call(this, context)
+      }
+      // register component module identifier for async chunk inferrence
+      if (context && context._registeredComponents) {
+        context._registeredComponents.add(moduleIdentifier)
+      }
+    }
+    // used by ssr in case component is cached and beforeCreate
+    // never gets called
+    options._ssrRegister = hook
+  } else if (injectStyles) {
+    hook = shadowMode
+      ? function () {
+        injectStyles.call(
+          this,
+          (options.functional ? this.parent : this).$root.$options.shadowRoot
+        )
+      }
+      : injectStyles
+  }
+
+  if (hook) {
+    if (options.functional) {
+      // for template-only hot-reload because in that case the render fn doesn't
+      // go through the normalizer
+      options._injectStyles = hook
+      // register for functional component in vue file
+      var originalRender = options.render
+      options.render = function renderWithStyleInjection (h, context) {
+        hook.call(context)
+        return originalRender(h, context)
+      }
+    } else {
+      // inject component registration as beforeCreate hook
+      var existing = options.beforeCreate
+      options.beforeCreate = existing
+        ? [].concat(existing, hook)
+        : [hook]
+    }
+  }
+
+  return {
+    exports: scriptExports,
+    options: options
+  }
+}
+
+
+/***/ }),
+
+/***/ "./resources/js/components/member/ObituaryView.vue":
+/*!*********************************************************!*\
+  !*** ./resources/js/components/member/ObituaryView.vue ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ObituaryView_vue_vue_type_template_id_c7608d60___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ObituaryView.vue?vue&type=template&id=c7608d60& */ "./resources/js/components/member/ObituaryView.vue?vue&type=template&id=c7608d60&");
+/* harmony import */ var _ObituaryView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ObituaryView.vue?vue&type=script&lang=js& */ "./resources/js/components/member/ObituaryView.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _ObituaryView_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ObituaryView.vue?vue&type=style&index=0&lang=css& */ "./resources/js/components/member/ObituaryView.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _ObituaryView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ObituaryView_vue_vue_type_template_id_c7608d60___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ObituaryView_vue_vue_type_template_id_c7608d60___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/member/ObituaryView.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/member/ObituaryView.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/components/member/ObituaryView.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ObituaryView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./ObituaryView.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/member/ObituaryView.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ObituaryView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/member/ObituaryView.vue?vue&type=style&index=0&lang=css&":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/components/member/ObituaryView.vue?vue&type=style&index=0&lang=css& ***!
+  \******************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ObituaryView_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader!../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./ObituaryView.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/member/ObituaryView.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ObituaryView_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ObituaryView_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ObituaryView_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ObituaryView_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ObituaryView_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./resources/js/components/member/ObituaryView.vue?vue&type=template&id=c7608d60&":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/components/member/ObituaryView.vue?vue&type=template&id=c7608d60& ***!
+  \****************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ObituaryView_vue_vue_type_template_id_c7608d60___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./ObituaryView.vue?vue&type=template&id=c7608d60& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/member/ObituaryView.vue?vue&type=template&id=c7608d60&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ObituaryView_vue_vue_type_template_id_c7608d60___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ObituaryView_vue_vue_type_template_id_c7608d60___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ })
+
+}]);

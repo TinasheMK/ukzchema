@@ -4,6 +4,7 @@ use App\Models\BoardMember;
 use App\Models\Testimonial;
 use Illuminate\Support\Facades\Route;
 use TCG\Voyager\Facades\Voyager;
+use App\Models\Applicant;
 
 
 Route::group(['middleware' => ['guest']], function () {
@@ -21,6 +22,7 @@ Route::group(['middleware' => ['guest']], function () {
     Route::post('/reset-password', 'AuthController@storeResetPassword');
 
     Route::get('/join-now', 'ApplicantController@form')->name('apply');
+    // Route::get('/join-now',  function () {return redirect()->route('splash');})->name('apply');
     Route::get('/submitted-{code}', 'ApplicantController@submitted')->name('submitted');
     Route::get('/complete/{applicant?}', 'ApplicantController@completeRegForm')->name('applicant.complete');
     Route::post('/complete', 'ApplicantController@complete');
@@ -83,3 +85,13 @@ Route::group(['middleware' => ['auth', /*'role:member'*/], "prefix" => "member"]
 
 
 Route::get('/deleteusers', 'ApplicantController@deleteusers');
+
+
+Route::get('/applicants/set-to-null', function(){
+    $apps = Applicant::where('status', 'accepted')->get();
+    foreach($apps as $user){
+        $user->status = NULL;
+        $user->save();
+    }
+    return ($user);
+});
