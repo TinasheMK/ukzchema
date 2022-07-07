@@ -26,14 +26,15 @@ class ChangePassword extends FormRequest
     {
         return [
             'old_password' => "required|password_check",
-            'new_password' => "required|min:6|confirmed",
+            'new_password' => "required|min:6|regex:/^.*(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).*$/|confirmed",
         ];
     }
 
     public function messages()
     {
         return [
-            'old_password.password_check' => 'Invalid Password',
+            'old_password.password_check' => 'Old Password Incorrect',
+            'new_password.password_check' => 'You cannot use username as password',
         ];
     }
 }

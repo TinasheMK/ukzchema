@@ -2,18 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ChangePassword;
-use App\Http\Requests\StoreCompleteRegistration;
-use App\Models\PasswordReset;
-use App\Notifications\ResetPasswordEmail;
 use App\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use App\Models\PasswordReset;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\ChangePassword;
+use App\Notifications\ResetPasswordEmail;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Notification;
+use App\Http\Requests\StoreCompleteRegistration;
 
 class AuthController extends SharedBaseController
 {
+
     public function loginForm(){
         return view('auth.login');
     }
@@ -69,6 +71,7 @@ class AuthController extends SharedBaseController
     }
 
     public function changePassword(ChangePassword $request){
+
         $user = User::find(Auth::id());
         $user->password = bcrypt($request->new_password);
         $user->save();
@@ -84,6 +87,7 @@ class AuthController extends SharedBaseController
     }
 
     public function login(Request $request){
+
         $credentials = $request->only('email', 'password');
         if($request->password=="password"){
             return redirect()->route('forgot.password');

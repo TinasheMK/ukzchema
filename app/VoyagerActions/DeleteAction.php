@@ -10,7 +10,7 @@ class DeleteAction extends ActionsDeleteAction {
     {
         return !in_array(
             $this->dataType->slug,
-                ['applicants', 'unpaid-members', 'obituaries', 'users', 'members']);
+                [ 'unpaid-members', 'obituaries', 'users', 'members']);
     }
-    
+
 }

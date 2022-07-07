@@ -33,7 +33,7 @@ Change Password
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>New Password</label>
+                            <label>New Password (Password should containa at least a number, upper case and lower case letters )</label>
                             <input required name="new_password" type="password" class="form-control">
                         </div>
                     </div>

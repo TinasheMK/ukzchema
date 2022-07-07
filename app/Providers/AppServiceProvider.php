@@ -46,5 +46,14 @@ class AppServiceProvider extends ServiceProvider
         Validator::extend('password_check', function ($attribute, $value, $parameters) {
             return Hash::check($value, Auth::user()->password);
         });
+        Validator::extend('new_password_check', function ($attribute, $value, $parameters) {
+            if(strtolower($value)== strtolower(Auth::user()->name)){
+                return false;
+            }
+            else{
+                return true;
+            }
+
+        });
     }
 }

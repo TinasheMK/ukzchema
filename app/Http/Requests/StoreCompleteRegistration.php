@@ -24,7 +24,8 @@ class StoreCompleteRegistration extends FormRequest
     public function rules()
     {
         return [
-            'password' => "required|min:6|confirmed",
+            'password' => "required|min:6|regex:/^.*(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).*$/|confirmed",
+
             'token' => "required"
         ];
     }
