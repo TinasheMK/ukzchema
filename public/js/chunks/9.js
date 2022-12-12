@@ -57,7 +57,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.obt-name{\r\n    font-size: 20px;\n}\r\n", ""]);
+exports.push([module.i, "\n.obt-name{\n    font-size: 20px;\n}\n", ""]);
 
 // exports
 

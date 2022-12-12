@@ -61,7 +61,7 @@ function buildRequestBody($applicant)
                 'amount' =>
                 array(
                     'currency_code' => 'GBP',
-                    'value' => setting('member.join_fee', '13')
+                    'value' => setting('member.join_fee', '100')
                 )
             )
         )

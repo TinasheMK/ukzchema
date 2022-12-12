@@ -133,6 +133,10 @@ __webpack_require__.r(__webpack_exports__);
 
       paypal.Buttons({
         createOrder: function createOrder(data, action) {
+          _this3.amount = parseFloat(_this3.amount);
+          _this3.amount = _this3.amount / 0.9871 + 0.30;
+          _this3.amount = _this3.amount.toFixed(2);
+          console.log("Paypal payment of: ", _this3.amount);
           return action.order.create({
             application_context: {
               brand_name: "UKZ Chema Association",

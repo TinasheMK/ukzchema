@@ -156,7 +156,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.disable-select {\r\n  -webkit-user-select: none;  \r\n  -moz-user-select: none;    \r\n  -ms-user-select: none;      \r\n  user-select: none;\r\n  cursor: pointer;\n}\r\n", ""]);
+exports.push([module.i, "\n.disable-select {\n  -webkit-user-select: none;  \n  -moz-user-select: none;    \n  -ms-user-select: none;      \n  user-select: none;\n  cursor: pointer;\n}\n", ""]);
 
 // exports
 

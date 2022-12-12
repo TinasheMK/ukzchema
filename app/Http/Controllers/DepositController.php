@@ -21,6 +21,7 @@ class DepositController extends SharedBaseController
         $member = $user->memberDetails;
         if (!isset($member)) {
             my_log("Deposit Received for user ID: {$user->id} {$user->name}", "System couldn't save. Please enter manually\nDeposited Amount: £{$amount}");
+            logger("Deposit Received for user ID: {$user->id} {$user->name}" + "System couldn't save. Please enter manually\nDeposited Amount: £{$amount}");
         }else{
             $member->balance = $member->balance + $amount;
             $member->deposits()->create([

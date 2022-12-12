@@ -8,7 +8,6 @@
             </nav>
             <div class="credits ml-auto">
                 <span class="copyright">
-                    © 2020, made with <i class="fa fa-heart heart text-danger"></i> by Joemags & Leo
                 </span>
             </div>
         </div>

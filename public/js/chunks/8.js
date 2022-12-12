@@ -46,7 +46,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.dob {\r\n    background-color: #ffffff !important;\r\n    color: #7d7a75 !important;\r\n    cursor: pointer !important;\n}\r\n", ""]);
+exports.push([module.i, "\n.dob {\n    background-color: #ffffff !important;\n    color: #7d7a75 !important;\n    cursor: pointer !important;\n}\n", ""]);
 
 // exports
 

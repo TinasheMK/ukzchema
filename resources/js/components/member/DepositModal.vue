@@ -57,7 +57,7 @@ export default {
   props: ['route', 'user', 'client_id'],
   mounted() {
     console.log(this.user, this.client_id);
-    
+
     $("#depositModal").on("show.bs.modal", e => {
       if(!this.open){
         const scr = document.createElement("script");
@@ -121,6 +121,11 @@ export default {
       paypal
         .Buttons({
           createOrder: (data, action) => {
+
+            this.amount = parseFloat(this.amount);
+            this.amount = (this.amount/0.9871)+0.30;
+            this.amount = this.amount.toFixed(2);
+            console.log("Paypal payment of: ", this.amount);
             return action.order.create({
               application_context: {
                 brand_name: "UKZ Chema Association",

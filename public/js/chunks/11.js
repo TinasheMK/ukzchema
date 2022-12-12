@@ -167,7 +167,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.currency-err {\r\n  border-color: var(--danger) !important;\n}\r\n", ""]);
+exports.push([module.i, "\n.currency-err {\n  border-color: var(--danger) !important;\n}\n", ""]);
 
 // exports
 

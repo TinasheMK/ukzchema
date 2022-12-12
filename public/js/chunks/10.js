@@ -118,7 +118,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.nominee-num {\r\n  font-size: 1.2rem;\n}\n.rm-nominee{\r\n    right: 7px;\r\n    font-weight: 300;\r\n    font-size: 1.2rem;\n}\r\n", ""]);
+exports.push([module.i, "\n.nominee-num {\n  font-size: 1.2rem;\n}\n.rm-nominee{\n    right: 7px;\n    font-weight: 300;\n    font-size: 1.2rem;\n}\n", ""]);
 
 // exports
 

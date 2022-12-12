@@ -5,7 +5,6 @@ Home
 @endsection
 
 @section('content')
-
 <section class="welcome-area hero2" id="home">
   <!-- Background Shape-->
   <div class="hero-background-shape"><img src="img/core-img/hero-2.png" alt=""></div>
@@ -18,10 +17,6 @@ Home
   <!-- Hero Circle-->
   <div class="hero2-big-circle"></div>
   <div class="container h-100">
-    <div class="marquee">
-        <p class="mb-4 " data-wow-delay="300ms" data-wow-duration="1000ms" style="color: rgb(158, 15, 15); z-index: 100000">
-            We Are Temporarily Not Recruiting New Members Please Try Later</p>
-    </div>
     <div class="row h-100 align-items-center justify-content-between">
       <div class="col-12 col-md-6">
         <!-- Content-->
@@ -30,9 +25,9 @@ Home
           </h2>
           <p class="mb-4 wow fadeInUp" data-wow-delay="300ms" data-wow-duration="1000ms">
             {{setting('site.landing_description')}} </p>
-          {{-- <div class="btn-group-one wow fadeInUp" data-wow-delay="500ms" data-wow-duration="1000ms"><a
+          <div class="btn-group-one wow fadeInUp" data-wow-delay="500ms" data-wow-duration="1000ms"><a
               class="btn radix-btn white-btn mt-3" href="{{route('apply')}}">Join Now</a>
-          </div> --}}
+          </div>
         </div>
       </div>
       <div class="col-10 col-md-6">
@@ -48,10 +43,6 @@ Home
 <!-- About Area-->
 <section class="about-area about2 section-padding-120">
   <div class="container">
-    <div class="">
-        <h5 class="mb-4 text-center" data-wow-delay="300ms" data-wow-duration="1000ms" style="color: rgb(158, 15, 15); z-index: 100000">
-            We Are Temporarily Not Recruiting New Members Please Try Later</h5>
-    </div>
     <!-- About Content Area-->
     <div class="about-content">
       <div class="row justify-content-between">
@@ -122,7 +113,7 @@ Home
               <li class="mb-3"><i class="mr-3 lni-check-mark-circle"></i>Proceed to pay an application fee of £{{setting('member.join_fee', '13')}}
               </li>
             </ul>
-            {{-- <a class="btn radix-btn white-btn mt-5" href="{{route('apply')}}">Join Now</a> --}}
+            <a class="btn radix-btn white-btn mt-5" href="{{route('apply')}}">Join Now</a>
           </div>
         </div>
       </div>
