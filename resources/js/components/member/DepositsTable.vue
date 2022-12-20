@@ -11,7 +11,7 @@
       <tbody>
         <tr v-for="dep in my_deposits" :key="dep.id">
           <td>{{dep.payment_ref}}</td>
-          <td>{{date_format(dep.created_at,"Y/m/d H:i:s")}}</td>
+          <td>{{dep.date}}</td>
           <td class="text-right">£{{dep.amount}}</td>
         </tr>
       </tbody>
