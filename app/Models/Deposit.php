@@ -9,6 +9,7 @@ class Deposit extends Model
     protected $fillable = [
         "member_id",
         "payment_ref",
-        "amount"
+        "amount",
+        "date"
     ];
 }

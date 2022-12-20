@@ -87,7 +87,9 @@ var render = function() {
             return _c("tr", { key: dep.id }, [
               _c("td", [_vm._v(_vm._s(dep.payment_ref))]),
               _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(_vm.format_date(dep.created_at)))]),
+              _c("td", [
+                _vm._v(_vm._s(_vm.date_format(dep.created_at, "Y/m/d H:i:s")))
+              ]),
               _vm._v(" "),
               _c("td", { staticClass: "text-right" }, [
                 _vm._v("£" + _vm._s(dep.amount))

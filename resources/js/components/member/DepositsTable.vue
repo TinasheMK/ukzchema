@@ -11,7 +11,7 @@
       <tbody>
         <tr v-for="dep in my_deposits" :key="dep.id">
           <td>{{dep.payment_ref}}</td>
-          <td>{{format_date(dep.created_at)}}</td>
+          <td>{{date_format(dep.created_at,"Y/m/d H:i:s")}}</td>
           <td class="text-right">£{{dep.amount}}</td>
         </tr>
       </tbody>
@@ -38,7 +38,7 @@ export default {
   methods: {
       format_date(date){
           console.log(date);
-          
+
           return moment(date).format('Y-MM-d @ HH:ss');
       }
   }

@@ -123,8 +123,12 @@ export default {
           createOrder: (data, action) => {
 
             this.amount = parseFloat(this.amount);
-            this.amount = (this.amount/0.9871)+0.30;
+            this.amount = (this.amount);
             this.amount = this.amount.toFixed(2);
+
+            this.amount1 = (this.amount/0.9871)+0.30-this.amount;
+            this.amount1 = this.amount1.toFixed(2);
+
             console.log("Paypal payment of: ", this.amount);
             return action.order.create({
               application_context: {
@@ -134,11 +138,20 @@ export default {
               },
               purchase_units: [
                 {
-                  description: `Funds Deposit for user: ${this.user.id} (${this.user.name})`,
-                  amount: {
-                    currency_code: "GBP",
-                    value: this.amount
+                    reference_id: "d9f80740-38f0-11e8-b467-0ed5f89f7165",
+                    description: `Funds Deposit for user: ${this.user.id} (${this.user.name})`,
+                    amount: {
+                        currency_code: "GBP",
+                        value: this.amount
                   }
+                },
+                {
+                    reference_id: "d9f80740-38f0-11e8-b467-0ed5f89f718b",
+                    description: `Charges`,
+                    amount: {
+                        currency_code: "GBP",
+                        value: this.amount1
+                    }
                 }
               ]
             });

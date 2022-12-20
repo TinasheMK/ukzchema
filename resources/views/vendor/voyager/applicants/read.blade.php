@@ -214,13 +214,13 @@
 
                 <hr style="margin:0;">
                 <h4 class="panel-title info-title">Nominees Details</h4>
-                
+
                 @foreach ($applicant->nominees as $key=>$nominee)
 
                     @php
                         $nominee = (object)$nominee;
                     @endphp
-                    
+
                     @if (isset($nominee->full_name))
                         @if (count($applicant->nominees) > 1)
                             <p class="panel-title">Nominee {{$key + 1}}</p>
@@ -275,6 +275,8 @@
                         {{-- Change to Approved --}}
                         <button type="button" id="accept_applicant" class="btn btn-primary">{{ __('Accept & Request Payment') }}</button>
                         &nbsp;&nbsp;&nbsp;&nbsp;
+                        <button type="button" id="accept_applicant_paid" class="btn btn-primary">{{ __('Accept Without Payment') }}</button>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
                         <button type="button" id="reject_applicant" class="btn btn-danger">{{ __('Reject Applicant') }}</button>
                     </div>
                 @else
@@ -296,6 +298,12 @@
 
 {{-- Accept Form --}}
 <form action="{{route('applicant.accept')}}" method="POST" id="accept_form">
+    @csrf
+    <input type="hidden" name="applicant_id" value="{{$applicant->id}}">
+</form>
+
+{{-- Accept Form --}}
+<form action="{{route('applicant.acceptpaid')}}" method="POST" id="accept_form_paid">
     @csrf
     <input type="hidden" name="applicant_id" value="{{$applicant->id}}">
 </form>
@@ -358,13 +366,17 @@
             $('form#accept_form').submit();
         });
 
+        $('#accept_applicant_paid').on('click', function(){
+            $('form#accept_form_paid').submit();
+        });
+
         $('#confirm_reject').on('click', function(){
 
             if(!params.rejection_reason || params.rejection_reason == ""){
                 toastr.error("Rejection reason is required");
                 return;
             }
-            
+
             $.post('{{ route('applicant.reject') }}', params, function (response) {
                 if(response.error){
                     toastr.error(response.message || "Error rejecting.");
@@ -373,7 +385,7 @@
                     window.location.href = response.route;
                 }
             });
-            
+
             $('#enter_reject_reason').modal('hide');
     });
 });

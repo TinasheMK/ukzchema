@@ -193,7 +193,9 @@ $member = $dataTypeContent;
                                 <h3 class="panel-title">Date of Birth</h3>
                             </div>
                             <div class="panel-body" style="padding-top:0;">
+                                @if ($member->nok_dob)
                                 <p>{{$member->nok_dob->format('d.m.Y')}}</p>
+                                @endif
                             </div>
                         </div>
                         <div class="col-12 col-md-4 px-0">

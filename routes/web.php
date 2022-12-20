@@ -47,6 +47,7 @@ Route::get('/account/change-password', 'AccountController@changePasswordForm')->
 Route::group(['prefix' => 'admin'], function () {
     Route::post('/reject-applicant','ApplicantController@reject')->name("applicant.reject");
     Route::post('/accept-applicant', 'ApplicantController@accept')->name("applicant.accept");
+    Route::post('/accept-applicant-paid', 'ApplicantController@acceptpaid')->name("applicant.acceptpaid");
     Voyager::routes();
 });
 

@@ -100,6 +100,43 @@ class ApplicantController extends Controller
         ]);
     }
 
+    public function acceptPaid(Request $request)
+    {
+        if (!isset($request->applicant_id)) return abort(404);
+        $applicant = Applicant::findOrFail($request->applicant_id);
+
+
+        $applicant->save();
+
+        // return back()->with([
+        //     'message'    => "{$applicant->full_name} was accepted",
+        //     'alert-type' => 'success',
+        // ]);
+
+        // $applicant = Applicant::whereToken($request->token)->first();
+        if (!isset($applicant)) return abort(404);
+        $user = User::create([
+            'name' => $applicant->full_name,
+            'email' =>  $applicant->email,
+            'avatar'    => 'users/default.png',
+            'password'  =>  bcrypt($request->password)
+        ]);
+        $user->markEmailAsVerified();
+
+        $member = $user->memberDetails()->create($applicant->toArray());
+        $nominees = [];
+
+        foreach ($applicant->nominees as $key => $nominee) {
+            array_push($nominees, new Nominee($nominee));
+        }
+        try {
+            $member->nominees()->saveMany($nominees);
+            $applicant->delete();
+        } catch (\Throwable $th) {
+            my_log("failed_to_save_nominees", $th->getMessage());
+        }
+        return redirect(route('members-area.home'));
+    }
     public function deleteusers(){
 
             Member::whereNotNull('id')->delete();
