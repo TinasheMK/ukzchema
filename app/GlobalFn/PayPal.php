@@ -42,23 +42,6 @@ function getAmount($oder_id)
         return null;
     }
 }
-function getAmount1($oder_id)
-{
-    $client = payPalClient();
-    $response = null;
-    try {
-        $response = $client->execute(new OrdersGetRequest($oder_id));
-        $res = (object)$response->result;
-
-        $amount = $res;
-        return $amount;
-    } catch (\Throwable $th) {
-        logger("failed_to_get_donation_amount", [$th->getMessage()]);
-        return null;
-    }
-}
-
-
 function buildRequestBody($applicant)
 {
     return array(
