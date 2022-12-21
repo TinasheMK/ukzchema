@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Deposit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use PayPalCheckoutSdk\Orders\OrdersGetRequest;
 
 class DepositController extends SharedBaseController
 {
@@ -18,8 +19,15 @@ class DepositController extends SharedBaseController
         }
         $amount = getAmount($request->payment_ref);
 
-        $amount = getAmount1($request->payment_ref);
-        dd($amount);
+        // $amount = getAmount1($request->payment_ref);
+
+        $client = payPalClient();
+        $response = null;
+        // try {
+            $response = $client->execute(new OrdersGetRequest($request->payment_ref));
+            $res = (object)$response->result;
+
+        dd($res);
         $user = Auth::user();
         $member = $user->memberDetails;
         if (!isset($member)) {
