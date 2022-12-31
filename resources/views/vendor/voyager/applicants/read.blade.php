@@ -284,9 +284,14 @@
                     <p class="panel-title" style="font-weight: bold">Applicant has already been {{ $applicant->status }}
                         <i class="voyager-check"></i>
                     </p>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <button type="button" id="accept_applicant" class="btn btn-primary">{{ __('Refresh Payment Request') }}</button>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <button type="button" id="accept_applicant_paid" class="btn btn-primary">{{ __('Accept Without Payment') }}</button>
+                    <br>
                     @if ($applicant->status === "accepted")
                         <small>Waiting for the user to send payment and confirm their account</small>
-                        @else
+                    @else
                         <small>Entry will be removed 48 hours after rejection</small>
                     @endif
                 </div>
