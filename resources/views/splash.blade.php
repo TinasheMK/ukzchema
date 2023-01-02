@@ -51,9 +51,8 @@ Home
           <div class="single-about-area text-center wow fadeInUp" data-wow-delay="100ms" data-wow-duration="1000ms">
             <div class="icon mx-auto"><i class="lni-pound"></i></div>
             <h4>Raise Money</h4>
-            <p>UKZ Chema pays £5000 per eligible bereavement to help members meet funeral costs whether they wish to be
-              repatriated to
-              Zimbabwe or laid to rest in the UK</p>
+            <p>UKZCHEMA pays funeral costs as per the constitution to eligible bereaved members .
+                The objective is to help members meet funeral costs locally (UK) or via the repatriation pathway to Zimbabwe.</p>
           </div>
         </div>
         <!-- Single About Area-->

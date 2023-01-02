@@ -11,15 +11,16 @@ Contact Us
         <div class="row justify-content-between">
             <!-- Contact Side Info-->
             <div class="col-12 col-lg-5 col-xl-4">
-                <div class="contact-side-info mb-80">
+                {{-- <div class="contact-side-info mb-80">
                     <h5>Email: {{setting('site.contact_us_email')}}</h5>
                     <h5>Phone: {{setting('site.contact_us_phone')}}</h5>
                     <h4 class="my-4">Write to us or give us a call. We will reply to you as soon as possible. But yes,
                         it can take up to 24 hours.</h4>
-                </div>
+                </div> --}}
             </div>
             <!-- Contact Form-->
-            <div class="col-12 col-lg-7">
+            {{-- <div class="col-12 col-lg-7"> --}}
+            <div class="col-12 col-lg-12">
                 <div class="contact-form mb-80">
                     <form id="main_contact_form" action="{{route('contact.us')}}" method="POST">
                         @csrf
