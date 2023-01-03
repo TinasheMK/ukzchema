@@ -5,7 +5,7 @@
           <div class="col-12 col-md-6 col-lg-5">
             <!-- Copywrite Text-->
             <div class="footer--content-text">
-              <p class="mb-0"> &copy; {{ new Date().getFullYear() }}, made with <i class="fa fa-heart heart text-danger"></i> by Joemags & Leo</p>
+              <p class="mb-0"> &copy; {{ new Date().getFullYear() }}, made with <i class="fa fa-heart heart text-danger"></i> by  </p>
             </div>
           </div>
           <div class="col-12 col-md-6 col-lg-5">
