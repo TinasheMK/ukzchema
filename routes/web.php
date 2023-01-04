@@ -45,6 +45,8 @@ Route::get('/account/change-password', 'AccountController@changePasswordForm')->
 
 
 Route::group(['prefix' => 'admin'], function () {
+    Route::post('/nominee-deceased','NomineeController@deceased')->name("nominee.deceased");
+
     Route::post('/reject-applicant','ApplicantController@reject')->name("applicant.reject");
     Route::post('/accept-applicant', 'ApplicantController@accept')->name("applicant.accept");
     Route::post('/accept-applicant-paid', 'ApplicantController@acceptpaid')->name("applicant.acceptpaid");
@@ -57,6 +59,7 @@ Route::group(['middleware' => ['auth', /*'role:member'*/], "prefix" => "member"]
     Route::get('/obituaries/{obituary}', 'ObituaryController@show')->name('members-area.obituary-show');
 
     Route::get('/claims', 'ClaimsController@index')->name('members-area.claims');
+    Route::get('/claim', 'ClaimsController@claimForm')->name('members-area.claim');
 
     Route::get('/payments', 'DonationsController@index')->name('members-area.payments');
     Route::post('/payments', 'DonationsController@store')->name('members-area.submit_donation');

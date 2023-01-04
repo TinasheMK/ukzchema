@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DeceasedNominee;
 use App\Models\Nominee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -52,5 +53,30 @@ class NomineeController extends SharedBaseController
             "message" => "{$nominee->full_name} was successfully deleted",
             "level" => "success"
         ]);
+    }
+
+    public function deceased(Request $request)
+    {
+        if (!isset($request->nominee_id)) return abort(404);
+        $nominee = Nominee::findOrFail($request->nominee_id);
+
+
+        $nominee->deleted_at = date("Y-m-d h:i:sa");
+        $nominee->save();
+
+        if (!isset($nominee)) return abort(404);
+        $user = DeceasedNominee::create([
+            'name' => $nominee->full_name,
+            'email' =>  $nominee->email,
+            'member_id'=> $nominee->member_id,
+            'full_name'=> $nominee->full_name,
+            'dob'=> $nominee->dob,
+            'zimbabwean_by'=> $nominee->zimbabwean_by,
+
+        ]);
+        // dd($user);
+
+
+        return redirect(route('members-area.home'));
     }
 }

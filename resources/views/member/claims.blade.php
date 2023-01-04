@@ -9,10 +9,21 @@ Claims
     <div class="col-md-12">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">Claims</h4>
+                <div class="row">
+                    <div class="update mr-auto ml-2">
+                        <h4 class="card-title">Claims</h4>
+                    </div>
+                    {{-- @php
+                        dd($claims)
+                    @endphp --}}
+                    <div class="update ml-auto mr-2">
+                        <a href="{{route('members-area.claim')}}" class="btn btn-primary btn-round">New Claim</a>
+                    </div>
+                </div>
             </div>
             <div class="card-body">
                 {{-- <deposits-table :deposits="{{$claims}}"></deposits-table> --}}
+                <claims-table :deposits="{{$claims}}"></claims-table>
             </div>
         </div>
     </div>

@@ -48,6 +48,8 @@ Vue.component("deposit-modal", () =>
     import ("./components/member/DepositModal"));
 Vue.component("deposits-table", () =>
     import ("./components/member/DepositsTable"));
+Vue.component("claims-table", () =>
+    import ("./components/member/ClaimsTable"));
 Vue.component("dob-input", () =>
     import ("./components/base/DOB"));
 Vue.component("country-picker", () =>

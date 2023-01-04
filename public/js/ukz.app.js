@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "js/chunks/" + ({}[chunkId]||chunkId) + ".js?v=" + {"0":"7ca4f","1":"0db90","2":"2592b","3":"fbe43","4":"a5289","5":"ed993","6":"99564","7":"71e9e","8":"a2c30","9":"46e7c","10":"3759f","11":"79f7e","12":"5c075","13":"85590","14":"0bc50","15":"4f9d6","16":"c387d","17":"2fcaf","18":"875cd","19":"471c7","20":"0ce6d","21":"02b6f","22":"ec1a3","23":"50ecc","24":"8217d","25":"8ba44","26":"f2870","27":"2c075","28":"f20ba","29":"7a00e","30":"2dc28","31":"ef2b4","32":"8c1c4"}[chunkId] + ""
+/******/ 		return __webpack_require__.p + "js/chunks/" + ({}[chunkId]||chunkId) + ".js?v=" + {"0":"7ca4f","1":"0db90","2":"2592b","3":"fbe43","4":"a5289","5":"ed993","6":"99564","7":"71e9e","8":"a2c30","9":"46e7c","10":"3759f","11":"79f7e","12":"5c075","13":"85590","14":"0bc50","15":"4f9d6","16":"c387d","17":"2fcaf","18":"875cd","19":"471c7","20":"0ce6d","21":"02b6f","22":"ec1a3","23":"50ecc","24":"8217d","25":"8ba44","26":"f2870","27":"2c075","28":"f20ba","29":"7a00e","30":"2dc28","31":"ef2b4","32":"8c1c4","33":"12050"}[chunkId] + ""
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -82900,6 +82900,9 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("deposit-modal", function (
 });
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("deposits-table", function () {
   return __webpack_require__.e(/*! import() */ 26).then(__webpack_require__.bind(null, /*! ./components/member/DepositsTable */ "./resources/js/components/member/DepositsTable.vue"));
+});
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("claims-table", function () {
+  return __webpack_require__.e(/*! import() */ 33).then(__webpack_require__.bind(null, /*! ./components/member/ClaimsTable */ "./resources/js/components/member/ClaimsTable.vue"));
 });
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("dob-input", function () {
   return __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.bind(null, /*! ./components/base/DOB */ "./resources/js/components/base/DOB.vue"));

@@ -9,7 +9,7 @@ class Claim extends Model
 {
     public $table = 'claims';
     protected $fillable = [
-        "member_id",
+        "membership_number",
         "date"
     ];
 }

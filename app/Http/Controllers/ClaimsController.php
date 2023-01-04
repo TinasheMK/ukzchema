@@ -40,7 +40,12 @@ class ClaimsController extends SharedBaseController
 
     public function index()
     {
-        $claims = Claim::whereMemberId(Auth::user()->member_id)->get();
+        $claims = Claim::whereMembershipNumber(Auth::user()->member_id)->get();
         return view('member.claims', compact('claims'));
+    }
+    public function claimForm()
+    {
+        $claims = Claim::whereMemberId(Auth::user()->member_id)->get();
+        return view('member.claim', compact('claims'));
     }
 }
