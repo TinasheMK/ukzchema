@@ -6,15 +6,13 @@
           <th>Deceased Name</th>
           <th>Date</th>
           <th class="text-right">Name of Claimant</th>
-          <th class="text-right">Action</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="dep in my_deposits" :key="dep.id">
-            <td>{{dep.deceased_name}}</td>
+            <td><a href="claim/1">{{dep.deceased_name}}</a></td>
             <td>{{dep.date_death}}</td>
-            <td>{{dep.fullname}}</td>
-            <td>View</td>
+            <td class="text-right">{{dep.fullname}}</td>
         </tr>
       </tbody>
     </table>

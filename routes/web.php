@@ -60,6 +60,7 @@ Route::group(['middleware' => ['auth', /*'role:member'*/], "prefix" => "member"]
 
     Route::get('/claims', 'ClaimsController@index')->name('members-area.claims');
     Route::get('/claim', 'ClaimsController@claimForm')->name('members-area.claim');
+    Route::get('/claim/{claim}', 'ClaimsController@viewClaim')->name('members-area.claimView');
 
     Route::get('/payments', 'DonationsController@index')->name('members-area.payments');
     Route::post('/payments', 'DonationsController@store')->name('members-area.submit_donation');

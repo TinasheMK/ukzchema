@@ -30,8 +30,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 __webpack_require__(/*! datatables.net */ "./node_modules/datatables.net/js/jquery.dataTables.js");
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -88,13 +86,17 @@ var render = function() {
           "tbody",
           _vm._l(_vm.my_deposits, function(dep) {
             return _c("tr", { key: dep.id }, [
-              _c("td", [_vm._v(_vm._s(dep.deceased_name))]),
+              _c("td", [
+                _c("a", { attrs: { href: "claim/1" } }, [
+                  _vm._v(_vm._s(dep.deceased_name))
+                ])
+              ]),
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(dep.date_death))]),
               _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(dep.fullname))]),
-              _vm._v(" "),
-              _c("td", [_vm._v("View")])
+              _c("td", { staticClass: "text-right" }, [
+                _vm._v(_vm._s(dep.fullname))
+              ])
             ])
           }),
           0
@@ -114,9 +116,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Date")]),
         _vm._v(" "),
-        _c("th", { staticClass: "text-right" }, [_vm._v("Name of Claimant")]),
-        _vm._v(" "),
-        _c("th", { staticClass: "text-right" }, [_vm._v("Action")])
+        _c("th", { staticClass: "text-right" }, [_vm._v("Name of Claimant")])
       ])
     ])
   }
