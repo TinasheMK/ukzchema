@@ -56,6 +56,8 @@ Route::group(['middleware' => ['auth', /*'role:member'*/], "prefix" => "member"]
     Route::get('/obituaries', 'ObituaryController@index')->name('members-area.obituary');
     Route::get('/obituaries/{obituary}', 'ObituaryController@show')->name('members-area.obituary-show');
 
+    Route::get('/claims', 'ClaimsController@index')->name('members-area.claims');
+
     Route::get('/payments', 'DonationsController@index')->name('members-area.payments');
     Route::post('/payments', 'DonationsController@store')->name('members-area.submit_donation');
     Route::get('/deposits', 'DepositController@index')->name('members-area.deposits');

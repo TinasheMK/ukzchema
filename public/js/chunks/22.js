@@ -56,6 +56,10 @@ __webpack_require__.r(__webpack_exports__);
         link: "/account/notifications",
         icon: "lni-alarm"
       }, {
+        title: "Claims",
+        link: "/account/claims",
+        icon: "lni-alarm"
+      }, {
         title: "Change Password",
         link: "/account/change-password",
         icon: "lni-lock"

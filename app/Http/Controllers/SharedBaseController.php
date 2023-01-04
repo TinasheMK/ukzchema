@@ -95,6 +95,11 @@ class SharedBaseController extends Controller
                 "icon" => "nc-bell-55"
             ],
             [
+                "name" => "Claims",
+                "route" => route('members-area.claims'),
+                "icon" => "nc-single-02"
+            ],
+            [
                 "name" => "Change Password",
                 "route" => route('members-area.password'),
                 "icon" => "nc-key-25"

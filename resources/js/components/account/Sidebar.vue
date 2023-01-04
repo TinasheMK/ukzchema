@@ -5,7 +5,7 @@
       <h4 class="widget-title mb-30">Jmunapo</h4>
       <ul class="catagories-list">
         <li
-          class="pl-3" 
+          class="pl-3"
           v-for="link in links"
           :class="isActive(link.link)"
           :key="link.link">
@@ -25,7 +25,7 @@ export default {
     const parts = this.$route.path.split('/');
     this.page = parts[parts.length - 1]
     console.log("Side", this.page);
-    
+
   },
   data() {
     return {
@@ -49,6 +49,11 @@ export default {
         {
           title: "Notification",
           link: "/account/notifications",
+          icon: "lni-alarm",
+        },
+        {
+          title: "Claims",
+          link: "/account/claims",
           icon: "lni-alarm",
         },
         {
