@@ -52,7 +52,7 @@ Home
             <div class="icon mx-auto"><i class="lni-pound"></i></div>
             <h4>Raise Money</h4>
             <p>UKZCHEMA pays funeral costs as per the constitution to eligible bereaved members .
-                The objective is to help members meet funeral costs locally (UK) or via the repatriation pathway to Zimbabwe.</p>
+                The objective is to help members meet funeral costs locally (Uk) or via the repatriation pathway to Zimbabwe.</p>
           </div>
         </div>
         <!-- Single About Area-->
