@@ -84,7 +84,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return Promise.all(/*! import() */[__webpack_require__.e(1), __webpack_require__.e(2), __webpack_require__.e(4), __webpack_require__.e(23)]).then(__webpack_require__.bind(null, /*! ./applicant/PersonalForm */ "./resources/js/components/applicant/PersonalForm.vue"));
     },
     NextofKin: function NextofKin() {
-      return Promise.all(/*! import() */[__webpack_require__.e(1), __webpack_require__.e(2), __webpack_require__.e(30)]).then(__webpack_require__.bind(null, /*! ./applicant/NextofKin */ "./resources/js/components/applicant/NextofKin.vue"));
+      return Promise.all(/*! import() */[__webpack_require__.e(1), __webpack_require__.e(2), __webpack_require__.e(31)]).then(__webpack_require__.bind(null, /*! ./applicant/NextofKin */ "./resources/js/components/applicant/NextofKin.vue"));
     },
     NomineeContainer: function NomineeContainer() {
       return __webpack_require__.e(/*! import() */ 10).then(__webpack_require__.bind(null, /*! ./applicant/NomineeContainer */ "./resources/js/components/applicant/NomineeContainer.vue"));

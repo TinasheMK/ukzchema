@@ -50,7 +50,7 @@ __webpack_require__.r(__webpack_exports__);
   props: ["max_nominees"],
   components: {
     NomineeForm: function NomineeForm() {
-      return Promise.all(/*! import() */[__webpack_require__.e(1), __webpack_require__.e(2), __webpack_require__.e(31)]).then(__webpack_require__.bind(null, /*! ./NomineeForm */ "./resources/js/components/applicant/NomineeForm.vue"));
+      return Promise.all(/*! import() */[__webpack_require__.e(1), __webpack_require__.e(2), __webpack_require__.e(32)]).then(__webpack_require__.bind(null, /*! ./NomineeForm */ "./resources/js/components/applicant/NomineeForm.vue"));
     }
   },
   data: function data() {

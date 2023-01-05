@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "js/chunks/" + ({}[chunkId]||chunkId) + ".js?v=" + {"0":"7ca4f","1":"0db90","2":"2592b","3":"fbe43","4":"a5289","5":"ed993","6":"99564","7":"71e9e","8":"a2c30","9":"46e7c","10":"3759f","11":"79f7e","12":"5c075","13":"85590","14":"0bc50","15":"4f9d6","16":"c387d","17":"2fcaf","18":"875cd","19":"471c7","20":"0ce6d","21":"02b6f","22":"ec1a3","23":"50ecc","24":"8217d","25":"8ba44","26":"f2870","27":"2c075","28":"f20ba","29":"7a00e","30":"2dc28","31":"ef2b4","32":"8c1c4","33":"ea535"}[chunkId] + ""
+/******/ 		return __webpack_require__.p + "js/chunks/" + ({}[chunkId]||chunkId) + ".js?v=" + {"0":"7ca4f","1":"0db90","2":"2592b","3":"fbe43","4":"a5289","5":"ed993","6":"99564","7":"71e9e","8":"a2c30","9":"46e7c","10":"7fc10","11":"79f7e","12":"5c075","13":"85590","14":"2aa62","15":"4f9d6","16":"c387d","17":"2fcaf","18":"875cd","19":"471c7","20":"0ce6d","21":"02b6f","22":"ec1a3","23":"50ecc","24":"8217d","25":"f49be","26":"c2a09","27":"8d19b","28":"d82d1","29":"cea29","30":"28a14","31":"5db8b","32":"94efc","33":"db9f6"}[chunkId] + ""
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -82878,31 +82878,31 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("member-loaded", function (
   return Promise.all(/*! import() */[__webpack_require__.e(5), __webpack_require__.e(13)]).then(__webpack_require__.bind(null, /*! ./components/member/MemberLoaded */ "./resources/js/components/member/MemberLoaded.vue"));
 });
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("member-nav", function () {
-  return __webpack_require__.e(/*! import() */ 28).then(__webpack_require__.bind(null, /*! ./components/member/MemberNav */ "./resources/js/components/member/MemberNav.vue"));
+  return __webpack_require__.e(/*! import() */ 29).then(__webpack_require__.bind(null, /*! ./components/member/MemberNav */ "./resources/js/components/member/MemberNav.vue"));
 });
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("obituary-view", function () {
   return __webpack_require__.e(/*! import() */ 9).then(__webpack_require__.bind(null, /*! ./components/member/ObituaryView */ "./resources/js/components/member/ObituaryView.vue"));
 });
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("new-message", function () {
-  return Promise.all(/*! import() */[__webpack_require__.e(3), __webpack_require__.e(32)]).then(__webpack_require__.bind(null, /*! ./components/member/NewMessage */ "./resources/js/components/member/NewMessage.vue"));
+  return Promise.all(/*! import() */[__webpack_require__.e(3), __webpack_require__.e(33)]).then(__webpack_require__.bind(null, /*! ./components/member/NewMessage */ "./resources/js/components/member/NewMessage.vue"));
 });
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("nominees-form", function () {
   return Promise.all(/*! import() */[__webpack_require__.e(3), __webpack_require__.e(12)]).then(__webpack_require__.bind(null, /*! ./components/member/NomineesForm */ "./resources/js/components/member/NomineesForm.vue"));
 });
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("donations-table", function () {
-  return __webpack_require__.e(/*! import() */ 27).then(__webpack_require__.bind(null, /*! ./components/member/DonationsTable */ "./resources/js/components/member/DonationsTable.vue"));
+  return __webpack_require__.e(/*! import() */ 28).then(__webpack_require__.bind(null, /*! ./components/member/DonationsTable */ "./resources/js/components/member/DonationsTable.vue"));
 });
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("donate-button", function () {
   return Promise.all(/*! import() */[__webpack_require__.e(3), __webpack_require__.e(11)]).then(__webpack_require__.bind(null, /*! ./components/member/DonateButton */ "./resources/js/components/member/DonateButton.vue"));
 });
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("deposit-modal", function () {
-  return __webpack_require__.e(/*! import() */ 25).then(__webpack_require__.bind(null, /*! ./components/member/DepositModal */ "./resources/js/components/member/DepositModal.vue"));
+  return __webpack_require__.e(/*! import() */ 26).then(__webpack_require__.bind(null, /*! ./components/member/DepositModal */ "./resources/js/components/member/DepositModal.vue"));
 });
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("deposits-table", function () {
-  return __webpack_require__.e(/*! import() */ 26).then(__webpack_require__.bind(null, /*! ./components/member/DepositsTable */ "./resources/js/components/member/DepositsTable.vue"));
+  return __webpack_require__.e(/*! import() */ 27).then(__webpack_require__.bind(null, /*! ./components/member/DepositsTable */ "./resources/js/components/member/DepositsTable.vue"));
 });
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("claims-table", function () {
-  return __webpack_require__.e(/*! import() */ 33).then(__webpack_require__.bind(null, /*! ./components/member/ClaimsTable */ "./resources/js/components/member/ClaimsTable.vue"));
+  return __webpack_require__.e(/*! import() */ 25).then(__webpack_require__.bind(null, /*! ./components/member/ClaimsTable */ "./resources/js/components/member/ClaimsTable.vue"));
 });
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("dob-input", function () {
   return __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.bind(null, /*! ./components/base/DOB */ "./resources/js/components/base/DOB.vue"));
@@ -82911,7 +82911,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("country-picker", function 
   return __webpack_require__.e(/*! import() */ 24).then(__webpack_require__.bind(null, /*! ./components/base/CountryPicker */ "./resources/js/components/base/CountryPicker.vue"));
 });
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("notifications-table", function () {
-  return __webpack_require__.e(/*! import() */ 29).then(__webpack_require__.bind(null, /*! ./components/member/NotificationsTable */ "./resources/js/components/member/NotificationsTable.vue"));
+  return __webpack_require__.e(/*! import() */ 30).then(__webpack_require__.bind(null, /*! ./components/member/NotificationsTable */ "./resources/js/components/member/NotificationsTable.vue"));
 });
 
 /***/ }),

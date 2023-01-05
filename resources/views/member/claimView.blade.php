@@ -17,60 +17,60 @@ Claims
                     <div class="col-md-3">
                         <div class="form-group">
                             <label>Membership ID</label>
-                            <input type="text" class="form-control" disabled="" value="">
+                            <input type="text" class="form-control" disabled="" disabled value="{{$claim->member_number}}">
                             <input type="hidden" name="membership_Id" value="">
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>Fullname of Claimant </label>
-                            <input name="phone" type="text" class="form-control" value="">
+                            <input name="phone" type="text" class="form-control" disabled value="{{$claim->claimant_fullname}}">
                         </div>
                     </div>
                     <div class="col-md-5">
                         <div class="form-group">
                             <label for="email">Member Fullname</label>
-                            <input name="email" type="email" class="form-control" value="">
+                            <input name="email" type="email" class="form-control" disabled value="{{$claim->member_fullname}}">
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row w-100">
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>Deceased Person Fullname</label>
                             <input name="first_name" type="text" class="form-control"
-                                value="" >
+                                disabled value="{{$claim->deceased_name}}" >
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>Relationship With Deceased</label>
                             <input name="middle_names" type="text" class="form-control"
-                                value="" >
+                                disabled value="{{$claim->relationship}}" >
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>Country of Death</label>
                             <input name="last_name" type="text" class="form-control"
-                                value="" >
+                                disabled value="{{$claim->country_death}}" >
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>Date of Death</label>
                             <input name="last_name" type="text" class="form-control"
-                                value="" >
+                                disabled value="{{$claim->date_death}}" >
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>Claimant Phone Number</label>
                             <input name="last_name" type="text" class="form-control"
-                                value="" >
+                                disabled value="{{$claim->claimant_phone}}" >
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    {{-- <div class="col-md-6">
                         <div class="">
                             <label>Proof of ID</label>
                             <input name="last_name" type="file" class="form-control"
@@ -97,7 +97,7 @@ Claims
                             <input name="last_name" type="file" class="form-control"
                                 value="" >
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
 
             </form>

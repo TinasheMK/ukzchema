@@ -9,7 +9,22 @@ class Claim extends Model
 {
     public $table = 'claims';
     protected $fillable = [
-        "membership_number",
-        "date"
+        'date',
+        'date_death',
+        'claimant_fullname',
+        'relationship',
+        'country_death',
+        'claimant_phone',
+        'proof_id',
+        'air_tickets',
+        'proof_address',
+        'passport_date',
+        'membership',
+        'amount',
+        'claim_verified',
+        'member_fullname',
+        'member_number',
+        'deceased_name',
+
     ];
 }
