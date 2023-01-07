@@ -27,7 +27,7 @@ Claims
             <h5 class="card-title">Claim Form</h5>
         </div>
         <div class="card-body">
-            <form action="{{route('members-area.claimStore')}}" method="POST">
+            <form action="{{route('members-area.claimStore')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <div class="col-md-3">
@@ -93,8 +93,10 @@ Claims
                     <div class="col-md-6">
                         <div class="">
                             <label>Proof of ID</label>
-                            <input name="proof_id" type="file" class="form-control"
-                                value="" required>
+                            <input name="proof_id" type="file" class="form-control-file"  value="" required multiple="multiple">
+                            {{-- <input type="file" class="form-control-file" name="image[]" id="exampleFormControlFile1"  multiple="multiple" > --}}
+
+                                <small>Required</small>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -102,20 +104,32 @@ Claims
                             <label>Proof of Address</label>
                             <input name="proof_address" type="file" class="form-control"
                                 value="" required>
+                                <small>Required</small>
+
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="">
                             <label>Air Tickets</label>
                             <input name="air_tickets" type="file" class="form-control"
-                                value="" required>
+                                value="" >
+                                <small>Leave blank if not applicable</small>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="">
                             <label>Passport Date Stamp</label>
-                            <input name="passport_stamp" type="file" class="form-control"
-                                value="" required>
+                            <input name="passport_date" type="file" class="form-control"
+                                value="" >
+                                <small>Leave blank if not applicable</small>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="">
+                            <label>Death Certificate</label>
+                            <input name="death_certificate" type="file" class="form-control"
+                                value="" >
+                                <small>Provide later if unavailable</small>
                         </div>
                     </div>
                 </div>

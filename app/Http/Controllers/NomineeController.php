@@ -71,12 +71,13 @@ class NomineeController extends SharedBaseController
             'member_id'=> $nominee->member_id,
             'full_name'=> $nominee->full_name,
             'dob'=> $nominee->dob,
+            'dod'=> $nominee->dod,
             'zimbabwean_by'=> $nominee->zimbabwean_by,
 
         ]);
         // dd($user);
 
 
-        return redirect(route('members-area.home'));
+        return redirect(route("voyager.nominees.index"));
     }
 }

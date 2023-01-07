@@ -15,6 +15,49 @@ class ClaimsController extends SharedBaseController
     {
         // dd($request);
 
+        $this->validate($request, [
+            'proof_address' => ['required', 'mimes:jpeg,jpg,pdf,gif,bmp,png', 'max:2048'],
+            'passport_date' => ['required', 'mimes:jpeg,jpg,pdf,gif,bmp,png', 'max:2048'],
+            'death_certificate' => [ 'mimes:jpeg,jpg,pdf,gif,bmp,png', 'max:2048'],
+            'proof_id' => ['required', 'mimes:jpeg,jpg,gif,pdf,bmp,png', 'max:2048'],
+            'air_tickets' => ['required', 'mimes:jpeg,jpg,gif,pdf,bmp,png', 'max:2048'],
+        ]);
+
+        $file = $request->file('proof_address');
+        $proof_address = time()."_". preg_replace('/\s+/', '_', strtolower($file->getClientOriginalName()));
+        $tmp = $file->storeAs('uploads/'.$request->member_number, $proof_address, 'public');
+
+        // dd($proof_address);
+        if($request->file('passport_date')){
+
+            $file = $request->file('passport_date');
+            $proof_address = time().$this->generateRandomString()."_". preg_replace('/\s+/', '_', strtolower($file->getClientOriginalName()));
+            $tmp = $file->storeAs('uploads/'.$request->member_number, $proof_address, 'public');
+        }
+
+        if($request->file('death_certificate')){
+
+            $file = $request->file('death_certificate');
+            $death_certificate = time().$this->generateRandomString()."_". preg_replace('/\s+/', '_', strtolower($file->getClientOriginalName()));
+            $tmp = $file->storeAs('uploads/'.$request->member_number, $death_certificate, 'public');
+        }
+
+
+        if($request->file('proof_id')){
+
+            $file = $request->file('proof_id');
+            $proof_id = time().$this->generateRandomString()."_". preg_replace('/\s+/', '_', strtolower($file->getClientOriginalName()));
+            $tmp = $file->storeAs('uploads/'.$request->member_number, $proof_id, 'public');
+        }
+
+        if($request->file('air_tickets')){
+
+            $file = $request->file('air_tickets');
+            $air_tickets = time().$this->generateRandomString()."_". preg_replace('/\s+/', '_', strtolower($file->getClientOriginalName()));
+            $tmp = $file->storeAs('uploads/'.$request->member_number, $air_tickets, 'public');
+        }
+
+
         $claim = Claim::create([
             'date' => new DateTime('now'),
             'date_death' => $request->date_death,
@@ -22,10 +65,11 @@ class ClaimsController extends SharedBaseController
             'relationship' => $request->relationship,
             'country_death' => $request->country_death,
             'claimant_phone' => $request->claimant_phone,
-            'proof_id' => $request->proof_id,
-            'air_tickets' => $request->air_tickets,
-            'proof_address' => $request->proof_address,
+            'proof_id' => $proof_id,
+            'air_tickets' => $air_tickets,
+            'proof_address' => $proof_address,
             'passport_date' => $request->passport_date,
+            'death_certificate' => $death_certificate,
             'amount' => $request->amount,
             'claim_verified' => $request->claim_verified,
             'member_fullname' => $request->member_fullname,
@@ -61,5 +105,15 @@ class ClaimsController extends SharedBaseController
         $member = $member[0];
         $claims = Claim::whereMemberId(Auth::user()->member_id)->get();
         return view('member.claim', compact('claims', 'member'));
+    }
+
+    function generateRandomString($length = 10) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
     }
 }

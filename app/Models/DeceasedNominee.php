@@ -14,6 +14,7 @@ class DeceasedNominee extends Model
         "full_name",
         "email",
         "dob",
+        "dod",
         'zimbabwean_by',
     ];
 }

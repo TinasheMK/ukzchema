@@ -108,10 +108,10 @@
 </div>
 
 {{-- Deceased Form --}}
-<form action="{{route('nominee.deceased')}}" method="POST" id="accept_form">
+{{-- <form action="{{route('nominee.deceased')}}" method="POST" id="accept_form">
     @csrf
     <input type="hidden" name="nominee_id" value="{{$nominee->id}}">
-</form>
+</form> --}}
 
 {{-- Accept Form --}}
 <form action="{{route('applicant.acceptpaid')}}" method="POST" id="accept_form_paid">
@@ -126,26 +126,30 @@
 
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title"><i class="voyager-warning"></i> Rejecting <strong>{{$applicant->first_name}} {{$applicant->last_name}}</strong></h4>
+                <h4 class="modal-title"><i class="voyager-warning"></i> Marking Nominee As Deceased <strong>{{$applicant->first_name}} {{$applicant->last_name}}</strong></h4>
             </div>
 
             <div class="modal-body">
-                <h4>Please enter rejection reason and instruction:</h4>
-                <div class="form-group">
-                    <textarea class="form-control" id="rejection_reason" rows="3"></textarea>
-                    <small>Required</small>
-                </div>
-                <p>The user will automatically deleted after 48 hours and they can re apply again</p>
-                <div class="form-check">
+                <h4>Please enter the date of death:</h4>
+                <form action="{{route('nominee.deceased')}}" method="POST" id="deceased_form">
+                    @csrf
+                    <div class="form-group">
+                        <input type="date" name="dod" required>
+                        <input type="hidden" name="nominee_id" value="{{$nominee->id}}">
+                        <small>Required</small>
+                    </div>
+                </form>
+                <p>The nominee will be automatically removed from the member's nominees and from the nominees list.</p>
+                {{-- <div class="form-check">
                     <input class="form-check-input" type="checkbox" name="re_apply" value="" id="re_reg">
                     <label class="form-check-label" for="re_reg">Include re application link</label>
-                </div>
+                </div> --}}
             </div>
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-default"
                     data-dismiss="modal">{{ __('voyager::generic.cancel') }}</button>
-                <button type="button" class="btn btn-danger" id="confirm_reject">Submit & Reject
+                <button type="button" class="btn btn-danger" id="confirm_deceased">Confirm Deceased
                 </button>
             </div>
         </div>
@@ -174,7 +178,12 @@
 
 
         $('#accept_applicant').on('click', function(){
-            $('form#accept_form').submit();
+            // $('form#accept_form').submit();
+            $('#enter_reject_reason').modal('show');
+        });
+
+        $('#confirm_deceased').on('click', function(){
+            $('form#deceased_form').submit();
         });
 
         $('#accept_applicant_paid').on('click', function(){
