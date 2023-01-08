@@ -21,10 +21,10 @@ class ClaimsController extends SharedBaseController
 
         $this->validate($request, [
             'proof_address' => ['required', 'mimes:jpeg,jpg,pdf,gif,bmp,png', 'max:2048'],
-            'passport_date' => ['required', 'mimes:jpeg,jpg,pdf,gif,bmp,png', 'max:2048'],
+            'passport_date' => [ 'mimes:jpeg,jpg,pdf,gif,bmp,png', 'max:2048'],
             'death_certificate' => [ 'mimes:jpeg,jpg,pdf,gif,bmp,png', 'max:2048'],
             'proof_id' => ['required', 'mimes:jpeg,jpg,gif,pdf,bmp,png', 'max:2048'],
-            'air_tickets' => ['required', 'mimes:jpeg,jpg,gif,pdf,bmp,png', 'max:2048'],
+            'air_tickets' => [ 'mimes:jpeg,jpg,gif,pdf,bmp,png', 'max:2048'],
         ]);
 
         $file = $request->file('proof_address');
@@ -32,6 +32,12 @@ class ClaimsController extends SharedBaseController
         $tmp = $file->storeAs('uploads/'.$request->member_number, $proof_address, 'public');
 
         // dd($proof_address);
+        $air_tickets = "";
+        $proof_address = "";
+        $death_certificate = "";
+        $proof_id = "";
+        $passport_date = "";
+
         if($request->file('passport_date')){
 
             $file = $request->file('passport_date');
@@ -91,6 +97,43 @@ class ClaimsController extends SharedBaseController
             'alert-type' => 'success',
         ]);
     }
+    public function update(Request $request)
+    {
+        // dd($request);
+        $claim = Claim::find($request->id);
+
+
+        $this->validate($request, [
+            'death_certificate' => ['mimes:jpeg,jpg,pdf,gif,bmp,png', 'max:2048']
+        ]);
+
+
+        if($request->file('death_certificate')){
+
+            $file = $request->file('death_certificate');
+            $death_certificate = time().$this->generateRandomString()."_". preg_replace('/\s+/', '_', strtolower($file->getClientOriginalName()));
+            $tmp = $file->storeAs('uploads/'.$claim->member_number, $death_certificate, 'public');
+        }
+
+
+        $claim = Claim::find($request->id);
+        // dd($claim);
+
+        $claim->death_certificate =
+        $death_certificate;
+        $claim->save();
+
+
+
+        // Notification::route('mail', "claims@ukzchema.co.uk")->notify(new ClaimNotification($claim));
+
+
+
+        return redirect(route('members-area.claims'))->with([
+            'message'    => "Your claim was updated successfully.",
+            'alert-type' => 'success',
+        ]);
+    }
 
     public function index()
     {
@@ -112,6 +155,8 @@ class ClaimsController extends SharedBaseController
         $claims = Claim::whereMemberId(Auth::user()->member_id)->get();
         return view('member.claim', compact('claims', 'member'));
     }
+
+
 
     function generateRandomString($length = 10) {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';

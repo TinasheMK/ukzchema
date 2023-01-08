@@ -18,7 +18,7 @@ class Claim extends Model
         'proof_id',
         'air_tickets',
         'proof_address',
-        // 'death_certificate',
+        'death_certificate',
         'passport_date',
         'membership',
         'amount',

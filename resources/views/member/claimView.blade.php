@@ -11,8 +11,7 @@ Claims
             <h5 class="card-title">Claim Form</h5>
         </div>
         <div class="card-body">
-            <form action="{{route('members-area.profile')}}" method="POST">
-                @csrf
+
                 <div class="row">
                     <div class="col-md-3">
                         <div class="form-group">
@@ -70,6 +69,26 @@ Claims
                                 disabled value="{{$claim->claimant_phone}}" >
                         </div>
                     </div>
+
+
+                    <form action="{{route('members-area.claimUpdate')}}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="col-md-12">
+                            <div class="">
+                                <label>Upload Death Certificate</label>
+                                <input name="death_certificate" type="file" class="form-control"
+                                    value="" required>
+                                <input name="id" type="hidden" class="form-control"
+                                    value="{{$claim->id}}" required>
+                                    {{-- <small>Leave blank if not applicable</small> --}}
+                            </div>
+                            <div class="update ml-auto mr-auto">
+                                <button type="submit" class="btn btn-primary btn-sm">Upload Death Certificate</button>
+                            </div>
+                        </div>
+                    </form>
+
+
                     {{-- <div class="col-md-6">
                         <div class="">
                             <label>Proof of ID</label>
@@ -100,7 +119,7 @@ Claims
                     </div> --}}
                 </div>
 
-            </form>
+
         </div>
     </div>
 </div>

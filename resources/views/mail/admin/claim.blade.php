@@ -1,5 +1,5 @@
 @component('mail::message')
-A claim has been submitted on the UKZChema. Claimant is {{$claimant}} for the deceased person {{$deceased}}.
+A claim has been submitted on the UKZChema online platform. Claimant is {{$claimant}} for the deceased person {{$deceased}}.
 
 
 @component('mail::button', ['url' => $link, 'color' => "info"])
