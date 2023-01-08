@@ -52,7 +52,7 @@ Home
             <div class="icon mx-auto"><i class="lni-pound"></i></div>
             <h4>Raise Money</h4>
             <p>UKZCHEMA pays funeral costs as per the constitution to eligible bereaved members .
-                The objective is to help members meet funeral costs locally (Uk) or via the repatriation pathway to Zimbabwe.</p>
+                The objective is to help members meet funeral costs locally (UK) or via the repatriation pathway.</p>
           </div>
         </div>
         <!-- Single About Area-->
@@ -68,7 +68,7 @@ Home
           <div class="single-about-area text-center wow fadeInUp" data-wow-delay="500ms" data-wow-duration="1000ms">
             <div class="icon mx-auto"><i class="fa fa-handshake-o" aria-hidden="true"></i></div>
             <h4>Unity</h4>
-            <p>UKZ encourages social cohesion by creating the spirit of togetherness (ubuntu) among Zimbabweans,
+            <p>UKZChema encourages social cohesion by creating the spirit of togetherness (ubuntu) among Zimbabweans,
               particularly at times of
               bereavement.</p>
           </div>

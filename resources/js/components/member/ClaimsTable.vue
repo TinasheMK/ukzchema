@@ -11,7 +11,7 @@
       <tbody>
         <tr v-for="dep in my_deposits" :key="dep.id">
             <td><a v-bind:href="'claim/'+ dep.id">{{dep.deceased_name}}</a></td>
-            <td>{{dep.date_death}}</td>
+            <td>{{dep.date}}</td>
             <td class="text-right">{{dep.claimant_fullname}}</td>
         </tr>
       </tbody>

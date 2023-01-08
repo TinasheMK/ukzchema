@@ -92,7 +92,7 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(dep.date_death))]),
+              _c("td", [_vm._v(_vm._s(dep.date))]),
               _vm._v(" "),
               _c("td", { staticClass: "text-right" }, [
                 _vm._v(_vm._s(dep.claimant_fullname))

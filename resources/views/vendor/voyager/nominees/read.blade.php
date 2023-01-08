@@ -100,7 +100,7 @@
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     {{-- <button type="button" id="accept_applicant_paid" class="btn btn-primary">{{ __('Accept Without Payment') }}</button> --}}
                     <br>
-                    <small>NOMINEE WILL BE MOVED TO DECEASED MEMBERS</small>
+                    <small>NOMINEE WILL BE MOVED TO DECEASED NOMINEES</small>
                 </div>
             </div>
         </div>

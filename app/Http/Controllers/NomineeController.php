@@ -80,7 +80,7 @@ class NomineeController extends SharedBaseController
             'member_id'=> $nominee->member_id,
             'full_name'=> $nominee->full_name,
             'dob'=> $nominee->dob,
-            'dod'=> $nominee->dod,
+            'dod'=>$request->dod,
             'zimbabwean_by'=> $nominee->zimbabwean_by,
 
         ]);
