@@ -82,7 +82,7 @@ class ClaimsController extends SharedBaseController
 
         ]);
 
-        Notification::route('mail', "tinashekmakarudze@gmail.com")->notify(new ClaimNotification($claim));
+        Notification::route('mail', "claims@ukzchema.co.uk")->notify(new ClaimNotification($claim));
 
 
 
