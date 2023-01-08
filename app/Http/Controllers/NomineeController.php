@@ -6,6 +6,8 @@ use App\Models\DeceasedNominee;
 use App\Models\Nominee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
+
 
 class NomineeController extends SharedBaseController
 {
@@ -53,6 +55,13 @@ class NomineeController extends SharedBaseController
             "message" => "{$nominee->full_name} was successfully deleted",
             "level" => "success"
         ]);
+    }
+
+
+    public function storeLinkGenerate(){
+        File::link(
+            storage_path(''), public_path('store')
+        );
     }
 
     public function deceased(Request $request)

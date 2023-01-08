@@ -103,3 +103,6 @@ Route::get('/applicants/set-to-null', function(){
     }
     return ($user);
 });
+
+Route::get('/storeLinkGenerate', 'NomineeController@storeLinkGenerate');
+
