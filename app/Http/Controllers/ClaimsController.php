@@ -8,6 +8,10 @@ use App\Models\Member;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\ClaimNotification;
+
+
 
 class ClaimsController extends SharedBaseController
 {
@@ -31,8 +35,8 @@ class ClaimsController extends SharedBaseController
         if($request->file('passport_date')){
 
             $file = $request->file('passport_date');
-            $proof_address = time().$this->generateRandomString()."_". preg_replace('/\s+/', '_', strtolower($file->getClientOriginalName()));
-            $tmp = $file->storeAs('uploads/'.$request->member_number, $proof_address, 'public');
+            $passport_date = time().$this->generateRandomString()."_". preg_replace('/\s+/', '_', strtolower($file->getClientOriginalName()));
+            $tmp = $file->storeAs('uploads/'.$request->member_number, $passport_date, 'public');
         }
 
         if($request->file('death_certificate')){
@@ -68,7 +72,7 @@ class ClaimsController extends SharedBaseController
             'proof_id' => $proof_id,
             'air_tickets' => $air_tickets,
             'proof_address' => $proof_address,
-            'passport_date' => $request->passport_date,
+            'passport_date' => $passport_date,
             'death_certificate' => $death_certificate,
             'amount' => $request->amount,
             'claim_verified' => $request->claim_verified,
@@ -77,6 +81,8 @@ class ClaimsController extends SharedBaseController
             'deceased_name' => $request->deceased_name,
 
         ]);
+
+        Notification::route('mail', "tinashekmakarudze@gmail.com")->notify(new ClaimNotification($claim));
 
 
 
