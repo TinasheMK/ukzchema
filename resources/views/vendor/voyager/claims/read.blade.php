@@ -32,7 +32,7 @@
             <div class="panel panel-bordered">
                 <div class="panel-body">
                     <h4 class="panel-title info-title">Claim Form
-                        @if (!$claim->claim_verified)
+                        @if ($claim->claim_verified)
                             <span class="btn btn-success">Approved</span>
                         @else
                             <span class="btn btn-info">Pending Approval</span>
