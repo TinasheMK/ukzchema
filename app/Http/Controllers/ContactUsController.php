@@ -20,28 +20,19 @@ class ContactUsController extends Controller
         //Setup honeypot and send an email to the admin
 
         $this->validate($request, [ 'name' => 'required', 'email' => 'required|email', 'message' => 'required' ]);
-        Contact::create($request->all());
+        Contact::create([
+            'name' => $request->name,
+            'email'=> $request->email,
+            'message' => $request->message]
+        );
 
+        // dd("Wiiiiwiwi");
 
-        // Mail::send('email',
-        // array(
-        //     'name' => $request->get('name'),
-        //     'email' => $request->get('email'),
-        //     'bodyMessage' => $request->get('message')
-        // ), function($message)
-        // {
-        //     $message->from('info@ukzchema.co.uk');
-
-        //     $message->to('info@ukzchema.co.uk', 'UKZ Chema')->subject('UKZ Contect Form');
-        // });
-
-        // Notification::send([$request->get('email')], new ContactForm($request));
 
         Notification::route('mail', "info@ukzchema.co.uk")->notify(new ContactForm($request));
 
         // event();
 
-        // dd("Wiiiiwiwi");
         return back()->with('success', 'Thank you for contacting us!');
 
 
