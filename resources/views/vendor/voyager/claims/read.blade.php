@@ -108,17 +108,20 @@
                         <form action="{{route('members-area.claimUpdate')}}" method="POST" enctype="multipart/form-data">
                             @csrf
 
-                            <div class="col-md-12">
+                            <div class="col-md-12 ">
                                 <div class="">
                                     <div class="panel-heading" style="border-bottom:0;">
                                         <h3 class="panel-title">Claim Amount (	&#163;)</h3>
                                     </div>
-                                    <input name="amount" type="number" class="form-control col-3"
-                                        value="" required value="{{$claim->amount}}">
+                                    <div class="ml-4">
+                                        <input name="amount" type="number" style="width:60px" class="form-control col-3"
+                                            value="" required value="{{$claim->amount}}" placeholder="{{$claim->amount}}">
+
+                                    </div>
                                     <input name="id" type="hidden" class="form-control"
                                         value="{{$claim->id}}" required>
                                 </div>
-                                <div class="update ml-auto mr-auto">
+                                <div class="update ml-auto ml-4 mr-auto">
                                     <button type="submit" class="btn btn-primary btn-sm">Set Claim Amount</button>
                                 </div>
                             </div>
@@ -162,7 +165,7 @@
                     </p>
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     @if ($claim->proof_address)
-                        <a href="/store/app/public/uploads/{{$claim->member_number}}/{{$claim->proof_address}}"  class="btn btn-primary">{{ __('Proof of Residence') }}</a>
+                        <a href="/store/app/public/uploads/{{$claim->member_number}}/{{$claim->proof_address}}"  class="btn btn-primary">{{ __('Proof of Address') }}</a>
                     @endif
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     @if ($claim->proof_id)
