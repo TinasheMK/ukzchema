@@ -15,6 +15,7 @@ class Claim extends Model
         'relationship',
         'country_death',
         'claimant_phone',
+        'town_death',
         'proof_id',
         'air_tickets',
         'proof_address',
@@ -26,6 +27,7 @@ class Claim extends Model
         'member_fullname',
         'member_number',
         'deceased_name',
+        'claim_verified'
 
     ];
 }

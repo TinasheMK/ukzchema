@@ -9,6 +9,13 @@ Claims
     <div class="card card-user mb-12">
         <div class="card-header">
             <h5 class="card-title">Claim Form</h5>
+            <h4 class="panel-title info-title">
+                @if ($claim->claim_verified)
+                    <span class="btn btn-success">Approved</span>
+                @else
+                    <span class="btn btn-info">Pending Approval</span>
+                @endif
+            </h4>
         </div>
         <div class="card-body">
 

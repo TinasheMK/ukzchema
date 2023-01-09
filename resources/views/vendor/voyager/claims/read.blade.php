@@ -31,7 +31,13 @@
         <div class="col-md-12">
             <div class="panel panel-bordered">
                 <div class="panel-body">
-                    <h4 class="panel-title info-title">Claim Form</h4>
+                    <h4 class="panel-title info-title">Claim Form
+                        @if ($claim->claim_verified)
+                            <span class="btn btn-success">Approved</span>
+                        @else
+                            <span class="btn btn-info">Pending Approval</span>
+                        @endif
+                    </h4>
                     <div class="row">
                         <div class="col-12 col-lg-4">
                             <div class="panel-heading" style="border-bottom:0;">
@@ -77,6 +83,14 @@
                             </div>
                             <div class="panel-body" style="padding-top:0;">
                                 <p>{{$claim->country_death}}</p>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-4">
+                            <div class="panel-heading" style="border-bottom:0;">
+                                <h3 class="panel-title">Town Of Death</h3>
+                            </div>
+                            <div class="panel-body" style="padding-top:0;">
+                                <p>{{$claim->town_death}}</p>
                             </div>
                         </div>
                         <div class="col-12 col-lg-4">
@@ -170,6 +184,34 @@
                     <br>
 
                 </div>
+
+                <hr style="margin:0;">
+
+                @if ($claim->claim_verified)
+
+                    <div class="panel-footer">
+                        <p class="panel-title" style="font-weight: bold">Approve Claim
+                            {{-- <i class="voyager-check"></i> --}}
+                        </p>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="{{route('claim.approve', $claim->id)}}"  class="btn btn-success">{{ __('Approve Claim') }}</a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            {{-- <a href=""  class="btn btn-success">{{ __('Decline Claim') }}</a> --}}
+
+                        <br>
+
+                    </div>
+                @else
+                    <div class="panel-footer">
+                        <p class="panel-title" style="font-weight: bold">Claim Approved
+                            <i class="voyager-check"></i>
+                        </p>
+
+                        <br>
+
+                    </div>
+
+                @endif
             </div>
         </div>
     </div>

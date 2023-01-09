@@ -75,6 +75,7 @@ class ClaimsController extends SharedBaseController
             'relationship' => $request->relationship,
             'country_death' => $request->country_death,
             'claimant_phone' => $request->claimant_phone,
+            'town_death' => $request->town_death,
             'proof_id' => $proof_id,
             'air_tickets' => $air_tickets,
             'proof_address' => $proof_address,
@@ -130,6 +131,22 @@ class ClaimsController extends SharedBaseController
 
 
         return redirect(route('members-area.claims'))->with([
+            'message'    => "Your claim was updated successfully.",
+            'alert-type' => 'success',
+        ]);
+    }
+    public function approve(Claim $claim)
+    {
+
+        if(Auth::user()->role_id != 1){
+            return abort(403);
+        }
+
+        $claim->claim_verified = true;
+        $claim->save();
+
+
+        return redirect(route('voyager.claims.show', $claim->id))->with([
             'message'    => "Your claim was updated successfully.",
             'alert-type' => 'success',
         ]);

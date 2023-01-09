@@ -76,6 +76,13 @@ Claims
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
+                            <label>Town of Death</label>
+                            <input name="town_death" type="text" class="form-control"
+                                value="" required>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
                             <label>Date of Death</label>
                             <input name="date_death" type="date" class="form-control"
                                 value="" required>

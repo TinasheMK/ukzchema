@@ -59,6 +59,7 @@ Route::group(['middleware' => ['auth', /*'role:member'*/], "prefix" => "member"]
     Route::get('/obituaries/{obituary}', 'ObituaryController@show')->name('members-area.obituary-show');
 
     Route::get('/claims', 'ClaimsController@index')->name('members-area.claims');
+    Route::get('/claims/approve/{claim}', 'ClaimsController@approve')->name('claim.approve');
     Route::post('/claims/store', 'ClaimsController@store')->name('members-area.claimStore');
     Route::post('/claims/update', 'ClaimsController@update')->name('members-area.claimUpdate');
     Route::get('/claim', 'ClaimsController@claimForm')->name('members-area.claim');
