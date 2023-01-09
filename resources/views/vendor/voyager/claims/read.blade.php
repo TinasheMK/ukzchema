@@ -104,22 +104,25 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-md-12">
-                            <div class="panel-heading" style="border-bottom:0;">
-                                <h3 class="panel-title">Claim Amount</h3>
+
+                        <form action="{{route('members-area.claimUpdate')}}" method="POST" enctype="multipart/form-data">
+                            @csrf
+
+                            <div class="col-md-12">
+                                <div class="">
+                                    <div class="panel-heading" style="border-bottom:0;">
+                                        <h3 class="panel-title">Claim Amount (	&#163;)</h3>
+                                    </div>
+                                    <input name="amount" type="number" class="form-control col-3"
+                                        value="" required value="{{$claim->amount}}">
+                                    <input name="id" type="hidden" class="form-control"
+                                        value="{{$claim->id}}" required>
+                                </div>
+                                <div class="update ml-auto mr-auto">
+                                    <button type="submit" class="btn btn-primary btn-sm">Set Claim Amount</button>
+                                </div>
                             </div>
-                            <div class="panel-body" style="padding-top:0;">
-                                <p>{{$claim->amount}}</p>
-                            </div>
-                        </div>
-                        {{-- <div class="col-md-12">
-                            <div class="panel-heading" style="border-bottom:0;">
-                                <h3 class="panel-title">Verif</h3>
-                            </div>
-                            <div class="panel-body" style="padding-top:0;">
-                                <p>{{$claim->claim_verified}}</p>
-                            </div>
-                        </div> --}}
+                        </form>
                         <div class="col-12 col-lg-4">
                             <div class="panel-heading" style="border-bottom:0;">
                                 <h3 class="panel-title">Member Fullname</h3>
@@ -169,7 +172,7 @@
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     @if ($claim->passport_date)
 
-                        <a href="/store/app/public/uploads/{{$claim->member_number}}/{{$claim->passport_date}}"  class="btn btn-primary">{{ __('Passport Date') }}</a>
+                        <a href="/store/app/public/uploads/{{$claim->member_number}}/{{$claim->passport_date}}"  class="btn btn-primary">{{ __('Passport Stamp Date') }}</a>
                     @endif
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     @if ($claim->death_certificate)
