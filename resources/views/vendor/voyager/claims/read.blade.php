@@ -114,7 +114,7 @@
                                         <h3 class="panel-title">Claim Amount (	&#163;)</h3>
                                     </div>
                                     <div class="ml-4">
-                                        <input name="amount" type="number" style="width:60px" class="form-control col-3"
+                                        <input name="amount" type="number" style="width:120px" class="form-control col-3"
                                             value="" required value="{{$claim->amount}}" placeholder="{{$claim->amount}}">
 
                                     </div>
