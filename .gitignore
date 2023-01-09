@@ -2,7 +2,8 @@
 # /public/hot
 /public/storage
 /public/store
-# /storage/*.key
+/storage/*.key
+/storage
 # /vendor
 .env
 # .godaddy
@@ -12,5 +13,4 @@
 # Homestead.yaml
 # npm-debug.log
 # yarn-error.log
-.env
-.env
+
