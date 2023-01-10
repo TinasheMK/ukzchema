@@ -10,8 +10,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\ClaimNotification;
-
-
+use App\Notifications\ClaimNotificationAccepted;
+use App\Notifications\ClaimNotificationRejected;
 
 class ClaimsController extends SharedBaseController
 {
@@ -36,7 +36,7 @@ class ClaimsController extends SharedBaseController
         $proof_id = "";
         $passport_date = "";
 
-        if($request->file('passport_date')){
+        if($request->file('$proof_address')){
 
             $file = $request->file('proof_address');
             $proof_address = time()."_". preg_replace('/\s+/', '_', strtolower($file->getClientOriginalName()));
@@ -157,6 +157,8 @@ class ClaimsController extends SharedBaseController
         $claim->claim_verified = true;
         $claim->save();
 
+        Notification::route('mail', Auth::user()->email )->notify(new ClaimNotificationAccepted($claim));
+
 
         return redirect(route('voyager.claims.show', $claim->id))->with([
             'message'    => "Your claim was updated successfully.",
@@ -177,6 +179,9 @@ class ClaimsController extends SharedBaseController
         $claim->rejection_reason = $request->rejection_reason;
         $claim->claim_verified = 'rejected';
         $claim->save();
+
+        Notification::route('mail', Auth::user()->email )->notify(new ClaimNotificationRejected($claim));
+
 
 
         return redirect(route('voyager.claims.show', $claim->id))->with([
