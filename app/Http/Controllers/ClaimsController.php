@@ -36,7 +36,7 @@ class ClaimsController extends SharedBaseController
         $proof_id = "";
         $passport_date = "";
 
-        if($request->file('$proof_address')){
+        if($request->file('proof_address')){
 
             $file = $request->file('proof_address');
             $proof_address = time()."_". preg_replace('/\s+/', '_', strtolower($file->getClientOriginalName()));
