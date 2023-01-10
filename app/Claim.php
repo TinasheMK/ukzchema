@@ -27,7 +27,8 @@ class Claim extends Model
         'member_fullname',
         'member_number',
         'deceased_name',
-        'claim_verified'
+        'claim_verified',
+        'rejection_reason'
 
     ];
 }

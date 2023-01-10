@@ -164,6 +164,27 @@ class ClaimsController extends SharedBaseController
         ]);
     }
 
+    public function reject(Request $request)
+    {
+
+        // dd($request);
+
+        if(Auth::user()->role_id != 1){
+            return abort(403);
+        }
+
+        $claim = Claim::find($request->claim_id);
+        $claim->rejection_reason = $request->rejection_reason;
+        $claim->claim_verified = 'rejected';
+        $claim->save();
+
+
+        return redirect(route('voyager.claims.show', $claim->id))->with([
+            'message'    => "Your claim was updated successfully.",
+            'alert-type' => 'success',
+        ]);
+    }
+
     public function index()
     {
         $claims = Claim::whereMemberNumber(Auth::user()->member_id)->get();

@@ -10,11 +10,15 @@ Claims
         <div class="card-header">
             <h5 class="card-title">Claim Form</h5>
             <h4 class="panel-title info-title">
-                @if ($claim->claim_verified)
-                    <span class="btn btn-success">Approved</span>
-                @else
-                    <span class="btn btn-info">Pending Approval</span>
-                @endif
+            @if ($claim->claim_verified=='1')
+                <span class="btn btn-success">Approved</span>
+            @endif
+            @if ($claim->claim_verified==null)
+                <span class="btn btn-info">Pending Approval</span>
+            @endif
+            @if ($claim->claim_verified=='rejected')
+                <span class="btn btn-danger">Rejected</span>
+            @endif
             </h4>
         </div>
         <div class="card-body">
@@ -76,6 +80,23 @@ Claims
                                 disabled value="{{$claim->claimant_phone}}" >
                         </div>
                     </div>
+
+                    @if($claim->claim_verified=='rejected')
+                        <div class="col-md-12 panel-footer">
+                            <div class="col-12">
+                                <div class="panel-heading" style="border-bottom:0;">
+                                    <h3 class="panel-title">Rejection Reason</h3>
+                                </div>
+                                <div class="panel-body" style="padding-top:0;">
+                                    <p>{{$claim->rejection_reason}}</p>
+                                </div>
+                            </div>
+
+                            <br>
+
+                        </div>
+
+                    @endif
 
 
                     <form action="{{route('members-area.claimUpdate')}}" method="POST" enctype="multipart/form-data">

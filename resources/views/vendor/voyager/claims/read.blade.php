@@ -32,10 +32,14 @@
             <div class="panel panel-bordered">
                 <div class="panel-body">
                     <h4 class="panel-title info-title">Claim Form
-                        @if ($claim->claim_verified)
+                        @if ($claim->claim_verified=='1')
                             <span class="btn btn-success">Approved</span>
-                        @else
+                        @endif
+                        @if ($claim->claim_verified==null)
                             <span class="btn btn-info">Pending Approval</span>
+                        @endif
+                        @if ($claim->claim_verified=='rejected')
+                            <span class="btn btn-danger">Rejected</span>
                         @endif
                     </h4>
                     <div class="row">
@@ -73,7 +77,7 @@
                                 <h3 class="panel-title">Relationship with Deceased</h3>
                             </div>
                             <div class="panel-body" style="padding-top:0;">
-                                {{-- <p>{{$applicant->dob->format('d.m.Y')}}</p> --}}
+                                {{-- <p>{{$claim->dob->format('d.m.Y')}}</p> --}}
                                 <p>{{$claim->relationship}}</p>
                             </div>
                         </div>
@@ -193,7 +197,7 @@
 
                 <hr style="margin:0;">
 
-                @if (!$claim->claim_verified)
+                @if ($claim->claim_verified== false)
 
                     <div class="panel-footer">
                         <p class="panel-title" style="font-weight: bold">Approve Claim
@@ -202,16 +206,35 @@
                             &nbsp;&nbsp;&nbsp;&nbsp;
                             <a href="{{route('claim.approve', $claim->id)}}"  class="btn btn-success">{{ __('Approve Claim') }}</a>
                             &nbsp;&nbsp;&nbsp;&nbsp;
+                            <a id="reject_claim"  class="btn btn-danger">{{ __('Reject Claim') }}</a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
                             {{-- <a href=""  class="btn btn-success">{{ __('Decline Claim') }}</a> --}}
 
                         <br>
 
                     </div>
-                @else
+                @endif
+                @if($claim->claim_verified=='1')
                     <div class="panel-footer">
                         <p class="panel-title" style="font-weight: bold">Claim Approved
                             <i class="voyager-check"></i>
                         </p>
+
+                        <br>
+
+                    </div>
+
+                @endif
+                @if($claim->claim_verified=='rejected')
+                    <div class="panel-footer">
+                        <div class="col-12 col-lg-4">
+                            <div class="panel-heading" style="border-bottom:0;">
+                                <h3 class="panel-title">Rejection Reason</h3>
+                            </div>
+                            <div class="panel-body" style="padding-top:0;">
+                                <p>{{$claim->rejection_reason}}</p>
+                            </div>
+                        </div>
 
                         <br>
 
@@ -224,16 +247,16 @@
 </div>
 
 {{-- Accept Form --}}
-<form action="{{route('applicant.accept')}}" method="POST" id="accept_form">
+{{-- <form action="{{route('claim.accept')}}" method="POST" id="accept_form">
     @csrf
-    <input type="hidden" name="applicant_id" value="{{$claim->id}}">
-</form>
+    <input type="hidden" name="claim_id" value="{{$claim->id}}">
+</form> --}}
 
 {{-- Accept Form --}}
-<form action="{{route('applicant.acceptpaid')}}" method="POST" id="accept_form_paid">
+{{-- <form action="{{route('claim.acceptpaid')}}" method="POST" id="accept_form_paid">
     @csrf
-    <input type="hidden" name="applicant_id" value="{{$claim->id}}">
-</form>
+    <input type="hidden" name="claim_id" value="{{$claim->id}}">
+</form> --}}
 
 {{-- Reject Modal --}}
 <div class="modal fade modal-danger" id="enter_reject_reason">
@@ -242,28 +265,32 @@
 
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                {{-- <h4 class="modal-title"><i class="voyager-warning"></i> Rejecting <strong>{{$applicant->first_name}} {{$applicant->last_name}}</strong></h4> --}}
+                {{-- <h4 class="modal-title"><i class="voyager-warning"></i> Rejecting <strong>{{$claim->first_name}} {{$claim->last_name}}</strong></h4> --}}
             </div>
+            <form action="{{route('claim.reject')}}" method="POST" id="accept_form_paid">
+                @csrf
 
-            <div class="modal-body">
-                <h4>Please enter rejection reason and instruction:</h4>
-                <div class="form-group">
-                    <textarea class="form-control" id="rejection_reason" rows="3"></textarea>
-                    <small>Required</small>
+                <div class="modal-body">
+                    <h4>Please enter rejection reason and instruction:</h4>
+                    <div class="form-group">
+                        <textarea class="form-control" name="rejection_reason" id="rejection_reason" rows="3"></textarea>
+                        <input type="hidden" name="claim_id" value="{{$claim->id}}">
+                        <small>Required</small>
+                    </div>
+                    {{-- <p>The user will automatically deleted after 48 hours and they can re apply again</p>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="re_apply" value="" id="re_reg">
+                        <label class="form-check-label" for="re_reg">Include re application link</label>
+                    </div> --}}
                 </div>
-                <p>The user will automatically deleted after 48 hours and they can re apply again</p>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="re_apply" value="" id="re_reg">
-                    <label class="form-check-label" for="re_reg">Include re application link</label>
-                </div>
-            </div>
 
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default"
-                    data-dismiss="modal">{{ __('voyager::generic.cancel') }}</button>
-                <button type="button" class="btn btn-danger" id="confirm_reject">Submit & Reject
-                </button>
-            </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default"
+                        data-dismiss="modal">{{ __('voyager::generic.cancel') }}</button>
+                    <button type="submits" class="btn btn-danger" id="">Submit & Reject
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -271,5 +298,50 @@
 @endsection
 
 @section('javascript')
+<script>
+    $('document').ready(function () {
 
+        var params = {
+            slug: '{{ $dataType->slug }}',
+            claim_id: '{{ $claim->id }}',
+            _token: '{{ csrf_token() }}'
+        }
+
+        $("#rejection_reason").on("keyup", function() {
+            params['rejection_reason'] = $(this).val();
+        });
+
+        $('#reject_claim').on('click', function(){
+            $('#enter_reject_reason').modal('show');
+        });
+
+
+        $('#accept_claim').on('click', function(){
+            $('form#accept_form').submit();
+        });
+
+        $('#accept_claim_paid').on('click', function(){
+            $('form#accept_form_paid').submit();
+        });
+
+        $('#confirm_reject').on('click', function(){
+
+            if(!params.rejection_reason || params.rejection_reason == ""){
+                toastr.error("Rejection reason is required");
+                return;
+            }
+
+            $.post('{{ route('claim.reject', $claim->id) }}', params, function (response) {
+                if(response.error){
+                    toastr.error(response.message || "Error rejecting.");
+                }else if(response.success){
+                    toastr.success(response.message);
+                    window.location.href = response.route;
+                }
+            });
+
+            $('#enter_reject_reason').modal('hide');
+    });
+});
+</script>
 @endsection
