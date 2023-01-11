@@ -129,11 +129,11 @@ class ClaimsController extends SharedBaseController
             $claim->death_certificate =  $death_certificate;
             $claim->save();
 
-            Notification::route('mail', "claims@ukzchema.co.uk")->notify(new ClaimNotificationDeathCert($claim));
 
         }
-
-
+        if ($request->file('death_certificate')) {
+            Notification::route('mail', "claims@ukzchema.co.uk")->notify(new ClaimNotificationDeathCert($claim));
+        }
 
 
         // $claim = Claim::find($request->id);

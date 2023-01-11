@@ -45,7 +45,7 @@ class ClaimNotificationAccepted extends Notification
     {
         return (new MailMessage)
         ->from("noreply@ukzchema.co.uk", "UKZ Claims")
-        ->subject("New Claim Submitted")
+        ->subject("Claim Accepted")
         ->markdown(
             'mail.member.claim',
             [

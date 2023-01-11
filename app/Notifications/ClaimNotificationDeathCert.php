@@ -45,7 +45,7 @@ class ClaimNotificationDeathCert extends Notification
     {
         return (new MailMessage)
         ->from("noreply@ukzchema.co.uk", "UKZ Claims")
-        ->subject("New Claim Submitted")
+        ->subject("Death Certificate Submitted")
         ->markdown(
             'mail.member.claim',
             [
