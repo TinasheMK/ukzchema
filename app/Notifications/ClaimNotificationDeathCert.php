@@ -50,12 +50,12 @@ class ClaimNotificationDeathCert extends Notification
             'mail.member.claim',
             [
                 'action' => "View Claim",
-                'link' => route("voyager.claims.show", $this->claim->id),
+                'link' => route("voyager.claims.show", "{{$this->claim->id}}"),
                 // 'user' => $notifiable,
-                'claimant' => $this->claim->claimant_fullname,
-                'message' => "A death certificate has been uploaded for claim $this->claim->id.
+                'claimant' => "{{$this->claim->claimant_fullname}}",
+                'message' => "A death certificate has been uploaded for claim {{$this->claim->id}}.
                 Claim submitted on {{$this->claim->date}}. Claimant:{{$this->claim->claimant_fullname}}. Login to for more information.",
-                'deceased' => $this->claim->deceased_name
+                'deceased' => "{{$this->claim->deceased_name}}"
             ]
         );
     }
