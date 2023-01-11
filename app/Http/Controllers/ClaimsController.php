@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Claim;
 use App\Models\Deposit;
 use App\Models\Member;
+use App\Notifications\ClaimNotificationDeathCert;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -114,17 +115,25 @@ class ClaimsController extends SharedBaseController
         ]);
 
 
+        if($request->amount){
+            $claim->amount =  $request->amount;
+            $claim->save();
+
+        }
+
         if($request->file('death_certificate')){
 
             $file = $request->file('death_certificate');
             $death_certificate = time().$this->generateRandomString()."_". preg_replace('/\s+/', '_', strtolower($file->getClientOriginalName()));
             $tmp = $file->storeAs('uploads/'.$claim->member_number, $death_certificate, 'public');
             $claim->death_certificate =  $death_certificate;
+            $claim->save();
+
+            Notification::route('mail', "info@ukzchema.co.uk")->notify(new ClaimNotificationDeathCert($claim));
+
         }
 
-        if($request->amount){
-            $claim->amount =  $request->amount;
-        }
+
 
 
         // $claim = Claim::find($request->id);
@@ -134,7 +143,6 @@ class ClaimsController extends SharedBaseController
 
 
 
-        // Notification::route('mail', "claims@ukzchema.co.uk")->notify(new ClaimNotification($claim));
 
 
 
