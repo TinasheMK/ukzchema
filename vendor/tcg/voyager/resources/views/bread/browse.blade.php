@@ -16,7 +16,7 @@
             @include('voyager::partials.bulk-delete')
         @endcan
         @can('edit', app($dataType->model_name))
-            @if(isset($dataType->order_column) && isset($dataType->order_display_column))
+            @if(!empty($dataType->order_column) && !empty($dataType->order_display_column))
                 <a href="{{ route('voyager.'.$dataType->slug.'.order') }}" class="btn btn-primary btn-add-new">
                     <i class="voyager-list"></i> <span>{{ __('voyager::bread.order') }}</span>
                 </a>
@@ -55,7 +55,7 @@
                                     </div>
                                     <div class="col-2">
                                         <select id="filter" name="filter">
-                                            <option value="contains" @if($search->filter == "contains") selected @endif>contains</option>
+                                            <option value="contains" @if($search->filter == "contains") selected @endif>{{ __('voyager::generic.contains') }}</option>
                                             <option value="equals" @if($search->filter == "equals") selected @endif>=</option>
                                         </select>
                                     </div>
@@ -79,13 +79,13 @@
                                 <thead>
                                     <tr>
                                         @if($showCheckboxColumn)
-                                            <th>
+                                            <th class="dt-not-orderable">
                                                 <input type="checkbox" class="select_all">
                                             </th>
                                         @endif
                                         @foreach($dataType->browseRows as $row)
                                         <th>
-                                            @if ($isServerSide)
+                                            @if ($isServerSide && in_array($row->field, $sortableColumns))
                                                 <a href="{{ $row->sortByUrl($orderBy, $sortOrder) }}">
                                             @endif
                                             {{ $row->getTranslatedAttribute('display_name') }}
@@ -101,7 +101,7 @@
                                             @endif
                                         </th>
                                         @endforeach
-                                        <th class="actions text-right">{{ __('voyager::generic.actions') }}</th>
+                                        <th class="actions text-right dt-not-orderable">{{ __('voyager::generic.actions') }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -119,7 +119,9 @@
                                             }
                                             @endphp
                                             <td>
-                                                @if (isset($row->details->view))
+                                                @if (isset($row->details->view_browse))
+                                                    @include($row->details->view_browse, ['row' => $row, 'dataType' => $dataType, 'dataTypeContent' => $dataTypeContent, 'content' => $data->{$row->field}, 'view' => 'browse', 'options' => $row->details])
+                                                @elseif (isset($row->details->view))
                                                     @include($row->details->view, ['row' => $row, 'dataType' => $dataType, 'dataTypeContent' => $dataTypeContent, 'content' => $data->{$row->field}, 'action' => 'browse', 'view' => 'browse', 'options' => $row->details])
                                                 @elseif($row->type == 'image')
                                                     <img src="@if( !filter_var($data->{$row->field}, FILTER_VALIDATE_URL)){{ Voyager::image( $data->{$row->field} ) }}@else{{ $data->{$row->field} }}@endif" style="width:100px">
@@ -145,7 +147,7 @@
                                                     @endif
 
                                                     @elseif($row->type == 'multiple_checkbox' && property_exists($row->details, 'options'))
-                                                        @if (@count(json_decode($data->{$row->field})) > 0)
+                                                        @if (@count(json_decode($data->{$row->field}, true)) > 0)
                                                             @foreach(json_decode($data->{$row->field}) as $item)
                                                                 @if (@$row->details->options->{$item})
                                                                     {{ $row->details->options->{$item} . (!$loop->last ? ', ' : '') }}
@@ -194,7 +196,7 @@
                                                         @endforeach
                                                     @else
                                                         <a href="{{ Storage::disk(config('voyager.storage.disk'))->url($data->{$row->field}) }}" target="_blank">
-                                                            Download
+                                                            {{ __('voyager::generic.download') }}
                                                         </a>
                                                     @endif
                                                 @elseif($row->type == 'rich_text_box')
@@ -327,7 +329,9 @@
                     array_merge([
                         "order" => $orderColumn,
                         "language" => __('voyager::datatable'),
-                        "columnDefs" => [['targets' => -1, 'searchable' =>  false, 'orderable' => false]],
+                        "columnDefs" => [
+                            ['targets' => 'dt-not-orderable', 'searchable' =>  false, 'orderable' => false],
+                        ],
                     ],
                     config('voyager.dashboard.data_tables', []))
                 , true) !!});

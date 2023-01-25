@@ -18,10 +18,15 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php: [7.3, 7.4]
-        laravel: ['6.*', '7.*']
+        php: [7.3, 7.4, 8.0, 8.1]
+        laravel: ['8.*', '9.*']
+        exclude:
+          - php: 7.3
+            laravel: 9.*
+          - php: 7.4
+            laravel: 9.*
 
-    name: 'PHP ${{ matrix.php }} / ${{ matrix.laravel }}'
+    name: 'PHP ${{ matrix.php }} / Laravel ${{ matrix.laravel }}'
 
     steps:
       - uses: actions/checkout@master
@@ -37,7 +42,7 @@ jobs:
       # Configure NPM
       - uses: actions/setup-node@v1
         with:
-          node-version: '10.x'
+          node-version: '16.x'
 
       # Install PHP dependencies
       - name: Install Composer dependencies

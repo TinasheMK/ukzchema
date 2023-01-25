@@ -9,17 +9,10 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
 __webpack_require__(/*! ../../libs/bootstrap.min */ "./resources/js/libs/bootstrap.min.js");
-
-__webpack_require__(/*! ../../libs/perfect-scrollbar.jquery.min */ "./resources/js/libs/perfect-scrollbar.jquery.min.js"); // require("../../libs/bootstrap-notify");
-
-
+__webpack_require__(/*! ../../libs/perfect-scrollbar.jquery.min */ "./resources/js/libs/perfect-scrollbar.jquery.min.js");
+// require("../../libs/bootstrap-notify");
 __webpack_require__(/*! ../../libs/default/paper-dashboard */ "./resources/js/libs/default/paper-dashboard.js");
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     $('#preloader').fadeOut('1000', function () {
@@ -30,10 +23,10 @@ __webpack_require__(/*! ../../libs/default/paper-dashboard */ "./resources/js/li
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/member/MemberLoaded.vue?vue&type=template&id=70a35cb9&":
-/*!**********************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/member/MemberLoaded.vue?vue&type=template&id=70a35cb9& ***!
-  \**********************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/member/MemberLoaded.vue?vue&type=template&id=70a35cb9&":
+/*!****************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/member/MemberLoaded.vue?vue&type=template&id=70a35cb9& ***!
+  \****************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -41,15 +34,13 @@ __webpack_require__(/*! ../../libs/default/paper-dashboard */ "./resources/js/li
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div")
-}
-var staticRenderFns = []
-render._withStripped = true
-
+var render = function render() {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div");
+};
+var staticRenderFns = [];
+render._withStripped = true;
 
 
 /***/ }),
@@ -114,10 +105,10 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MemberLoaded_vue_vue_type_template_id_70a35cb9___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./MemberLoaded.vue?vue&type=template&id=70a35cb9& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/member/MemberLoaded.vue?vue&type=template&id=70a35cb9&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MemberLoaded_vue_vue_type_template_id_70a35cb9___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_MemberLoaded_vue_vue_type_template_id_70a35cb9___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!../../../../node_modules/vue-loader/lib??vue-loader-options!./MemberLoaded.vue?vue&type=template&id=70a35cb9& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/member/MemberLoaded.vue?vue&type=template&id=70a35cb9&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_MemberLoaded_vue_vue_type_template_id_70a35cb9___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MemberLoaded_vue_vue_type_template_id_70a35cb9___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_MemberLoaded_vue_vue_type_template_id_70a35cb9___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -146,14 +137,18 @@ __webpack_require__.r(__webpack_exports__);
  * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
  */
+
 (function () {
   isWindows = navigator.platform.indexOf('Win') > -1 ? true : false;
-  $('html').addClass('perfect-scrollbar-off'); // if (isWindows) {
+  $('html').addClass('perfect-scrollbar-off');
+
+  // if (isWindows) {
   //   // if we are on windows OS we activate the perfectScrollbar function
   //   var ps = new PerfectScrollbar('.sidebar');
   //   var ps1 = new PerfectScrollbar('.sidebar-wrapper');
   //   var ps2 = new PerfectScrollbar('.main-panel');
   //   $('html').addClass('perfect-scrollbar-on');
+
   // } else {
   //   $('html').addClass('perfect-scrollbar-off');
   // }
@@ -177,22 +172,22 @@ $(document).ready(function () {
       $(this).closest('.navbar').addClass('navbar-transparent').removeClass('bg-white');
     });
   }
-
   paperDashboard.initMinimizeSidebar();
   $navbar = $('.navbar[color-on-scroll]');
-  scroll_distance = $navbar.attr('color-on-scroll') || 500; // Check if we have the class "navbar-color-on-scroll" then add the function to remove the class "navbar-transparent" so it will transform to a plain color.
+  scroll_distance = $navbar.attr('color-on-scroll') || 500;
 
+  // Check if we have the class "navbar-color-on-scroll" then add the function to remove the class "navbar-transparent" so it will transform to a plain color.
   if ($('.navbar[color-on-scroll]').length != 0) {
     paperDashboard.checkScrollForTransparentNavbar();
     $(window).on('scroll', paperDashboard.checkScrollForTransparentNavbar);
   }
-
   $('.form-control').on("focus", function () {
     $(this).parent('.input-group').addClass("input-group-focus");
   }).on("blur", function () {
     $(this).parent(".input-group").removeClass("input-group-focus");
-  }); // Activate bootstrapSwitch
+  });
 
+  // Activate bootstrapSwitch
   $('.bootstrap-switch').each(function () {
     $this = $(this);
     data_on_label = $this.data('on-label') || '';
@@ -205,7 +200,6 @@ $(document).ready(function () {
 });
 $(document).on('click', '.navbar-toggle', function () {
   $toggle = $(this);
-
   if (paperDashboard.misc.navbar_menu_visible == 1) {
     $('html').removeClass('nav-open');
     paperDashboard.misc.navbar_menu_visible = 0;
@@ -233,11 +227,9 @@ $(document).on('click', '.navbar-toggle', function () {
 $(window).resize(function () {
   // reset the seq for charts drawing animations
   seq = seq2 = 0;
-
   if ($('.full-screen-map').length == 0 && $('.bd-docs').length == 0) {
     $navbar = $('.navbar');
     isExpanded = $('.navbar').find('[data-toggle="collapse"]').attr("aria-expanded");
-
     if ($navbar.hasClass('bg-white') && $(window).width() > 991) {
       $navbar.removeClass('bg-white').addClass('navbar-transparent');
     } else if ($navbar.hasClass('navbar-transparent') && $(window).width() < 991 && isExpanded != "false") {
@@ -253,10 +245,8 @@ paperDashboard = {
     if ($('.sidebar-mini').length != 0) {
       sidebar_mini_active = true;
     }
-
     $('#minimizeSidebar').click(function () {
       var $btn = $(this);
-
       if (sidebar_mini_active == true) {
         $('body').addClass('sidebar-mini');
         sidebar_mini_active = true;
@@ -265,13 +255,14 @@ paperDashboard = {
         $('body').removeClass('sidebar-mini');
         sidebar_mini_active = false;
         paperDashboard.showSidebarMessage('Sidebar mini deactivated...');
-      } // we simulate the window Resize so the charts will get updated in realtime.
+      }
 
-
+      // we simulate the window Resize so the charts will get updated in realtime.
       var simulateWindowResize = setInterval(function () {
         window.dispatchEvent(new Event('resize'));
-      }, 180); // we stop the simulation of Window Resize after the animations are completed
+      }, 180);
 
+      // we stop the simulation of Window Resize after the animations are completed
       setTimeout(function () {
         clearInterval(simulateWindowResize);
       }, 1000);
@@ -295,12 +286,10 @@ paperDashboard = {
     }
   }
 };
-
 function hexToRGB(hex, alpha) {
   var r = parseInt(hex.slice(1, 3), 16),
-      g = parseInt(hex.slice(3, 5), 16),
-      b = parseInt(hex.slice(5, 7), 16);
-
+    g = parseInt(hex.slice(3, 5), 16),
+    b = parseInt(hex.slice(5, 7), 16);
   if (alpha) {
     return "rgba(" + r + ", " + g + ", " + b + ", " + alpha + ")";
   } else {
@@ -317,8 +306,7 @@ function hexToRGB(hex, alpha) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var require;var require;var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
+var require;var require;var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 /* perfect-scrollbar v0.6.13 */
 !function t(e, n, r) {
   function o(i, s) {
@@ -330,7 +318,6 @@ var require;var require;var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE
         var c = new Error("Cannot find module '" + i + "'");
         throw c.code = "MODULE_NOT_FOUND", c;
       }
-
       var u = n[i] = {
         exports: {}
       };
@@ -339,14 +326,9 @@ var require;var require;var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE
         return o(n ? n : t);
       }, u, u.exports, t, e, n, r);
     }
-
     return n[i].exports;
   }
-
-  for (var l = "function" == typeof require && require, i = 0; i < r.length; i++) {
-    o(r[i]);
-  }
-
+  for (var l = "function" == typeof require && require, i = 0; i < r.length; i++) o(r[i]);
   return o;
 }({
   1: [function (t, e, n) {
@@ -365,9 +347,8 @@ var require;var require;var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE
         });
       };
     }
-
     var o = t("../main"),
-        l = t("../plugin/instances");
+      l = t("../plugin/instances");
     if (true) !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (r),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
@@ -384,13 +365,11 @@ var require;var require;var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE
       var n = t.className.split(" ");
       n.indexOf(e) < 0 && n.push(e), t.className = n.join(" ");
     }
-
     function o(t, e) {
       var n = t.className.split(" "),
-          r = n.indexOf(e);
+        r = n.indexOf(e);
       r >= 0 && n.splice(r, 1), t.className = n.join(" ");
     }
-
     n.add = function (t, e) {
       t.classList ? t.classList.add(e) : r(t, e);
     }, n.remove = function (t, e) {
@@ -405,20 +384,16 @@ var require;var require;var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE
     function r(t, e) {
       return window.getComputedStyle(t)[e];
     }
-
     function o(t, e, n) {
       return "number" == typeof n && (n = n.toString() + "px"), t.style[e] = n, t;
     }
-
     function l(t, e) {
       for (var n in e) {
         var r = e[n];
         "number" == typeof r && (r = r.toString() + "px"), t.style[n] = r;
       }
-
       return t;
     }
-
     var i = {};
     i.e = function (t, e) {
       var n = document.createElement(t);
@@ -443,7 +418,6 @@ var require;var require;var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE
     var r = function r(t) {
       this.element = t, this.events = {};
     };
-
     r.prototype.bind = function (t, e) {
       "undefined" == typeof this.events[t] && (this.events[t] = []), this.events[t].push(e), this.element.addEventListener(t, e, !1);
     }, r.prototype.unbind = function (t, e) {
@@ -452,15 +426,11 @@ var require;var require;var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE
         return !(!n || r === e) || (this.element.removeEventListener(t, r, !1), !1);
       }, this);
     }, r.prototype.unbindAll = function () {
-      for (var t in this.events) {
-        this.unbind(t);
-      }
+      for (var t in this.events) this.unbind(t);
     };
-
     var o = function o() {
       this.eventElements = [];
     };
-
     o.prototype.eventElement = function (t) {
       var e = this.eventElements.filter(function (e) {
         return e.element === t;
@@ -471,15 +441,12 @@ var require;var require;var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE
     }, o.prototype.unbind = function (t, e, n) {
       this.eventElement(t).unbind(e, n);
     }, o.prototype.unbindAll = function () {
-      for (var t = 0; t < this.eventElements.length; t++) {
-        this.eventElements[t].unbindAll();
-      }
+      for (var t = 0; t < this.eventElements.length; t++) this.eventElements[t].unbindAll();
     }, o.prototype.once = function (t, e, n) {
       var r = this.eventElement(t),
-          o = function o(t) {
-        r.unbind(e, o), n(t);
-      };
-
+        o = function o(t) {
+          r.unbind(e, o), n(t);
+        };
       r.bind(e, o);
     }, e.exports = o;
   }, {}],
@@ -490,7 +457,6 @@ var require;var require;var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE
       function t() {
         return Math.floor(65536 * (1 + Math.random())).toString(16).substring(1);
       }
-
       return function () {
         return t() + t() + "-" + t() + "-" + t() + "-" + t() + "-" + t() + t() + t();
       };
@@ -500,37 +466,25 @@ var require;var require;var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE
     "use strict";
 
     var r = t("./class"),
-        o = t("./dom"),
-        l = n.toInt = function (t) {
-      return parseInt(t, 10) || 0;
-    },
-        i = n.clone = function (t) {
-      if (t) {
-        if (t.constructor === Array) return t.map(i);
-
-        if ("object" == _typeof(t)) {
-          var e = {};
-
-          for (var n in t) {
-            e[n] = i(t[n]);
+      o = t("./dom"),
+      l = n.toInt = function (t) {
+        return parseInt(t, 10) || 0;
+      },
+      i = n.clone = function (t) {
+        if (t) {
+          if (t.constructor === Array) return t.map(i);
+          if ("object" == _typeof(t)) {
+            var e = {};
+            for (var n in t) e[n] = i(t[n]);
+            return e;
           }
-
-          return e;
+          return t;
         }
-
-        return t;
-      }
-
-      return null;
-    };
-
+        return null;
+      };
     n.extend = function (t, e) {
       var n = i(t);
-
-      for (var r in e) {
-        n[r] = i(e[r]);
-      }
-
+      for (var r in e) n[r] = i(e[r]);
       return n;
     }, n.isEditable = function (t) {
       return o.matches(t, "input,[contenteditable]") || o.matches(t, "select,[contenteditable]") || o.matches(t, "textarea,[contenteditable]") || o.matches(t, "button,[contenteditable]");
@@ -558,8 +512,8 @@ var require;var require;var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE
     "use strict";
 
     var r = t("./plugin/destroy"),
-        o = t("./plugin/initialize"),
-        l = t("./plugin/update");
+      o = t("./plugin/initialize"),
+      l = t("./plugin/update");
     e.exports = {
       initialize: o,
       update: l,
@@ -592,9 +546,8 @@ var require;var require;var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE
     "use strict";
 
     var r = t("../lib/helper"),
-        o = t("../lib/dom"),
-        l = t("./instances");
-
+      o = t("../lib/dom"),
+      l = t("./instances");
     e.exports = function (t) {
       var e = l.get(t);
       e && (e.event.unbindAll(), o.remove(e.scrollbarX), o.remove(e.scrollbarY), o.remove(e.scrollbarXRail), o.remove(e.scrollbarYRail), r.removePsClasses(t), l.remove(t));
@@ -611,26 +564,22 @@ var require;var require;var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE
       function n(t) {
         return t.getBoundingClientRect();
       }
-
       var r = function r(t) {
         t.stopPropagation();
       };
-
       e.event.bind(e.scrollbarY, "click", r), e.event.bind(e.scrollbarYRail, "click", function (r) {
         var o = r.pageY - window.pageYOffset - n(e.scrollbarYRail).top,
-            s = o > e.scrollbarYTop ? 1 : -1;
+          s = o > e.scrollbarYTop ? 1 : -1;
         i(t, "top", t.scrollTop + s * e.containerHeight), l(t), r.stopPropagation();
       }), e.event.bind(e.scrollbarX, "click", r), e.event.bind(e.scrollbarXRail, "click", function (r) {
         var o = r.pageX - window.pageXOffset - n(e.scrollbarXRail).left,
-            s = o > e.scrollbarXLeft ? 1 : -1;
+          s = o > e.scrollbarXLeft ? 1 : -1;
         i(t, "left", t.scrollLeft + s * e.containerWidth), l(t), r.stopPropagation();
       });
     }
-
     var o = t("../instances"),
-        l = t("../update-geometry"),
-        i = t("../update-scroll");
-
+      l = t("../update-geometry"),
+      i = t("../update-scroll");
     e.exports = function (t) {
       var e = o.get(t);
       r(t, e);
@@ -646,55 +595,48 @@ var require;var require;var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE
     function r(t, e) {
       function n(n) {
         var o = r + n * e.railXRatio,
-            i = Math.max(0, e.scrollbarXRail.getBoundingClientRect().left) + e.railXRatio * (e.railXWidth - e.scrollbarXWidth);
+          i = Math.max(0, e.scrollbarXRail.getBoundingClientRect().left) + e.railXRatio * (e.railXWidth - e.scrollbarXWidth);
         o < 0 ? e.scrollbarXLeft = 0 : o > i ? e.scrollbarXLeft = i : e.scrollbarXLeft = o;
         var s = l.toInt(e.scrollbarXLeft * (e.contentWidth - e.containerWidth) / (e.containerWidth - e.railXRatio * e.scrollbarXWidth)) - e.negativeScrollAdjustment;
         c(t, "left", s);
       }
-
       var r = null,
-          o = null,
-          s = function s(e) {
-        n(e.pageX - o), a(t), e.stopPropagation(), e.preventDefault();
-      },
-          u = function u() {
-        l.stopScrolling(t, "x"), e.event.unbind(e.ownerDocument, "mousemove", s);
-      };
-
+        o = null,
+        s = function s(e) {
+          n(e.pageX - o), a(t), e.stopPropagation(), e.preventDefault();
+        },
+        u = function u() {
+          l.stopScrolling(t, "x"), e.event.unbind(e.ownerDocument, "mousemove", s);
+        };
       e.event.bind(e.scrollbarX, "mousedown", function (n) {
         o = n.pageX, r = l.toInt(i.css(e.scrollbarX, "left")) * e.railXRatio, l.startScrolling(t, "x"), e.event.bind(e.ownerDocument, "mousemove", s), e.event.once(e.ownerDocument, "mouseup", u), n.stopPropagation(), n.preventDefault();
       });
     }
-
     function o(t, e) {
       function n(n) {
         var o = r + n * e.railYRatio,
-            i = Math.max(0, e.scrollbarYRail.getBoundingClientRect().top) + e.railYRatio * (e.railYHeight - e.scrollbarYHeight);
+          i = Math.max(0, e.scrollbarYRail.getBoundingClientRect().top) + e.railYRatio * (e.railYHeight - e.scrollbarYHeight);
         o < 0 ? e.scrollbarYTop = 0 : o > i ? e.scrollbarYTop = i : e.scrollbarYTop = o;
         var s = l.toInt(e.scrollbarYTop * (e.contentHeight - e.containerHeight) / (e.containerHeight - e.railYRatio * e.scrollbarYHeight));
         c(t, "top", s);
       }
-
       var r = null,
-          o = null,
-          s = function s(e) {
-        n(e.pageY - o), a(t), e.stopPropagation(), e.preventDefault();
-      },
-          u = function u() {
-        l.stopScrolling(t, "y"), e.event.unbind(e.ownerDocument, "mousemove", s);
-      };
-
+        o = null,
+        s = function s(e) {
+          n(e.pageY - o), a(t), e.stopPropagation(), e.preventDefault();
+        },
+        u = function u() {
+          l.stopScrolling(t, "y"), e.event.unbind(e.ownerDocument, "mousemove", s);
+        };
       e.event.bind(e.scrollbarY, "mousedown", function (n) {
         o = n.pageY, r = l.toInt(i.css(e.scrollbarY, "top")) * e.railYRatio, l.startScrolling(t, "y"), e.event.bind(e.ownerDocument, "mousemove", s), e.event.once(e.ownerDocument, "mouseup", u), n.stopPropagation(), n.preventDefault();
       });
     }
-
     var l = t("../../lib/helper"),
-        i = t("../../lib/dom"),
-        s = t("../instances"),
-        a = t("../update-geometry"),
-        c = t("../update-scroll");
-
+      i = t("../../lib/dom"),
+      s = t("../instances"),
+      a = t("../update-geometry"),
+      c = t("../update-scroll");
     e.exports = function (t) {
       var e = s.get(t);
       r(t, e), o(t, e);
@@ -712,22 +654,17 @@ var require;var require;var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE
     function r(t, e) {
       function n(n, r) {
         var o = t.scrollTop;
-
         if (0 === n) {
           if (!e.scrollbarYActive) return !1;
           if (0 === o && r > 0 || o >= e.contentHeight - e.containerHeight && r < 0) return !e.settings.wheelPropagation;
         }
-
         var l = t.scrollLeft;
-
         if (0 === r) {
           if (!e.scrollbarXActive) return !1;
           if (0 === l && n < 0 || l >= e.contentWidth - e.containerWidth && n > 0) return !e.settings.wheelPropagation;
         }
-
         return !0;
       }
-
       var r = !1;
       e.event.bind(t, "mouseenter", function () {
         r = !0;
@@ -738,73 +675,55 @@ var require;var require;var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE
       e.event.bind(e.ownerDocument, "keydown", function (c) {
         if (!(c.isDefaultPrevented && c.isDefaultPrevented() || c.defaultPrevented)) {
           var u = l.matches(e.scrollbarX, ":focus") || l.matches(e.scrollbarY, ":focus");
-
           if (r || u) {
             var d = document.activeElement ? document.activeElement : e.ownerDocument.activeElement;
-
             if (d) {
-              if ("IFRAME" === d.tagName) d = d.contentDocument.activeElement;else for (; d.shadowRoot;) {
-                d = d.shadowRoot.activeElement;
-              }
+              if ("IFRAME" === d.tagName) d = d.contentDocument.activeElement;else for (; d.shadowRoot;) d = d.shadowRoot.activeElement;
               if (o.isEditable(d)) return;
             }
-
             var p = 0,
-                f = 0;
-
+              f = 0;
             switch (c.which) {
               case 37:
                 p = c.metaKey ? -e.contentWidth : c.altKey ? -e.containerWidth : -30;
                 break;
-
               case 38:
                 f = c.metaKey ? e.contentHeight : c.altKey ? e.containerHeight : 30;
                 break;
-
               case 39:
                 p = c.metaKey ? e.contentWidth : c.altKey ? e.containerWidth : 30;
                 break;
-
               case 40:
                 f = c.metaKey ? -e.contentHeight : c.altKey ? -e.containerHeight : -30;
                 break;
-
               case 33:
                 f = 90;
                 break;
-
               case 32:
                 f = c.shiftKey ? 90 : -90;
                 break;
-
               case 34:
                 f = -90;
                 break;
-
               case 35:
                 f = c.ctrlKey ? -e.contentHeight : -e.containerHeight;
                 break;
-
               case 36:
                 f = c.ctrlKey ? t.scrollTop : e.containerHeight;
                 break;
-
               default:
                 return;
             }
-
             a(t, "top", t.scrollTop - f), a(t, "left", t.scrollLeft + p), s(t), i = n(p, f), i && c.preventDefault();
           }
         }
       });
     }
-
     var o = t("../../lib/helper"),
-        l = t("../../lib/dom"),
-        i = t("../instances"),
-        s = t("../update-geometry"),
-        a = t("../update-scroll");
-
+      l = t("../../lib/dom"),
+      i = t("../instances"),
+      s = t("../update-geometry"),
+      a = t("../update-scroll");
     e.exports = function (t) {
       var e = i.get(t);
       r(t, e);
@@ -822,31 +741,24 @@ var require;var require;var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE
     function r(t, e) {
       function n(n, r) {
         var o = t.scrollTop;
-
         if (0 === n) {
           if (!e.scrollbarYActive) return !1;
           if (0 === o && r > 0 || o >= e.contentHeight - e.containerHeight && r < 0) return !e.settings.wheelPropagation;
         }
-
         var l = t.scrollLeft;
-
         if (0 === r) {
           if (!e.scrollbarXActive) return !1;
           if (0 === l && n < 0 || l >= e.contentWidth - e.containerWidth && n > 0) return !e.settings.wheelPropagation;
         }
-
         return !0;
       }
-
       function r(t) {
         var e = t.deltaX,
-            n = -1 * t.deltaY;
+          n = -1 * t.deltaY;
         return "undefined" != typeof e && "undefined" != typeof n || (e = -1 * t.wheelDeltaX / 6, n = t.wheelDeltaY / 6), t.deltaMode && 1 === t.deltaMode && (e *= 10, n *= 10), e !== e && n !== n && (e = 0, n = t.wheelDelta), t.shiftKey ? [-n, -e] : [e, n];
       }
-
       function o(e, n) {
         var r = t.querySelector("textarea:hover, select[multiple]:hover, .ps-child:hover");
-
         if (r) {
           if (!window.getComputedStyle(r).overflow.match(/(scroll|auto)/)) return !1;
           var o = r.scrollHeight - r.clientHeight;
@@ -854,25 +766,20 @@ var require;var require;var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE
           var l = r.scrollLeft - r.clientWidth;
           if (l > 0 && !(0 === r.scrollLeft && e < 0 || r.scrollLeft === l && e > 0)) return !0;
         }
-
         return !1;
       }
-
       function s(s) {
         var c = r(s),
-            u = c[0],
-            d = c[1];
+          u = c[0],
+          d = c[1];
         o(u, d) || (a = !1, e.settings.useBothWheelAxes ? e.scrollbarYActive && !e.scrollbarXActive ? (d ? i(t, "top", t.scrollTop - d * e.settings.wheelSpeed) : i(t, "top", t.scrollTop + u * e.settings.wheelSpeed), a = !0) : e.scrollbarXActive && !e.scrollbarYActive && (u ? i(t, "left", t.scrollLeft + u * e.settings.wheelSpeed) : i(t, "left", t.scrollLeft - d * e.settings.wheelSpeed), a = !0) : (i(t, "top", t.scrollTop - d * e.settings.wheelSpeed), i(t, "left", t.scrollLeft + u * e.settings.wheelSpeed)), l(t), a = a || n(u, d), a && (s.stopPropagation(), s.preventDefault()));
       }
-
       var a = !1;
       "undefined" != typeof window.onwheel ? e.event.bind(t, "wheel", s) : "undefined" != typeof window.onmousewheel && e.event.bind(t, "mousewheel", s);
     }
-
     var o = t("../instances"),
-        l = t("../update-geometry"),
-        i = t("../update-scroll");
-
+      l = t("../update-geometry"),
+      i = t("../update-scroll");
     e.exports = function (t) {
       var e = o.get(t);
       r(t, e);
@@ -890,10 +797,8 @@ var require;var require;var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE
         l(t);
       });
     }
-
     var o = t("../instances"),
-        l = t("../update-geometry");
-
+      l = t("../update-geometry");
     e.exports = function (t) {
       var e = o.get(t);
       r(t, e);
@@ -910,23 +815,20 @@ var require;var require;var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE
         var t = window.getSelection ? window.getSelection() : document.getSelection ? document.getSelection() : "";
         return 0 === t.toString().length ? null : t.getRangeAt(0).commonAncestorContainer;
       }
-
       function r() {
         c || (c = setInterval(function () {
           return l.get(t) ? (s(t, "top", t.scrollTop + u.top), s(t, "left", t.scrollLeft + u.left), void i(t)) : void clearInterval(c);
         }, 50));
       }
-
       function a() {
         c && (clearInterval(c), c = null), o.stopScrolling(t);
       }
-
       var c = null,
-          u = {
-        top: 0,
-        left: 0
-      },
-          d = !1;
+        u = {
+          top: 0,
+          left: 0
+        },
+        d = !1;
       e.event.bind(e.ownerDocument, "selectionchange", function () {
         t.contains(n()) ? d = !0 : (d = !1, a());
       }), e.event.bind(window, "mouseup", function () {
@@ -936,25 +838,23 @@ var require;var require;var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE
       }), e.event.bind(window, "mousemove", function (e) {
         if (d) {
           var n = {
-            x: e.pageX,
-            y: e.pageY
-          },
-              l = {
-            left: t.offsetLeft,
-            right: t.offsetLeft + t.offsetWidth,
-            top: t.offsetTop,
-            bottom: t.offsetTop + t.offsetHeight
-          };
+              x: e.pageX,
+              y: e.pageY
+            },
+            l = {
+              left: t.offsetLeft,
+              right: t.offsetLeft + t.offsetWidth,
+              top: t.offsetTop,
+              bottom: t.offsetTop + t.offsetHeight
+            };
           n.x < l.left + 3 ? (u.left = -5, o.startScrolling(t, "x")) : n.x > l.right - 3 ? (u.left = 5, o.startScrolling(t, "x")) : u.left = 0, n.y < l.top + 3 ? (l.top + 3 - n.y < 5 ? u.top = -5 : u.top = -20, o.startScrolling(t, "y")) : n.y > l.bottom - 3 ? (n.y - l.bottom + 3 < 5 ? u.top = 5 : u.top = 20, o.startScrolling(t, "y")) : u.top = 0, 0 === u.top && 0 === u.left ? a() : r();
         }
       });
     }
-
     var o = t("../../lib/helper"),
-        l = t("../instances"),
-        i = t("../update-geometry"),
-        s = t("../update-scroll");
-
+      l = t("../instances"),
+      i = t("../update-geometry"),
+      s = t("../update-scroll");
     e.exports = function (t) {
       var e = l.get(t);
       r(t, e);
@@ -971,37 +871,29 @@ var require;var require;var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE
     function r(t, e, n, r) {
       function o(n, r) {
         var o = t.scrollTop,
-            l = t.scrollLeft,
-            i = Math.abs(n),
-            s = Math.abs(r);
-
+          l = t.scrollLeft,
+          i = Math.abs(n),
+          s = Math.abs(r);
         if (s > i) {
           if (r < 0 && o === e.contentHeight - e.containerHeight || r > 0 && 0 === o) return !e.settings.swipePropagation;
         } else if (i > s && (n < 0 && l === e.contentWidth - e.containerWidth || n > 0 && 0 === l)) return !e.settings.swipePropagation;
-
         return !0;
       }
-
       function a(e, n) {
         s(t, "top", t.scrollTop - n), s(t, "left", t.scrollLeft - e), i(t);
       }
-
       function c() {
         w = !0;
       }
-
       function u() {
         w = !1;
       }
-
       function d(t) {
         return t.targetTouches ? t.targetTouches[0] : t;
       }
-
       function p(t) {
         return !(!t.targetTouches || 1 !== t.targetTouches.length) || !(!t.pointerType || "mouse" === t.pointerType || t.pointerType === t.MSPOINTER_TYPE_MOUSE);
       }
-
       function f(t) {
         if (p(t)) {
           Y = !0;
@@ -1009,43 +901,38 @@ var require;var require;var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE
           g.pageX = e.pageX, g.pageY = e.pageY, v = new Date().getTime(), null !== y && clearInterval(y), t.stopPropagation();
         }
       }
-
       function h(t) {
         if (!Y && e.settings.swipePropagation && f(t), !w && Y && p(t)) {
           var n = d(t),
-              r = {
-            pageX: n.pageX,
-            pageY: n.pageY
-          },
-              l = r.pageX - g.pageX,
-              i = r.pageY - g.pageY;
+            r = {
+              pageX: n.pageX,
+              pageY: n.pageY
+            },
+            l = r.pageX - g.pageX,
+            i = r.pageY - g.pageY;
           a(l, i), g = r;
           var s = new Date().getTime(),
-              c = s - v;
+            c = s - v;
           c > 0 && (m.x = l / c, m.y = i / c, v = s), o(l, i) && (t.stopPropagation(), t.preventDefault());
         }
       }
-
       function b() {
         !w && Y && (Y = !1, clearInterval(y), y = setInterval(function () {
           return l.get(t) && (m.x || m.y) ? Math.abs(m.x) < .01 && Math.abs(m.y) < .01 ? void clearInterval(y) : (a(30 * m.x, 30 * m.y), m.x *= .8, void (m.y *= .8)) : void clearInterval(y);
         }, 10));
       }
-
       var g = {},
-          v = 0,
-          m = {},
-          y = null,
-          w = !1,
-          Y = !1;
+        v = 0,
+        m = {},
+        y = null,
+        w = !1,
+        Y = !1;
       n && (e.event.bind(window, "touchstart", c), e.event.bind(window, "touchend", u), e.event.bind(t, "touchstart", f), e.event.bind(t, "touchmove", h), e.event.bind(t, "touchend", b)), r && (window.PointerEvent ? (e.event.bind(window, "pointerdown", c), e.event.bind(window, "pointerup", u), e.event.bind(t, "pointerdown", f), e.event.bind(t, "pointermove", h), e.event.bind(t, "pointerup", b)) : window.MSPointerEvent && (e.event.bind(window, "MSPointerDown", c), e.event.bind(window, "MSPointerUp", u), e.event.bind(t, "MSPointerDown", f), e.event.bind(t, "MSPointerMove", h), e.event.bind(t, "MSPointerUp", b)));
     }
-
     var o = t("../../lib/helper"),
-        l = t("../instances"),
-        i = t("../update-geometry"),
-        s = t("../update-scroll");
-
+      l = t("../instances"),
+      i = t("../update-geometry"),
+      s = t("../update-scroll");
     e.exports = function (t) {
       if (o.env.supportsTouch || o.env.supportsIePointer) {
         var e = l.get(t);
@@ -1062,19 +949,18 @@ var require;var require;var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE
     "use strict";
 
     var r = t("../lib/helper"),
-        o = t("../lib/class"),
-        l = t("./instances"),
-        i = t("./update-geometry"),
-        s = {
-      "click-rail": t("./handler/click-rail"),
-      "drag-scrollbar": t("./handler/drag-scrollbar"),
-      keyboard: t("./handler/keyboard"),
-      wheel: t("./handler/mouse-wheel"),
-      touch: t("./handler/touch"),
-      selection: t("./handler/selection")
-    },
-        a = t("./handler/native-scroll");
-
+      o = t("../lib/class"),
+      l = t("./instances"),
+      i = t("./update-geometry"),
+      s = {
+        "click-rail": t("./handler/click-rail"),
+        "drag-scrollbar": t("./handler/drag-scrollbar"),
+        keyboard: t("./handler/keyboard"),
+        wheel: t("./handler/mouse-wheel"),
+        touch: t("./handler/touch"),
+        selection: t("./handler/selection")
+      },
+      a = t("./handler/native-scroll");
     e.exports = function (t, e) {
       e = "object" == _typeof(e) ? e : {}, o.add(t, "ps-container");
       var n = l.add(t);
@@ -1102,38 +988,32 @@ var require;var require;var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE
       function e() {
         a.add(t, "ps-focus");
       }
-
       function n() {
         a.remove(t, "ps-focus");
       }
-
       var r = this;
       r.settings = s.clone(c), r.containerWidth = null, r.containerHeight = null, r.contentWidth = null, r.contentHeight = null, r.isRtl = "rtl" === u.css(t, "direction"), r.isNegativeScroll = function () {
         var e = t.scrollLeft,
-            n = null;
+          n = null;
         return t.scrollLeft = -1, n = t.scrollLeft < 0, t.scrollLeft = e, n;
       }(), r.negativeScrollAdjustment = r.isNegativeScroll ? t.scrollWidth - t.clientWidth : 0, r.event = new d(), r.ownerDocument = t.ownerDocument || document, r.scrollbarXRail = u.appendTo(u.e("div", "ps-scrollbar-x-rail"), t), r.scrollbarX = u.appendTo(u.e("div", "ps-scrollbar-x"), r.scrollbarXRail), r.scrollbarX.setAttribute("tabindex", 0), r.event.bind(r.scrollbarX, "focus", e), r.event.bind(r.scrollbarX, "blur", n), r.scrollbarXActive = null, r.scrollbarXWidth = null, r.scrollbarXLeft = null, r.scrollbarXBottom = s.toInt(u.css(r.scrollbarXRail, "bottom")), r.isScrollbarXUsingBottom = r.scrollbarXBottom === r.scrollbarXBottom, r.scrollbarXTop = r.isScrollbarXUsingBottom ? null : s.toInt(u.css(r.scrollbarXRail, "top")), r.railBorderXWidth = s.toInt(u.css(r.scrollbarXRail, "borderLeftWidth")) + s.toInt(u.css(r.scrollbarXRail, "borderRightWidth")), u.css(r.scrollbarXRail, "display", "block"), r.railXMarginWidth = s.toInt(u.css(r.scrollbarXRail, "marginLeft")) + s.toInt(u.css(r.scrollbarXRail, "marginRight")), u.css(r.scrollbarXRail, "display", ""), r.railXWidth = null, r.railXRatio = null, r.scrollbarYRail = u.appendTo(u.e("div", "ps-scrollbar-y-rail"), t), r.scrollbarY = u.appendTo(u.e("div", "ps-scrollbar-y"), r.scrollbarYRail), r.scrollbarY.setAttribute("tabindex", 0), r.event.bind(r.scrollbarY, "focus", e), r.event.bind(r.scrollbarY, "blur", n), r.scrollbarYActive = null, r.scrollbarYHeight = null, r.scrollbarYTop = null, r.scrollbarYRight = s.toInt(u.css(r.scrollbarYRail, "right")), r.isScrollbarYUsingRight = r.scrollbarYRight === r.scrollbarYRight, r.scrollbarYLeft = r.isScrollbarYUsingRight ? null : s.toInt(u.css(r.scrollbarYRail, "left")), r.scrollbarYOuterWidth = r.isRtl ? s.outerWidth(r.scrollbarY) : null, r.railBorderYWidth = s.toInt(u.css(r.scrollbarYRail, "borderTopWidth")) + s.toInt(u.css(r.scrollbarYRail, "borderBottomWidth")), u.css(r.scrollbarYRail, "display", "block"), r.railYMarginHeight = s.toInt(u.css(r.scrollbarYRail, "marginTop")) + s.toInt(u.css(r.scrollbarYRail, "marginBottom")), u.css(r.scrollbarYRail, "display", ""), r.railYHeight = null, r.railYRatio = null;
     }
-
     function o(t) {
       return t.getAttribute("data-ps-id");
     }
-
     function l(t, e) {
       t.setAttribute("data-ps-id", e);
     }
-
     function i(t) {
       t.removeAttribute("data-ps-id");
     }
-
     var s = t("../lib/helper"),
-        a = t("../lib/class"),
-        c = t("./default-setting"),
-        u = t("../lib/dom"),
-        d = t("../lib/event-manager"),
-        p = t("../lib/guid"),
-        f = {};
+      a = t("../lib/class"),
+      c = t("./default-setting"),
+      u = t("../lib/dom"),
+      d = t("../lib/event-manager"),
+      p = t("../lib/guid"),
+      f = {};
     n.add = function (t) {
       var e = p();
       return l(t, e), f[e] = new r(t), f[e];
@@ -1156,7 +1036,6 @@ var require;var require;var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE
     function r(t, e) {
       return t.settings.minScrollbarLength && (e = Math.max(e, t.settings.minScrollbarLength)), t.settings.maxScrollbarLength && (e = Math.min(e, t.settings.maxScrollbarLength)), e;
     }
-
     function o(t, e) {
       var n = {
         width: e.railXWidth
@@ -1174,13 +1053,11 @@ var require;var require;var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE
         height: e.scrollbarYHeight - e.railBorderYWidth
       });
     }
-
     var l = t("../lib/helper"),
-        i = t("../lib/class"),
-        s = t("../lib/dom"),
-        a = t("./instances"),
-        c = t("./update-scroll");
-
+      i = t("../lib/class"),
+      s = t("../lib/dom"),
+      a = t("./instances"),
+      c = t("./update-scroll");
     e.exports = function (t) {
       var e = a.get(t);
       e.containerWidth = t.clientWidth, e.containerHeight = t.clientHeight, e.contentWidth = t.scrollWidth, e.contentHeight = t.scrollHeight;
@@ -1202,13 +1079,12 @@ var require;var require;var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE
     "use strict";
 
     var r,
-        o,
-        l = t("./instances"),
-        i = function i(t) {
-      var e = document.createEvent("Event");
-      return e.initEvent(t, !0, !0), e;
-    };
-
+      o,
+      l = t("./instances"),
+      i = function i(t) {
+        var e = document.createEvent("Event");
+        return e.initEvent(t, !0, !0), e;
+      };
     e.exports = function (t, e, n) {
       if ("undefined" == typeof t) throw "You must provide an element to the update-scroll function";
       if ("undefined" == typeof e) throw "You must provide an axis to the update-scroll function";
@@ -1224,11 +1100,10 @@ var require;var require;var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE
     "use strict";
 
     var r = t("../lib/helper"),
-        o = t("../lib/dom"),
-        l = t("./instances"),
-        i = t("./update-geometry"),
-        s = t("./update-scroll");
-
+      o = t("../lib/dom"),
+      l = t("./instances"),
+      i = t("./update-geometry"),
+      s = t("./update-scroll");
     e.exports = function (t) {
       var e = l.get(t);
       e && (e.negativeScrollAdjustment = e.isNegativeScroll ? t.scrollWidth - t.clientWidth : 0, o.css(e.scrollbarXRail, "display", "block"), o.css(e.scrollbarYRail, "display", "block"), e.railXMarginWidth = r.toInt(o.css(e.scrollbarXRail, "marginLeft")) + r.toInt(o.css(e.scrollbarXRail, "marginRight")), e.railYMarginHeight = r.toInt(o.css(e.scrollbarYRail, "marginTop")) + r.toInt(o.css(e.scrollbarYRail, "marginBottom")), o.css(e.scrollbarXRail, "display", "none"), o.css(e.scrollbarYRail, "display", "none"), i(t), s(t, "top", t.scrollTop), s(t, "left", t.scrollLeft), o.css(e.scrollbarXRail, "display", ""), o.css(e.scrollbarYRail, "display", ""));

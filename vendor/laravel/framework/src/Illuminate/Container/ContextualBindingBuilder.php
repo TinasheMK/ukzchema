@@ -66,4 +66,31 @@ class ContextualBindingBuilder implements ContextualBindingBuilderContract
             $this->container->addContextualBinding($concrete, $this->needs, $implementation);
         }
     }
+
+    /**
+     * Define tagged services to be used as the implementation for the contextual binding.
+     *
+     * @param  string  $tag
+     * @return void
+     */
+    public function giveTagged($tag)
+    {
+        $this->give(function ($container) use ($tag) {
+            $taggedServices = $container->tagged($tag);
+
+            return is_array($taggedServices) ? $taggedServices : iterator_to_array($taggedServices);
+        });
+    }
+
+    /**
+     * Specify the configuration item to bind as a primitive.
+     *
+     * @param  string  $key
+     * @param  mixed  $default
+     * @return void
+     */
+    public function giveConfig($key, $default = null)
+    {
+        $this->give(fn ($container) => $container->get('config')->get($key, $default));
+    }
 }

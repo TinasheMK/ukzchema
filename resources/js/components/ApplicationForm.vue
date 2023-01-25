@@ -28,7 +28,7 @@
               <h5 class="mb-1">Become a Member</h5>
               <p>Please note that all applications require the approval of the UKZ Chema Association.</p>
             </div>
-            
+
             <personal-form @done="formCompleted($event, 1)"></personal-form>
           </div>
 

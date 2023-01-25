@@ -28,6 +28,7 @@
                     data-get-items-field="{{$row->field}}"
                     @if(!is_null($dataTypeContent->getKey())) data-id="{{$dataTypeContent->getKey()}}" @endif
                     data-method="{{ !is_null($dataTypeContent->getKey()) ? 'edit' : 'add' }}"
+                    @if($row->required == 1) required @endif
                 >
                     @php
                         $model = app($options->model);
@@ -103,13 +104,12 @@
                     $query = $model::where($options->column, '=', $dataTypeContent->{$options->key})->get();
                 @endphp
 
-                @if(isset($query))
+                @if($query->isNotEmpty())
                     <ul>
                         @foreach($query as $query_res)
                             <li>{{ $query_res->{$options->label} }}</li>
                         @endforeach
                     </ul>
-
                 @else
                     <p>{{ __('voyager::generic.no_results') }}</p>
                 @endif
@@ -152,7 +152,7 @@
 
             @else
                 <select
-                    class="form-control @if(isset($options->taggable) && $options->taggable === 'on') select2-taggable @else select2-ajax @endif"
+                    class="form-control select2-ajax @if(isset($options->taggable) && $options->taggable === 'on') taggable @endif"
                     name="{{ $relationshipField }}[]" multiple
                     data-get-items-route="{{route('voyager.' . $dataType->slug.'.relation')}}"
                     data-get-items-field="{{$row->field}}"
@@ -163,22 +163,32 @@
                         data-label="{{$options->label}}"
                         data-error-message="{{__('voyager::bread.error_tagging')}}"
                     @endif
+                    @if($row->required == 1) required @endif
                 >
 
                         @php
-                            $selected_values = isset($dataTypeContent) ? $dataTypeContent->belongsToMany($options->model, $options->pivot_table, $options->foreign_pivot_key ?? null, $options->related_pivot_key ?? null, $options->parent_key ?? null, $options->key)->get()->map(function ($item, $key) use ($options) {
-                                return $item->{$options->key};
-                            })->all() : array();
-                            $relationshipOptions = app($options->model)->all();
-                        $selected_values = old($relationshipField, $selected_values);
+                            $selected_keys = [];
+                            
+                            if (!is_null($dataTypeContent->getKey())) {
+                                $selected_keys = $dataTypeContent->belongsToMany(
+                                    $options->model,
+                                    $options->pivot_table,
+                                    $options->foreign_pivot_key ?? null,
+                                    $options->related_pivot_key ?? null,
+                                    $options->parent_key ?? null,
+                                    $options->key
+                                )->pluck($options->table.'.'.$options->key);
+                            }
+                            $selected_keys = old($relationshipField, $selected_keys);
+                            $selected_values = app($options->model)->whereIn($options->key, $selected_keys)->pluck($options->label, $options->key);
                         @endphp
 
                         @if(!$row->required)
                             <option value="">{{__('voyager::generic.none')}}</option>
                         @endif
 
-                        @foreach($relationshipOptions as $relationshipOption)
-                            <option value="{{ $relationshipOption->{$options->key} }}" @if(in_array($relationshipOption->{$options->key}, $selected_values)) selected="selected" @endif>{{ $relationshipOption->{$options->label} }}</option>
+                        @foreach ($selected_values as $key => $value)
+                            <option value="{{ $key }}" selected="selected">{{ $value }}</option>
                         @endforeach
 
                 </select>

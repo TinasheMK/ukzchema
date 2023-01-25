@@ -2,11 +2,18 @@
 
 namespace NotificationChannels\Telegram\Traits;
 
+use Illuminate\Support\Traits\Conditionable;
+
 /**
  * Trait HasSharedLogic.
  */
 trait HasSharedLogic
 {
+    use Conditionable;
+
+    /** @var string Bot Token. */
+    public $token;
+
     /** @var array Params payload. */
     protected $payload = [];
 
@@ -16,7 +23,7 @@ trait HasSharedLogic
     /**
      * Recipient's Chat ID.
      *
-     * @param $chatId
+     * @param int|string $chatId
      *
      * @return $this
      */
@@ -30,15 +37,27 @@ trait HasSharedLogic
     /**
      * Add an inline button.
      *
-     * @param string $text
-     * @param string $url
-     * @param int    $columns
+     * @return $this
+     */
+    public function button(string $text, string $url, int $columns = 2): self
+    {
+        $this->buttons[] = compact('text', 'url');
+
+        $this->payload['reply_markup'] = json_encode([
+            'inline_keyboard' => array_chunk($this->buttons, $columns),
+        ]);
+
+        return $this;
+    }
+
+    /**
+     * Add an inline button with callback_data.
      *
      * @return $this
      */
-    public function button($text, $url, $columns = 2): self
+    public function buttonWithCallback(string $text, string $callback_data, int $columns = 2): self
     {
-        $this->buttons[] = compact('text', 'url');
+        $this->buttons[] = compact('text', 'callback_data');
 
         $this->payload['reply_markup'] = json_encode([
             'inline_keyboard' => array_chunk($this->buttons, $columns),
@@ -51,7 +70,6 @@ trait HasSharedLogic
      * Send the message silently.
      * Users will receive a notification with no sound.
      *
-     * @param bool $disableNotification
      * @return $this
      */
     public function disableNotification(bool $disableNotification = true): self
@@ -62,9 +80,28 @@ trait HasSharedLogic
     }
 
     /**
-     * Additional options to pass to sendMessage method.
+     * Bot Token.
+     * Overrides default bot token with the given value for this notification.
      *
-     * @param array $options
+     * @return $this
+     */
+    public function token(string $token): self
+    {
+        $this->token = $token;
+
+        return $this;
+    }
+
+    /**
+     * Determine if bot token is given for this notification.
+     */
+    public function hasToken(): bool
+    {
+        return null !== $this->token;
+    }
+
+    /**
+     * Additional options to pass to sendMessage method.
      *
      * @return $this
      */
@@ -77,20 +114,16 @@ trait HasSharedLogic
 
     /**
      * Determine if chat id is not given.
-     *
-     * @return bool
      */
     public function toNotGiven(): bool
     {
-        return ! isset($this->payload['chat_id']);
+        return !isset($this->payload['chat_id']);
     }
 
     /**
      * Get payload value for given key.
      *
-     * @param string $key
-     *
-     * @return mixed|null
+     * @return null|mixed
      */
     public function getPayloadValue(string $key)
     {
@@ -99,8 +132,6 @@ trait HasSharedLogic
 
     /**
      * Returns params payload.
-     *
-     * @return array
      */
     public function toArray(): array
     {
@@ -109,10 +140,8 @@ trait HasSharedLogic
 
     /**
      * Convert the object into something JSON serializable.
-     *
-     * @return mixed
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
         return $this->toArray();
     }

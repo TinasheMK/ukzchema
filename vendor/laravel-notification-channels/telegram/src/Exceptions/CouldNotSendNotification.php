@@ -13,32 +13,28 @@ class CouldNotSendNotification extends Exception
     /**
      * Thrown when there's a bad request and an error is responded.
      *
-     * @param ClientException $exception
-     *
      * @return static
      */
     public static function telegramRespondedWithAnError(ClientException $exception): self
     {
-        if (! $exception->hasResponse()) {
+        if (!$exception->hasResponse()) {
             return new static('Telegram responded with an error but no response body found');
         }
 
         $statusCode = $exception->getResponse()->getStatusCode();
 
-        $result = json_decode($exception->getResponse()->getBody(), false);
+        $result = json_decode($exception->getResponse()->getBody()->getContents(), false);
         $description = $result->description ?? 'no description given';
 
-        return new static("Telegram responded with an error `{$statusCode} - {$description}`");
+        return new static("Telegram responded with an error `{$statusCode} - {$description}`", 0, $exception);
     }
 
     /**
      * Thrown when there's no bot token provided.
      *
-     * @param string $message
-     *
      * @return static
      */
-    public static function telegramBotTokenNotProvided($message): self
+    public static function telegramBotTokenNotProvided(string $message): self
     {
         return new static($message);
     }
@@ -53,15 +49,5 @@ class CouldNotSendNotification extends Exception
     public static function couldNotCommunicateWithTelegram($message): self
     {
         return new static("The communication with Telegram failed. `{$message}`");
-    }
-
-    /**
-     * Thrown when there is no chat id provided.
-     *
-     * @return static
-     */
-    public static function chatIdNotProvided(): self
-    {
-        return new static('Telegram notification chat ID was not provided. Please refer usage docs.');
     }
 }

@@ -6,6 +6,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Storage;
 use TCG\Voyager\Events\FileDeleted;
@@ -167,7 +168,11 @@ abstract class Controller extends BaseController
                 $data->{$row->field} = str_replace($uuid, $data->getKey(), $data->{$row->field});
             });
             $data->save();
-            if ($old_path != $new_path && !Storage::disk(config('voyager.storage.disk'))->exists($new_path)) {
+            if ($old_path != $new_path && 
+                !Storage::disk(config('voyager.storage.disk'))->exists($new_path) && 
+                Storage::disk(config('voyager.storage.disk'))->exists($old_path)
+                ) 
+            {
                 $request->session()->forget([$slug.'_path', $slug.'_uuid']);
                 Storage::disk(config('voyager.storage.disk'))->move($old_path, $new_path);
                 Storage::disk(config('voyager.storage.disk'))->deleteDirectory($folder_path);
@@ -204,7 +209,11 @@ abstract class Controller extends BaseController
             if (!empty($field->display_name)) {
                 if (!empty($data[$fieldName]) && is_array($data[$fieldName])) {
                     foreach ($data[$fieldName] as $index => $element) {
-                        $name = $element->getClientOriginalName() ?? $index + 1;
+                        if ($element instanceof UploadedFile) {
+                            $name = $element->getClientOriginalName();
+                        } else {
+                            $name = $index + 1;
+                        }
 
                         $customAttributes[$fieldName.'.'.$index] = $field->getTranslatedAttribute('display_name').' '.$name;
                     }
@@ -289,7 +298,7 @@ abstract class Controller extends BaseController
 
     public function deleteFileIfExists($path)
     {
-        if (Storage::disk(config('voyager.storage.disk'))->exists($path)) {
+        if ($path && Storage::disk(config('voyager.storage.disk'))->exists($path)) {
             Storage::disk(config('voyager.storage.disk'))->delete($path);
             event(new FileDeleted($path));
         }

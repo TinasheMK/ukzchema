@@ -7,7 +7,7 @@ interface ResponseFactory
     /**
      * Create a new response instance.
      *
-     * @param  string  $content
+     * @param  array|string  $content
      * @param  int  $status
      * @param  array  $headers
      * @return \Illuminate\Http\Response
@@ -37,7 +37,7 @@ interface ResponseFactory
     /**
      * Create a new JSON response instance.
      *
-     * @param  string|array|object  $data
+     * @param  mixed  $data
      * @param  int  $status
      * @param  array  $headers
      * @param  int  $options
@@ -49,7 +49,7 @@ interface ResponseFactory
      * Create a new JSONP response instance.
      *
      * @param  string  $callback
-     * @param  string|array|object  $data
+     * @param  mixed  $data
      * @param  int  $status
      * @param  array  $headers
      * @param  int  $options
@@ -60,7 +60,7 @@ interface ResponseFactory
     /**
      * Create a new streamed response instance.
      *
-     * @param  \Closure  $callback
+     * @param  callable  $callback
      * @param  int  $status
      * @param  array  $headers
      * @return \Symfony\Component\HttpFoundation\StreamedResponse
@@ -70,7 +70,7 @@ interface ResponseFactory
     /**
      * Create a new streamed response instance as a file download.
      *
-     * @param  \Closure  $callback
+     * @param  callable  $callback
      * @param  string|null  $name
      * @param  array  $headers
      * @param  string|null  $disposition

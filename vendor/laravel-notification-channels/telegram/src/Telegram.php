@@ -20,22 +20,20 @@ class Telegram
     /** @var null|string Telegram Bot API Token. */
     protected $token;
 
-    /**
-     * @param null            $token
-     * @param HttpClient|null $httpClient
-     */
-    public function __construct($token = null, HttpClient $httpClient = null)
+    /** @var string Telegram Bot API Base URI */
+    protected $apiBaseUri;
+
+    public function __construct(string $token = null, HttpClient $httpClient = null, string $apiBaseUri = null)
     {
         $this->token = $token;
-        $this->http = $httpClient;
+        $this->http = $httpClient ?? new HttpClient();
+        $this->setApiBaseUri($apiBaseUri ?? 'https://api.telegram.org');
     }
 
     /**
      * Token getter.
-     *
-     * @return string
      */
-    public function getToken(): string
+    public function getToken(): ?string
     {
         return $this->token;
     }
@@ -43,21 +41,45 @@ class Telegram
     /**
      * Token setter.
      *
-     * @param  string
+     * @return $this
      */
-    public function setToken($token): void
+    public function setToken(string $token): self
     {
         $this->token = $token;
+
+        return $this;
     }
 
     /**
-     * Get HttpClient.
-     *
-     * @return HttpClient
+     * API Base URI getter.
      */
-    protected function httpClient(): HttpClient
+    public function getApiBaseUri(): string
     {
-        return $this->http ?? new HttpClient();
+        return $this->apiBaseUri;
+    }
+
+    /**
+     * API Base URI setter.
+     *
+     * @return $this
+     */
+    public function setApiBaseUri(string $apiBaseUri): self
+    {
+        $this->apiBaseUri = rtrim($apiBaseUri, '/');
+
+        return $this;
+    }
+
+    /**
+     * Set HTTP Client.
+     *
+     * @return $this
+     */
+    public function setHttpClient(HttpClient $http): self
+    {
+        $this->http = $http;
+
+        return $this;
     }
 
     /**
@@ -75,13 +97,9 @@ class Telegram
      * ];
      * </code>
      *
-     * @link https://core.telegram.org/bots/api#sendmessage
-     *
-     * @param array $params
+     * @see https://core.telegram.org/bots/api#sendmessage
      *
      * @throws CouldNotSendNotification
-     *
-     * @return ResponseInterface|null
      */
     public function sendMessage(array $params): ?ResponseInterface
     {
@@ -91,13 +109,7 @@ class Telegram
     /**
      * Send File as Image or Document.
      *
-     * @param array  $params
-     * @param string $type
-     * @param bool   $multipart
-     *
      * @throws CouldNotSendNotification
-     *
-     * @return ResponseInterface|null
      */
     public function sendFile(array $params, string $type, bool $multipart = false): ?ResponseInterface
     {
@@ -105,13 +117,39 @@ class Telegram
     }
 
     /**
-     * Send a Location.
-     *
-     * @param array $params
+     * Send a Poll.
      *
      * @throws CouldNotSendNotification
+     */
+    public function sendPoll(array $params): ?ResponseInterface
+    {
+        return $this->sendRequest('sendPoll', $params);
+    }
+
+    /**
+     * Send a Contact.
      *
-     * @return ResponseInterface|null
+     * @throws CouldNotSendNotification
+     */
+    public function sendContact(array $params): ?ResponseInterface
+    {
+        return $this->sendRequest('sendContact', $params);
+    }
+
+    /**
+     * Get updates.
+     *
+     * @throws CouldNotSendNotification
+     */
+    public function getUpdates(array $params): ?ResponseInterface
+    {
+        return $this->sendRequest('getUpdates', $params);
+    }
+
+    /**
+     * Send a Location.
+     *
+     * @throws CouldNotSendNotification
      */
     public function sendLocation(array $params): ?ResponseInterface
     {
@@ -119,15 +157,17 @@ class Telegram
     }
 
     /**
+     * Get HttpClient.
+     */
+    protected function httpClient(): HttpClient
+    {
+        return $this->http;
+    }
+
+    /**
      * Send an API request and return response.
      *
-     * @param string $endpoint
-     * @param array  $params
-     * @param bool   $multipart
-     *
      * @throws CouldNotSendNotification
-     *
-     * @return ResponseInterface|null
      */
     protected function sendRequest(string $endpoint, array $params, bool $multipart = false): ?ResponseInterface
     {
@@ -135,10 +175,10 @@ class Telegram
             throw CouldNotSendNotification::telegramBotTokenNotProvided('You must provide your telegram bot token to make any API requests.');
         }
 
-        $endPointUrl = 'https://api.telegram.org/bot'.$this->token.'/'.$endpoint;
+        $apiUri = sprintf('%s/bot%s/%s', $this->apiBaseUri, $this->token, $endpoint);
 
         try {
-            return $this->httpClient()->post($endPointUrl, [
+            return $this->httpClient()->post($apiUri, [
                 $multipart ? 'multipart' : 'form_params' => $params,
             ]);
         } catch (ClientException $exception) {

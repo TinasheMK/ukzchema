@@ -4,7 +4,6 @@
 [![Chat on Telegram][ico-telegram]][link-telegram]
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Software License][ico-license]](LICENSE.md)
-[![SensioLabsInsight][ico-sensiolabs]][link-sensiolabs]
 [![Quality Score][ico-code-quality]][link-code-quality]
 [![Total Downloads][ico-downloads]][link-packagist]
 
@@ -13,9 +12,15 @@ This package makes it easy to send Telegram notification using [Telegram Bot API
 ## Contents
 
 - [Installation](#installation)
-  - [Setting up your Telegram bot](#setting-up-your-telegram-bot)
+  - [Setting up your Telegram Bot](#setting-up-your-telegram-bot)
+  - [Retrieving Chat ID](#retrieving-chat-id)
+  - [Using in Lumen](#using-in-lumen)
+  - [Proxy or Bridge Support](#proxy-or-bridge-support)
 - [Usage](#usage)
   - [Text Notification](#text-notification)
+  - [Send a Poll](#send-a-poll)
+  - [Attach a Contact](#attach-a-contact)
+  - [Attach an Audio](#attach-an-audio)
   - [Attach a Photo](#attach-a-photo)
   - [Attach a Document](#attach-a-document)
   - [Attach a Location](#attach-a-location)
@@ -24,9 +29,14 @@ This package makes it easy to send Telegram notification using [Telegram Bot API
   - [Routing a Message](#routing-a-message)
   - [Handling Response](#handling-response)
   - [On-Demand Notifications](#on-demand-notifications)
-  - [Available Message methods](#available-message-methods)
-  - [Available Location methods](#available-location-methods)
-  - [Available File methods](#available-file-methods)
+  - [Sending to Multiple Recipients](#sending-to-multiple-recipients)
+- [Available Methods](#available-methods)
+  - [Shared Methods](#shared-methods)
+  - [Telegram Message methods](#telegram-message-methods)
+  - [Telegram Location methods](#telegram-location-methods)
+  - [Telegram File methods](#telegram-file-methods)
+  - [Telegram Contact methods](#telegram-contact-methods)
+  - [Telegram Poll methods](#telegram-poll-methods)
 - [Alternatives](#alternatives)
 - [Changelog](#changelog)
 - [Testing](#testing)
@@ -50,13 +60,76 @@ Talk to [@BotFather](https://core.telegram.org/bots#6-botfather) and generate a 
 Then, configure your Telegram Bot API Token:
 
 ```php
-// config/services.php
-...
+# config/services.php
+
 'telegram-bot-api' => [
     'token' => env('TELEGRAM_BOT_TOKEN', 'YOUR BOT TOKEN HERE')
 ],
-...
 ```
+
+## Retrieving Chat ID
+
+For us to send notifications to your Telegram Bot user/channel or group, we need to know their Chat ID.
+
+This can be done by fetching the [updates][link-telegram-docs-update] for your Bot using the `getUpdates` method as per Telegram Bot API [docs][link-telegram-docs-getupdates].
+
+An [update][link-telegram-docs-update] is an object containing relevant fields based on the type of update it represents, some examples of an update object are `message`, `callback_query`, and `poll`. For a complete list of fields, see [Telegram Bot API docs][link-telegram-docs-update].
+
+To make things easier, the library comes with a handy method that can be used to get the updates from which you can parse the relevant Chat ID.
+
+Please keep in mind the user has to first interact with your bot for you to be able to obtain their Chat ID which you can then store in your database for future interactions or notifications.
+
+Here's an example of fetching an update:
+
+```php
+use NotificationChannels\Telegram\TelegramUpdates;
+
+// Response is an array of updates.
+$updates = TelegramUpdates::create()
+    // (Optional). Get's the latest update. NOTE: All previous updates will be forgotten using this method.
+    // ->latest()
+    
+    // (Optional). Limit to 2 updates (By default, updates starting with the earliest unconfirmed update are returned).
+    ->limit(2)
+    
+    // (Optional). Add more params to the request.
+    ->options([
+        'timeout' => 0,
+    ])
+    ->get();
+
+if($updates['ok']) {
+    // Chat ID
+    $chatId = $updates['result'][0]['message']['chat']['id'];
+}
+```
+
+_Note: This method will not work if an outgoing webhook is set up._
+
+For a complete list of available parameters for the `options`, see [Telegram Bot API docs][link-telegram-docs-getupdates].
+
+## Using in Lumen
+
+If you're using this notification channel in your Lumen project, you will have to add the below code in your `bootstrap/app.php` file.
+
+```php
+# bootstrap/app.php
+
+// Make sure to create a "config/services.php" file and add the config from the above step.
+$app->configure('services');
+
+# Register the notification service providers.
+$app->register(Illuminate\Notifications\NotificationServiceProvider::class);
+$app->register(NotificationChannels\Telegram\TelegramServiceProvider::class);
+```
+
+## Proxy or Bridge Support
+
+You may not be able to send notifications if Telegram Bot API is not accessible in your country,
+you can either set a proxy by following the instructions [here](http://docs.guzzlephp.org/en/stable/quickstart.html#environment-variables) or
+use a web bridge by setting the `base_uri` config above with the bridge uri.
+
+You can set `HTTPS_PROXY` in your `.env` file.
 
 ## Usage
 
@@ -65,7 +138,6 @@ You can now use the channel in your `via()` method inside the Notification class
 ### Text Notification
 
 ```php
-use NotificationChannels\Telegram\TelegramChannel;
 use NotificationChannels\Telegram\TelegramMessage;
 use Illuminate\Notifications\Notification;
 
@@ -73,7 +145,7 @@ class InvoicePaid extends Notification
 {
     public function via($notifiable)
     {
-        return [TelegramChannel::class];
+        return ["telegram"];
     }
 
     public function toTelegram($notifiable)
@@ -85,9 +157,15 @@ class InvoicePaid extends Notification
             ->to($notifiable->telegram_user_id)
             // Markdown supported.
             ->content("Hello there!\nYour invoice has been *PAID*")
+
+            // (Optional) Blade template for the content.
+            // ->view('notification', ['url' => $url])
+
             // (Optional) Inline Buttons
             ->button('View Invoice', $url)
-            ->button('Download Invoice', $url);
+            ->button('Download Invoice', $url)
+            // (Optional) Inline Button with callback. You can handle callback in your bot instance
+            ->buttonWithCallback('Confirm', 'confirm_invoice ' . $this->invoice->id);
     }
 }
 ```
@@ -95,6 +173,55 @@ class InvoicePaid extends Notification
 Here's a screenshot preview of the above notification on Telegram Messenger:
 
 ![Laravel Telegram Notification Example](https://user-images.githubusercontent.com/1915268/66616627-39be6180-ebef-11e9-92cc-f2da81da047a.jpg)
+
+### Send a Poll
+
+```php
+public function toTelegram($notifiable)
+{
+    return TelegramPoll::create()
+        ->to($notifiable)
+        ->question("Aren't Laravel Notification Channels awesome?")
+        ->choices(['Yes', 'YEs', 'YES']);
+}
+```
+
+Preview:
+
+![Laravel Telegram Poll Example](https://user-images.githubusercontent.com/60013703/143135248-1224a69b-3233-4686-8a59-d41517d8c722.png)
+
+### Attach a Contact
+
+```php
+public function toTelegram($notifiable)
+{
+    return TelegramContact::create()
+            ->to($notifiable->telegram_user_id) // Optional
+            ->firstName('John')
+            ->lastName('Doe') // Optional
+            ->phoneNumber('00000000');
+}
+```
+
+Preview:
+
+![Laravel Telegram Contact Example](https://user-images.githubusercontent.com/60013703/143510191-1d0f8e08-bd9a-4be5-8978-e6561508b47a.png)
+
+### Attach an Audio
+
+```php
+public function toTelegram($notifiable)
+{
+    return TelegramFile::create()
+            ->to($notifiable->telegram_user_id) // Optional
+            ->content('Audio') // Optional Caption
+            ->audio('/path/to/audio.mp3');
+}
+```
+
+Preview:
+
+![Laravel Telegram Audio Notification Example](https://user-images.githubusercontent.com/60013703/143334174-4d796910-185f-46e2-89ad-5ec7a1a438c9.png)
 
 ### Attach a Photo
 
@@ -107,7 +234,7 @@ public function toTelegram($notifiable)
         ->file('/storage/archive/6029014.jpg', 'photo'); // local photo
 
         // OR using a helper method with or without a remote file.
-        // ->photo('https://file-examples.com/wp-content/uploads/2017/10/file_example_JPG_1MB.jpg');
+        // ->photo('https://file-examples-com.github.io/uploads/2017/10/file_example_JPG_1MB.jpg');
 }
 ```
 
@@ -123,7 +250,7 @@ public function toTelegram($notifiable)
     return TelegramFile::create()
         ->to($notifiable->telegram_user_id) // Optional
         ->content('Did you know we can set a custom filename too?')
-        ->document('https://file-examples.com/wp-content/uploads/2017/10/file-sample_150kB.pdf', 'sample.pdf');
+        ->document('https://file-examples-com.github.io/uploads/2017/10/file-sample_150kB.pdf', 'sample.pdf');
 }
 ```
 
@@ -153,7 +280,7 @@ public function toTelegram($notifiable)
 {
     return TelegramFile::create()
         ->content('Sample *video* notification!')
-        ->video('https://file-examples.com/wp-content/uploads/2017/04/file_example_MP4_480_1_5MG.mp4');
+        ->video('https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_480_1_5MG.mp4');
 }
 ```
 
@@ -197,53 +324,90 @@ public function routeNotificationForTelegram()
 
 ### Handling Response
 
-You can make use of the [notification events](https://laravel.com/docs/5.8/notifications#notification-events) to handle the response from Telegram. On success, your event listener will recieve a [Message](https://core.telegram.org/bots/api#message) object with various fields as appropriate to the notification type.
+You can make use of the [notification events](https://laravel.com/docs/5.8/notifications#notification-events) to handle the response from Telegram. On success, your event listener will receive a [Message](https://core.telegram.org/bots/api#message) object with various fields as appropriate to the notification type.
 
 For a complete list of response fields, please refer the Telegram Bot API's [Message object](https://core.telegram.org/bots/api#message) docs.
 
 ### On-Demand Notifications
 
-> Sometimes you may need to send a notification to someone who is not stored as a "user" of your application. Using the `Notification::route` method, you may specify ad-hoc notification routing information before sending the notification. For more details, you can check out the [on-demand notifications](https://laravel.com/docs/5.8/notifications#on-demand-notifications) docs.
+> Sometimes you may need to send a notification to someone who is not stored as a "user" of your application. Using the `Notification::route` method, you may specify ad-hoc notification routing information before sending the notification. For more details, you can check out the [on-demand notifications][link-on-demand-notifications] docs.
 
 ```php
-use NotificationChannels\Telegram\TelegramChannel;
+use Illuminate\Support\Facades\Notification;
 
-Notification::route(TelegramChannel::class, 'TELEGRAM_CHAT_ID')
+Notification::route('telegram', 'TELEGRAM_CHAT_ID')
             ->notify(new InvoicePaid($invoice));
 ```
 
-### Available Message methods
+### Sending to Multiple Recipients
 
-- `to($chatId)`: (integer) Recipient's chat id.
-- `content('')`: (string) Notification message, supports markdown. For more information on supported markdown styles, check out these [docs](https://telegram-bot-sdk.readme.io/reference#section-formatting-options).
-- `button($text, $url)`: (string) Adds an inline "Call to Action" button. You can add as many as you want and they'll be placed 2 in a row.
-- `disableNotification($disableNotification = true)`: (bool) Send the message silently.  Users will receive a notification with no sound.
-- `options([])`: (array) Allows you to add additional or override `sendMessage` payload (A Telegram Bot API method used to send message internally). For more information on supported parameters, check out these [docs](https://telegram-bot-sdk.readme.io/docs/sendmessage).
+Using the [notification facade][link-notification-facade] you can send a notification to multiple recipients at once.
 
-### Available Location methods
+> If you're sending bulk notifications to multiple users, the Telegram Bot API will not allow more than 30 messages per second or so. 
+> Consider spreading out notifications over large intervals of 8—12 hours for best results.
+>
+> Also note that your bot will not be able to send more than 20 messages per minute to the same group. 
+>
+> If you go over the limit, you'll start getting `429` errors. For more details, refer Telegram Bots [FAQ](https://core.telegram.org/bots/faq#broadcasting-to-users).
 
-- `to($chatId)`: (integer) Recipient's chat id.
-- `latitude($latitude)`: (float|string) Latitude of the location.
-- `longitude($longitude)`: (float|string) Longitude of the location.
-- `button($text, $url)`: (string) Adds an inline "Call to Action" button. You can add as many as you want and they'll be placed 2 in a row.
-- `disableNotification($disableNotification = true)`: (bool) Send the message silently. Users will receive a notification with no sound.
-- `options([])`: (array) Allows you to add additional or override the payload.
+```php
+use Illuminate\Support\Facades\Notification;
 
-### Available File methods
+// Recipients can be an array of chat IDs or collection of notifiable entities.
+Notification::send($recipients, new InvoicePaid());
+```
 
-- `to($chatId)`: (integer) Recipient's chat id.
-- `content('')`: (string) File caption, supports markdown. For more information on supported markdown styles, check out these [docs](https://telegram-bot-sdk.readme.io/reference#section-formatting-options).
-- `file($file, $type, $filename = null)`: Local file path or remote URL, `$type` of the file (Ex:`photo`, `audio`, `document`, `video`, `animation`, `voice`, `video_note_`) and optionally filename with extension. Ex: `sample.pdf`. You can use helper methods instead of using this to make it easier to work with file attachment.
-- `photo($file)`: Helper method to attach a photo.
-- `audio($file)`: Helper method to attach an audio file (MP3 file).
-- `document($file, $filename = null)`: Helper method to attach a document or any file as document.
-- `video($file)`: Helper method to attach a video file.
-- `animation($file)`: Helper method to attach an animated gif file.
-- `voice($file)`: Helper method to attach a voice note (`.ogg` file with OPUS encoded).
-- `videoNote($file)`: Helper method to attach a video note file (Upto 1 min long, rounded square video).
-- `button($text, $url)`: (string) Adds an inline "Call to Action" button. You can add as many as you want and they'll be placed 2 in a row.
-- `disableNotification($disableNotification = true)`: (bool) Send the message silently. Users will receive a notification with no sound.
-- `options([])`: (array) Allows you to add additional or override the payload.
+## Available Methods
+
+### Shared Methods
+
+> These methods are optional and shared across all the API methods.
+
+- `to(int|string $chatId)`: Recipient's chat id.
+- `token(string $token)`: Bot token if you wish to override the default token for a specific notification.
+- `button(string $text, string $url, int $columns = 2)`: Adds an inline "Call to Action" button. You can add as many as you want, and they'll be placed 2 in a row by default.
+- `buttonWithCallback(string $text, string $callback_data, int $columns = 2)`: Adds an inline button with the given callback data. You can add as many as you want, and they'll be placed 2 in a row by default.
+- `disableNotification(bool $disableNotification = true)`: Send the message silently. Users will receive a notification with no sound.
+- `options(array $options)`: Allows you to add additional params or override the payload.
+- `getPayloadValue(string $key)`: Get payload value for given key.
+
+### Telegram Message methods
+
+For more information on supported parameters, check out these [docs](https://telegram-bot-sdk.readme.io/docs/sendmessage).
+
+- `content(string $content, int $limit = null)`: Notification message, supports markdown. For more information on supported markdown styles, check out these [docs](https://telegram-bot-sdk.readme.io/reference#section-formatting-options).
+- `view(string $view, array $data = [], array $mergeData = [])`: (optional) Blade template name with Telegram supported HTML or Markdown syntax content if you wish to use a view file instead of the `content()` method.
+- `chunk(int $limit = 4096)`: (optional) Message chars chunk size to send in parts (For long messages). Note: Chunked messages will be rate limited to one message per second to comply with rate limitation requirements from Telegram.
+
+### Telegram Location methods
+
+- `latitude(float|string $latitude)`: Latitude of the location.
+- `longitude(float|string $longitude)`: Longitude of the location.
+
+### Telegram File methods
+
+- `content(string $content)`: (optional) File caption, supports markdown. For more information on supported markdown styles, check out these [docs](https://telegram-bot-sdk.readme.io/reference#section-formatting-options).
+- `view(string $view, array $data = [], array $mergeData = [])`: (optional) Blade template name with Telegram supported HTML or Markdown syntax content if you wish to use a view file instead of the `content()` method.
+- `file(string|resource|StreamInterface $file, string $type, string $filename = null)`: Local file path or remote URL, `$type` of the file (Ex:`photo`, `audio`, `document`, `video`, `animation`, `voice`, `video_note`) and optionally filename with extension. Ex: `sample.pdf`. You can use helper methods instead of using this to make it easier to work with file attachment.
+- `photo(string $file)`: Helper method to attach a photo.
+- `audio(string $file)`: Helper method to attach an audio file (MP3 file).
+- `document(string $file, string $filename = null)`: Helper method to attach a document or any file as document.
+- `video(string $file)`: Helper method to attach a video file.
+- `animation(string $file)`: Helper method to attach an animated gif file.
+- `voice(string $file)`: Helper method to attach a voice note (`.ogg` file with OPUS encoded).
+- `videoNote(string $file)`: Helper method to attach a video note file (Upto 1 min long, rounded square video).
+
+### Telegram Contact methods
+
+- `phoneNumber(string $phoneNumber)`: Contact phone number.
+- `firstName(string $firstName)`: Contact first name.
+- `lastName(string $lastName)`: (optional) Contact last name.
+- `vCard(string $vCard)`: (optional) Contact vcard.
+
+### Telegram Poll methods
+
+- `question(string $question)`: Poll question.
+- `choices(array $choices)`: Poll choices.
 
 ## Alternatives
 
@@ -280,19 +444,19 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 [ico-telegram]: https://img.shields.io/badge/@PHPChatCo-2CA5E0.svg?style=flat-square&logo=telegram&label=Telegram
 [ico-version]: https://img.shields.io/packagist/v/laravel-notification-channels/telegram.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/laravel-notification-channels/telegram/master.svg?style=flat-square
 [ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/laravel-notification-channels/telegram.svg?style=flat-square
 [ico-code-quality]: https://img.shields.io/scrutinizer/g/laravel-notification-channels/telegram.svg?style=flat-square
 [ico-downloads]: https://img.shields.io/packagist/dt/laravel-notification-channels/telegram.svg?style=flat-square
-[ico-sensiolabs]: https://img.shields.io/sensiolabs/i/d28e31ec-55ce-4306-88a3-84d5d14ad3db.svg?style=flat-square
 
 [link-phpchat]: https://phpchat.co/?ref=laravel-channel-telegram
 [link-telegram]: https://t.me/PHPChatCo
 [link-repo]: https://github.com/laravel-notification-channels/telegram
 [link-packagist]: https://packagist.org/packages/laravel-notification-channels/telegram
-[link-travis]: https://travis-ci.org/laravel-notification-channels/telegram
 [link-scrutinizer]: https://scrutinizer-ci.com/g/laravel-notification-channels/telegram/code-structure
-[link-sensiolabs]: https://insight.sensiolabs.com/projects/d28e31ec-55ce-4306-88a3-84d5d14ad3db
 [link-code-quality]: https://scrutinizer-ci.com/g/laravel-notification-channels/telegram
 [link-author]: https://github.com/irazasyed
 [link-contributors]: ../../contributors
+[link-notification-facade]: https://laravel.com/docs/8.x/notifications#using-the-notification-facade
+[link-on-demand-notifications]: https://laravel.com/docs/8.x/notifications#on-demand-notifications
+[link-telegram-docs-update]: https://core.telegram.org/bots/api#update
+[link-telegram-docs-getupdates]: https://core.telegram.org/bots/api#getupdates

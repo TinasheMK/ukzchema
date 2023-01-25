@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Intervention\Image\Constraint;
 use Intervention\Image\Facades\Image;
-use League\Flysystem\Util;
 use TCG\Voyager\Facades\Voyager;
 
 class VoyagerController extends Controller
@@ -34,7 +33,13 @@ class VoyagerController extends Controller
         $slug = $request->input('type_slug');
         $file = $request->file('image');
 
-        $path = $slug.'/'.date('F').date('Y').'/';
+        $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->firstOrFail();
+
+        if ($this->userCannotUploadImageIn($dataType, 'add') && $this->userCannotUploadImageIn($dataType, 'edit')) {
+            abort(403);
+        }
+
+        $path = $slug.'/'.date('FY').'/';
 
         $filename = basename($file->getClientOriginalName(), '.'.$file->getClientOriginalExtension());
         $filename_counter = 1;
@@ -70,14 +75,22 @@ class VoyagerController extends Controller
             $status = __('voyager::media.uploading_wrong_type');
         }
 
-        // echo out script that TinyMCE can handle and update the image in the editor
-        return "<script> parent.helpers.setImageValue('".Voyager::image($fullFilename)."'); </script>";
+        // Return URL for TinyMCE
+        return Voyager::image($fullFilename);
     }
 
     public function assets(Request $request)
     {
         try {
-            $path = dirname(__DIR__, 3).'/publishable/assets/'.Util::normalizeRelativePath(urldecode($request->path));
+            if (class_exists(\League\Flysystem\Util::class)) {
+                // Flysystem 1.x
+                $path = dirname(__DIR__, 3).'/publishable/assets/'.\League\Flysystem\Util::normalizeRelativePath(urldecode($request->path));
+            } elseif (class_exists(\League\Flysystem\WhitespacePathNormalizer::class)) {
+                // Flysystem >= 2.x
+                $normalizer = new \League\Flysystem\WhitespacePathNormalizer();
+                $path = dirname(__DIR__, 3).'/publishable/assets/'. $normalizer->normalizePath(urldecode($request->path));
+            }
+            
         } catch (\LogicException $e) {
             abort(404);
         }
@@ -100,5 +113,11 @@ class VoyagerController extends Controller
         }
 
         return response('', 404);
+    }
+
+    protected function userCannotUploadImageIn($dataType, $action)
+    {
+        return auth()->user()->cannot($action, app($dataType->model_name))
+                || $dataType->{$action.'Rows'}->where('type', 'rich_text_box')->count() === 0;
     }
 }
