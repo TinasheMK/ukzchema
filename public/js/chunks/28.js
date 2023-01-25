@@ -10,7 +10,7 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["user", "nav_links"],
+  props: ["user", "nav_links", "balance"],
   data: function data() {
     return {};
   },
@@ -69,7 +69,7 @@ var render = function render() {
     attrs: {
       href: _vm.user.home
     }
-  }, [_vm._v("\n        " + _vm._s(_vm.user.name) + "\n        "), _c("br"), _vm._v(" "), _c("small", [_vm._v("£ " + _vm._s(_vm.user.balance))])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n        " + _vm._s(_vm.user.name) + "\n        "), _c("br"), _vm._v(" "), _c("small", [_vm._v("£ " + _vm._s(_vm.balance))])])]), _vm._v(" "), _c("div", {
     staticClass: "sidebar-wrapper"
   }, [_c("ul", {
     staticClass: "nav"

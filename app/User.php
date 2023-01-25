@@ -5,10 +5,15 @@ namespace App;
 use App\Models\Member;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Storage;
+use Bavix\Wallet\Traits\HasWalletFloat;
+use Bavix\Wallet\Interfaces\WalletFloat;
+use Bavix\Wallet\Traits\HasWallet;
+use Bavix\Wallet\Interfaces\Wallet;
 
-class User extends \TCG\Voyager\Models\User
+class User extends \TCG\Voyager\Models\User implements Wallet, WalletFloat
 {
     use Notifiable;
+    use HasWalletFloat;
 
     /**
      * The attributes that are mass assignable.

@@ -168,7 +168,7 @@ var render = function render() {
     attrs: {
       "for": "_amount"
     }
-  }, [_vm._v("Amount")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("Amount")]), _vm._v(" "), _c("p", [_vm._v("Please note payment will include additional transaction charges that are not part of the deposit.")]), _vm._v(" "), _c("div", {
     staticClass: "input-group mb-3"
   }, [_vm._m(1), _vm._v(" "), _c("input", {
     directives: [{
