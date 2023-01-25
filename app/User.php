@@ -5,13 +5,11 @@ namespace App;
 use App\Models\Member;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Storage;
-use Bavix\Wallet\Traits\HasWallet;
-use Bavix\Wallet\Interfaces\Wallet;
 
-class User extends \TCG\Voyager\Models\User implements Wallet
+class User extends \TCG\Voyager\Models\User
 {
     use Notifiable;
-    use HasWallet;
+
     /**
      * The attributes that are mass assignable.
      *

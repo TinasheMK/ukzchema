@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Member;
 use App\Models\Obituary;
-use App\User;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,7 +17,6 @@ class MemberController extends SharedBaseController
             ->limit(3)
             ->get();
         $member = Auth::user()->memberDetails;
-        $user = User::find(Auth::user()->id);
         $admin = new Collection([]);
         $payment = new Collection([]);
         $obituary = new Collection([]);

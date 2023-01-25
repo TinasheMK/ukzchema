@@ -121,95 +121,6 @@
             "install-path": "../asm89/stack-cors"
         },
         {
-            "name": "bavix/laravel-wallet",
-            "version": "7.3.5",
-            "version_normalized": "7.3.5.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/bavix/laravel-wallet.git",
-                "reference": "f9fa790c98bec2ab765ea6e7a7c4c9dd55e1284d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/bavix/laravel-wallet/zipball/f9fa790c98bec2ab765ea6e7a7c4c9dd55e1284d",
-                "reference": "f9fa790c98bec2ab765ea6e7a7c4c9dd55e1284d",
-                "shasum": ""
-            },
-            "require": {
-                "brick/math": "~0.8",
-                "doctrine/dbal": "^2.8|^3.0",
-                "ext-json": "*",
-                "ext-pdo": "*",
-                "illuminate/contracts": "^6.0|^7.0|^8.0",
-                "illuminate/database": "^6.0|^7.0|^8.0",
-                "illuminate/events": "^6.0|^7.0|^8.0",
-                "php": "^7.4|^8.0",
-                "ramsey/uuid": "^3.0|^4.0"
-            },
-            "require-dev": {
-                "brianium/paratest": "^6.4",
-                "cknow/laravel-money": "^6.1",
-                "ergebnis/phpstan-rules": "^1.0",
-                "infection/infection": "~0.25",
-                "laravel/cashier": "^13.6",
-                "nunomaduro/collision": "^5.10",
-                "orchestra/testbench": "^6.23",
-                "phpstan/phpstan": "^1.2",
-                "phpunit/phpunit": "^9.5",
-                "psalm/plugin-laravel": "^1.5",
-                "rector/rector": "^0.12",
-                "symplify/easy-coding-standard": "^10.0",
-                "vimeo/psalm": "^4.15"
-            },
-            "suggest": {
-                "bavix/laravel-wallet-swap": "Addition to the laravel-wallet library for quick setting of exchange rates",
-                "bavix/laravel-wallet-warmup": "Addition to the laravel-wallet library for refresh balance wallets"
-            },
-            "time": "2022-12-29T14:57:26+00:00",
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Bavix\\Wallet\\WalletServiceProvider"
-                    ]
-                }
-            },
-            "installation-source": "dist",
-            "autoload": {
-                "psr-4": {
-                    "Bavix\\Wallet\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Babichev Maxim",
-                    "email": "info@babichev.net"
-                }
-            ],
-            "description": "Easy work with virtual wallet.",
-            "homepage": "https://bavix.github.io/laravel-wallet/",
-            "keywords": [
-                "bavix",
-                "credits",
-                "currency",
-                "laravel",
-                "laravel-package",
-                "laravel-wallet",
-                "payments",
-                "virtual",
-                "wallet"
-            ],
-            "support": {
-                "issues": "https://github.com/bavix/laravel-wallet/issues",
-                "source": "https://github.com/bavix/laravel-wallet/tree/7.3.5"
-            },
-            "install-path": "../bavix/laravel-wallet"
-        },
-        {
             "name": "brick/math",
             "version": "0.8.15",
             "version_normalized": "0.8.15.0",
@@ -3224,6 +3135,58 @@
                 }
             ],
             "install-path": "../paypal/paypalhttp"
+        },
+        {
+            "name": "paypal/rest-api-sdk-php",
+            "version": "1.14.0",
+            "version_normalized": "1.14.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/paypal/PayPal-PHP-SDK.git",
+                "reference": "72e2f2466975bf128a31e02b15110180f059fc04"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/paypal/PayPal-PHP-SDK/zipball/72e2f2466975bf128a31e02b15110180f059fc04",
+                "reference": "72e2f2466975bf128a31e02b15110180f059fc04",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "php": ">=5.3.0",
+                "psr/log": "^1.0.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8.35"
+            },
+            "time": "2019-01-04T20:04:25+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-0": {
+                    "PayPal": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "PayPal",
+                    "homepage": "https://github.com/paypal/rest-api-sdk-php/contributors"
+                }
+            ],
+            "description": "PayPal's PHP SDK for REST APIs",
+            "homepage": "http://paypal.github.io/PayPal-PHP-SDK/",
+            "keywords": [
+                "payments",
+                "paypal",
+                "rest",
+                "sdk"
+            ],
+            "install-path": "../paypal/rest-api-sdk-php"
         },
         {
             "name": "phar-io/manifest",
@@ -7158,6 +7121,7 @@
         "mockery/mockery",
         "myclabs/deep-copy",
         "nunomaduro/collision",
+        "paypal/rest-api-sdk-php",
         "phar-io/manifest",
         "phar-io/version",
         "phpdocumentor/reflection-common",

@@ -9,7 +9,7 @@
       <a :href="user.home" class="simple-text logo-normal">
           {{user.name}}
           <br>
-          <small>£ {{balance}}</small>
+          <small>£ {{user.balance}}</small>
         </a>
     </div>
     <div class="sidebar-wrapper">
@@ -44,7 +44,7 @@
 
 <script>
 export default {
-  props: ["user", "nav_links", "balance"],
+  props: ["user", "nav_links"],
   data() {
     return { }
   },

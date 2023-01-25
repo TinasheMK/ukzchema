@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Deposit;
-use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,13 +17,12 @@ class DepositController extends SharedBaseController
             ]);
         }
         $amount = getAmount($request->payment_ref);
-        $user = User::find(Auth::user()->id);
+        $user = Auth::user();
         $member = $user->memberDetails;
         if (!isset($member)) {
             my_log("Deposit Received for user ID: {$user->id} {$user->name}", "System couldn't save. Please enter manually\nDeposited Amount: £{$amount}");
             logger("Deposit Received for user ID: {$user->id} {$user->name}" + "System couldn't save. Please enter manually\nDeposited Amount: £{$amount}");
         }else{
-            $user->deposit($amount);
             $member->balance = $member->balance + $amount;
             $member->deposits()->create([
                 "amount" => $amount,
