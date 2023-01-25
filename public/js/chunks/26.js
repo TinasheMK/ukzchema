@@ -63,6 +63,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['route', 'user', 'client_id'],
   mounted: function mounted() {
@@ -225,6 +226,12 @@ var render = function() {
           _c("div", { staticClass: "modal-body" }, [
             _c("div", { staticClass: "col-12 mb-2" }, [
               _c("label", { attrs: { for: "_amount" } }, [_vm._v("Amount")]),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v(
+                  "Please note payment will include additional transaction charges that are not part of the deposit."
+                )
+              ]),
               _vm._v(" "),
               _c("div", { staticClass: "input-group mb-3" }, [
                 _vm._m(1),

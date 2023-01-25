@@ -18,6 +18,7 @@
         <div class="modal-body">
           <div class="col-12 mb-2">
             <label for="_amount">Amount</label>
+            <p>Please note payment will include additional transaction charges that are not part of the deposit.</p>
             <div class="input-group mb-3">
               <div class="input-group-prepend">
                 <span class="input-group-text" id="amount">£</span>

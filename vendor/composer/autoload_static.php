@@ -16,13 +16,13 @@ class ComposerStaticInit35918df68a3b8ab962daed9f25b23692
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
         'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
+        'e39a8b23c42d4e1452234d762b03835a' => __DIR__ . '/..' . '/ramsey/uuid/src/functions.php',
         'def43f6c87e4f8dfd0c9e1b1bab14fe8' => __DIR__ . '/..' . '/symfony/polyfill-iconv/bootstrap.php',
         '9cdd7b9056abc3081735233ba9dd9c7f' => __DIR__ . '/..' . '/facade/flare-client-php/src/helpers.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         '538ca81a9a966a6716601ecf48f4eaef' => __DIR__ . '/..' . '/opis/closure/functions.php',
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
-        'e39a8b23c42d4e1452234d762b03835a' => __DIR__ . '/..' . '/ramsey/uuid/src/functions.php',
         'b6ec61354e97f32c0ae683041c78392a' => __DIR__ . '/..' . '/scrivo/highlight.php/HighlightUtilities/functions.php',
         '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
         'ed962a97bd972bc82007176b647d4e36' => __DIR__ . '/..' . '/facade/ignition/src/helpers.php',
@@ -31,31 +31,31 @@ class ComposerStaticInit35918df68a3b8ab962daed9f25b23692
     );
 
     public static $prefixLengthsPsr4 = array (
-        'v' =>
+        'v' => 
         array (
             'voku\\tests\\' => 11,
             'voku\\' => 5,
         ),
-        'p' =>
+        'p' => 
         array (
             'phpDocumentor\\Reflection\\' => 25,
         ),
-        'X' =>
+        'X' => 
         array (
             'XdgBaseDir\\' => 11,
         ),
-        'W' =>
+        'W' => 
         array (
             'Whoops\\' => 7,
             'Webmozart\\Assert\\' => 17,
         ),
-        'T' =>
+        'T' => 
         array (
             'TijsVerkoyen\\CssToInlineStyles\\' => 31,
             'Tests\\' => 6,
             'TCG\\Voyager\\' => 12,
         ),
-        'S' =>
+        'S' => 
         array (
             'Symfony\\Polyfill\\Php73\\' => 23,
             'Symfony\\Polyfill\\Php72\\' => 23,
@@ -83,12 +83,12 @@ class ComposerStaticInit35918df68a3b8ab962daed9f25b23692
             'Seld\\JsonLint\\' => 14,
             'Sample\\' => 7,
         ),
-        'R' =>
+        'R' => 
         array (
             'Ramsey\\Uuid\\' => 12,
             'Ramsey\\Collection\\' => 18,
         ),
-        'P' =>
+        'P' => 
         array (
             'Psy\\' => 4,
             'Psr\\SimpleCache\\' => 16,
@@ -102,20 +102,20 @@ class ComposerStaticInit35918df68a3b8ab962daed9f25b23692
             'PayPalHttp\\' => 11,
             'PayPalCheckoutSdk\\' => 18,
         ),
-        'O' =>
+        'O' => 
         array (
             'Opis\\Closure\\' => 13,
         ),
-        'N' =>
+        'N' => 
         array (
             'NunoMaduro\\Collision\\' => 21,
             'NotificationChannels\\Telegram\\' => 30,
         ),
-        'M' =>
+        'M' => 
         array (
             'Monolog\\' => 8,
         ),
-        'L' =>
+        'L' => 
         array (
             'League\\Flysystem\\' => 17,
             'League\\CommonMark\\' => 18,
@@ -125,23 +125,23 @@ class ComposerStaticInit35918df68a3b8ab962daed9f25b23692
             'Larapack\\Hooks\\' => 15,
             'Larapack\\DoctrineSupport\\' => 25,
         ),
-        'J' =>
+        'J' => 
         array (
             'JsonSchema\\' => 11,
         ),
-        'I' =>
+        'I' => 
         array (
             'Intervention\\Image\\' => 19,
             'Illuminate\\Foundation\\Auth\\' => 27,
             'Illuminate\\' => 11,
         ),
-        'G' =>
+        'G' => 
         array (
             'GuzzleHttp\\Psr7\\' => 16,
             'GuzzleHttp\\Promise\\' => 19,
             'GuzzleHttp\\' => 11,
         ),
-        'F' =>
+        'F' => 
         array (
             'Fruitcake\\Cors\\' => 15,
             'Fideloper\\Proxy\\' => 16,
@@ -150,11 +150,11 @@ class ComposerStaticInit35918df68a3b8ab962daed9f25b23692
             'Facade\\IgnitionContracts\\' => 25,
             'Facade\\FlareClient\\' => 19,
         ),
-        'E' =>
+        'E' => 
         array (
             'Egulias\\EmailValidator\\' => 23,
         ),
-        'D' =>
+        'D' => 
         array (
             'Dotenv\\' => 7,
             'Doctrine\\Instantiator\\' => 22,
@@ -165,7 +165,7 @@ class ComposerStaticInit35918df68a3b8ab962daed9f25b23692
             'Doctrine\\Common\\' => 16,
             'DeepCopy\\' => 9,
         ),
-        'C' =>
+        'C' => 
         array (
             'Cron\\' => 5,
             'Composer\\XdebugHandler\\' => 23,
@@ -175,11 +175,12 @@ class ComposerStaticInit35918df68a3b8ab962daed9f25b23692
             'Composer\\' => 9,
             'Carbon\\' => 7,
         ),
-        'B' =>
+        'B' => 
         array (
             'Brick\\Math\\' => 11,
+            'Bavix\\Wallet\\' => 13,
         ),
-        'A' =>
+        'A' => 
         array (
             'Asm89\\Stack\\' => 12,
             'Arrilot\\Widgets\\' => 16,
@@ -188,396 +189,393 @@ class ComposerStaticInit35918df68a3b8ab962daed9f25b23692
     );
 
     public static $prefixDirsPsr4 = array (
-        'voku\\tests\\' =>
+        'voku\\tests\\' => 
         array (
             0 => __DIR__ . '/..' . '/voku/portable-ascii/tests',
         ),
-        'voku\\' =>
+        'voku\\' => 
         array (
             0 => __DIR__ . '/..' . '/voku/portable-ascii/src/voku',
         ),
-        'phpDocumentor\\Reflection\\' =>
+        'phpDocumentor\\Reflection\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
             1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
             2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
         ),
-        'XdgBaseDir\\' =>
+        'XdgBaseDir\\' => 
         array (
             0 => __DIR__ . '/..' . '/dnoegel/php-xdg-base-dir/src',
         ),
-        'Whoops\\' =>
+        'Whoops\\' => 
         array (
             0 => __DIR__ . '/..' . '/filp/whoops/src/Whoops',
         ),
-        'Webmozart\\Assert\\' =>
+        'Webmozart\\Assert\\' => 
         array (
             0 => __DIR__ . '/..' . '/webmozart/assert/src',
         ),
-        'TijsVerkoyen\\CssToInlineStyles\\' =>
+        'TijsVerkoyen\\CssToInlineStyles\\' => 
         array (
             0 => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src',
         ),
-        'Tests\\' =>
+        'Tests\\' => 
         array (
             0 => __DIR__ . '/../..' . '/tests',
         ),
-        'TCG\\Voyager\\' =>
+        'TCG\\Voyager\\' => 
         array (
             0 => __DIR__ . '/..' . '/tcg/voyager/src',
         ),
-        'Symfony\\Polyfill\\Php73\\' =>
+        'Symfony\\Polyfill\\Php73\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-php73',
         ),
-        'Symfony\\Polyfill\\Php72\\' =>
+        'Symfony\\Polyfill\\Php72\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-php72',
         ),
-        'Symfony\\Polyfill\\Mbstring\\' =>
+        'Symfony\\Polyfill\\Mbstring\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
         ),
-        'Symfony\\Polyfill\\Intl\\Idn\\' =>
+        'Symfony\\Polyfill\\Intl\\Idn\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-intl-idn',
         ),
-        'Symfony\\Polyfill\\Iconv\\' =>
+        'Symfony\\Polyfill\\Iconv\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-iconv',
         ),
-        'Symfony\\Polyfill\\Ctype\\' =>
+        'Symfony\\Polyfill\\Ctype\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-ctype',
         ),
-        'Symfony\\Contracts\\Translation\\' =>
+        'Symfony\\Contracts\\Translation\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/translation-contracts',
         ),
-        'Symfony\\Contracts\\Service\\' =>
+        'Symfony\\Contracts\\Service\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/service-contracts',
         ),
-        'Symfony\\Contracts\\EventDispatcher\\' =>
+        'Symfony\\Contracts\\EventDispatcher\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/event-dispatcher-contracts',
         ),
-        'Symfony\\Component\\VarDumper\\' =>
+        'Symfony\\Component\\VarDumper\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/var-dumper',
         ),
-        'Symfony\\Component\\Translation\\' =>
+        'Symfony\\Component\\Translation\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/translation',
         ),
-        'Symfony\\Component\\Routing\\' =>
+        'Symfony\\Component\\Routing\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/routing',
         ),
-        'Symfony\\Component\\Process\\' =>
+        'Symfony\\Component\\Process\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/process',
         ),
-        'Symfony\\Component\\Mime\\' =>
+        'Symfony\\Component\\Mime\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/mime',
         ),
-        'Symfony\\Component\\HttpKernel\\' =>
+        'Symfony\\Component\\HttpKernel\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/http-kernel',
         ),
-        'Symfony\\Component\\HttpFoundation\\' =>
+        'Symfony\\Component\\HttpFoundation\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/http-foundation',
         ),
-        'Symfony\\Component\\Finder\\' =>
+        'Symfony\\Component\\Finder\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/finder',
         ),
-        'Symfony\\Component\\Filesystem\\' =>
+        'Symfony\\Component\\Filesystem\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/filesystem',
         ),
-        'Symfony\\Component\\EventDispatcher\\' =>
+        'Symfony\\Component\\EventDispatcher\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/event-dispatcher',
         ),
-        'Symfony\\Component\\ErrorHandler\\' =>
+        'Symfony\\Component\\ErrorHandler\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/error-handler',
         ),
-        'Symfony\\Component\\CssSelector\\' =>
+        'Symfony\\Component\\CssSelector\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/css-selector',
         ),
-        'Symfony\\Component\\Console\\' =>
+        'Symfony\\Component\\Console\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/console',
         ),
-        'Seld\\PharUtils\\' =>
+        'Seld\\PharUtils\\' => 
         array (
             0 => __DIR__ . '/..' . '/seld/phar-utils/src',
         ),
-        'Seld\\JsonLint\\' =>
+        'Seld\\JsonLint\\' => 
         array (
             0 => __DIR__ . '/..' . '/seld/jsonlint/src/Seld/JsonLint',
         ),
-        'Sample\\' =>
+        'Sample\\' => 
         array (
             0 => __DIR__ . '/..' . '/paypal/paypal-checkout-sdk/samples',
         ),
-        'Ramsey\\Uuid\\' =>
+        'Ramsey\\Uuid\\' => 
         array (
             0 => __DIR__ . '/..' . '/ramsey/uuid/src',
         ),
-        'Ramsey\\Collection\\' =>
+        'Ramsey\\Collection\\' => 
         array (
             0 => __DIR__ . '/..' . '/ramsey/collection/src',
         ),
-        'Psy\\' =>
+        'Psy\\' => 
         array (
             0 => __DIR__ . '/..' . '/psy/psysh/src',
         ),
-        'Psr\\SimpleCache\\' =>
+        'Psr\\SimpleCache\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/simple-cache/src',
         ),
-        'Psr\\Log\\' =>
+        'Psr\\Log\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
         ),
-        'Psr\\Http\\Message\\' =>
+        'Psr\\Http\\Message\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
-        'Psr\\EventDispatcher\\' =>
+        'Psr\\EventDispatcher\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/event-dispatcher/src',
         ),
-        'Psr\\Container\\' =>
+        'Psr\\Container\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/container/src',
         ),
-        'Prophecy\\' =>
+        'Prophecy\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpspec/prophecy/src/Prophecy',
         ),
-        'PhpParser\\' =>
+        'PhpParser\\' => 
         array (
             0 => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser',
         ),
-        'PhpOption\\' =>
+        'PhpOption\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpoption/phpoption/src/PhpOption',
         ),
-        'PayPalHttp\\' =>
+        'PayPalHttp\\' => 
         array (
             0 => __DIR__ . '/..' . '/paypal/paypalhttp/lib/PayPalHttp',
         ),
-        'PayPalCheckoutSdk\\' =>
+        'PayPalCheckoutSdk\\' => 
         array (
             0 => __DIR__ . '/..' . '/paypal/paypal-checkout-sdk/lib/PayPalCheckoutSdk',
         ),
-        'Opis\\Closure\\' =>
+        'Opis\\Closure\\' => 
         array (
             0 => __DIR__ . '/..' . '/opis/closure/src',
         ),
-        'NunoMaduro\\Collision\\' =>
+        'NunoMaduro\\Collision\\' => 
         array (
             0 => __DIR__ . '/..' . '/nunomaduro/collision/src',
         ),
-        'NotificationChannels\\Telegram\\' =>
+        'NotificationChannels\\Telegram\\' => 
         array (
             0 => __DIR__ . '/..' . '/laravel-notification-channels/telegram/src',
         ),
-        'Monolog\\' =>
+        'Monolog\\' => 
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
         ),
-        'League\\Flysystem\\' =>
+        'League\\Flysystem\\' => 
         array (
             0 => __DIR__ . '/..' . '/league/flysystem/src',
         ),
-        'League\\CommonMark\\' =>
+        'League\\CommonMark\\' => 
         array (
             0 => __DIR__ . '/..' . '/league/commonmark/src',
         ),
-        'Laravel\\Ui\\' =>
+        'Laravel\\Ui\\' => 
         array (
             0 => __DIR__ . '/..' . '/laravel/ui/src',
         ),
-        'Laravel\\Tinker\\' =>
+        'Laravel\\Tinker\\' => 
         array (
             0 => __DIR__ . '/..' . '/laravel/tinker/src',
         ),
-        'Larapack\\VoyagerHooks\\' =>
+        'Larapack\\VoyagerHooks\\' => 
         array (
             0 => __DIR__ . '/..' . '/larapack/voyager-hooks/src',
         ),
-        'Larapack\\Hooks\\' =>
+        'Larapack\\Hooks\\' => 
         array (
             0 => __DIR__ . '/..' . '/larapack/hooks/src',
         ),
-        'Larapack\\DoctrineSupport\\' =>
+        'Larapack\\DoctrineSupport\\' => 
         array (
             0 => __DIR__ . '/..' . '/larapack/doctrine-support/src',
         ),
-        'JsonSchema\\' =>
+        'JsonSchema\\' => 
         array (
             0 => __DIR__ . '/..' . '/justinrainbow/json-schema/src/JsonSchema',
         ),
-        'Intervention\\Image\\' =>
+        'Intervention\\Image\\' => 
         array (
             0 => __DIR__ . '/..' . '/intervention/image/src/Intervention/Image',
         ),
-        'Illuminate\\Foundation\\Auth\\' =>
+        'Illuminate\\Foundation\\Auth\\' => 
         array (
             0 => __DIR__ . '/..' . '/laravel/ui/auth-backend',
         ),
-        'Illuminate\\' =>
+        'Illuminate\\' => 
         array (
             0 => __DIR__ . '/..' . '/laravel/framework/src/Illuminate',
         ),
-        'GuzzleHttp\\Psr7\\' =>
+        'GuzzleHttp\\Psr7\\' => 
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/psr7/src',
         ),
-        'GuzzleHttp\\Promise\\' =>
+        'GuzzleHttp\\Promise\\' => 
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/promises/src',
         ),
-        'GuzzleHttp\\' =>
+        'GuzzleHttp\\' => 
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
         ),
-        'Fruitcake\\Cors\\' =>
+        'Fruitcake\\Cors\\' => 
         array (
             0 => __DIR__ . '/..' . '/fruitcake/laravel-cors/src',
         ),
-        'Fideloper\\Proxy\\' =>
+        'Fideloper\\Proxy\\' => 
         array (
             0 => __DIR__ . '/..' . '/fideloper/proxy/src',
         ),
-        'Faker\\' =>
+        'Faker\\' => 
         array (
             0 => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker',
         ),
-        'Facade\\Ignition\\' =>
+        'Facade\\Ignition\\' => 
         array (
             0 => __DIR__ . '/..' . '/facade/ignition/src',
         ),
-        'Facade\\IgnitionContracts\\' =>
+        'Facade\\IgnitionContracts\\' => 
         array (
             0 => __DIR__ . '/..' . '/facade/ignition-contracts/src',
         ),
-        'Facade\\FlareClient\\' =>
+        'Facade\\FlareClient\\' => 
         array (
             0 => __DIR__ . '/..' . '/facade/flare-client-php/src',
         ),
-        'Egulias\\EmailValidator\\' =>
+        'Egulias\\EmailValidator\\' => 
         array (
             0 => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator',
         ),
-        'Dotenv\\' =>
+        'Dotenv\\' => 
         array (
             0 => __DIR__ . '/..' . '/vlucas/phpdotenv/src',
         ),
-        'Doctrine\\Instantiator\\' =>
+        'Doctrine\\Instantiator\\' => 
         array (
             0 => __DIR__ . '/..' . '/doctrine/instantiator/src/Doctrine/Instantiator',
         ),
-        'Doctrine\\DBAL\\' =>
+        'Doctrine\\DBAL\\' => 
         array (
             0 => __DIR__ . '/..' . '/doctrine/dbal/lib/Doctrine/DBAL',
         ),
-        'Doctrine\\Common\\Lexer\\' =>
+        'Doctrine\\Common\\Lexer\\' => 
         array (
             0 => __DIR__ . '/..' . '/doctrine/lexer/lib/Doctrine/Common/Lexer',
         ),
-        'Doctrine\\Common\\Inflector\\' =>
+        'Doctrine\\Common\\Inflector\\' => 
         array (
             0 => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Common/Inflector',
         ),
-        'Doctrine\\Common\\Cache\\' =>
+        'Doctrine\\Common\\Cache\\' => 
         array (
             0 => __DIR__ . '/..' . '/doctrine/cache/lib/Doctrine/Common/Cache',
         ),
-        'Doctrine\\Common\\' =>
+        'Doctrine\\Common\\' => 
         array (
             0 => __DIR__ . '/..' . '/doctrine/event-manager/lib/Doctrine/Common',
         ),
-        'DeepCopy\\' =>
+        'DeepCopy\\' => 
         array (
             0 => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy',
         ),
-        'Cron\\' =>
+        'Cron\\' => 
         array (
             0 => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron',
         ),
-        'Composer\\XdebugHandler\\' =>
+        'Composer\\XdebugHandler\\' => 
         array (
             0 => __DIR__ . '/..' . '/composer/xdebug-handler/src',
         ),
-        'Composer\\Spdx\\' =>
+        'Composer\\Spdx\\' => 
         array (
             0 => __DIR__ . '/..' . '/composer/spdx-licenses/src',
         ),
-        'Composer\\Semver\\' =>
+        'Composer\\Semver\\' => 
         array (
             0 => __DIR__ . '/..' . '/composer/semver/src',
         ),
-        'Composer\\CaBundle\\' =>
+        'Composer\\CaBundle\\' => 
         array (
             0 => __DIR__ . '/..' . '/composer/ca-bundle/src',
         ),
-        'Composer\\' =>
+        'Composer\\' => 
         array (
             0 => __DIR__ . '/..' . '/composer/composer/src/Composer',
         ),
-        'Carbon\\' =>
+        'Carbon\\' => 
         array (
             0 => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon',
         ),
-        'Brick\\Math\\' =>
+        'Brick\\Math\\' => 
         array (
             0 => __DIR__ . '/..' . '/brick/math/src',
         ),
-        'Asm89\\Stack\\' =>
+        'Bavix\\Wallet\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/bavix/laravel-wallet/src',
+        ),
+        'Asm89\\Stack\\' => 
         array (
             0 => __DIR__ . '/..' . '/asm89/stack-cors/src/Asm89/Stack',
         ),
-        'Arrilot\\Widgets\\' =>
+        'Arrilot\\Widgets\\' => 
         array (
             0 => __DIR__ . '/..' . '/arrilot/laravel-widgets/src',
         ),
-        'App\\' =>
+        'App\\' => 
         array (
             0 => __DIR__ . '/../..' . '/app',
         ),
     );
 
     public static $prefixesPsr0 = array (
-        'P' =>
+        'M' => 
         array (
-            'PayPal' =>
-            array (
-                0 => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib',
-            ),
-        ),
-        'M' =>
-        array (
-            'Mockery' =>
+            'Mockery' => 
             array (
                 0 => __DIR__ . '/..' . '/mockery/mockery/library',
             ),
         ),
-        'H' =>
+        'H' => 
         array (
-            'Highlight\\' =>
+            'Highlight\\' => 
             array (
                 0 => __DIR__ . '/..' . '/scrivo/highlight.php',
             ),
-            'HighlightUtilities\\' =>
+            'HighlightUtilities\\' => 
             array (
                 0 => __DIR__ . '/..' . '/scrivo/highlight.php',
             ),
@@ -586,9 +584,11 @@ class ComposerStaticInit35918df68a3b8ab962daed9f25b23692
 
     public static $classMap = array (
         'AdminNotificationMemberTable' => __DIR__ . '/../..' . '/database/seeds/AdminNotificationMemberTable.php',
+        'App\\Claim' => __DIR__ . '/../..' . '/app/Claim.php',
         'App\\Console\\Commands\\BackupDatabase' => __DIR__ . '/../..' . '/app/Console/Commands/BackupDatabase.php',
         'App\\Console\\Commands\\ImportDatabase' => __DIR__ . '/../..' . '/app/Console/Commands/ImportDatabase.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
+        'App\\Contact' => __DIR__ . '/../..' . '/app/Contact.php',
         'App\\Events\\ApplicantRejected' => __DIR__ . '/../..' . '/app/Events/ApplicantRejected.php',
         'App\\Events\\ObituaryAdded' => __DIR__ . '/../..' . '/app/Events/ObituaryAdded.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
@@ -598,6 +598,7 @@ class ComposerStaticInit35918df68a3b8ab962daed9f25b23692
         'App\\Http\\Controllers\\AdminNotificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminNotificationController.php',
         'App\\Http\\Controllers\\ApplicantController' => __DIR__ . '/../..' . '/app/Http/Controllers/ApplicantController.php',
         'App\\Http\\Controllers\\AuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/AuthController.php',
+        'App\\Http\\Controllers\\ClaimsController' => __DIR__ . '/../..' . '/app/Http/Controllers/ClaimsController.php',
         'App\\Http\\Controllers\\ConstitutionController' => __DIR__ . '/../..' . '/app/Http/Controllers/ConstitutionController.php',
         'App\\Http\\Controllers\\ContactUsController' => __DIR__ . '/../..' . '/app/Http/Controllers/ContactUsController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
@@ -634,6 +635,7 @@ class ComposerStaticInit35918df68a3b8ab962daed9f25b23692
         'App\\Models\\Constitution' => __DIR__ . '/../..' . '/app/Models/Constitution.php',
         'App\\Models\\ContactUs' => __DIR__ . '/../..' . '/app/Models/ContactUs.php',
         'App\\Models\\DeceasedMember' => __DIR__ . '/../..' . '/app/Models/DeceasedMember.php',
+        'App\\Models\\DeceasedNominee' => __DIR__ . '/../..' . '/app/Models/DeceasedNominee.php',
         'App\\Models\\Deposit' => __DIR__ . '/../..' . '/app/Models/Deposit.php',
         'App\\Models\\Donation' => __DIR__ . '/../..' . '/app/Models/Donation.php',
         'App\\Models\\Member' => __DIR__ . '/../..' . '/app/Models/Member.php',
@@ -647,6 +649,11 @@ class ComposerStaticInit35918df68a3b8ab962daed9f25b23692
         'App\\Models\\UnpaidMember' => __DIR__ . '/../..' . '/app/Models/UnpaidMember.php',
         'App\\Notifications\\AdminNotification' => __DIR__ . '/../..' . '/app/Notifications/AdminNotification.php',
         'App\\Notifications\\ApplicantRejected' => __DIR__ . '/../..' . '/app/Notifications/ApplicantRejected.php',
+        'App\\Notifications\\ClaimNotification' => __DIR__ . '/../..' . '/app/Notifications/ClaimNotification.php',
+        'App\\Notifications\\ClaimNotificationAccepted' => __DIR__ . '/../..' . '/app/Notifications/ClaimNotificationAccepted.php',
+        'App\\Notifications\\ClaimNotificationDeathCert' => __DIR__ . '/../..' . '/app/Notifications/ClaimNotificationDeathCert.php',
+        'App\\Notifications\\ClaimNotificationRejected' => __DIR__ . '/../..' . '/app/Notifications/ClaimNotificationRejected.php',
+        'App\\Notifications\\ContactForm' => __DIR__ . '/../..' . '/app/Notifications/ContactForm.php',
         'App\\Notifications\\ContactUsMail' => __DIR__ . '/../..' . '/app/Notifications/ContactUsMail.php',
         'App\\Notifications\\NewApplicant' => __DIR__ . '/../..' . '/app/Notifications/NewApplicant.php',
         'App\\Notifications\\NewDonationReceived' => __DIR__ . '/../..' . '/app/Notifications/NewDonationReceived.php',
@@ -670,6 +677,7 @@ class ComposerStaticInit35918df68a3b8ab962daed9f25b23692
         'App\\VoyagerActions\\ViewNominees' => __DIR__ . '/../..' . '/app/VoyagerActions/ViewNominees.php',
         'App\\VoyagerForms\\NomineeView' => __DIR__ . '/../..' . '/app/VoyagerForms/NomineeView.php',
         'App\\Widgets\\Members' => __DIR__ . '/../..' . '/app/Widgets/Members.php',
+        'ApplicantTableSeeder' => __DIR__ . '/../..' . '/database/seeds/ApplicantTableSeeder.php',
         'Arrilot\\Widgets\\AbstractWidget' => __DIR__ . '/..' . '/arrilot/laravel-widgets/src/AbstractWidget.php',
         'Arrilot\\Widgets\\AsyncFacade' => __DIR__ . '/..' . '/arrilot/laravel-widgets/src/AsyncFacade.php',
         'Arrilot\\Widgets\\Console\\WidgetMakeCommand' => __DIR__ . '/..' . '/arrilot/laravel-widgets/src/Console/WidgetMakeCommand.php',
@@ -692,6 +700,146 @@ class ComposerStaticInit35918df68a3b8ab962daed9f25b23692
         'Arrilot\\Widgets\\WidgetId' => __DIR__ . '/..' . '/arrilot/laravel-widgets/src/WidgetId.php',
         'Asm89\\Stack\\Cors' => __DIR__ . '/..' . '/asm89/stack-cors/src/Asm89/Stack/Cors.php',
         'Asm89\\Stack\\CorsService' => __DIR__ . '/..' . '/asm89/stack-cors/src/Asm89/Stack/CorsService.php',
+        'Bavix\\Wallet\\Exceptions\\AmountInvalid' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Exceptions/AmountInvalid.php',
+        'Bavix\\Wallet\\Exceptions\\BalanceIsEmpty' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Exceptions/BalanceIsEmpty.php',
+        'Bavix\\Wallet\\Exceptions\\ConfirmedInvalid' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Exceptions/ConfirmedInvalid.php',
+        'Bavix\\Wallet\\Exceptions\\InsufficientFunds' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Exceptions/InsufficientFunds.php',
+        'Bavix\\Wallet\\Exceptions\\ProductEnded' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Exceptions/ProductEnded.php',
+        'Bavix\\Wallet\\Exceptions\\UnconfirmedInvalid' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Exceptions/UnconfirmedInvalid.php',
+        'Bavix\\Wallet\\Exceptions\\WalletOwnerInvalid' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Exceptions/WalletOwnerInvalid.php',
+        'Bavix\\Wallet\\Interfaces\\CartInterface' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Interfaces/CartInterface.php',
+        'Bavix\\Wallet\\Interfaces\\Confirmable' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Interfaces/Confirmable.php',
+        'Bavix\\Wallet\\Interfaces\\Customer' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Interfaces/Customer.php',
+        'Bavix\\Wallet\\Interfaces\\Discount' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Interfaces/Discount.php',
+        'Bavix\\Wallet\\Interfaces\\Exchangeable' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Interfaces/Exchangeable.php',
+        'Bavix\\Wallet\\Interfaces\\MinimalTaxable' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Interfaces/MinimalTaxable.php',
+        'Bavix\\Wallet\\Interfaces\\Product' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Interfaces/Product.php',
+        'Bavix\\Wallet\\Interfaces\\Taxable' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Interfaces/Taxable.php',
+        'Bavix\\Wallet\\Interfaces\\Wallet' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Interfaces/Wallet.php',
+        'Bavix\\Wallet\\Interfaces\\WalletFloat' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Interfaces/WalletFloat.php',
+        'Bavix\\Wallet\\Internal\\Assembler\\AvailabilityDtoAssembler' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Assembler/AvailabilityDtoAssembler.php',
+        'Bavix\\Wallet\\Internal\\Assembler\\AvailabilityDtoAssemblerInterface' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Assembler/AvailabilityDtoAssemblerInterface.php',
+        'Bavix\\Wallet\\Internal\\Assembler\\BalanceUpdatedEventAssembler' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Assembler/BalanceUpdatedEventAssembler.php',
+        'Bavix\\Wallet\\Internal\\Assembler\\BalanceUpdatedEventAssemblerInterface' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Assembler/BalanceUpdatedEventAssemblerInterface.php',
+        'Bavix\\Wallet\\Internal\\Assembler\\TransactionDtoAssembler' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Assembler/TransactionDtoAssembler.php',
+        'Bavix\\Wallet\\Internal\\Assembler\\TransactionDtoAssemblerInterface' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Assembler/TransactionDtoAssemblerInterface.php',
+        'Bavix\\Wallet\\Internal\\Assembler\\TransactionQueryAssembler' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Assembler/TransactionQueryAssembler.php',
+        'Bavix\\Wallet\\Internal\\Assembler\\TransactionQueryAssemblerInterface' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Assembler/TransactionQueryAssemblerInterface.php',
+        'Bavix\\Wallet\\Internal\\Assembler\\TransferDtoAssembler' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Assembler/TransferDtoAssembler.php',
+        'Bavix\\Wallet\\Internal\\Assembler\\TransferDtoAssemblerInterface' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Assembler/TransferDtoAssemblerInterface.php',
+        'Bavix\\Wallet\\Internal\\Assembler\\TransferLazyDtoAssembler' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Assembler/TransferLazyDtoAssembler.php',
+        'Bavix\\Wallet\\Internal\\Assembler\\TransferLazyDtoAssemblerInterface' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Assembler/TransferLazyDtoAssemblerInterface.php',
+        'Bavix\\Wallet\\Internal\\Assembler\\TransferQueryAssembler' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Assembler/TransferQueryAssembler.php',
+        'Bavix\\Wallet\\Internal\\Assembler\\TransferQueryAssemblerInterface' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Assembler/TransferQueryAssemblerInterface.php',
+        'Bavix\\Wallet\\Internal\\Assembler\\WalletCreatedEventAssembler' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Assembler/WalletCreatedEventAssembler.php',
+        'Bavix\\Wallet\\Internal\\Assembler\\WalletCreatedEventAssemblerInterface' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Assembler/WalletCreatedEventAssemblerInterface.php',
+        'Bavix\\Wallet\\Internal\\Dto\\AvailabilityDto' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Dto/AvailabilityDto.php',
+        'Bavix\\Wallet\\Internal\\Dto\\AvailabilityDtoInterface' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Dto/AvailabilityDtoInterface.php',
+        'Bavix\\Wallet\\Internal\\Dto\\BasketDto' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Dto/BasketDto.php',
+        'Bavix\\Wallet\\Internal\\Dto\\BasketDtoInterface' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Dto/BasketDtoInterface.php',
+        'Bavix\\Wallet\\Internal\\Dto\\ItemDto' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Dto/ItemDto.php',
+        'Bavix\\Wallet\\Internal\\Dto\\ItemDtoInterface' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Dto/ItemDtoInterface.php',
+        'Bavix\\Wallet\\Internal\\Dto\\TransactionDto' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Dto/TransactionDto.php',
+        'Bavix\\Wallet\\Internal\\Dto\\TransactionDtoInterface' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Dto/TransactionDtoInterface.php',
+        'Bavix\\Wallet\\Internal\\Dto\\TransferDto' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Dto/TransferDto.php',
+        'Bavix\\Wallet\\Internal\\Dto\\TransferDtoInterface' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Dto/TransferDtoInterface.php',
+        'Bavix\\Wallet\\Internal\\Dto\\TransferLazyDto' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Dto/TransferLazyDto.php',
+        'Bavix\\Wallet\\Internal\\Dto\\TransferLazyDtoInterface' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Dto/TransferLazyDtoInterface.php',
+        'Bavix\\Wallet\\Internal\\Events\\BalanceUpdatedEvent' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Events/BalanceUpdatedEvent.php',
+        'Bavix\\Wallet\\Internal\\Events\\BalanceUpdatedEventInterface' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Events/BalanceUpdatedEventInterface.php',
+        'Bavix\\Wallet\\Internal\\Events\\EventInterface' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Events/EventInterface.php',
+        'Bavix\\Wallet\\Internal\\Events\\WalletCreatedEvent' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Events/WalletCreatedEvent.php',
+        'Bavix\\Wallet\\Internal\\Events\\WalletCreatedEventInterface' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Events/WalletCreatedEventInterface.php',
+        'Bavix\\Wallet\\Internal\\Exceptions\\CartEmptyException' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Exceptions/CartEmptyException.php',
+        'Bavix\\Wallet\\Internal\\Exceptions\\ExceptionInterface' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Exceptions/ExceptionInterface.php',
+        'Bavix\\Wallet\\Internal\\Exceptions\\InvalidArgumentExceptionInterface' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Exceptions/InvalidArgumentExceptionInterface.php',
+        'Bavix\\Wallet\\Internal\\Exceptions\\LockProviderNotFoundException' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Exceptions/LockProviderNotFoundException.php',
+        'Bavix\\Wallet\\Internal\\Exceptions\\LogicExceptionInterface' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Exceptions/LogicExceptionInterface.php',
+        'Bavix\\Wallet\\Internal\\Exceptions\\ModelNotFoundException' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Exceptions/ModelNotFoundException.php',
+        'Bavix\\Wallet\\Internal\\Exceptions\\RecordNotFoundException' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Exceptions/RecordNotFoundException.php',
+        'Bavix\\Wallet\\Internal\\Exceptions\\RuntimeExceptionInterface' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Exceptions/RuntimeExceptionInterface.php',
+        'Bavix\\Wallet\\Internal\\Exceptions\\TransactionFailedException' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Exceptions/TransactionFailedException.php',
+        'Bavix\\Wallet\\Internal\\Exceptions\\UnderflowExceptionInterface' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Exceptions/UnderflowExceptionInterface.php',
+        'Bavix\\Wallet\\Internal\\Exceptions\\UnexpectedValueExceptionInterface' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Exceptions/UnexpectedValueExceptionInterface.php',
+        'Bavix\\Wallet\\Internal\\Exceptions\\UnknownEventException' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Exceptions/UnknownEventException.php',
+        'Bavix\\Wallet\\Internal\\Query\\TransactionQuery' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Query/TransactionQuery.php',
+        'Bavix\\Wallet\\Internal\\Query\\TransactionQueryInterface' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Query/TransactionQueryInterface.php',
+        'Bavix\\Wallet\\Internal\\Query\\TransferQuery' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Query/TransferQuery.php',
+        'Bavix\\Wallet\\Internal\\Query\\TransferQueryInterface' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Query/TransferQueryInterface.php',
+        'Bavix\\Wallet\\Internal\\Repository\\TransactionRepository' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Repository/TransactionRepository.php',
+        'Bavix\\Wallet\\Internal\\Repository\\TransactionRepositoryInterface' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Repository/TransactionRepositoryInterface.php',
+        'Bavix\\Wallet\\Internal\\Repository\\TransferRepository' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Repository/TransferRepository.php',
+        'Bavix\\Wallet\\Internal\\Repository\\TransferRepositoryInterface' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Repository/TransferRepositoryInterface.php',
+        'Bavix\\Wallet\\Internal\\Repository\\WalletRepository' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Repository/WalletRepository.php',
+        'Bavix\\Wallet\\Internal\\Repository\\WalletRepositoryInterface' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Repository/WalletRepositoryInterface.php',
+        'Bavix\\Wallet\\Internal\\Service\\ClockService' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Service/ClockService.php',
+        'Bavix\\Wallet\\Internal\\Service\\ClockServiceInterface' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Service/ClockServiceInterface.php',
+        'Bavix\\Wallet\\Internal\\Service\\DatabaseService' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Service/DatabaseService.php',
+        'Bavix\\Wallet\\Internal\\Service\\DatabaseServiceInterface' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Service/DatabaseServiceInterface.php',
+        'Bavix\\Wallet\\Internal\\Service\\DispatcherService' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Service/DispatcherService.php',
+        'Bavix\\Wallet\\Internal\\Service\\DispatcherServiceInterface' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Service/DispatcherServiceInterface.php',
+        'Bavix\\Wallet\\Internal\\Service\\JsonService' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Service/JsonService.php',
+        'Bavix\\Wallet\\Internal\\Service\\JsonServiceInterface' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Service/JsonServiceInterface.php',
+        'Bavix\\Wallet\\Internal\\Service\\LockService' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Service/LockService.php',
+        'Bavix\\Wallet\\Internal\\Service\\LockServiceInterface' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Service/LockServiceInterface.php',
+        'Bavix\\Wallet\\Internal\\Service\\MathService' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Service/MathService.php',
+        'Bavix\\Wallet\\Internal\\Service\\MathServiceInterface' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Service/MathServiceInterface.php',
+        'Bavix\\Wallet\\Internal\\Service\\StorageService' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Service/StorageService.php',
+        'Bavix\\Wallet\\Internal\\Service\\StorageServiceInterface' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Service/StorageServiceInterface.php',
+        'Bavix\\Wallet\\Internal\\Service\\TranslatorService' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Service/TranslatorService.php',
+        'Bavix\\Wallet\\Internal\\Service\\TranslatorServiceInterface' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Service/TranslatorServiceInterface.php',
+        'Bavix\\Wallet\\Internal\\Service\\UuidFactoryService' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Service/UuidFactoryService.php',
+        'Bavix\\Wallet\\Internal\\Service\\UuidFactoryServiceInterface' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Service/UuidFactoryServiceInterface.php',
+        'Bavix\\Wallet\\Internal\\Transform\\TransactionDtoTransformer' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Transform/TransactionDtoTransformer.php',
+        'Bavix\\Wallet\\Internal\\Transform\\TransactionDtoTransformerInterface' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Transform/TransactionDtoTransformerInterface.php',
+        'Bavix\\Wallet\\Internal\\Transform\\TransferDtoTransformer' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Transform/TransferDtoTransformer.php',
+        'Bavix\\Wallet\\Internal\\Transform\\TransferDtoTransformerInterface' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Internal/Transform/TransferDtoTransformerInterface.php',
+        'Bavix\\Wallet\\Models\\Transaction' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Models/Transaction.php',
+        'Bavix\\Wallet\\Models\\Transfer' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Models/Transfer.php',
+        'Bavix\\Wallet\\Models\\Wallet' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Models/Wallet.php',
+        'Bavix\\Wallet\\Objects\\Cart' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Objects/Cart.php',
+        'Bavix\\Wallet\\Services\\AssistantService' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Services/AssistantService.php',
+        'Bavix\\Wallet\\Services\\AssistantServiceInterface' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Services/AssistantServiceInterface.php',
+        'Bavix\\Wallet\\Services\\AtmService' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Services/AtmService.php',
+        'Bavix\\Wallet\\Services\\AtmServiceInterface' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Services/AtmServiceInterface.php',
+        'Bavix\\Wallet\\Services\\AtomicService' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Services/AtomicService.php',
+        'Bavix\\Wallet\\Services\\AtomicServiceInterface' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Services/AtomicServiceInterface.php',
+        'Bavix\\Wallet\\Services\\BasketService' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Services/BasketService.php',
+        'Bavix\\Wallet\\Services\\BasketServiceInterface' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Services/BasketServiceInterface.php',
+        'Bavix\\Wallet\\Services\\BookkeeperService' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Services/BookkeeperService.php',
+        'Bavix\\Wallet\\Services\\BookkeeperServiceInterface' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Services/BookkeeperServiceInterface.php',
+        'Bavix\\Wallet\\Services\\CastService' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Services/CastService.php',
+        'Bavix\\Wallet\\Services\\CastServiceInterface' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Services/CastServiceInterface.php',
+        'Bavix\\Wallet\\Services\\CommonServiceLegacy' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Services/CommonServiceLegacy.php',
+        'Bavix\\Wallet\\Services\\ConsistencyService' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Services/ConsistencyService.php',
+        'Bavix\\Wallet\\Services\\ConsistencyServiceInterface' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Services/ConsistencyServiceInterface.php',
+        'Bavix\\Wallet\\Services\\DiscountService' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Services/DiscountService.php',
+        'Bavix\\Wallet\\Services\\DiscountServiceInterface' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Services/DiscountServiceInterface.php',
+        'Bavix\\Wallet\\Services\\ExchangeService' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Services/ExchangeService.php',
+        'Bavix\\Wallet\\Services\\ExchangeServiceInterface' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Services/ExchangeServiceInterface.php',
+        'Bavix\\Wallet\\Services\\MetaServiceLegacy' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Services/MetaServiceLegacy.php',
+        'Bavix\\Wallet\\Services\\PrepareService' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Services/PrepareService.php',
+        'Bavix\\Wallet\\Services\\PrepareServiceInterface' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Services/PrepareServiceInterface.php',
+        'Bavix\\Wallet\\Services\\PurchaseService' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Services/PurchaseService.php',
+        'Bavix\\Wallet\\Services\\PurchaseServiceInterface' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Services/PurchaseServiceInterface.php',
+        'Bavix\\Wallet\\Services\\RegulatorService' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Services/RegulatorService.php',
+        'Bavix\\Wallet\\Services\\RegulatorServiceInterface' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Services/RegulatorServiceInterface.php',
+        'Bavix\\Wallet\\Services\\TaxService' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Services/TaxService.php',
+        'Bavix\\Wallet\\Services\\TaxServiceInterface' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Services/TaxServiceInterface.php',
+        'Bavix\\Wallet\\Services\\WalletService' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Services/WalletService.php',
+        'Bavix\\Wallet\\Services\\WalletServiceInterface' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Services/WalletServiceInterface.php',
+        'Bavix\\Wallet\\Traits\\CanConfirm' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Traits/CanConfirm.php',
+        'Bavix\\Wallet\\Traits\\CanExchange' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Traits/CanExchange.php',
+        'Bavix\\Wallet\\Traits\\CanPay' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Traits/CanPay.php',
+        'Bavix\\Wallet\\Traits\\CanPayFloat' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Traits/CanPayFloat.php',
+        'Bavix\\Wallet\\Traits\\CartPay' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Traits/CartPay.php',
+        'Bavix\\Wallet\\Traits\\HasGift' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Traits/HasGift.php',
+        'Bavix\\Wallet\\Traits\\HasWallet' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Traits/HasWallet.php',
+        'Bavix\\Wallet\\Traits\\HasWalletFloat' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Traits/HasWalletFloat.php',
+        'Bavix\\Wallet\\Traits\\HasWallets' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Traits/HasWallets.php',
+        'Bavix\\Wallet\\Traits\\MorphOneWallet' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/Traits/MorphOneWallet.php',
+        'Bavix\\Wallet\\WalletConfigure' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/WalletConfigure.php',
+        'Bavix\\Wallet\\WalletServiceProvider' => __DIR__ . '/..' . '/bavix/laravel-wallet/src/WalletServiceProvider.php',
         'Brick\\Math\\BigDecimal' => __DIR__ . '/..' . '/brick/math/src/BigDecimal.php',
         'Brick\\Math\\BigInteger' => __DIR__ . '/..' . '/brick/math/src/BigInteger.php',
         'Brick\\Math\\BigNumber' => __DIR__ . '/..' . '/brick/math/src/BigNumber.php',
@@ -4160,173 +4308,6 @@ class ComposerStaticInit35918df68a3b8ab962daed9f25b23692
         'PayPalHttp\\Serializer\\Json' => __DIR__ . '/..' . '/paypal/paypalhttp/lib/PayPalHttp/Serializer/Json.php',
         'PayPalHttp\\Serializer\\Multipart' => __DIR__ . '/..' . '/paypal/paypalhttp/lib/PayPalHttp/Serializer/Multipart.php',
         'PayPalHttp\\Serializer\\Text' => __DIR__ . '/..' . '/paypal/paypalhttp/lib/PayPalHttp/Serializer/Text.php',
-        'PayPal\\Api\\Address' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/Address.php',
-        'PayPal\\Api\\Agreement' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/Agreement.php',
-        'PayPal\\Api\\AgreementDetails' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/AgreementDetails.php',
-        'PayPal\\Api\\AgreementStateDescriptor' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/AgreementStateDescriptor.php',
-        'PayPal\\Api\\AgreementTransaction' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/AgreementTransaction.php',
-        'PayPal\\Api\\AgreementTransactions' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/AgreementTransactions.php',
-        'PayPal\\Api\\AlternatePayment' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/AlternatePayment.php',
-        'PayPal\\Api\\Amount' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/Amount.php',
-        'PayPal\\Api\\Authorization' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/Authorization.php',
-        'PayPal\\Api\\BankAccount' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/BankAccount.php',
-        'PayPal\\Api\\BankAccountsList' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/BankAccountsList.php',
-        'PayPal\\Api\\BankToken' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/BankToken.php',
-        'PayPal\\Api\\BaseAddress' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/BaseAddress.php',
-        'PayPal\\Api\\Billing' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/Billing.php',
-        'PayPal\\Api\\BillingAgreementToken' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/BillingAgreementToken.php',
-        'PayPal\\Api\\BillingInfo' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/BillingInfo.php',
-        'PayPal\\Api\\CancelNotification' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/CancelNotification.php',
-        'PayPal\\Api\\Capture' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/Capture.php',
-        'PayPal\\Api\\CarrierAccount' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/CarrierAccount.php',
-        'PayPal\\Api\\CarrierAccountToken' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/CarrierAccountToken.php',
-        'PayPal\\Api\\CartBase' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/CartBase.php',
-        'PayPal\\Api\\ChargeModel' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/ChargeModel.php',
-        'PayPal\\Api\\Cost' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/Cost.php',
-        'PayPal\\Api\\CountryCode' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/CountryCode.php',
-        'PayPal\\Api\\CreateProfileResponse' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/CreateProfileResponse.php',
-        'PayPal\\Api\\Credit' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/Credit.php',
-        'PayPal\\Api\\CreditCard' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/CreditCard.php',
-        'PayPal\\Api\\CreditCardHistory' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/CreditCardHistory.php',
-        'PayPal\\Api\\CreditCardList' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/CreditCardList.php',
-        'PayPal\\Api\\CreditCardToken' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/CreditCardToken.php',
-        'PayPal\\Api\\CreditFinancingOffered' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/CreditFinancingOffered.php',
-        'PayPal\\Api\\Currency' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/Currency.php',
-        'PayPal\\Api\\CurrencyConversion' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/CurrencyConversion.php',
-        'PayPal\\Api\\CustomAmount' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/CustomAmount.php',
-        'PayPal\\Api\\DetailedRefund' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/DetailedRefund.php',
-        'PayPal\\Api\\Details' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/Details.php',
-        'PayPal\\Api\\Error' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/Error.php',
-        'PayPal\\Api\\ErrorDetails' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/ErrorDetails.php',
-        'PayPal\\Api\\ExtendedBankAccount' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/ExtendedBankAccount.php',
-        'PayPal\\Api\\ExternalFunding' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/ExternalFunding.php',
-        'PayPal\\Api\\FileAttachment' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/FileAttachment.php',
-        'PayPal\\Api\\FlowConfig' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/FlowConfig.php',
-        'PayPal\\Api\\FmfDetails' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/FmfDetails.php',
-        'PayPal\\Api\\FundingDetail' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/FundingDetail.php',
-        'PayPal\\Api\\FundingInstrument' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/FundingInstrument.php',
-        'PayPal\\Api\\FundingOption' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/FundingOption.php',
-        'PayPal\\Api\\FundingSource' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/FundingSource.php',
-        'PayPal\\Api\\FuturePayment' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/FuturePayment.php',
-        'PayPal\\Api\\HyperSchema' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/HyperSchema.php',
-        'PayPal\\Api\\Image' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/Image.php',
-        'PayPal\\Api\\Incentive' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/Incentive.php',
-        'PayPal\\Api\\InputFields' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/InputFields.php',
-        'PayPal\\Api\\InstallmentInfo' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/InstallmentInfo.php',
-        'PayPal\\Api\\InstallmentOption' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/InstallmentOption.php',
-        'PayPal\\Api\\Invoice' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/Invoice.php',
-        'PayPal\\Api\\InvoiceAddress' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/InvoiceAddress.php',
-        'PayPal\\Api\\InvoiceItem' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/InvoiceItem.php',
-        'PayPal\\Api\\InvoiceNumber' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/InvoiceNumber.php',
-        'PayPal\\Api\\InvoiceSearchResponse' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/InvoiceSearchResponse.php',
-        'PayPal\\Api\\Item' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/Item.php',
-        'PayPal\\Api\\ItemList' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/ItemList.php',
-        'PayPal\\Api\\Links' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/Links.php',
-        'PayPal\\Api\\Measurement' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/Measurement.php',
-        'PayPal\\Api\\MerchantInfo' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/MerchantInfo.php',
-        'PayPal\\Api\\MerchantPreferences' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/MerchantPreferences.php',
-        'PayPal\\Api\\Metadata' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/Metadata.php',
-        'PayPal\\Api\\NameValuePair' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/NameValuePair.php',
-        'PayPal\\Api\\Notification' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/Notification.php',
-        'PayPal\\Api\\OpenIdAddress' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/OpenIdAddress.php',
-        'PayPal\\Api\\OpenIdError' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/OpenIdError.php',
-        'PayPal\\Api\\OpenIdSession' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/OpenIdSession.php',
-        'PayPal\\Api\\OpenIdTokeninfo' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/OpenIdTokeninfo.php',
-        'PayPal\\Api\\OpenIdUserinfo' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/OpenIdUserinfo.php',
-        'PayPal\\Api\\Order' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/Order.php',
-        'PayPal\\Api\\OverrideChargeModel' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/OverrideChargeModel.php',
-        'PayPal\\Api\\Participant' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/Participant.php',
-        'PayPal\\Api\\Patch' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/Patch.php',
-        'PayPal\\Api\\PatchRequest' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/PatchRequest.php',
-        'PayPal\\Api\\Payee' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/Payee.php',
-        'PayPal\\Api\\Payer' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/Payer.php',
-        'PayPal\\Api\\PayerInfo' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/PayerInfo.php',
-        'PayPal\\Api\\Payment' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/Payment.php',
-        'PayPal\\Api\\PaymentCard' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/PaymentCard.php',
-        'PayPal\\Api\\PaymentCardToken' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/PaymentCardToken.php',
-        'PayPal\\Api\\PaymentDefinition' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/PaymentDefinition.php',
-        'PayPal\\Api\\PaymentDetail' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/PaymentDetail.php',
-        'PayPal\\Api\\PaymentExecution' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/PaymentExecution.php',
-        'PayPal\\Api\\PaymentHistory' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/PaymentHistory.php',
-        'PayPal\\Api\\PaymentInstruction' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/PaymentInstruction.php',
-        'PayPal\\Api\\PaymentOptions' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/PaymentOptions.php',
-        'PayPal\\Api\\PaymentSummary' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/PaymentSummary.php',
-        'PayPal\\Api\\PaymentTerm' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/PaymentTerm.php',
-        'PayPal\\Api\\Payout' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/Payout.php',
-        'PayPal\\Api\\PayoutBatch' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/PayoutBatch.php',
-        'PayPal\\Api\\PayoutBatchHeader' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/PayoutBatchHeader.php',
-        'PayPal\\Api\\PayoutItem' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/PayoutItem.php',
-        'PayPal\\Api\\PayoutItemDetails' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/PayoutItemDetails.php',
-        'PayPal\\Api\\PayoutSenderBatchHeader' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/PayoutSenderBatchHeader.php',
-        'PayPal\\Api\\Phone' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/Phone.php',
-        'PayPal\\Api\\Plan' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/Plan.php',
-        'PayPal\\Api\\PlanList' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/PlanList.php',
-        'PayPal\\Api\\PotentialPayerInfo' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/PotentialPayerInfo.php',
-        'PayPal\\Api\\Presentation' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/Presentation.php',
-        'PayPal\\Api\\PrivateLabelCard' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/PrivateLabelCard.php',
-        'PayPal\\Api\\ProcessorResponse' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/ProcessorResponse.php',
-        'PayPal\\Api\\RecipientBankingInstruction' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/RecipientBankingInstruction.php',
-        'PayPal\\Api\\RedirectUrls' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/RedirectUrls.php',
-        'PayPal\\Api\\Refund' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/Refund.php',
-        'PayPal\\Api\\RefundDetail' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/RefundDetail.php',
-        'PayPal\\Api\\RefundRequest' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/RefundRequest.php',
-        'PayPal\\Api\\RelatedResources' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/RelatedResources.php',
-        'PayPal\\Api\\Sale' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/Sale.php',
-        'PayPal\\Api\\Search' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/Search.php',
-        'PayPal\\Api\\ShippingAddress' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/ShippingAddress.php',
-        'PayPal\\Api\\ShippingCost' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/ShippingCost.php',
-        'PayPal\\Api\\ShippingInfo' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/ShippingInfo.php',
-        'PayPal\\Api\\Tax' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/Tax.php',
-        'PayPal\\Api\\Template' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/Template.php',
-        'PayPal\\Api\\TemplateData' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/TemplateData.php',
-        'PayPal\\Api\\TemplateSettings' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/TemplateSettings.php',
-        'PayPal\\Api\\TemplateSettingsMetadata' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/TemplateSettingsMetadata.php',
-        'PayPal\\Api\\Templates' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/Templates.php',
-        'PayPal\\Api\\Terms' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/Terms.php',
-        'PayPal\\Api\\Transaction' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/Transaction.php',
-        'PayPal\\Api\\TransactionBase' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/TransactionBase.php',
-        'PayPal\\Api\\Transactions' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/Transactions.php',
-        'PayPal\\Api\\VerifyWebhookSignature' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/VerifyWebhookSignature.php',
-        'PayPal\\Api\\VerifyWebhookSignatureResponse' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/VerifyWebhookSignatureResponse.php',
-        'PayPal\\Api\\WebProfile' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/WebProfile.php',
-        'PayPal\\Api\\Webhook' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/Webhook.php',
-        'PayPal\\Api\\WebhookEvent' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/WebhookEvent.php',
-        'PayPal\\Api\\WebhookEventList' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/WebhookEventList.php',
-        'PayPal\\Api\\WebhookEventType' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/WebhookEventType.php',
-        'PayPal\\Api\\WebhookEventTypeList' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/WebhookEventTypeList.php',
-        'PayPal\\Api\\WebhookList' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Api/WebhookList.php',
-        'PayPal\\Auth\\OAuthTokenCredential' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Auth/OAuthTokenCredential.php',
-        'PayPal\\Cache\\AuthorizationCache' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Cache/AuthorizationCache.php',
-        'PayPal\\Common\\ArrayUtil' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Common/ArrayUtil.php',
-        'PayPal\\Common\\PayPalModel' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Common/PayPalModel.php',
-        'PayPal\\Common\\PayPalResourceModel' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Common/PayPalResourceModel.php',
-        'PayPal\\Common\\PayPalUserAgent' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Common/PayPalUserAgent.php',
-        'PayPal\\Common\\ReflectionUtil' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Common/ReflectionUtil.php',
-        'PayPal\\Converter\\FormatConverter' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Converter/FormatConverter.php',
-        'PayPal\\Core\\PayPalConfigManager' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Core/PayPalConfigManager.php',
-        'PayPal\\Core\\PayPalConstants' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Core/PayPalConstants.php',
-        'PayPal\\Core\\PayPalCredentialManager' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Core/PayPalCredentialManager.php',
-        'PayPal\\Core\\PayPalHttpConfig' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Core/PayPalHttpConfig.php',
-        'PayPal\\Core\\PayPalHttpConnection' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Core/PayPalHttpConnection.php',
-        'PayPal\\Core\\PayPalLoggingManager' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Core/PayPalLoggingManager.php',
-        'PayPal\\Exception\\PayPalConfigurationException' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Exception/PayPalConfigurationException.php',
-        'PayPal\\Exception\\PayPalConnectionException' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Exception/PayPalConnectionException.php',
-        'PayPal\\Exception\\PayPalInvalidCredentialException' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Exception/PayPalInvalidCredentialException.php',
-        'PayPal\\Exception\\PayPalMissingCredentialException' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Exception/PayPalMissingCredentialException.php',
-        'PayPal\\Handler\\IPayPalHandler' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Handler/IPayPalHandler.php',
-        'PayPal\\Handler\\OauthHandler' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Handler/OauthHandler.php',
-        'PayPal\\Handler\\RestHandler' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Handler/RestHandler.php',
-        'PayPal\\Log\\PayPalDefaultLogFactory' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Log/PayPalDefaultLogFactory.php',
-        'PayPal\\Log\\PayPalLogFactory' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Log/PayPalLogFactory.php',
-        'PayPal\\Log\\PayPalLogger' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Log/PayPalLogger.php',
-        'PayPal\\Rest\\ApiContext' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Rest/ApiContext.php',
-        'PayPal\\Rest\\IResource' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Rest/IResource.php',
-        'PayPal\\Security\\Cipher' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Security/Cipher.php',
-        'PayPal\\Transport\\PayPalRestCall' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Transport/PayPalRestCall.php',
-        'PayPal\\Validation\\ArgumentValidator' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Validation/ArgumentValidator.php',
-        'PayPal\\Validation\\JsonValidator' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Validation/JsonValidator.php',
-        'PayPal\\Validation\\NumericValidator' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Validation/NumericValidator.php',
-        'PayPal\\Validation\\UrlValidator' => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib/PayPal/Validation/UrlValidator.php',
         'PermissionRoleTableSeeder' => __DIR__ . '/../..' . '/database/seeds/PermissionRoleTableSeeder.php',
         'PermissionsTableSeeder' => __DIR__ . '/../..' . '/database/seeds/PermissionsTableSeeder.php',
         'PharIo\\Manifest\\Application' => __DIR__ . '/..' . '/phar-io/manifest/src/values/Application.php',
@@ -6037,7 +6018,6 @@ class ComposerStaticInit35918df68a3b8ab962daed9f25b23692
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Rule\\Rule' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Rule/Rule.php',
         'TranslationsTableSeeder' => __DIR__ . '/../..' . '/database/seeds/TranslationsTableSeeder.php',
         'UsersTableSeeder' => __DIR__ . '/../..' . '/database/seeds/UsersTableSeeder.php',
-        'ApplicantTableSeeder' => __DIR__ . '/../..' . '/database/seeds/ApplicantTableSeeder.php',
         'VoyagerDatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/VoyagerDatabaseSeeder.php',
         'VoyagerDummyDatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/VoyagerDummyDatabaseSeeder.php',
         'Webmozart\\Assert\\Assert' => __DIR__ . '/..' . '/webmozart/assert/src/Assert.php',
