@@ -13,7 +13,7 @@
     </div>
     <div class="wrapper" id="ukz-app">
         <!-- <member-nav :user="{{$user}}" :nav_links="{{$nav_links}}"></member-nav> -->
-        <member-nav :user="{{$user}}" :nav_links="{{$nav_links}}" :balance="{{Auth::user()->balance}}"></member-nav>
+        <member-nav :user="{{$user}}" :nav_links="{{$nav_links}}" :balance="{{Auth::user()->balanceFloat}}"></member-nav>
         <div class="main-panel" style="min-height: 100vh;">
             @include('inc.nav')
             <div class="content">

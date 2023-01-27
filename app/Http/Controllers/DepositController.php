@@ -27,10 +27,15 @@ class DepositController extends SharedBaseController
         }else{
             $user->depositFloat($amount);
             $member->balance = $member->balance + $amount;
+
             $member->deposits()->create([
                 "amount" => $amount,
                 "payment_ref" => $request->payment_ref,
-                "date" => date("D M d, Y G:i")
+                "date" => date("D M d, Y G:i"),
+                "balance" => $user->balanceFloat(),
+                "type" => "deposit",
+                "invoice_ref" => $request->payment_ref
+
             ]);
             $member->save();
         }

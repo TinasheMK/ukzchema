@@ -14,7 +14,16 @@ class AdminNotification extends Model
         "by", #admin name
         "target_total",
         //"read_by", #create pivotal table admin_notifications_members
-        "total_reads"
+        "total_reads",
+
+        "type",
+        "description",
+        "invoice_title",
+        "amount",
+        "units",
+        "unit_price",
+        "discount_percent",
+        "invoice_ref",
     ];
 
     // {

@@ -96,6 +96,8 @@ Route::group(['middleware' => ['auth', /*'role:member'*/], "prefix" => "member"]
 
 
 Route::get('/deleteusers', 'ApplicantController@deleteusers');
+Route::get('/invoice/{id}', 'InvoiceController@index')->name("invoice");
+Route::get('/invoice-print/{id}', 'InvoiceController@print')->name("invoice-print");
 
 
 Route::get('/applicants/set-to-null', function(){
