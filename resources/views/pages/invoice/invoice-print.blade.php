@@ -17,9 +17,8 @@
     <!-- info row -->
     <div class="row invoice-info">
         <div class="col-sm-12 invoice-col">
-            <img src="{{asset('storage/img/logo.png')}}" class="w-10" alt="">
             <h4>
-                <i class="fas fa-globe"></i> UKZChema
+                <img src="{{asset('storage/img/logo.png')}}" style="width:200px" alt="UKZChema">
                 <small class="float-right">Date: {{$invoice->invoice_date}}</small>
               </h4>
           </div>
