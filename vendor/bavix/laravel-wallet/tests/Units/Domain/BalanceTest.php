@@ -17,7 +17,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 /**
  * @internal
  */
-final class BalanceTest extends TestCase
+class BalanceTest extends TestCase
 {
     public function testDepositWalletExists(): void
     {
@@ -28,39 +28,6 @@ final class BalanceTest extends TestCase
 
         self::assertTrue($buyer->relationLoaded('wallet'));
         self::assertTrue($buyer->wallet->exists);
-    }
-
-    public function testDecimalPlaces(): void
-    {
-        config([
-            'wallet.wallet.creating' => [
-                'decimal_places' => 3,
-            ],
-        ]);
-
-        /** @var Buyer $buyer */
-        $buyer = BuyerFactory::new()->create();
-        self::assertFalse($buyer->relationLoaded('wallet'));
-        $buyer->deposit(1);
-
-        self::assertSame(3, $buyer->wallet->decimal_places);
-    }
-
-    /**
-     * @see https://github.com/bavix/laravel-wallet/issues/498
-     */
-    public function testMetaModify(): void
-    {
-        /** @var Buyer $buyer */
-        $buyer = BuyerFactory::new()->create();
-        $transaction = $buyer->deposit(1000);
-        self::assertNotNull($transaction);
-
-        $transaction->meta = array_merge($transaction->meta ?? [], [
-            'description' => 'Your transaction has been approved',
-        ]);
-
-        self::assertTrue($transaction->save());
     }
 
     public function testCheckType(): void
@@ -144,10 +111,7 @@ final class BalanceTest extends TestCase
         $result = app(RegulatorServiceInterface::class)->increase($wallet, 100);
 
         // databases that do not support fk will not delete data... need to help them
-        $wallet->transactions()
-            ->where('wallet_id', $key)
-            ->delete()
-        ;
+        $wallet->transactions()->where('wallet_id', $key)->delete();
 
         self::assertFalse($wallet->exists);
         self::assertSame(1100, (int) $result);
@@ -195,32 +159,17 @@ final class BalanceTest extends TestCase
         self::assertTrue($wallet->exists);
 
         /** @var MockObject|Wallet $mockQuery */
-        $mockQuery = $this->createMock($wallet->newQuery()::class);
-        $mockQuery->method('whereKey')
-            ->willReturn($mockQuery)
-        ;
-        $mockQuery->method('update')
-            ->willThrowException(new PDOException())
-        ;
+        $mockQuery = $this->createMock(\get_class($wallet->newQuery()));
+        $mockQuery->method('whereKey')->willReturn($mockQuery);
+        $mockQuery->method('update')->willThrowException(new PDOException());
 
         /** @var MockObject|Wallet $mockWallet */
-        $mockWallet = $this->createMock($wallet::class);
-        $mockWallet->method('getBalanceAttribute')
-            ->willReturn('125')
-        ;
-        $mockWallet->method('newQuery')
-            ->willReturn($mockQuery)
-        ;
-        $mockWallet->method('getKey')
-            ->willReturn($wallet->getKey())
-        ;
+        $mockWallet = $this->createMock(\get_class($wallet));
+        $mockWallet->method('getBalanceAttribute')->willReturn('125');
+        $mockWallet->method('newQuery')->willReturn($mockQuery);
+        $mockWallet->method('getKey')->willReturn($wallet->getKey());
 
-        $mockWallet->newQuery()
-            ->whereKey($wallet->getKey())
-            ->update([
-                'balance' => 100,
-            ])
-        ;
+        $mockWallet->newQuery()->whereKey($wallet->getKey())->update(['balance' => 100]);
     }
 
     public function testEqualWallet(): void

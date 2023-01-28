@@ -10,9 +10,11 @@ use Bavix\Wallet\Internal\Transform\TransactionDtoTransformerInterface;
 
 final class TransactionDtoTransformerCustom implements TransactionDtoTransformerInterface
 {
-    public function __construct(
-        private TransactionDtoTransformer $transactionDtoTransformer
-    ) {
+    private TransactionDtoTransformer $transactionDtoTransformer;
+
+    public function __construct(TransactionDtoTransformer $transactionDtoTransformer)
+    {
+        $this->transactionDtoTransformer = $transactionDtoTransformer;
     }
 
     public function extract(TransactionDtoInterface $dto): array

@@ -4,30 +4,35 @@ declare(strict_types=1);
 
 namespace Bavix\Wallet\Internal\Service;
 
+use Bavix\Wallet\Internal\Events\BalanceUpdatedEventInterface;
 use Bavix\Wallet\Internal\Events\EventInterface;
+use Bavix\Wallet\Internal\Events\WalletCreatedEventInterface;
+use Bavix\Wallet\Internal\Exceptions\ExceptionInterface;
+use Bavix\Wallet\Internal\Exceptions\UnknownEventException;
 use Illuminate\Contracts\Events\Dispatcher;
 
 final class DispatcherService implements DispatcherServiceInterface
 {
-    /**
-     * @var array<string, bool>
-     */
+    private Dispatcher $dispatcher;
+
+    /** @var string[] */
     private array $events = [];
 
-    public function __construct(
-        private Dispatcher $dispatcher
-    ) {
+    public function __construct(Dispatcher $dispatcher)
+    {
+        $this->dispatcher = $dispatcher;
     }
 
     public function dispatch(EventInterface $event): void
     {
-        $this->events[$event::class] = true;
-        $this->dispatcher->push($event::class, [$event]);
+        $name = $this->getEventName($event);
+        $this->events[] = $name;
+        $this->dispatcher->push($name, [$event]);
     }
 
     public function flush(): void
     {
-        foreach (array_keys($this->events) as $event) {
+        foreach ($this->events as $event) {
             $this->dispatcher->flush($event);
         }
 
@@ -37,10 +42,27 @@ final class DispatcherService implements DispatcherServiceInterface
 
     public function forgot(): void
     {
-        foreach (array_keys($this->events) as $event) {
+        foreach ($this->events as $event) {
             $this->dispatcher->forget($event);
         }
 
         $this->events = [];
+    }
+
+    /** @throws UnknownEventException */
+    private function getEventName(EventInterface $event): string
+    {
+        if ($event instanceof BalanceUpdatedEventInterface) {
+            return BalanceUpdatedEventInterface::class;
+        }
+
+        if ($event instanceof WalletCreatedEventInterface) {
+            return WalletCreatedEventInterface::class;
+        }
+
+        throw new UnknownEventException(
+            'Unknown event '.get_class($event),
+            ExceptionInterface::UNKNOWN_EVENT
+        );
     }
 }

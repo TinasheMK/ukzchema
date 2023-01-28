@@ -12,7 +12,7 @@ use Bavix\Wallet\Test\Infra\TestCase;
 /**
  * @internal
  */
-final class BookkeeperTest extends TestCase
+class BookkeeperTest extends TestCase
 {
     public function testSync(): void
     {
@@ -43,26 +43,6 @@ final class BookkeeperTest extends TestCase
 
         $booker = app(BookkeeperService::class);
         self::assertSame('5', $booker->increase($buyer->wallet, 5));
-        self::assertTrue($booker->missing($buyer->wallet));
-        self::assertSame('0', $booker->amount($buyer->wallet));
-    }
-
-    public function testMultiIncrease(): void
-    {
-        /** @var Buyer $buyer */
-        $buyer = BuyerFactory::new()->create();
-
-        $booker = app(BookkeeperService::class);
-        self::assertSame(
-            [
-                $buyer->wallet->uuid => '5',
-            ],
-            $booker->multiIncrease([
-                $buyer->wallet->uuid => $buyer->wallet,
-            ], [
-                $buyer->wallet->uuid => 5,
-            ]),
-        );
         self::assertTrue($booker->missing($buyer->wallet));
         self::assertSame('0', $booker->amount($buyer->wallet));
     }

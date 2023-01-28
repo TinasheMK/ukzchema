@@ -4,44 +4,23 @@ declare(strict_types=1);
 
 namespace Bavix\Wallet\Services;
 
-use Bavix\Wallet\Interfaces\ProductInterface;
-use Bavix\Wallet\Interfaces\Wallet;
-use Bavix\Wallet\Internal\Dto\BasketDtoInterface;
 use Bavix\Wallet\Internal\Dto\TransactionDtoInterface;
 use Bavix\Wallet\Internal\Dto\TransferDtoInterface;
 use Bavix\Wallet\Internal\Service\MathServiceInterface;
 
-/**
- * @internal
- */
 final class AssistantService implements AssistantServiceInterface
 {
-    public function __construct(
-        private CastServiceInterface $castService,
-        private MathServiceInterface $mathService
-    ) {
-    }
+    private MathServiceInterface $mathService;
 
-    /**
-     * @param non-empty-array<Wallet> $objects
-     *
-     * @return non-empty-array<int, Wallet>
-     */
-    public function getWallets(array $objects): array
+    public function __construct(MathServiceInterface $mathService)
     {
-        $wallets = [];
-        foreach ($objects as $object) {
-            $wallet = $this->castService->getWallet($object);
-            $wallets[$wallet->getKey()] = $wallet;
-        }
-
-        return $wallets;
+        $this->mathService = $mathService;
     }
 
     /**
-     * @param non-empty-array<array-key, TransactionDtoInterface|TransferDtoInterface> $objects
+     * @param non-empty-array<TransactionDtoInterface|TransferDtoInterface> $objects
      *
-     * @return non-empty-array<array-key, string>
+     * @return non-empty-array<int|string, string>
      */
     public function getUuids(array $objects): array
     {
@@ -49,7 +28,7 @@ final class AssistantService implements AssistantServiceInterface
     }
 
     /**
-     * @param non-empty-array<array-key, TransactionDtoInterface> $transactions
+     * @param non-empty-array<TransactionDtoInterface> $transactions
      *
      * @return array<int, string>
      */
@@ -65,22 +44,9 @@ final class AssistantService implements AssistantServiceInterface
             }
         }
 
-        return array_filter($amounts, fn (string $amount): bool => $this->mathService->compare($amount, 0) !== 0);
-    }
-
-    public function getMeta(BasketDtoInterface $basketDto, ProductInterface $product): ?array
-    {
-        $metaBasket = $basketDto->meta();
-        $metaProduct = $product->getMetaProduct();
-
-        if ($metaProduct !== null) {
-            return array_merge($metaBasket, $metaProduct);
-        }
-
-        if ($metaBasket !== []) {
-            return $metaBasket;
-        }
-
-        return null;
+        return array_filter(
+            $amounts,
+            fn (string $amount): bool => $this->mathService->compare($amount, 0) !== 0
+        );
     }
 }

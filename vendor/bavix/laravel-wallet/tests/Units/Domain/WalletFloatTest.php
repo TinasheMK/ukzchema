@@ -17,7 +17,7 @@ use Bavix\Wallet\Test\Infra\TestCase;
 /**
  * @internal
  */
-final class WalletFloatTest extends TestCase
+class WalletFloatTest extends TestCase
 {
     public function testDeposit(): void
     {
@@ -25,29 +25,24 @@ final class WalletFloatTest extends TestCase
         $user = UserFloatFactory::new()->create();
         self::assertSame(0, $user->balanceInt);
         self::assertSame(0., (float) $user->balanceFloat);
-        self::assertSame(0., $user->balanceFloatNum);
 
         $user->depositFloat(.1);
         self::assertSame(10, $user->balanceInt);
         self::assertSame(.1, (float) $user->balanceFloat);
-        self::assertSame(.1, $user->balanceFloatNum);
 
         $user->depositFloat(1.25);
         self::assertSame(135, $user->balanceInt);
         self::assertSame(1.35, (float) $user->balanceFloat);
-        self::assertSame(1.35, $user->balanceFloatNum);
 
         $user->deposit(865);
         self::assertSame(1000, $user->balanceInt);
         self::assertSame(10., (float) $user->balanceFloat);
-        self::assertSame(10., $user->balanceFloatNum);
 
         self::assertSame(3, $user->transactions()->count());
 
         $user->withdraw($user->balance);
         self::assertSame(0, $user->balanceInt);
         self::assertSame(0., (float) $user->balanceFloat);
-        self::assertSame(0., $user->getBalanceFloatNumAttribute());
     }
 
     public function testInvalidDeposit(): void
@@ -197,7 +192,7 @@ final class WalletFloatTest extends TestCase
 
         $transaction = $user->withdrawFloat(2556.72);
         self::assertSame($transaction->amountInt, -255672);
-        self::assertSame((float) $transaction->getAmountFloatAttribute(), -2556.72);
+        self::assertSame((float) $transaction->amountFloat, -2556.72);
         self::assertSame($transaction->type, Transaction::TYPE_WITHDRAW);
 
         self::assertSame($user->balanceInt, 1_000_000 - 255672);
@@ -228,8 +223,7 @@ final class WalletFloatTest extends TestCase
         self::assertSame(Transaction::TYPE_WITHDRAW, $transaction->type);
 
         $transaction->type = Transaction::TYPE_DEPOSIT;
-        $transaction->setAmountFloatAttribute(2556.72);
-
+        $transaction->amountFloat = 2556.72;
         self::assertTrue($transaction->save());
         self::assertTrue($user->wallet->refreshBalance());
 
@@ -298,39 +292,16 @@ final class WalletFloatTest extends TestCase
             }
         });
 
-        self::assertSame($user->balance, '256' . str_repeat('0', 32 - 8));
+        self::assertSame($user->balance, '256'.str_repeat('0', 32 - 8));
         self::assertSame(0, $math->compare($user->balanceFloat, '0.00000256'));
 
-        $user->deposit(256 . str_repeat('0', 32));
-        $user->depositFloat('0.' . str_repeat('0', 31) . '1');
+        $user->deposit(256 .str_repeat('0', 32));
+        $user->depositFloat('0.'.str_repeat('0', 31).'1');
 
         [$q, $r] = explode('.', $user->balanceFloat, 2);
         self::assertSame(strlen($r), $user->wallet->decimal_places);
         self::assertSame('25600000256000000000000000000000001', $user->balance);
         self::assertSame('256.00000256000000000000000000000001', $user->balanceFloat);
-    }
-
-    /**
-     * Case from @EdX9.
-     *
-     * @see https://github.com/bavix/laravel-wallet/issues/469
-     *
-     * @throws ExceptionInterface
-     */
-    public function testBigFloat(): void
-    {
-        /** @var User[] $users */
-        $users = UserFloatFactory::times(2)->create();
-
-        [$first, $second] = $users;
-
-        self::assertSame(0, $first->balanceInt);
-        self::assertSame(0, $second->balanceInt);
-
-        $first->forceTransferFloat($second, 6629944401);
-
-        self::assertSame(-662994440100, $first->balanceInt);
-        self::assertSame(662994440100, $second->balanceInt);
     }
 
     /**

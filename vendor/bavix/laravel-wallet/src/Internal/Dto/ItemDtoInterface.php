@@ -4,17 +4,15 @@ declare(strict_types=1);
 
 namespace Bavix\Wallet\Internal\Dto;
 
-use Bavix\Wallet\Interfaces\ProductInterface;
+use Bavix\Wallet\Interfaces\Product;
 use Countable;
 
 interface ItemDtoInterface extends Countable
 {
-    /**
-     * @return ProductInterface[]
-     */
-    public function getItems(): array;
+    /** @return Product[] */
+    public function items(): array;
 
-    public function getPricePerItem(): int|string|null;
+    public function count(): int;
 
-    public function getProduct(): ProductInterface;
+    public function product(): Product;
 }

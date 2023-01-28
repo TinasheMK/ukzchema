@@ -1,12 +1,5 @@
-includes:
-	- phpstan-baseline.neon
-
 parameters:
-    stubFiles:
-        - analyze/phpstan/stubs/helpers.stub
-        - analyze/phpstan/stubs/Container.stub
-        - analyze/phpstan/stubs/ContainerInterface.stub
-    level: 9
+    checkMissingIterableValueType: false
     fileExtensions:
         - php
     ergebnis:
@@ -15,7 +8,6 @@ parameters:
             # laravel
             - Illuminate\Support\ServiceProvider
             - Illuminate\Database\Eloquent\Model
-            - Illuminate\Console\Command
 
             # php exceptions
             - LogicException
@@ -23,9 +15,6 @@ parameters:
             - UnderflowException
             - UnexpectedValueException
             - InvalidArgumentException
-
-            # phpstan
-            - Bavix\Wallet\Test\Infra\TestCase
 
         classesNotRequiredToBeAbstractOrFinal:
             - Bavix\Wallet\Models\Wallet

@@ -14,7 +14,6 @@ use Bavix\Wallet\Internal\Exceptions\ExceptionInterface;
 use Bavix\Wallet\Internal\Exceptions\LockProviderNotFoundException;
 use Bavix\Wallet\Internal\Exceptions\TransactionFailedException;
 use Bavix\Wallet\Internal\Service\MathServiceInterface;
-use Bavix\Wallet\Internal\Service\UuidFactoryServiceInterface;
 use Bavix\Wallet\Services\AtomicServiceInterface;
 use Bavix\Wallet\Services\RegulatorServiceInterface;
 use Bavix\Wallet\Traits\CanConfirm;
@@ -31,7 +30,7 @@ use Illuminate\Support\Str;
  * Class Wallet.
  *
  * @property string                          $holder_type
- * @property int|string                      $holder_id
+ * @property int                             $holder_id
  * @property string                          $name
  * @property string                          $slug
  * @property string                          $uuid
@@ -41,8 +40,6 @@ use Illuminate\Support\Str;
  * @property \Bavix\Wallet\Interfaces\Wallet $holder
  * @property string                          $credit
  * @property string                          $currency
- *
- * @method int getKey()
  */
 class Wallet extends Model implements Customer, WalletFloat, Confirmable, Exchangeable
 {
@@ -64,21 +61,16 @@ class Wallet extends Model implements Customer, WalletFloat, Confirmable, Exchan
         'meta',
         'balance',
         'decimal_places',
-        'created_at',
-        'updated_at',
     ];
 
     /**
-     * @var array<string, string>
+     * @var array
      */
     protected $casts = [
         'decimal_places' => 'int',
         'meta' => 'json',
     ];
 
-    /**
-     * @var array<string, int|string>
-     */
     protected $attributes = [
         'balance' => 0,
         'decimal_places' => 2,
@@ -86,7 +78,7 @@ class Wallet extends Model implements Customer, WalletFloat, Confirmable, Exchan
 
     public function getTable(): string
     {
-        if ((string) $this->table === '') {
+        if (!$this->table) {
             $this->table = config('wallet.wallet.table', 'wallets');
         }
 
@@ -98,15 +90,17 @@ class Wallet extends Model implements Customer, WalletFloat, Confirmable, Exchan
         $this->attributes['name'] = $name;
 
         /**
-         * Must be updated only if the model does not exist or the slug is empty.
+         * Must be updated only if the model does not exist
+         *  or the slug is empty.
          */
-        if (! $this->exists && ! array_key_exists('slug', $this->attributes)) {
+        if (!$this->exists && !array_key_exists('slug', $this->attributes)) {
             $this->attributes['slug'] = Str::slug($name);
         }
     }
 
     /**
-     * Under ideal conditions, you will never need a method. Needed to deal with out-of-sync.
+     * Under ideal conditions, you will never need a method.
+     * Needed to deal with out-of-sync.
      *
      * @throws LockProviderNotFoundException
      * @throws RecordsNotFoundException
@@ -126,17 +120,37 @@ class Wallet extends Model implements Customer, WalletFloat, Confirmable, Exchan
         });
     }
 
+    /** @codeCoverageIgnore */
     public function getOriginalBalanceAttribute(): string
     {
-        return (string) $this->getRawOriginal('balance', 0);
+        if (method_exists($this, 'getRawOriginal')) {
+            return (string) $this->getRawOriginal('balance', 0);
+        }
+
+        return (string) $this->getOriginal('balance', 0);
     }
 
-    public function getAvailableBalanceAttribute(): float|int|string
+    /**
+     * @return float|int
+     */
+    public function getAvailableBalanceAttribute()
     {
         return $this->walletTransactions()
             ->where('confirmed', true)
             ->sum('amount')
         ;
+    }
+
+    /**
+     * @deprecated
+     * @see getAvailableBalanceAttribute
+     * @codeCoverageIgnore
+     *
+     * @return float|int
+     */
+    public function getAvailableBalance()
+    {
+        return $this->getAvailableBalanceAttribute();
     }
 
     public function holder(): MorphTo
@@ -152,10 +166,5 @@ class Wallet extends Model implements Customer, WalletFloat, Confirmable, Exchan
     public function getCurrencyAttribute(): string
     {
         return $this->meta['currency'] ?? Str::upper($this->slug);
-    }
-
-    protected function initializeMorphOneWallet(): void
-    {
-        $this->uuid = app(UuidFactoryServiceInterface::class)->uuid4();
     }
 }

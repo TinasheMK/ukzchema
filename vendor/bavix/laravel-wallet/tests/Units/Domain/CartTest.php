@@ -24,31 +24,8 @@ use function count;
 /**
  * @internal
  */
-final class CartTest extends TestCase
+class CartTest extends TestCase
 {
-    public function testCartClone(): void
-    {
-        /** @var ItemMeta $product */
-        $product = ItemMetaFactory::new()->create([
-            'quantity' => 1,
-        ]);
-
-        $cart = app(Cart::class);
-
-        $cartWithItems = $cart->withItems([$product]);
-        $cartWithMeta = $cart->withMeta([
-            'product_id' => $product->getKey(),
-        ]);
-
-        self::assertCount(0, $cart->getItems());
-        self::assertCount(1, $cartWithItems->getItems());
-
-        self::assertSame([], $cart->getMeta());
-        self::assertSame([
-            'product_id' => $product->getKey(),
-        ], $cartWithMeta->getMeta());
-    }
-
     public function testCartMeta(): void
     {
         /**
@@ -63,10 +40,8 @@ final class CartTest extends TestCase
         $expected = 'pay';
 
         $cart = app(Cart::class)
-            ->withItems([$product])
-            ->withMeta([
-                'type' => $expected,
-            ])
+            ->addItems([$product])
+            ->setMeta(['type' => $expected])
         ;
 
         self::assertSame(0, $buyer->balanceInt);
@@ -107,10 +82,8 @@ final class CartTest extends TestCase
         $expected = 'pay';
 
         $cart = app(Cart::class)
-            ->withItems([$product])
-            ->withMeta([
-                'type' => $expected,
-            ])
+            ->addItems([$product])
+            ->setMeta(['type' => $expected])
         ;
 
         self::assertSame(0, $buyer->balanceInt);
@@ -140,7 +113,7 @@ final class CartTest extends TestCase
             'quantity' => 1,
         ]);
 
-        $cart = app(Cart::class)->withItems($products);
+        $cart = app(Cart::class)->addItems($products);
         foreach ($cart->getItems() as $product) {
             self::assertSame(0, $product->getBalanceIntAttribute());
         }
@@ -156,7 +129,6 @@ final class CartTest extends TestCase
 
         foreach ($transfers as $transfer) {
             self::assertSame(Transfer::STATUS_PAID, $transfer->status);
-            self::assertNull($transfer->status_last);
         }
 
         foreach ($cart->getItems() as $product) {
@@ -167,7 +139,6 @@ final class CartTest extends TestCase
         foreach ($transfers as $transfer) {
             $transfer->refresh();
             self::assertSame(Transfer::STATUS_REFUND, $transfer->status);
-            self::assertSame(Transfer::STATUS_PAID, $transfer->status_last);
         }
     }
 
@@ -188,10 +159,9 @@ final class CartTest extends TestCase
         $cart = app(Cart::class);
         $amount = 0;
         $price = 0;
-        $productsCount = count($products);
-        for ($i = 0; $i < $productsCount - 1; ++$i) {
+        for ($i = 0; $i < count($products) - 1; ++$i) {
             $rnd = random_int(1, 5);
-            $cart = $cart->withItem($products[$i], $rnd);
+            $cart->addItem($products[$i], $rnd);
             $price += $products[$i]->getAmountProduct($buyer) * $rnd;
             $amount += $rnd;
         }
@@ -223,10 +193,9 @@ final class CartTest extends TestCase
 
         $cart = app(Cart::class);
         $total = 0;
-        $productsCount = count($products);
-        for ($i = 0; $i < $productsCount - 1; ++$i) {
+        for ($i = 0; $i < count($products) - 1; ++$i) {
             $rnd = random_int(1, 5);
-            $cart = $cart->withItem($products[$i], $rnd);
+            $cart->addItem($products[$i], $rnd);
             $buyer->deposit($products[$i]->getAmountProduct($buyer) * $rnd);
             $total += $rnd;
         }
@@ -240,7 +209,7 @@ final class CartTest extends TestCase
         self::assertCount($total, $transfers);
 
         $refundCart = app(Cart::class)
-            ->withItems($products) // all goods
+            ->addItems($products) // all goods
         ;
 
         $buyer->refundCart($refundCart);
@@ -264,7 +233,7 @@ final class CartTest extends TestCase
         $total = [];
         foreach ($products as $product) {
             $quantity = random_int(1, 5);
-            $cart = $cart->withItem($product, $quantity);
+            $cart->addItem($product, $quantity);
             $buyer->deposit($product->getAmountProduct($buyer) * $quantity);
             $total[$product->getKey()] = $quantity;
         }
@@ -295,11 +264,10 @@ final class CartTest extends TestCase
          * @var Item  $product
          */
         $buyer = BuyerFactory::new()->create();
-        $product = ItemFactory::new()->create([
-            'quantity' => 1,
-        ]);
+        $product = ItemFactory::new()->create(['quantity' => 1]);
 
-        $cart = app(Cart::class)->withItem($product, 1);
+        $cart = app(Cart::class);
+        $cart->addItem($product, 1);
 
         foreach ($cart->getItems() as $item) {
             self::assertSame(0, $item->getBalanceIntAttribute());

@@ -8,9 +8,11 @@ use Illuminate\Contracts\Translation\Translator;
 
 final class TranslatorService implements TranslatorServiceInterface
 {
-    public function __construct(
-        private Translator $translator
-    ) {
+    private Translator $translator;
+
+    public function __construct(Translator $translator)
+    {
+        $this->translator = $translator;
     }
 
     public function get(string $key): string

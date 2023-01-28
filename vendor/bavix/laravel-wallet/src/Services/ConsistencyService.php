@@ -13,22 +13,28 @@ use Bavix\Wallet\Internal\Exceptions\ExceptionInterface;
 use Bavix\Wallet\Internal\Service\MathServiceInterface;
 use Bavix\Wallet\Internal\Service\TranslatorServiceInterface;
 
-/**
- * @internal
- */
 final class ConsistencyService implements ConsistencyServiceInterface
 {
+    private CastServiceInterface $castService;
+    private MathServiceInterface $mathService;
+    private TranslatorServiceInterface $translatorService;
+
     public function __construct(
-        private TranslatorServiceInterface $translatorService,
-        private MathServiceInterface $mathService,
-        private CastServiceInterface $castService
+        TranslatorServiceInterface $translatorService,
+        MathServiceInterface $mathService,
+        CastServiceInterface $castService
     ) {
+        $this->translatorService = $translatorService;
+        $this->mathService = $mathService;
+        $this->castService = $castService;
     }
 
     /**
+     * @param float|int|string $amount
+     *
      * @throws AmountInvalid
      */
-    public function checkPositive(float|int|string $amount): void
+    public function checkPositive($amount): void
     {
         if ($this->mathService->compare($amount, 0) === -1) {
             throw new AmountInvalid(
@@ -39,10 +45,12 @@ final class ConsistencyService implements ConsistencyServiceInterface
     }
 
     /**
+     * @param float|int|string $amount
+     *
      * @throws BalanceIsEmpty
      * @throws InsufficientFunds
      */
-    public function checkPotential(Wallet $object, float|int|string $amount, bool $allowZero = false): void
+    public function checkPotential(Wallet $object, $amount, bool $allowZero = false): void
     {
         $wallet = $this->castService->getWallet($object, false);
         $balance = $this->mathService->add($wallet->getBalanceAttribute(), $wallet->getCreditAttribute());
@@ -54,7 +62,7 @@ final class ConsistencyService implements ConsistencyServiceInterface
             );
         }
 
-        if (! $this->canWithdraw($balance, $amount, $allowZero)) {
+        if (!$this->canWithdraw($balance, $amount, $allowZero)) {
             throw new InsufficientFunds(
                 $this->translatorService->get('wallet::errors.insufficient_funds'),
                 ExceptionInterface::INSUFFICIENT_FUNDS
@@ -62,14 +70,18 @@ final class ConsistencyService implements ConsistencyServiceInterface
         }
     }
 
-    public function canWithdraw(float|int|string $balance, float|int|string $amount, bool $allowZero = false): bool
+    /**
+     * @param float|int|string $balance
+     * @param float|int|string $amount
+     */
+    public function canWithdraw($balance, $amount, bool $allowZero = false): bool
     {
         $mathService = app(MathServiceInterface::class);
 
         /**
          * Allow buying for free with a negative balance.
          */
-        if ($allowZero && ! $mathService->compare($amount, 0)) {
+        if ($allowZero && !$mathService->compare($amount, 0)) {
             return true;
         }
 

@@ -14,17 +14,13 @@ use Bavix\Wallet\Test\Infra\TestCase;
  */
 final class DatabaseTest extends TestCase
 {
-    /**
-     * @throws ExceptionInterface
-     */
     public function testCheckCode(): void
     {
         $this->expectException(TransactionFailedException::class);
         $this->expectExceptionCode(ExceptionInterface::TRANSACTION_FAILED);
-        $this->expectExceptionMessage('Transaction failed. Message: hello');
 
         app(DatabaseServiceInterface::class)->transaction(static function () {
-            throw new \RuntimeException('hello');
+            throw new \RuntimeException();
         });
     }
 }

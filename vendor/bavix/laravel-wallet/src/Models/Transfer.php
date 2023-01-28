@@ -13,33 +13,24 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * Class Transfer.
  *
  * @property string      $status
- * @property string      $status_last
  * @property string      $discount
  * @property int         $deposit_id
  * @property int         $withdraw_id
- * @property Wallet      $from
  * @property string      $from_type
  * @property int         $from_id
- * @property Wallet      $to
  * @property string      $to_type
  * @property int         $to_id
  * @property string      $uuid
  * @property string      $fee
  * @property Transaction $deposit
  * @property Transaction $withdraw
- *
- * @method int getKey()
  */
 class Transfer extends Model
 {
     public const STATUS_EXCHANGE = 'exchange';
-
     public const STATUS_TRANSFER = 'transfer';
-
     public const STATUS_PAID = 'paid';
-
     public const STATUS_REFUND = 'refund';
-
     public const STATUS_GIFT = 'gift';
 
     /**
@@ -56,12 +47,10 @@ class Transfer extends Model
         'to_id',
         'uuid',
         'fee',
-        'created_at',
-        'updated_at',
     ];
 
     /**
-     * @var array<string, string>
+     * @var array
      */
     protected $casts = [
         'deposit_id' => 'int',
@@ -70,7 +59,7 @@ class Transfer extends Model
 
     public function getTable(): string
     {
-        if ((string) $this->table === '') {
+        if (!$this->table) {
             $this->table = config('wallet.transfer.table', 'transfers');
         }
 

@@ -12,28 +12,32 @@ use Bavix\Wallet\Internal\Service\UuidFactoryServiceInterface;
 use Bavix\Wallet\Models\Wallet;
 use Illuminate\Database\Eloquent\Model;
 
-/**
- * @internal
- */
 final class WalletService implements WalletServiceInterface
 {
+    private WalletCreatedEventAssemblerInterface $walletCreatedEventAssembler;
+    private UuidFactoryServiceInterface $uuidFactoryService;
+    private DispatcherServiceInterface $dispatcherService;
+    private WalletRepositoryInterface $walletRepository;
+
     public function __construct(
-        private WalletCreatedEventAssemblerInterface $walletCreatedEventAssembler,
-        private UuidFactoryServiceInterface $uuidFactoryService,
-        private DispatcherServiceInterface $dispatcherService,
-        private WalletRepositoryInterface $walletRepository
+        WalletCreatedEventAssemblerInterface $walletCreatedEventAssembler,
+        UuidFactoryServiceInterface $uuidFactoryService,
+        DispatcherServiceInterface $dispatcherService,
+        WalletRepositoryInterface $walletRepository
     ) {
+        $this->walletCreatedEventAssembler = $walletCreatedEventAssembler;
+        $this->uuidFactoryService = $uuidFactoryService;
+        $this->dispatcherService = $dispatcherService;
+        $this->walletRepository = $walletRepository;
     }
 
     public function create(Model $model, array $data): Wallet
     {
         $wallet = $this->walletRepository->create(array_merge(
             config('wallet.wallet.creating', []),
-            [
-                'uuid' => $this->uuidFactoryService->uuid4(),
-            ],
             $data,
             [
+                'uuid' => $this->uuidFactoryService->uuid4(),
                 'holder_type' => $model->getMorphClass(),
                 'holder_id' => $model->getKey(),
             ]
@@ -47,7 +51,11 @@ final class WalletService implements WalletServiceInterface
 
     public function findBySlug(Model $model, string $slug): ?Wallet
     {
-        return $this->walletRepository->findBySlug($model->getMorphClass(), $model->getKey(), $slug);
+        return $this->walletRepository->findBySlug(
+            $model->getMorphClass(),
+            (int) $model->getKey(),
+            $slug
+        );
     }
 
     public function findByUuid(string $uuid): ?Wallet
@@ -60,25 +68,23 @@ final class WalletService implements WalletServiceInterface
         return $this->walletRepository->findById($id);
     }
 
-    /**
-     * @throws ModelNotFoundException
-     */
+    /** @throws ModelNotFoundException */
     public function getBySlug(Model $model, string $slug): Wallet
     {
-        return $this->walletRepository->getBySlug($model->getMorphClass(), $model->getKey(), $slug);
+        return $this->walletRepository->getBySlug(
+            $model->getMorphClass(),
+            (int) $model->getKey(),
+            $slug
+        );
     }
 
-    /**
-     * @throws ModelNotFoundException
-     */
+    /** @throws ModelNotFoundException */
     public function getByUuid(string $uuid): Wallet
     {
         return $this->walletRepository->getByUuid($uuid);
     }
 
-    /**
-     * @throws ModelNotFoundException
-     */
+    /** @throws ModelNotFoundException */
     public function getById(int $id): Wallet
     {
         return $this->walletRepository->getById($id);

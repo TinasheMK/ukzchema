@@ -6,5 +6,8 @@ namespace Bavix\Wallet\Interfaces;
 
 interface Discount
 {
-    public function getPersonalDiscount(Customer $customer): float|int;
+    /**
+     * @return float|int
+     */
+    public function getPersonalDiscount(Customer $customer);
 }

@@ -8,5 +8,8 @@ use Bavix\Wallet\Interfaces\Wallet;
 
 interface TaxServiceInterface
 {
-    public function getFee(Wallet $wallet, float|int|string $amount): string;
+    /**
+     * @param float|int|string $amount
+     */
+    public function getFee(Wallet $wallet, $amount): string;
 }

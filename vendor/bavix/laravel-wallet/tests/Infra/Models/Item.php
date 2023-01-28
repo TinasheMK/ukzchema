@@ -5,11 +5,10 @@ declare(strict_types=1);
 namespace Bavix\Wallet\Test\Infra\Models;
 
 use Bavix\Wallet\Interfaces\Customer;
-use Bavix\Wallet\Interfaces\ProductLimitedInterface;
+use Bavix\Wallet\Interfaces\Product;
 use Bavix\Wallet\Models\Transfer;
 use Bavix\Wallet\Models\Wallet;
 use Bavix\Wallet\Services\CastService;
-use Bavix\Wallet\Services\CastServiceInterface;
 use Bavix\Wallet\Traits\HasWallet;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
@@ -21,7 +20,7 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
  * @property int    $quantity
  * @property int    $price
  */
-class Item extends Model implements ProductLimitedInterface
+class Item extends Model implements Product
 {
     use HasWallet;
 
@@ -35,10 +34,10 @@ class Item extends Model implements ProductLimitedInterface
             return $result;
         }
 
-        return $result && ! $customer->paid($this);
+        return $result && !$customer->paid($this);
     }
 
-    public function getAmountProduct(Customer $customer): int|string
+    public function getAmountProduct(Customer $customer)
     {
         /** @var Wallet $wallet */
         $wallet = app(CastService::class)->getWallet($customer);
@@ -56,8 +55,7 @@ class Item extends Model implements ProductLimitedInterface
      */
     public function boughtGoods(array $walletIds): MorphMany
     {
-        return app(CastServiceInterface::class)
-            ->getWallet($this)
+        return $this
             ->morphMany(config('wallet.transfer.model', Transfer::class), 'to')
             ->where('status', Transfer::STATUS_PAID)
             ->where('from_type', config('wallet.wallet.model', Wallet::class))

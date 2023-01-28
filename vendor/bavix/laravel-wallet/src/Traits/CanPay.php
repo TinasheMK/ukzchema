@@ -7,7 +7,7 @@ namespace Bavix\Wallet\Traits;
 use Bavix\Wallet\Exceptions\BalanceIsEmpty;
 use Bavix\Wallet\Exceptions\InsufficientFunds;
 use Bavix\Wallet\Exceptions\ProductEnded;
-use Bavix\Wallet\Interfaces\ProductInterface;
+use Bavix\Wallet\Interfaces\Product;
 use Bavix\Wallet\Internal\Exceptions\ExceptionInterface;
 use Bavix\Wallet\Internal\Exceptions\LockProviderNotFoundException;
 use Bavix\Wallet\Internal\Exceptions\ModelNotFoundException;
@@ -18,10 +18,6 @@ use Bavix\Wallet\Objects\Cart;
 use function current;
 use Illuminate\Database\RecordsNotFoundException;
 
-/**
- * @psalm-require-extends \Illuminate\Database\Eloquent\Model
- * @psalm-require-implements \Bavix\Wallet\Interfaces\Customer
- */
 trait CanPay
 {
     use CartPay;
@@ -36,47 +32,47 @@ trait CanPay
      * @throws TransactionFailedException
      * @throws ExceptionInterface
      */
-    public function payFree(ProductInterface $product): Transfer
+    public function payFree(Product $product): Transfer
     {
-        return current($this->payFreeCart(app(Cart::class)->withItem($product)));
+        return current($this->payFreeCart(app(Cart::class)->addItem($product)));
     }
 
-    public function safePay(ProductInterface $product, bool $force = false): ?Transfer
+    public function safePay(Product $product, bool $force = false): ?Transfer
     {
-        return current($this->safePayCart(app(Cart::class)->withItem($product), $force)) ?: null;
-    }
-
-    /**
-     * @throws ProductEnded
-     * @throws BalanceIsEmpty
-     * @throws InsufficientFunds
-     * @throws LockProviderNotFoundException
-     * @throws RecordNotFoundException
-     * @throws RecordsNotFoundException
-     * @throws TransactionFailedException
-     * @throws ExceptionInterface
-     */
-    public function pay(ProductInterface $product, bool $force = false): Transfer
-    {
-        return current($this->payCart(app(Cart::class)->withItem($product), $force));
+        return current($this->safePayCart(app(Cart::class)->addItem($product), $force)) ?: null;
     }
 
     /**
      * @throws ProductEnded
+     * @throws BalanceIsEmpty
+     * @throws InsufficientFunds
      * @throws LockProviderNotFoundException
      * @throws RecordNotFoundException
      * @throws RecordsNotFoundException
      * @throws TransactionFailedException
      * @throws ExceptionInterface
      */
-    public function forcePay(ProductInterface $product): Transfer
+    public function pay(Product $product, bool $force = false): Transfer
     {
-        return current($this->forcePayCart(app(Cart::class)->withItem($product)));
+        return current($this->payCart(app(Cart::class)->addItem($product), $force));
     }
 
-    public function safeRefund(ProductInterface $product, bool $force = false, bool $gifts = false): bool
+    /**
+     * @throws ProductEnded
+     * @throws LockProviderNotFoundException
+     * @throws RecordNotFoundException
+     * @throws RecordsNotFoundException
+     * @throws TransactionFailedException
+     * @throws ExceptionInterface
+     */
+    public function forcePay(Product $product): Transfer
     {
-        return $this->safeRefundCart(app(Cart::class)->withItem($product), $force, $gifts);
+        return current($this->forcePayCart(app(Cart::class)->addItem($product)));
+    }
+
+    public function safeRefund(Product $product, bool $force = false, bool $gifts = false): bool
+    {
+        return $this->safeRefundCart(app(Cart::class)->addItem($product), $force, $gifts);
     }
 
     /**
@@ -89,9 +85,9 @@ trait CanPay
      * @throws ModelNotFoundException
      * @throws ExceptionInterface
      */
-    public function refund(ProductInterface $product, bool $force = false, bool $gifts = false): bool
+    public function refund(Product $product, bool $force = false, bool $gifts = false): bool
     {
-        return $this->refundCart(app(Cart::class)->withItem($product), $force, $gifts);
+        return $this->refundCart(app(Cart::class)->addItem($product), $force, $gifts);
     }
 
     /**
@@ -102,14 +98,14 @@ trait CanPay
      * @throws ModelNotFoundException
      * @throws ExceptionInterface
      */
-    public function forceRefund(ProductInterface $product, bool $gifts = false): bool
+    public function forceRefund(Product $product, bool $gifts = false): bool
     {
-        return $this->forceRefundCart(app(Cart::class)->withItem($product), $gifts);
+        return $this->forceRefundCart(app(Cart::class)->addItem($product), $gifts);
     }
 
-    public function safeRefundGift(ProductInterface $product, bool $force = false): bool
+    public function safeRefundGift(Product $product, bool $force = false): bool
     {
-        return $this->safeRefundGiftCart(app(Cart::class)->withItem($product), $force);
+        return $this->safeRefundGiftCart(app(Cart::class)->addItem($product), $force);
     }
 
     /**
@@ -122,9 +118,9 @@ trait CanPay
      * @throws ModelNotFoundException
      * @throws ExceptionInterface
      */
-    public function refundGift(ProductInterface $product, bool $force = false): bool
+    public function refundGift(Product $product, bool $force = false): bool
     {
-        return $this->refundGiftCart(app(Cart::class)->withItem($product), $force);
+        return $this->refundGiftCart(app(Cart::class)->addItem($product), $force);
     }
 
     /**
@@ -135,8 +131,8 @@ trait CanPay
      * @throws ModelNotFoundException
      * @throws ExceptionInterface
      */
-    public function forceRefundGift(ProductInterface $product): bool
+    public function forceRefundGift(Product $product): bool
     {
-        return $this->forceRefundGiftCart(app(Cart::class)->withItem($product));
+        return $this->forceRefundGiftCart(app(Cart::class)->addItem($product));
     }
 }

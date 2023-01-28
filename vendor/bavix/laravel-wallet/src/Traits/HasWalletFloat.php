@@ -7,7 +7,6 @@ namespace Bavix\Wallet\Traits;
 use Bavix\Wallet\Exceptions\AmountInvalid;
 use Bavix\Wallet\Exceptions\BalanceIsEmpty;
 use Bavix\Wallet\Exceptions\InsufficientFunds;
-use Bavix\Wallet\External\Contracts\ExtraDtoInterface;
 use Bavix\Wallet\Interfaces\Wallet;
 use Bavix\Wallet\Internal\Exceptions\ExceptionInterface;
 use Bavix\Wallet\Internal\Exceptions\LockProviderNotFoundException;
@@ -22,26 +21,22 @@ use Illuminate\Database\RecordsNotFoundException;
  * Trait HasWalletFloat.
  *
  * @property string $balanceFloat
- * @property float  $balanceFloatNum
- * @psalm-require-extends \Illuminate\Database\Eloquent\Model
- * @psalm-require-implements \Bavix\Wallet\Interfaces\WalletFloat
  */
 trait HasWalletFloat
 {
     use HasWallet;
 
     /**
+     * @param float|string $amount
+     *
      * @throws AmountInvalid
      * @throws LockProviderNotFoundException
      * @throws RecordsNotFoundException
      * @throws TransactionFailedException
      * @throws ExceptionInterface
      */
-    public function forceWithdrawFloat(
-        float|int|string $amount,
-        ?array $meta = null,
-        bool $confirmed = true
-    ): Transaction {
+    public function forceWithdrawFloat($amount, ?array $meta = null, bool $confirmed = true): Transaction
+    {
         $math = app(MathServiceInterface::class);
         $decimalPlacesValue = app(CastServiceInterface::class)->getWallet($this)->decimal_places;
         $decimalPlaces = $math->powTen($decimalPlacesValue);
@@ -51,13 +46,15 @@ trait HasWalletFloat
     }
 
     /**
+     * @param float|string $amount
+     *
      * @throws AmountInvalid
      * @throws LockProviderNotFoundException
      * @throws RecordsNotFoundException
      * @throws TransactionFailedException
      * @throws ExceptionInterface
      */
-    public function depositFloat(float|int|string $amount, ?array $meta = null, bool $confirmed = true): Transaction
+    public function depositFloat($amount, ?array $meta = null, bool $confirmed = true): Transaction
     {
         $math = app(MathServiceInterface::class);
         $decimalPlacesValue = app(CastServiceInterface::class)->getWallet($this)->decimal_places;
@@ -68,6 +65,8 @@ trait HasWalletFloat
     }
 
     /**
+     * @param float|string $amount
+     *
      * @throws AmountInvalid
      * @throws BalanceIsEmpty
      * @throws InsufficientFunds
@@ -76,7 +75,7 @@ trait HasWalletFloat
      * @throws TransactionFailedException
      * @throws ExceptionInterface
      */
-    public function withdrawFloat(float|int|string $amount, ?array $meta = null, bool $confirmed = true): Transaction
+    public function withdrawFloat($amount, ?array $meta = null, bool $confirmed = true): Transaction
     {
         $math = app(MathServiceInterface::class);
         $decimalPlacesValue = app(CastServiceInterface::class)->getWallet($this)->decimal_places;
@@ -86,7 +85,10 @@ trait HasWalletFloat
         return $this->withdraw($result, $meta, $confirmed);
     }
 
-    public function canWithdrawFloat(float|int|string $amount): bool
+    /**
+     * @param float|string $amount
+     */
+    public function canWithdrawFloat($amount): bool
     {
         $math = app(MathServiceInterface::class);
         $decimalPlacesValue = app(CastServiceInterface::class)->getWallet($this)->decimal_places;
@@ -97,6 +99,8 @@ trait HasWalletFloat
     }
 
     /**
+     * @param float|string $amount
+     *
      * @throws AmountInvalid
      * @throws BalanceIsEmpty
      * @throws InsufficientFunds
@@ -105,11 +109,8 @@ trait HasWalletFloat
      * @throws TransactionFailedException
      * @throws ExceptionInterface
      */
-    public function transferFloat(
-        Wallet $wallet,
-        float|int|string $amount,
-        ExtraDtoInterface|array|null $meta = null
-    ): Transfer {
+    public function transferFloat(Wallet $wallet, $amount, ?array $meta = null): Transfer
+    {
         $math = app(MathServiceInterface::class);
         $decimalPlacesValue = app(CastServiceInterface::class)->getWallet($this)->decimal_places;
         $decimalPlaces = $math->powTen($decimalPlacesValue);
@@ -118,11 +119,11 @@ trait HasWalletFloat
         return $this->transfer($wallet, $result, $meta);
     }
 
-    public function safeTransferFloat(
-        Wallet $wallet,
-        float|int|string $amount,
-        ExtraDtoInterface|array|null $meta = null
-    ): ?Transfer {
+    /**
+     * @param float|string $amount
+     */
+    public function safeTransferFloat(Wallet $wallet, $amount, ?array $meta = null): ?Transfer
+    {
         $math = app(MathServiceInterface::class);
         $decimalPlacesValue = app(CastServiceInterface::class)->getWallet($this)->decimal_places;
         $decimalPlaces = $math->powTen($decimalPlacesValue);
@@ -132,17 +133,16 @@ trait HasWalletFloat
     }
 
     /**
+     * @param float|string $amount
+     *
      * @throws AmountInvalid
      * @throws LockProviderNotFoundException
      * @throws RecordsNotFoundException
      * @throws TransactionFailedException
      * @throws ExceptionInterface
      */
-    public function forceTransferFloat(
-        Wallet $wallet,
-        float|int|string $amount,
-        ExtraDtoInterface|array|null $meta = null
-    ): Transfer {
+    public function forceTransferFloat(Wallet $wallet, $amount, ?array $meta = null): Transfer
+    {
         $math = app(MathServiceInterface::class);
         $decimalPlacesValue = app(CastServiceInterface::class)->getWallet($this)->decimal_places;
         $decimalPlaces = $math->powTen($decimalPlacesValue);
@@ -151,7 +151,10 @@ trait HasWalletFloat
         return $this->forceTransfer($wallet, $result, $meta);
     }
 
-    public function getBalanceFloatAttribute(): string
+    /**
+     * @return float|int|string
+     */
+    public function getBalanceFloatAttribute()
     {
         $math = app(MathServiceInterface::class);
         $wallet = app(CastServiceInterface::class)->getWallet($this);
@@ -159,10 +162,5 @@ trait HasWalletFloat
         $decimalPlaces = $math->powTen($decimalPlacesValue);
 
         return $math->div($wallet->getBalanceAttribute(), $decimalPlaces, $decimalPlacesValue);
-    }
-
-    public function getBalanceFloatNumAttribute(): float
-    {
-        return (float) $this->getBalanceFloatAttribute();
     }
 }

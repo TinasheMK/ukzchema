@@ -35,7 +35,6 @@ interface Confirmable
 
     /**
      * @throws UnconfirmedInvalid
-     * @throws WalletOwnerInvalid
      * @throws LockProviderNotFoundException
      * @throws RecordNotFoundException
      * @throws RecordsNotFoundException

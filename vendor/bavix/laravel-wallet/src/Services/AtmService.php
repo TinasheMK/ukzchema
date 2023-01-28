@@ -13,22 +13,31 @@ use Bavix\Wallet\Internal\Repository\TransferRepositoryInterface;
 use Bavix\Wallet\Models\Transaction;
 use Bavix\Wallet\Models\Transfer;
 
-/**
- * @internal
- */
+/** @psalm-internal */
 final class AtmService implements AtmServiceInterface
 {
+    private TransactionQueryAssemblerInterface $transactionQueryAssembler;
+    private TransferQueryAssemblerInterface $transferQueryAssembler;
+    private TransactionRepositoryInterface $transactionRepository;
+    private TransferRepositoryInterface $transferRepository;
+    private AssistantServiceInterface $assistantService;
+
     public function __construct(
-        private TransactionQueryAssemblerInterface $transactionQueryAssembler,
-        private TransferQueryAssemblerInterface $transferQueryAssembler,
-        private TransactionRepositoryInterface $transactionRepository,
-        private TransferRepositoryInterface $transferRepository,
-        private AssistantServiceInterface $assistantService
+        TransactionQueryAssemblerInterface $transactionQueryAssembler,
+        TransferQueryAssemblerInterface $transferQueryAssembler,
+        TransactionRepositoryInterface $transactionRepository,
+        TransferRepositoryInterface $transferRepository,
+        AssistantServiceInterface $assistantService
     ) {
+        $this->transactionQueryAssembler = $transactionQueryAssembler;
+        $this->transferQueryAssembler = $transferQueryAssembler;
+        $this->transactionRepository = $transactionRepository;
+        $this->transferRepository = $transferRepository;
+        $this->assistantService = $assistantService;
     }
 
     /**
-     * @param non-empty-array<array-key, TransactionDtoInterface> $objects
+     * @param non-empty-array<int|string, TransactionDtoInterface> $objects
      *
      * @return non-empty-array<string, Transaction>
      */
@@ -43,7 +52,7 @@ final class AtmService implements AtmServiceInterface
             $items = $this->transactionRepository->findBy($query);
         }
 
-        assert($items !== []);
+        assert(count($items) > 0);
 
         $results = [];
         foreach ($items as $item) {
@@ -54,7 +63,7 @@ final class AtmService implements AtmServiceInterface
     }
 
     /**
-     * @param non-empty-array<array-key, TransferDtoInterface> $objects
+     * @param non-empty-array<int|string, TransferDtoInterface> $objects
      *
      * @return non-empty-array<string, Transfer>
      */
@@ -69,7 +78,7 @@ final class AtmService implements AtmServiceInterface
             $items = $this->transferRepository->findBy($query);
         }
 
-        assert($items !== []);
+        assert(count($items) > 0);
 
         $results = [];
         foreach ($items as $item) {

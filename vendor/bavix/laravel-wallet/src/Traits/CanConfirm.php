@@ -22,9 +22,6 @@ use Bavix\Wallet\Services\ConsistencyServiceInterface;
 use Bavix\Wallet\Services\RegulatorServiceInterface;
 use Illuminate\Database\RecordsNotFoundException;
 
-/**
- * @psalm-require-extends \Illuminate\Database\Eloquent\Model
- */
 trait CanConfirm
 {
     /**
@@ -40,23 +37,21 @@ trait CanConfirm
      */
     public function confirm(Transaction $transaction): bool
     {
-        return app(AtomicServiceInterface::class)->block($this, function () use ($transaction): bool {
-            if ($transaction->type === Transaction::TYPE_WITHDRAW) {
-                app(ConsistencyServiceInterface::class)->checkPotential(
-                    app(CastServiceInterface::class)->getWallet($this),
-                    app(MathServiceInterface::class)->negative($transaction->amount)
-                );
-            }
+        if ($transaction->type === Transaction::TYPE_WITHDRAW) {
+            app(ConsistencyServiceInterface::class)->checkPotential(
+                app(CastServiceInterface::class)->getWallet($this),
+                app(MathServiceInterface::class)->negative($transaction->amount)
+            );
+        }
 
-            return $this->forceConfirm($transaction);
-        });
+        return $this->forceConfirm($transaction);
     }
 
     public function safeConfirm(Transaction $transaction): bool
     {
         try {
             return $this->confirm($transaction);
-        } catch (ExceptionInterface) {
+        } catch (ExceptionInterface $throwable) {
             return false;
         }
     }
@@ -65,7 +60,6 @@ trait CanConfirm
      * Removal of confirmation (forced), use at your own peril and risk.
      *
      * @throws UnconfirmedInvalid
-     * @throws WalletOwnerInvalid
      * @throws LockProviderNotFoundException
      * @throws RecordNotFoundException
      * @throws RecordsNotFoundException
@@ -75,7 +69,7 @@ trait CanConfirm
     public function resetConfirm(Transaction $transaction): bool
     {
         return app(AtomicServiceInterface::class)->block($this, function () use ($transaction) {
-            if (! $transaction->confirmed) {
+            if (!$transaction->confirmed) {
                 throw new UnconfirmedInvalid(
                     app(TranslatorServiceInterface::class)->get('wallet::errors.unconfirmed_invalid'),
                     ExceptionInterface::UNCONFIRMED_INVALID
@@ -83,18 +77,9 @@ trait CanConfirm
             }
 
             $wallet = app(CastServiceInterface::class)->getWallet($this);
-            if ($wallet->getKey() !== $transaction->wallet_id) {
-                throw new WalletOwnerInvalid(
-                    app(TranslatorServiceInterface::class)->get('wallet::errors.owner_invalid'),
-                    ExceptionInterface::WALLET_OWNER_INVALID
-                );
-            }
-
             app(RegulatorServiceInterface::class)->decrease($wallet, $transaction->amount);
 
-            return $transaction->update([
-                'confirmed' => false,
-            ]);
+            return $transaction->update(['confirmed' => false]);
         });
     }
 
@@ -102,7 +87,7 @@ trait CanConfirm
     {
         try {
             return $this->resetConfirm($transaction);
-        } catch (ExceptionInterface) {
+        } catch (ExceptionInterface $throwable) {
             return false;
         }
     }
@@ -136,9 +121,7 @@ trait CanConfirm
 
             app(RegulatorServiceInterface::class)->increase($wallet, $transaction->amount);
 
-            return $transaction->update([
-                'confirmed' => true,
-            ]);
+            return $transaction->update(['confirmed' => true]);
         });
     }
 }

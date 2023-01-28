@@ -13,35 +13,39 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Support\Collection;
 
 /**
- * Trait HasWallets To use a trait, you must add HasWallet trait.
+ * Trait HasWallets
+ * To use a trait, you must add HasWallet trait.
  *
  * @property Collection|WalletModel[] $wallets
- * @psalm-require-extends \Illuminate\Database\Eloquent\Model
  */
 trait HasWallets
 {
     /**
-     * The variable is used for the cache, so as not to request wallets many times. WalletProxy keeps the money wallets
-     * in the memory to avoid errors when you purchase/transfer, etc.
-     *
-     * @var WalletModel[]
+     * The variable is used for the cache, so as not to request wallets many times.
+     * WalletProxy keeps the money wallets in the memory to avoid errors when you
+     * purchase/transfer, etc.
      */
     private array $_wallets = [];
+
+    private bool $_loadedWallets = false;
 
     /**
      * Get wallet by slug.
      *
-     * $user->wallet->balance // 200 or short recording $user->balance; // 200
+     *  $user->wallet->balance // 200
+     *  or short recording $user->balance; // 200
      *
-     * $defaultSlug = config('wallet.wallet.default.slug'); $user->getWallet($defaultSlug)->balance; // 200
+     *  $defaultSlug = config('wallet.wallet.default.slug');
+     *  $user->getWallet($defaultSlug)->balance; // 200
      *
-     * $user->getWallet('usd')->balance; // 50 $user->getWallet('rub')->balance; // 100
+     *  $user->getWallet('usd')->balance; // 50
+     *  $user->getWallet('rub')->balance; // 100
      */
     public function getWallet(string $slug): ?WalletModel
     {
         try {
             return $this->getWalletOrFail($slug);
-        } catch (ModelNotFoundException) {
+        } catch (ModelNotFoundException $modelNotFoundException) {
             return null;
         }
     }
@@ -49,29 +53,29 @@ trait HasWallets
     /**
      * Get wallet by slug.
      *
-     * $user->wallet->balance // 200 or short recording $user->balance; // 200
+     *  $user->wallet->balance // 200
+     *  or short recording $user->balance; // 200
      *
-     * $defaultSlug = config('wallet.wallet.default.slug'); $user->getWallet($defaultSlug)->balance; // 200
+     *  $defaultSlug = config('wallet.wallet.default.slug');
+     *  $user->getWallet($defaultSlug)->balance; // 200
      *
-     * $user->getWallet('usd')->balance; // 50 $user->getWallet('rub')->balance; // 100
+     *  $user->getWallet('usd')->balance; // 50
+     *  $user->getWallet('rub')->balance; // 100
      *
      * @throws ModelNotFoundException
      */
     public function getWalletOrFail(string $slug): WalletModel
     {
-        if ($this->_wallets === [] && $this->relationLoaded('wallets')) {
-            /** @var WalletModel $wallet */
-            foreach ($this->getRelation('wallets') as $wallet) {
-                $wallet->setRelation('holder', $this->withoutRelations());
+        if (!$this->_loadedWallets && $this->relationLoaded('wallets')) {
+            $this->_loadedWallets = true;
+            $wallets = $this->getRelation('wallets');
+            foreach ($wallets as $wallet) {
                 $this->_wallets[$wallet->slug] = $wallet;
             }
         }
 
-        if (! array_key_exists($slug, $this->_wallets)) {
-            $wallet = app(WalletServiceInterface::class)->getBySlug($this, $slug);
-            $wallet->setRelation('holder', $this->withoutRelations());
-
-            $this->_wallets[$slug] = $wallet;
+        if (!array_key_exists($slug, $this->_wallets)) {
+            $this->_wallets[$slug] = app(WalletServiceInterface::class)->getBySlug($this, $slug);
         }
 
         return $this->_wallets[$slug];
@@ -89,7 +93,6 @@ trait HasWallets
     {
         $wallet = app(WalletServiceInterface::class)->create($this, $data);
         $this->_wallets[$wallet->slug] = $wallet;
-        $wallet->setRelation('holder', $this->withoutRelations());
 
         return $wallet;
     }

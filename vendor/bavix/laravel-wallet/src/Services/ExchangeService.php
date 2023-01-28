@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 namespace Bavix\Wallet\Services;
 
-/**
- * @internal
- */
 final class ExchangeService implements ExchangeServiceInterface
 {
-    public function convertTo(string $fromCurrency, string $toCurrency, float|int|string $amount): string
+    /** @param float|int|string $amount */
+    public function convertTo(string $fromCurrency, string $toCurrency, $amount): string
     {
         return (string) $amount;
     }

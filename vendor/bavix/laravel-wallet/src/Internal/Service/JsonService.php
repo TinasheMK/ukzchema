@@ -7,7 +7,7 @@ namespace Bavix\Wallet\Internal\Service;
 use Throwable;
 
 /**
- * @internal
+ * @psalm-internal
  */
 final class JsonService implements JsonServiceInterface
 {
@@ -15,7 +15,7 @@ final class JsonService implements JsonServiceInterface
     {
         try {
             return $data === null ? null : json_encode($data, JSON_THROW_ON_ERROR);
-        } catch (Throwable) {
+        } catch (Throwable $throwable) {
             return null;
         }
     }

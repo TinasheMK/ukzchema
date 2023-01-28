@@ -10,7 +10,6 @@ use Bavix\Wallet\Internal\Service\DatabaseServiceInterface;
 use Bavix\Wallet\Models\Transaction;
 use Bavix\Wallet\Models\Transfer;
 use Bavix\Wallet\Models\Wallet;
-use Bavix\Wallet\Objects\Cart;
 use Bavix\Wallet\Test\Infra\Factories\BuyerFactory;
 use Bavix\Wallet\Test\Infra\Factories\ItemFactory;
 use Bavix\Wallet\Test\Infra\Factories\ItemWalletFactory;
@@ -22,7 +21,7 @@ use Bavix\Wallet\Test\Infra\TestCase;
 /**
  * @internal
  */
-final class ProductTest extends TestCase
+class ProductTest extends TestCase
 {
     public function testPay(): void
     {
@@ -61,13 +60,12 @@ final class ProductTest extends TestCase
 
         self::assertInstanceOf(Buyer::class, $transfer->from->holder);
         self::assertInstanceOf(Wallet::class, $transfer->from);
-        self::assertInstanceOf(Item::class, $transfer->to->holder);
+        self::assertInstanceOf(Item::class, $transfer->to);
         self::assertInstanceOf(Wallet::class, $transfer->to->wallet);
 
         self::assertSame($buyer->wallet->getKey(), $transfer->from->getKey());
         self::assertSame($buyer->getKey(), $transfer->from->holder->getKey());
-        self::assertSame($product->wallet->getKey(), $transfer->to->getKey());
-        self::assertSame($product->getKey(), $transfer->to->holder->getKey());
+        self::assertSame($product->getKey(), $transfer->to->getKey());
 
         self::assertSame(0, $buyer->balanceInt);
         self::assertNull($buyer->safePay($product));
@@ -261,39 +259,6 @@ final class ProductTest extends TestCase
         $buyer->payFree($product);
     }
 
-    public function testPayCustomPrice(): void
-    {
-        /**
-         * @var Buyer $buyer
-         * @var Item  $productIn
-         */
-        $buyer = BuyerFactory::new()->create();
-        [$productIn, $productOutside] = ItemFactory::times(2)->create([
-            'quantity' => 2,
-            'price' => 5_000,
-        ]);
-
-        self::assertSame(0, $buyer->balanceInt);
-
-        $buyer->deposit(6_000 + (int) $buyer->getKey());
-        self::assertSame(6_000 + (int) $buyer->getKey(), $buyer->balanceInt);
-
-        $cart = app(Cart::class)
-            ->withItem($productIn, pricePerItem: 1_000)
-            ->withItem($productIn)
-        ;
-
-        self::assertSame(6_000 + (int) $buyer->getKey(), (int) $cart->getTotal($buyer));
-
-        $transfers = $buyer->payCart($cart);
-        self::assertSame(0, $cart->getQuantity($productOutside));
-        self::assertSame(2, $cart->getQuantity($productIn));
-        self::assertSame(0, $buyer->balanceInt);
-        self::assertCount(2, $transfers);
-
-        self::assertTrue($buyer->refundCart($cart));
-    }
-
     /**
      * @see https://github.com/bavix/laravel-wallet/issues/237
      *
@@ -314,9 +279,7 @@ final class ProductTest extends TestCase
         $buyer->deposit($product->getAmountProduct($buyer));
         self::assertSame((string) $product->getAmountProduct($buyer), $buyer->balance);
 
-        $product->createWallet([
-            'name' => 'testing',
-        ]);
+        $product->createWallet(['name' => 'testing']);
         app(DatabaseServiceInterface::class)->transaction(function () use ($product, $buyer) {
             $transfer = $buyer->pay($product);
             $product->transfer($product->getWallet('testing'), $transfer->deposit->amount, $transfer->toArray());

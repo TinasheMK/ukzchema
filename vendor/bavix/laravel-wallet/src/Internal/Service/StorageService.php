@@ -11,13 +11,18 @@ use Illuminate\Contracts\Cache\Repository as CacheRepository;
 
 final class StorageService implements StorageServiceInterface
 {
-    private const PREFIX = 'wallet_sg::';
+    private LockServiceInterface $lockService;
+    private MathServiceInterface $mathService;
+    private CacheRepository $cacheRepository;
 
     public function __construct(
-        private MathServiceInterface $mathService,
-        private CacheRepository $cacheRepository,
-        private ?int $ttl
+        LockServiceInterface $lockService,
+        MathServiceInterface $mathService,
+        CacheRepository $cacheRepository
     ) {
+        $this->cacheRepository = $cacheRepository;
+        $this->mathService = $mathService;
+        $this->lockService = $lockService;
     }
 
     public function flush(): bool
@@ -25,128 +30,47 @@ final class StorageService implements StorageServiceInterface
         return $this->cacheRepository->clear();
     }
 
-    public function missing(string $uuid): bool
+    public function missing(string $key): bool
     {
-        return $this->cacheRepository->forget(self::PREFIX . $uuid);
+        return $this->cacheRepository->forget($key);
     }
 
-    /**
-     * @throws RecordNotFoundException
-     */
-    public function get(string $uuid): string
+    /** @throws RecordNotFoundException */
+    public function get(string $key): string
     {
-        return current($this->multiGet([$uuid]));
-    }
-
-    public function sync(string $uuid, float|int|string $value): bool
-    {
-        return $this->multiSync([
-            $uuid => $value,
-        ]);
-    }
-
-    /**
-     * @throws RecordNotFoundException
-     */
-    public function increase(string $uuid, float|int|string $value): string
-    {
-        return current($this->multiIncrease([
-            $uuid => $value,
-        ]));
-    }
-
-    /**
-     * @template T of non-empty-array<string>
-     *
-     * @param T $uuids
-     *
-     * @return non-empty-array<value-of<T>, string>
-     *
-     * @throws RecordNotFoundException
-     */
-    public function multiGet(array $uuids): array
-    {
-        $keys = [];
-        foreach ($uuids as $uuid) {
-            $keys[self::PREFIX . $uuid] = $uuid;
-        }
-
-        $missingKeys = [];
-        if (count($keys) === 1) {
-            $values = [];
-            foreach (array_keys($keys) as $key) {
-                $values[$key] = $this->cacheRepository->get($key);
-            }
-        } else {
-            $values = $this->cacheRepository->getMultiple(array_keys($keys));
-        }
-
-        $results = [];
-        /** @var array<float|int|string|null> $values */
-        foreach ($values as $key => $value) {
-            $uuid = $keys[$key];
-            if ($value === null) {
-                $missingKeys[] = $uuid;
-                continue;
-            }
-
-            $results[$uuid] = $this->mathService->round($value);
-        }
-
-        if ($missingKeys !== []) {
+        $value = $this->cacheRepository->get($key);
+        if ($value === null) {
             throw new RecordNotFoundException(
                 'The repository did not find the object',
-                ExceptionInterface::RECORD_NOT_FOUND,
-                $missingKeys
+                ExceptionInterface::RECORD_NOT_FOUND
             );
         }
 
-        assert($results !== []);
-
-        return $results;
+        return $this->mathService->round($value);
     }
 
-    /**
-     * @param non-empty-array<string, float|int|string> $inputs
-     */
-    public function multiSync(array $inputs): bool
+    /** @param float|int|string $value */
+    public function sync(string $key, $value): bool
     {
-        $values = [];
-        foreach ($inputs as $uuid => $value) {
-            $values[self::PREFIX . $uuid] = $this->mathService->round($value);
-        }
-
-        if (count($values) === 1) {
-            return $this->cacheRepository->set(key($values), current($values), $this->ttl);
-        }
-
-        return $this->cacheRepository->setMultiple($values, $this->ttl);
+        return $this->cacheRepository->set($key, $value);
     }
 
     /**
-     * @template T of non-empty-array<string, float|int|string>
-     *
-     * @param T $inputs
-     *
-     * @return non-empty-array<key-of<T>, string>
-     * @psalm-return non-empty-array<string, string>
+     * @param float|int|string $value
      *
      * @throws LockProviderNotFoundException
      * @throws RecordNotFoundException
      */
-    public function multiIncrease(array $inputs): array
+    public function increase(string $key, $value): string
     {
-        $newInputs = [];
-        $uuids = array_keys($inputs);
-        $multiGet = $this->multiGet($uuids);
-        foreach ($uuids as $uuid) {
-            $newInputs[$uuid] = $this->mathService->round($this->mathService->add($multiGet[$uuid], $inputs[$uuid]));
-        }
+        return $this->lockService->block(
+            $key.'::increase',
+            function () use ($key, $value): string {
+                $result = $this->mathService->add($this->get($key), $value);
+                $this->sync($key, $result);
 
-        $this->multiSync($newInputs);
-
-        assert($newInputs !== []);
-
-        return $newInputs;
+                return $this->mathService->round($result);
+            }
+        );
     }
 }

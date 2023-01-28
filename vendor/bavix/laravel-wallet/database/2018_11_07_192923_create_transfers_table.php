@@ -8,7 +8,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class() extends Migration {
+class CreateTransfersTable extends Migration
+{
     public function up(): void
     {
         Schema::create($this->table(), function (Blueprint $table) {
@@ -16,12 +17,18 @@ return new class() extends Migration {
             $table->morphs('from');
             $table->morphs('to');
             $table
-                ->enum('status', ['exchange', 'transfer', 'paid', 'refund', 'gift'])
+                ->enum(
+                    'status',
+                    ['exchange', 'transfer', 'paid', 'refund', 'gift']
+                )
                 ->default('transfer')
             ;
 
             $table
-                ->enum('status_last', ['exchange', 'transfer', 'paid', 'refund', 'gift'])
+                ->enum(
+                    'status_last',
+                    ['exchange', 'transfer', 'paid', 'refund', 'gift']
+                )
                 ->nullable()
             ;
 
@@ -36,9 +43,7 @@ return new class() extends Migration {
                 ->default(0)
             ;
 
-            $table->uuid('uuid')
-                ->unique()
-            ;
+            $table->uuid('uuid')->unique();
             $table->timestamps();
 
             $table->foreign('deposit_id')
@@ -69,4 +74,4 @@ return new class() extends Migration {
     {
         return (new Transaction())->getTable();
     }
-};
+}

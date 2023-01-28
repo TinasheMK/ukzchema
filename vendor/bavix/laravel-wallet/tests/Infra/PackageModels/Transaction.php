@@ -11,8 +11,13 @@ namespace Bavix\Wallet\Test\Infra\PackageModels;
  */
 class Transaction extends \Bavix\Wallet\Models\Transaction
 {
+    /**
+     * {@inheritdoc}
+     */
     public function getFillable(): array
     {
-        return array_merge($this->fillable, ['bank_method']);
+        return array_merge($this->fillable, [
+            'bank_method',
+        ]);
     }
 }

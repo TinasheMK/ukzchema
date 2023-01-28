@@ -17,7 +17,7 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * Class Transaction.
  *
  * @property string      $payable_type
- * @property int|string  $payable_id
+ * @property int         $payable_id
  * @property int         $wallet_id
  * @property string      $uuid
  * @property string      $type
@@ -28,13 +28,10 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * @property array       $meta
  * @property Wallet      $payable
  * @property WalletModel $wallet
- *
- * @method int getKey()
  */
 class Transaction extends Model
 {
     public const TYPE_DEPOSIT = 'deposit';
-
     public const TYPE_WITHDRAW = 'withdraw';
 
     /**
@@ -49,12 +46,10 @@ class Transaction extends Model
         'amount',
         'confirmed',
         'meta',
-        'created_at',
-        'updated_at',
     ];
 
     /**
-     * @var array<string, string>
+     * @var array
      */
     protected $casts = [
         'wallet_id' => 'int',
@@ -64,7 +59,7 @@ class Transaction extends Model
 
     public function getTable(): string
     {
-        if ((string) $this->table === '') {
+        if (!$this->table) {
             $this->table = config('wallet.transaction.table', 'transactions');
         }
 
@@ -94,10 +89,13 @@ class Transaction extends Model
             ->decimal_places;
         $decimalPlaces = $math->powTen($decimalPlacesValue);
 
-        return $math->div($this->amount, $decimalPlaces, $decimalPlacesValue);
+        return $math->div($this->amount, $decimalPlaces);
     }
 
-    public function setAmountFloatAttribute(float|int|string $amount): void
+    /**
+     * @param float|int|string $amount
+     */
+    public function setAmountFloatAttribute($amount): void
     {
         $math = app(MathServiceInterface::class);
         $decimalPlacesValue = app(CastServiceInterface::class)

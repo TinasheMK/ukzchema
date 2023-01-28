@@ -19,7 +19,7 @@ use Bavix\Wallet\Test\Infra\TestCase;
 /**
  * @internal
  */
-final class DiscountTest extends TestCase
+class DiscountTest extends TestCase
 {
     public function testPay(): void
     {
@@ -38,9 +38,15 @@ final class DiscountTest extends TestCase
         self::assertNotNull($transfer);
         self::assertSame(Transfer::STATUS_PAID, $transfer->status);
 
-        self::assertSame($buyer->balanceInt, $product->getPersonalDiscount($buyer));
+        self::assertSame(
+            $buyer->balanceInt,
+            $product->getPersonalDiscount($buyer)
+        );
 
-        self::assertSame((int) $transfer->discount, $product->getPersonalDiscount($buyer));
+        self::assertSame(
+            (int) $transfer->discount,
+            $product->getPersonalDiscount($buyer)
+        );
 
         /**
          * @var Transaction $withdraw
@@ -60,13 +66,12 @@ final class DiscountTest extends TestCase
 
         self::assertInstanceOf(Buyer::class, $transfer->from->holder);
         self::assertInstanceOf(Wallet::class, $transfer->from);
-        self::assertInstanceOf(Item::class, $transfer->to->holder);
+        self::assertInstanceOf(Item::class, $transfer->to);
         self::assertInstanceOf(Wallet::class, $transfer->to->wallet);
 
         self::assertSame($buyer->wallet->getKey(), $transfer->from->getKey());
         self::assertSame($buyer->getKey(), $transfer->from->holder->getKey());
-        self::assertSame($product->wallet->getKey(), $transfer->to->getKey());
-        self::assertSame($product->getKey(), $transfer->to->holder->getKey());
+        self::assertSame($product->getKey(), $transfer->to->getKey());
     }
 
     public function testItemTransactions(): void
@@ -86,9 +91,15 @@ final class DiscountTest extends TestCase
         self::assertNotNull($transfer);
         self::assertSame(Transfer::STATUS_PAID, $transfer->status);
 
-        self::assertSame($buyer->balanceInt, $product->getPersonalDiscount($buyer));
+        self::assertSame(
+            $buyer->balanceInt,
+            $product->getPersonalDiscount($buyer)
+        );
 
-        self::assertSame((int) $transfer->discount, $product->getPersonalDiscount($buyer));
+        self::assertSame(
+            (int) $transfer->discount,
+            $product->getPersonalDiscount($buyer)
+        );
 
         /**
          * @var Transaction $withdraw
@@ -129,7 +140,10 @@ final class DiscountTest extends TestCase
         self::assertNotNull($transfer);
         self::assertSame(Transfer::STATUS_PAID, $transfer->status);
 
-        self::assertSame((int) $transfer->discount, $product->getPersonalDiscount($buyer));
+        self::assertSame(
+            (int) $transfer->discount,
+            $product->getPersonalDiscount($buyer)
+        );
 
         self::assertTrue($buyer->refund($product));
         self::assertSame($buyer->balanceInt, (int) $product->getAmountProduct($buyer));
@@ -183,7 +197,10 @@ final class DiscountTest extends TestCase
             (int) ($product->getAmountProduct($buyer) - $product->getPersonalDiscount($buyer))
         );
 
-        self::assertSame((int) $transfer->discount, $product->getPersonalDiscount($buyer));
+        self::assertSame(
+            (int) $transfer->discount,
+            $product->getPersonalDiscount($buyer)
+        );
 
         $product->withdraw($product->balance);
         self::assertSame(0, $product->balanceInt);

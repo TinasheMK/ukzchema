@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace Bavix\Wallet\Traits;
 
+use function array_unique;
 use Bavix\Wallet\Exceptions\BalanceIsEmpty;
 use Bavix\Wallet\Exceptions\InsufficientFunds;
 use Bavix\Wallet\Exceptions\ProductEnded;
 use Bavix\Wallet\Interfaces\CartInterface;
-use Bavix\Wallet\Interfaces\ProductInterface;
+use Bavix\Wallet\Interfaces\Product;
 use Bavix\Wallet\Internal\Assembler\AvailabilityDtoAssemblerInterface;
 use Bavix\Wallet\Internal\Exceptions\ExceptionInterface;
 use Bavix\Wallet\Internal\Exceptions\LockProviderNotFoundException;
@@ -18,22 +19,16 @@ use Bavix\Wallet\Internal\Exceptions\TransactionFailedException;
 use Bavix\Wallet\Internal\Service\TranslatorServiceInterface;
 use Bavix\Wallet\Models\Transfer;
 use Bavix\Wallet\Objects\Cart;
-use Bavix\Wallet\Services\AssistantServiceInterface;
 use Bavix\Wallet\Services\AtomicServiceInterface;
 use Bavix\Wallet\Services\BasketServiceInterface;
-use Bavix\Wallet\Services\CastServiceInterface;
+use Bavix\Wallet\Services\CommonServiceLegacy;
 use Bavix\Wallet\Services\ConsistencyServiceInterface;
-use Bavix\Wallet\Services\EagerLoaderServiceInterface;
+use Bavix\Wallet\Services\MetaServiceLegacy;
 use Bavix\Wallet\Services\PrepareServiceInterface;
 use Bavix\Wallet\Services\PurchaseServiceInterface;
-use Bavix\Wallet\Services\TransferServiceInterface;
 use function count;
 use Illuminate\Database\RecordsNotFoundException;
 
-/**
- * @psalm-require-extends \Illuminate\Database\Eloquent\Model
- * @psalm-require-implements \Bavix\Wallet\Interfaces\Customer
- */
 trait CartPay
 {
     use HasWallet;
@@ -53,11 +48,9 @@ trait CartPay
     public function payFreeCart(CartInterface $cart): array
     {
         return app(AtomicServiceInterface::class)->block($this, function () use ($cart) {
-            $basketDto = $cart->getBasketDto();
             $basketService = app(BasketServiceInterface::class);
             $availabilityAssembler = app(AvailabilityDtoAssemblerInterface::class);
-            app(EagerLoaderServiceInterface::class)->loadWalletsByBasket($basketDto);
-            if (! $basketService->availability($availabilityAssembler->create($this, $basketDto, false))) {
+            if (!$basketService->availability($availabilityAssembler->create($this, $cart->getBasketDto(), false))) {
                 throw new ProductEnded(
                     app(TranslatorServiceInterface::class)->get('wallet::errors.product_stock'),
                     ExceptionInterface::PRODUCT_ENDED
@@ -68,31 +61,27 @@ trait CartPay
 
             $transfers = [];
             $prepareService = app(PrepareServiceInterface::class);
-            $assistantService = app(AssistantServiceInterface::class);
-            foreach ($basketDto->cursor() as $product) {
+            $metaService = app(MetaServiceLegacy::class);
+            foreach ($cart->getBasketDto()->cursor() as $product) {
                 $transfers[] = $prepareService->transferLazy(
                     $this,
                     $product,
                     Transfer::STATUS_PAID,
                     0,
-                    $assistantService->getMeta($basketDto, $product)
+                    $metaService->getMeta($cart, $product)
                 );
             }
 
-            assert($transfers !== []);
-
-            return app(TransferServiceInterface::class)->apply($transfers);
+            return app(CommonServiceLegacy::class)->applyTransfers($transfers);
         });
     }
 
-    /**
-     * @return Transfer[]
-     */
+    /** @return Transfer[] */
     public function safePayCart(CartInterface $cart, bool $force = false): array
     {
         try {
             return $this->payCart($cart, $force);
-        } catch (ExceptionInterface) {
+        } catch (ExceptionInterface $throwable) {
             return [];
         }
     }
@@ -112,48 +101,33 @@ trait CartPay
     public function payCart(CartInterface $cart, bool $force = false): array
     {
         return app(AtomicServiceInterface::class)->block($this, function () use ($cart, $force) {
-            $basketDto = $cart->getBasketDto();
             $basketService = app(BasketServiceInterface::class);
             $availabilityAssembler = app(AvailabilityDtoAssemblerInterface::class);
-            app(EagerLoaderServiceInterface::class)->loadWalletsByBasket($basketDto);
-            if (! $basketService->availability($availabilityAssembler->create($this, $basketDto, $force))) {
+            if (!$basketService->availability($availabilityAssembler->create($this, $cart->getBasketDto(), $force))) {
                 throw new ProductEnded(
                     app(TranslatorServiceInterface::class)->get('wallet::errors.product_stock'),
                     ExceptionInterface::PRODUCT_ENDED
                 );
             }
 
-            $prices = [];
             $transfers = [];
-            $castService = app(CastServiceInterface::class);
             $prepareService = app(PrepareServiceInterface::class);
-            $assistantService = app(AssistantServiceInterface::class);
-            foreach ($cart->getBasketDto()->items() as $item) {
-                foreach ($item->getItems() as $product) {
-                    $productId = $product::class . ':' . $castService->getModel($product)->getKey();
-                    $pricePerItem = $item->getPricePerItem();
-                    if ($pricePerItem === null) {
-                        $prices[$productId] ??= $product->getAmountProduct($this);
-                        $pricePerItem = $prices[$productId];
-                    }
-
-                    $transfers[] = $prepareService->transferLazy(
-                        $this,
-                        $product,
-                        Transfer::STATUS_PAID,
-                        $pricePerItem,
-                        $assistantService->getMeta($basketDto, $product)
-                    );
-                }
+            $metaService = app(MetaServiceLegacy::class);
+            foreach ($cart->getBasketDto()->cursor() as $product) {
+                $transfers[] = $prepareService->transferLazy(
+                    $this,
+                    $product,
+                    Transfer::STATUS_PAID,
+                    $product->getAmountProduct($this),
+                    $metaService->getMeta($cart, $product)
+                );
             }
 
-            if (! $force) {
+            if ($force === false) {
                 app(ConsistencyServiceInterface::class)->checkTransfer($transfers);
             }
 
-            assert($transfers !== []);
-
-            return app(TransferServiceInterface::class)->apply($transfers);
+            return app(CommonServiceLegacy::class)->applyTransfers($transfers);
         });
     }
 
@@ -176,7 +150,7 @@ trait CartPay
     {
         try {
             return $this->refundCart($cart, $force, $gifts);
-        } catch (ExceptionInterface) {
+        } catch (ExceptionInterface $throwable) {
             return false;
         }
     }
@@ -194,49 +168,50 @@ trait CartPay
     public function refundCart(CartInterface $cart, bool $force = false, bool $gifts = false): bool
     {
         return app(AtomicServiceInterface::class)->block($this, function () use ($cart, $force, $gifts) {
-            $basketDto = $cart->getBasketDto();
-            app(EagerLoaderServiceInterface::class)->loadWalletsByBasket($basketDto);
-            $transfers = app(PurchaseServiceInterface::class)->already($this, $basketDto, $gifts);
-            if (count($transfers) !== $basketDto->total()) {
+            $results = [];
+            $transfers = app(PurchaseServiceInterface::class)->already($this, $cart->getBasketDto(), $gifts);
+            if (count($transfers) !== $cart->getBasketDto()->total()) {
                 throw new ModelNotFoundException(
-                    "No query results for model [{$this->transfers()
-                        ->getMorphClass()}]",
+                    "No query results for model [{$this->transfers()->getMorphClass()}]",
                     ExceptionInterface::MODEL_NOT_FOUND
                 );
             }
 
-            $index = 0;
             $objects = [];
-            $transferIds = [];
-            $transfers = array_values($transfers);
             $prepareService = app(PrepareServiceInterface::class);
-            $assistantService = app(AssistantServiceInterface::class);
-            foreach ($basketDto->cursor() as $product) {
-                $transferIds[] = $transfers[$index]->getKey();
+            foreach ($cart->getBasketDto()->cursor() as $product) {
+                $transfer = current($transfers);
+                next($transfers);
+                /**
+                 * the code is extremely poorly written, a complete refactoring is required.
+                 * for version 6.x we will leave it as it is.
+                 */
+                $transfer->load('withdraw.wallet'); // fixme: need optimize
+
                 $objects[] = $prepareService->transferLazy(
                     $product,
-                    $transfers[$index]->withdraw->wallet,
+                    $transfer->withdraw->wallet,
                     Transfer::STATUS_TRANSFER,
-                    $transfers[$index]->deposit->amount,
-                    $assistantService->getMeta($basketDto, $product)
+                    $transfer->deposit->amount, // fixme: need optimize
+                    app(MetaServiceLegacy::class)->getMeta($cart, $product)
                 );
-
-                ++$index;
             }
 
-            if (! $force) {
+            if ($force === false) {
                 app(ConsistencyServiceInterface::class)->checkTransfer($objects);
             }
 
-            assert($objects !== []);
+            app(CommonServiceLegacy::class)->applyTransfers($objects);
 
-            $transferService = app(TransferServiceInterface::class);
+            // fixme: one query update for
+            foreach ($transfers as $transfer) {
+                $results[] = $transfer->update([
+                    'status' => Transfer::STATUS_REFUND,
+                    'status_last' => $transfer->status,
+                ]);
+            }
 
-            $transferService->apply($objects);
-
-            return $transferService
-                ->updateStatusByIds(Transfer::STATUS_REFUND, $transferIds)
-            ;
+            return count(array_unique($results)) === 1;
         });
     }
 
@@ -257,7 +232,7 @@ trait CartPay
     {
         try {
             return $this->refundGiftCart($cart, $force);
-        } catch (ExceptionInterface) {
+        } catch (ExceptionInterface $throwable) {
             return false;
         }
     }
@@ -292,13 +267,10 @@ trait CartPay
 
     /**
      * Checks acquired product your wallet.
-     *
-     * @deprecated The method is slow and will be removed in the future
-     * @see PurchaseServiceInterface
      */
-    public function paid(ProductInterface $product, bool $gifts = false): ?Transfer
+    public function paid(Product $product, bool $gifts = false): ?Transfer
     {
-        $cart = app(Cart::class)->withItem($product);
+        $cart = app(Cart::class)->addItem($product);
         $purchases = app(PurchaseServiceInterface::class)
             ->already($this, $cart->getBasketDto(), $gifts)
         ;

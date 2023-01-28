@@ -14,22 +14,15 @@ interface RegulatorServiceInterface
 
     public function amount(Wallet $wallet): string;
 
-    public function sync(Wallet $wallet, float|int|string $value): bool;
+    /** @param float|int|string $value */
+    public function sync(Wallet $wallet, $value): bool;
 
-    public function increase(Wallet $wallet, float|int|string $value): string;
+    /** @param float|int|string $value */
+    public function increase(Wallet $wallet, $value): string;
 
-    public function decrease(Wallet $wallet, float|int|string $value): string;
+    /** @param float|int|string $value */
+    public function decrease(Wallet $wallet, $value): string;
 
-    public function committing(): void;
-
-    public function committed(): void;
-
-    /**
-     * @deprecated
-     *
-     * @see committing
-     * @see committed
-     */
     public function approve(): void;
 
     public function purge(): void;

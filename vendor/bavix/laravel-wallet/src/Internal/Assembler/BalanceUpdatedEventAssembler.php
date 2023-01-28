@@ -11,15 +11,17 @@ use Bavix\Wallet\Models\Wallet;
 
 final class BalanceUpdatedEventAssembler implements BalanceUpdatedEventAssemblerInterface
 {
-    public function __construct(
-        private ClockServiceInterface $clockService
-    ) {
+    private ClockServiceInterface $clockService;
+
+    public function __construct(ClockServiceInterface $clockService)
+    {
+        $this->clockService = $clockService;
     }
 
     public function create(Wallet $wallet): BalanceUpdatedEventInterface
     {
         return new BalanceUpdatedEvent(
-            $wallet->getKey(),
+            (int) $wallet->getKey(),
             $wallet->uuid,
             $wallet->getOriginalBalanceAttribute(),
             $this->clockService->now()

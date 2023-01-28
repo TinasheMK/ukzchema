@@ -12,32 +12,35 @@ use Bavix\Wallet\Internal\Service\DispatcherServiceInterface;
 use Bavix\Wallet\Models\Wallet as WalletModel;
 use Illuminate\Database\Eloquent\Model;
 
-/**
- * @internal
- */
+/** @psalm-internal */
 final class CastService implements CastServiceInterface
 {
+    private WalletCreatedEventAssemblerInterface $walletCreatedEventAssembler;
+    private DispatcherServiceInterface $dispatcherService;
+    private DatabaseServiceInterface $databaseService;
+
     public function __construct(
-        private WalletCreatedEventAssemblerInterface $walletCreatedEventAssembler,
-        private DispatcherServiceInterface $dispatcherService,
-        private DatabaseServiceInterface $databaseService
+        WalletCreatedEventAssemblerInterface $walletCreatedEventAssembler,
+        DispatcherServiceInterface $dispatcherService,
+        DatabaseServiceInterface $databaseService
     ) {
+        $this->walletCreatedEventAssembler = $walletCreatedEventAssembler;
+        $this->dispatcherService = $dispatcherService;
+        $this->databaseService = $databaseService;
     }
 
-    /**
-     * @throws ExceptionInterface
-     */
+    /** @throws ExceptionInterface */
     public function getWallet(Wallet $object, bool $save = true): WalletModel
     {
         $wallet = $this->getModel($object);
-        if (! ($wallet instanceof WalletModel)) {
+        if (!($wallet instanceof WalletModel)) {
             $wallet = $wallet->getAttribute('wallet');
             assert($wallet instanceof WalletModel);
         }
 
-        if ($save && ! $wallet->exists) {
+        if ($save && !$wallet->exists) {
             $this->databaseService->transaction(function () use ($wallet) {
-                $result = $wallet->saveQuietly();
+                $result = $wallet::withoutEvents(fn () => $wallet->save());
                 $this->dispatcherService->dispatch($this->walletCreatedEventAssembler->create($wallet));
 
                 return $result;
@@ -47,7 +50,8 @@ final class CastService implements CastServiceInterface
         return $wallet;
     }
 
-    public function getHolder(Model|Wallet $object): Model
+    /** @param Model|Wallet $object */
+    public function getHolder($object): Model
     {
         return $this->getModel($object instanceof WalletModel ? $object->holder : $object);
     }

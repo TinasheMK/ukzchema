@@ -4,32 +4,29 @@ declare(strict_types=1);
 
 namespace Bavix\Wallet\Internal\Dto;
 
-use Bavix\Wallet\Interfaces\ProductInterface;
+use Bavix\Wallet\Interfaces\Product;
 
 /** @psalm-immutable */
 final class ItemDto implements ItemDtoInterface
 {
-    public function __construct(
-        private ProductInterface $product,
-        private int $quantity,
-        private int|string|null $pricePerItem,
-    ) {
+    private Product $product;
+    private int $quantity;
+
+    public function __construct(Product $product, int $quantity)
+    {
+        $this->product = $product;
+        $this->quantity = $quantity;
     }
 
     /**
-     * @return ProductInterface[]
+     * @return Product[]
      */
-    public function getItems(): array
+    public function items(): array
     {
         return array_fill(0, $this->quantity, $this->product);
     }
 
-    public function getPricePerItem(): int|string|null
-    {
-        return $this->pricePerItem;
-    }
-
-    public function getProduct(): ProductInterface
+    public function product(): Product
     {
         return $this->product;
     }

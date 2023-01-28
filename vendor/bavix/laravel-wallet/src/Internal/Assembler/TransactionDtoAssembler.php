@@ -11,16 +11,18 @@ use Illuminate\Database\Eloquent\Model;
 
 final class TransactionDtoAssembler implements TransactionDtoAssemblerInterface
 {
-    public function __construct(
-        private UuidFactoryServiceInterface $uuidService
-    ) {
+    private UuidFactoryServiceInterface $uuidService;
+
+    public function __construct(UuidFactoryServiceInterface $uuidService)
+    {
+        $this->uuidService = $uuidService;
     }
 
     public function create(
         Model $payable,
         int $walletId,
         string $type,
-        float|int|string $amount,
+        string $amount,
         bool $confirmed,
         ?array $meta
     ): TransactionDtoInterface {

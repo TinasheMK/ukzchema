@@ -12,19 +12,16 @@ interface TransactionDtoInterface
 
     public function getPayableType(): string;
 
-    public function getPayableId(): int|string;
+    public function getPayableId(): int;
 
     public function getWalletId(): int;
 
     public function getType(): string;
 
-    public function getAmount(): float|int|string;
+    public function getAmount(): string;
 
     public function isConfirmed(): bool;
 
-    /**
-     * @return null|array<mixed>
-     */
     public function getMeta(): ?array;
 
     public function getCreatedAt(): DateTimeImmutable;
