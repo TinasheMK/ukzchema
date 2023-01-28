@@ -5,6 +5,11 @@
 @endphp
 
 @section('content')
+@php
+    use App\Models\Member;
+    $member = Member::all();
+    // dd($member[0]);
+@endphp
 <div class="page-content edit-add container-fluid">
     <div class="row">
         <div class="col-md-12">
@@ -20,8 +25,8 @@
 
                                 <div class="form-group">
                                 <label for="">Target Group</label>
-                                <select class="form-control" name="target_group" id="">
-                                    <option value="selected">Only Send To Select Members</option>
+                                <select class="form-control" name="target_group" id="" required>
+                                    <option value="selected" selected>Only Send To Select Members</option>
                                     <option value="all">Broadcast To All Members</option>
                                     <option value="board_members">Broadcast To Board Members</option>
                                     <option value="non_board_members">Broadcast To Non-Board Members</option>
@@ -41,11 +46,10 @@
                             <div class="col-12 col-lg-12">
                                 <div class="form-group">
                                 <label for="">Target Group</label>
-                                <select class="form-control" name="admin_notification_belongstomany_member_relationship[]" id="" required>
-                                    <option>CM000005</option>
-                                    <option>CM00000i5</option>
-                                    <option>Broadcast To Board Members</option>
-                                    <option>Broadcast To Non-Board Members</option>
+                                <select class="form-control" name="admin_notification_belongstomany_member_relationship[]" id="" multiple required>
+                                    @foreach ($member as $m)
+                                        <option value="{{$m->id}}">{{$m->first_name}} {{$m->last_name}} ({{$m->email}})</option>
+                                    @endforeach
                                 </select>
                                 </div>
                             </div>

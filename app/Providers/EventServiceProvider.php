@@ -57,24 +57,30 @@ class EventServiceProvider extends ServiceProvider
                 logger("new:notification", $notification->toArray());
                 $members = target_group($notification);
                 $notification->update(["target_total" => $members->count()]);
+
+                $date = strtotime("+1 week");
+                $dueDate = date("D M d, Y G:i", $date);
                 for($x = 0; $x < $members->count() ; $x++){
                     $invoice = Invoice::create([
                         "invoice_date" => date("D M d, Y G:i"),
                         "type" => $notification->type,
+                        "subtotal" => $notification->amount,
                         "total" => $notification->amount,
-                        "member_number"=> $members[$x]->id,
-                        "status" => "unpaid"
+                        "member_id"=> $members[$x]->id,
+                        "status" => "unpaid",
+                        "due_date" => $dueDate,
 
                     ]);
+
+                    // dd($invoice);
 
                     InvoiceItem::create([
                         "title" => $notification->invoice_title,
                         "amount" => $notification->amount,
-                        "invoice_ref"=> $invoice->id
+                        "invoice_id"=> $invoice->id
                     ]);
                 }
-                // dd($members);
-                Notification::send($members, new AdminNotification($notification));
+                // Notification::send($members, new AdminNotification($notification));
             }
         });
 

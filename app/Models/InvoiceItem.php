@@ -18,7 +18,7 @@ class InvoiceItem extends Model
         "units",
         "unit_price",
         "discount_percent",
-        "invoice_ref",
+        "invoice_id",
         "created_at",
         "updated_at",
     ];

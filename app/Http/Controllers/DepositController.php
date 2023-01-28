@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Deposit;
+use App\Models\Invoice;
+use App\Models\InvoiceItem;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Auth;
@@ -32,11 +34,32 @@ class DepositController extends SharedBaseController
                 "amount" => $amount,
                 "payment_ref" => $request->payment_ref,
                 "date" => date("D M d, Y G:i"),
-                "balance" => $user->balanceFloat(),
+                "balance" => $user->balanceFloat,
                 "type" => "deposit",
                 "invoice_ref" => $request->payment_ref
 
             ]);
+
+
+            $date = strtotime("+1 week");
+            $dueDate = date("D M d, Y G:i", $date);
+
+            $invoice = Invoice::create([
+                "invoice_date" => date("D M d, Y G:i"),
+                "type" => "deposit",
+                "subtotal" => $amount,
+                "total" => $amount,
+                "member_id"=> $member->id,
+                "status" => "paid",
+                "due_date" => $dueDate,
+
+            ]);
+            InvoiceItem::create([
+                "title" => "UKZChema Deposit",
+                "amount" => $amount,
+                "invoice_id"=> $invoice->id
+            ]);
+
             $member->save();
         }
         return redirect(route('members-area.deposits'))->with([

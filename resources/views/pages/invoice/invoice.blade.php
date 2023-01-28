@@ -134,12 +134,10 @@
                   <p class="lead">Payment Methods:</p>
                   <img src="{{asset('invoice/img/credit/visa.png')}}" alt="Visa">
                   <img src="{{asset('invoice/img/credit/mastercard.png')}}" alt="Mastercard">
-                  <img src="{{asset('invoice/img/credit/american-express.png')}}" alt="American Express">
+                  <img src="{{asset('invoice/img/credit/paypal2.png')}}" alt="American Express">
 
                   <p class="text-muted well well-sm shadow-none" style="margin-top: 10px;">
-                    Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles, weebly ning heekya handango imeem
-                    plugg
-                    dopplr jibjab, movity jajah plickers sifteo edmodo ifttt zimbra.
+                    Please make payment before due date.
                   </p>
                 </div>
                 <!-- /.col -->
@@ -173,7 +171,7 @@
 
               <!-- this row will not appear when printing -->
               <div class="row no-print">
-                <div class="col-12">
+                {{-- <div class="col-12">
                   <a href="{{route('invoice-print', 1)}}" rel="noopener" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
                   <button type="button" class="btn btn-success float-right"><i class="far fa-credit-card"></i> Submit
                     Payment
@@ -181,7 +179,7 @@
                   <button type="button" class="btn btn-primary float-right" style="margin-right: 5px;">
                     <i class="fas fa-download"></i> Generate PDF
                   </button>
-                </div>
+                </div> --}}
               </div>
             </div>
             <!-- /.invoice -->
