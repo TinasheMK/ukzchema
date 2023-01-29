@@ -58,7 +58,7 @@ var render = function render() {
   }, [_vm._m(0), _vm._v(" "), _c("tbody", _vm._l(_vm.my_deposits, function (dep) {
     return _c("tr", {
       key: dep.id
-    }, [_c("td", [_vm._v(_vm._s(dep.payment_ref))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(dep.date))]), _vm._v(" "), _c("td", {
+    }, [_c("td", [_vm._v(_vm._s(dep.payment_ref))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(dep.date))]), _vm._v(" "), _c("td", [!dep.type ? _c("div", [_vm._v("Deposit")]) : _vm._e(), _vm._v(" "), dep.type ? _c("div", [_vm._v(_vm._s(dep.type))]) : _vm._e()]), _vm._v(" "), _c("td", {
       staticClass: "text-right"
     }, [_vm._v("£" + _vm._s(dep.amount))])]);
   }), 0)])]);
@@ -68,7 +68,7 @@ var staticRenderFns = [function () {
     _c = _vm._self._c;
   return _c("thead", {
     staticClass: "text-primary"
-  }, [_c("tr", [_c("th", [_vm._v("Payment Ref")]), _vm._v(" "), _c("th", [_vm._v("Date")]), _vm._v(" "), _c("th", {
+  }, [_c("tr", [_c("th", [_vm._v("Payment Ref")]), _vm._v(" "), _c("th", [_vm._v("Date")]), _vm._v(" "), _c("th", [_vm._v("Description")]), _vm._v(" "), _c("th", {
     staticClass: "text-right"
   }, [_vm._v("Amount")])])]);
 }];

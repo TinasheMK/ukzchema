@@ -65,15 +65,15 @@ class SharedBaseController extends Controller
                 "icon" => "nc-sound-wave"
             ],
             [
-                "name" => "Deposits",
+                "name" => "Transactions",
                 "route" => route('members-area.deposits'),
                 "icon" => "nc-share-66"
             ],
-            [
-                "name" => "Payments",
-                "route" => route('members-area.payments'),
-                "icon" => "nc-money-coins"
-            ],
+            // [
+            //     "name" => "Payments",
+            //     "route" => route('members-area.payments'),
+            //     "icon" => "nc-money-coins"
+            // ],
             [
                 "name" => "Member Profile",
                 "route" => route('members-area.profile'),

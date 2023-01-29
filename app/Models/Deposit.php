@@ -10,6 +10,9 @@ class Deposit extends Model
         "member_id",
         "payment_ref",
         "amount",
-        "date"
+        "date",
+        "invoice_id",
+        "type",
+        "balance"
     ];
 }

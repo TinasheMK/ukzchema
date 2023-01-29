@@ -5,6 +5,7 @@
         <tr>
           <th>Payment Ref</th>
           <th>Date</th>
+          <th>Description</th>
           <th class="text-right">Amount</th>
         </tr>
       </thead>
@@ -12,6 +13,10 @@
         <tr v-for="dep in my_deposits" :key="dep.id">
           <td>{{dep.payment_ref}}</td>
           <td>{{dep.date}}</td>
+          <td>
+            <div v-if="!dep.type">Deposit</div>
+            <div v-if="dep.type">{{dep.type}}</div>
+          </td>
           <td class="text-right">£{{dep.amount}}</td>
         </tr>
       </tbody>

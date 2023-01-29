@@ -12,9 +12,9 @@ php artisan db:seed --class=ApplicantTableSeeder
 ## Send email notifications with payment requests and payments
 ## Add funds directly to wallet through PayPal
 ## Admin to view all user invoices and download invoice for printing
-## Send request for payment notifications to all members when subscription payments are required.
-## Generate invoices to members when request for subscriptions is created.
 ## Generate pdf invoices for printing
+## Send request for payment notifications to all members when subscription payments are required.
+## Transactions tab created and deposits & payments moved to transactions tab.
 
 Allow manual addition of funds when payment is made to bank account or physically delivered
 

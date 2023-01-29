@@ -35,8 +35,8 @@ class DepositController extends SharedBaseController
                 "payment_ref" => $request->payment_ref,
                 "date" => date("D M d, Y G:i"),
                 "balance" => $user->balanceFloat,
-                "type" => "deposit",
-                "invoice_ref" => $request->payment_ref
+                "type" => "Deposit",
+                "invoice_id" => $request->payment_ref
 
             ]);
 
