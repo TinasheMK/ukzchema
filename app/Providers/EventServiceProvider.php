@@ -90,6 +90,7 @@ class EventServiceProvider extends ServiceProvider
          */
         Event::listen(ObituaryAdded::class, function ($event) {
             logger("Obituary added event fired", [$event]);
+            dd("hey");
             $members = Member::all();
             Notification::send($members, new ObituaryAddedNotification($event->obituary));
         });

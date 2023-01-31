@@ -27,3 +27,15 @@ Allow manual addition of funds when payment is made to bank account or physicall
 
 ## Update Details
 make memberid mandatory in invoice
+
+
+## Orbituary create invoices and paypal fee
+## Subtract amount from everyones balance on orbituarry creation
+## Member view invoices
+## Invoice on notification optional
+## Orbituary add to wallet when paid
+## Edit dashboard
+## Hide payments tab make it invopices
+## Orbituary for nominee to move nominee to deceased
+## Ymail emails
+## Deposits and payments combined plus invoices

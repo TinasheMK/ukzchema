@@ -7,7 +7,7 @@ UKZ Chema Board Member has added an Obituary. Details:
     <img src="{{asset('storage/'.$obituary->photo)}}" height="84" alt="{{$obituary->full_name}}">
 </p>
 
-## Members are paying {{$obituary->minAmount()}}
+## Members are paying {{$obituary->minAmount()}} excluding transaction charges
 
 <br>**Total Goal Amount: £{{$obituary->goal_amount}}**
 <br>**Member ID:** {{$obituary->member_id}}

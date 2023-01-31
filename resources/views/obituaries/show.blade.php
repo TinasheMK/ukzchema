@@ -9,10 +9,10 @@
     <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
         <i class="nc-icon nc-simple-remove"></i>
     </button>
-    <span>Members are paying <strong class="ml-2 h6">£{{$obituary->minAmount()}}</strong></span>
+    <span>Members are paying <strong class="ml-2 h6">£{{$obituary->minAmount()}}</strong> excluding transaction charges</span>
 </div>
 <div class="row">
-    <div class="col-md-5">
+    {{-- <div class="col-md-5">
         <div class="card">
             <div class="obituary-img" style="background: url({{asset('storage/'.$obituary->photo)}})"></div>
             <div class="card-body text-center pb-0">
@@ -27,8 +27,8 @@
                 </div>
             @endif
         </div>
-    </div>
-    <div class="col-md-7 mb-5">
+    </div> --}}
+    <div class="col-md-7 mb-5 m-auto">
         <div class="card">
             <div class="card-header">
                 <h5 class="card-title">{{$obituary->full_name}}</h5>
@@ -39,6 +39,14 @@
                 <h6>Funeral Information:</h6>
                 <p class="description">{{$obituary->funeral_info}}</p>
             </div>
+            @if (!$obituary->hasPaid())
+                <div class="card-footer pt-0">
+                    <donate-button :client_id="'{{env('PAYPAL_CLIENT')}}'" :min="{{$obituary->minAmount()}}" :obituary="{{$obituary}}"
+                        :route="'{{route('members-area.submit_donation')}}'" :user="{{$user}}">
+                        @csrf
+                    </donate-button>
+                </div>
+            @endif
         </div>
     </div>
 </div>

@@ -6,32 +6,34 @@ Member
 
 @section('content')
 <div class="row">
-    <div class="col-md-6 col-sm-6">
-        <div class="card card-stats">
-            <div class="card-body ">
-                <div class="row">
-                    <div class="col-5 col-md-4">
-                        <div class="icon-big text-center icon-warning">
-                            <i class="nc-icon nc-single-02 text-warning"></i>
+    @if (Auth::user()->role_id =1)
+        <div class="col-md-6 col-sm-6">
+            <div class="card card-stats">
+                <div class="card-body ">
+                    <div class="row">
+                        <div class="col-5 col-md-4">
+                            <div class="icon-big text-center icon-warning">
+                                <i class="nc-icon nc-single-02 text-warning"></i>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-7 col-md-8">
-                        <div class="numbers">
-                            <p class="card-category">Members</p>
-                            <p class="card-title">{{$members_count}}<p>
+                        <div class="col-7 col-md-8">
+                            <div class="numbers">
+                                <p class="card-category">Members</p>
+                                <p class="card-title">{{$members_count}}<p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="card-footer ">
-                <hr>
-                <div class="stats">
-                    <i class="fa fa-refresh"></i>
-                    Update Now
+                <div class="card-footer ">
+                    <hr>
+                    <div class="stats">
+                        <i class="fa fa-refresh"></i>
+                        Update Now
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    @endif
     <div class="col-md-6 col-sm-6">
         <div class="card card-stats">
             <div class="card-body ">
@@ -42,10 +44,10 @@ Member
                         </div>
                     </div>
                     <div class="col-7 col-md-8">
-                       <!-- <div class="numbers">
-                            <p class="card-category">Balance</p>
-                            <p class="card-title">£ {{$member->balance}}<p>
-                        </div>-->
+                        <div class="numbers">
+                            <p class="card-category">Transactions</p>
+                            <a href="{{route("members-area.deposits")}}" class="card-title">View</a>
+                        </div>
                     </div>
                 </div>
             </div>
