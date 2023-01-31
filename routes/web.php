@@ -23,7 +23,7 @@ Route::group(['middleware' => ['guest']], function () {
 
     Route::get('/join-now', 'ApplicantController@form')->name('apply');
     // Route::get('/join-now',  function () {return redirect()->route('splash');})->name('apply');
-    Route::get('/submitted-{code}', 'ApplicantController@submitted')->name('submitted');
+    Route::get('/submitted/{code}', 'ApplicantController@submitted')->name('submitted');
     Route::get('/complete/{applicant?}', 'ApplicantController@completeRegForm')->name('applicant.complete');
     Route::post('/complete', 'ApplicantController@complete');
 
