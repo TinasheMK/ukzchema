@@ -53,6 +53,11 @@ __webpack_require__(/*! ../../libs/bootstrap-notify */ "./resources/js/libs/boot
       }
       paypal.Buttons({
         createOrder: function createOrder(data, action) {
+          _this.amount = parseFloat(_this.amount);
+          _this.amount = _this.amount;
+          _this.amount = _this.amount.toFixed(2);
+          _this.amount1 = _this.amount / 0.9871 + 0.30 - _this.amount;
+          _this.amount1 = _this.amount1.toFixed(2);
           return action.order.create({
             application_context: {
               brand_name: "UKZ Chema Association",
@@ -64,6 +69,13 @@ __webpack_require__(/*! ../../libs/bootstrap-notify */ "./resources/js/libs/boot
               amount: {
                 currency_code: "GBP",
                 value: _this.amount
+              }
+            }, {
+              reference_id: "d9f80740-38f0-11e8-b467-0ed5f89f718b",
+              description: "Charges",
+              amount: {
+                currency_code: "GBP",
+                value: _this.amount1
               }
             }]
           });
@@ -217,7 +229,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.currency-err {\r\n  border-color: var(--danger) !important;\n}\r\n", ""]);
+exports.push([module.i, "\n.currency-err {\n  border-color: var(--danger) !important;\n}\n", ""]);
 
 // exports
 
