@@ -78,7 +78,7 @@ export default {
 
             this.amount1 = (this.amount/0.9871)+0.30-this.amount;
             this.amount1 = this.amount1.toFixed(2);
-
+            console.log(this.amount, this.amount1)
             return action.order.create({
               application_context: {
                 brand_name: "UKZ Chema Association",
@@ -87,6 +87,7 @@ export default {
               },
               purchase_units: [
                 {
+                  reference_id: "d9f80740-38f0-11e8-b467-0ed5f89r717b",
                   description: `Chema payment for ${this.obituary.full_name}`,
                   amount: {
                     currency_code: "GBP",
@@ -94,7 +95,7 @@ export default {
                   }
                 },
                 {
-                    reference_id: "d9f80740-38f0-11e8-b467-0ed5f89f718b",
+                    reference_id: "d9f80740-38f0-11e8-b467-0ed5f89f717b",
                     description: `Charges`,
                     amount: {
                         currency_code: "GBP",

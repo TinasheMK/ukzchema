@@ -65,6 +65,7 @@ class Obituary extends Model
     public function hasPaid(){
         $has_donated = Donation::whereMemberIdAndObituaryId(Auth::user()->member_id, $this->id)
             ->first();
+        // dd($has_donated);
         return isset($has_donated);
     }
 

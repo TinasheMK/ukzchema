@@ -6,6 +6,7 @@ use App\Models\Donation;
 use App\Models\Member;
 use App\Models\Obituary;
 use App\Notifications\NewDonationReceived;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
@@ -50,9 +51,10 @@ class DonationsController extends SharedBaseController
                 'alert-type' => 'danger',
             ]);
         }
+
         $order = $response->result->purchase_units[0];
         $member = Auth::user()->memberDetails;
-
+        // dd($member);
         if (!isset($member)) {
             my_log("User doesn't have member's details", "\n\nFailed to save user's donation\nAmount: £{$order->amount->value}\nPayment Ref: *{$request->orderID}*");
             return redirect(route('members-area.payments'))->with([
@@ -62,14 +64,20 @@ class DonationsController extends SharedBaseController
         }
 
         $obituary = Obituary::find($request->obituary_id);
-        $obituary->donated_amount = $obituary->donated_amount + $order->amount->value;
-        $obituary->save();
+
+        $user = User::find(Auth::user()->id);
+        $user->depositFloat($order->amount->value);
+
+        // $obituary->donated_amount = $obituary->donated_amount + $order->amount->value;
+        // $obituary->save();
         $donation = $member->donations()->create([
             "obituary_id" => $obituary->id,
             "orderID" => $request->orderID,
             "amount" => $order->amount->value,
             "on" => now()
         ]);
+
+
 
         Notification::send($member, new NewDonationReceived($order, $donation, $obituary->donated_amount));
 

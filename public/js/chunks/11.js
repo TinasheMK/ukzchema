@@ -58,6 +58,7 @@ __webpack_require__(/*! ../../libs/bootstrap-notify */ "./resources/js/libs/boot
           _this.amount = _this.amount.toFixed(2);
           _this.amount1 = _this.amount / 0.9871 + 0.30 - _this.amount;
           _this.amount1 = _this.amount1.toFixed(2);
+          console.log(_this.amount, _this.amount1);
           return action.order.create({
             application_context: {
               brand_name: "UKZ Chema Association",
@@ -65,13 +66,14 @@ __webpack_require__(/*! ../../libs/bootstrap-notify */ "./resources/js/libs/boot
               shipping_preference: "NO_SHIPPING"
             },
             purchase_units: [{
+              reference_id: "d9f80740-38f0-11e8-b467-0ed5f89r717b",
               description: "Chema payment for ".concat(_this.obituary.full_name),
               amount: {
                 currency_code: "GBP",
                 value: _this.amount
               }
             }, {
-              reference_id: "d9f80740-38f0-11e8-b467-0ed5f89f718b",
+              reference_id: "d9f80740-38f0-11e8-b467-0ed5f89f717b",
               description: "Charges",
               amount: {
                 currency_code: "GBP",

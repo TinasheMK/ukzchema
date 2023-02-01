@@ -5,18 +5,6 @@
 php artisan db:seed --class=ApplicantTableSeeder
 
 
-## Personal wallet for each user
-## Show balance on the dashboard
-## Request contributions from all or select members 
-## Generate an invoice for each user when payment is requested
-## Send email notifications with payment requests and payments
-## Add funds directly to wallet through PayPal
-## Admin to view all user invoices and download invoice for printing
-## Generate pdf invoices for printing
-## Send request for payment notifications to all members when subscription payments are required.
-## Transactions tab created and deposits & payments moved to transactions tab.
-
-Allow manual addition of funds when payment is made to bank account or physically delivered
 
 ## Section 3: Scheduling, Reminders and Payments:
 
@@ -26,16 +14,55 @@ Allow manual addition of funds when payment is made to bank account or physicall
 
 
 ## Update Details
-make memberid mandatory in invoice
+restore events notifications
+members without user accounts
 
+## Deposits and payments combined plus invoices
+## Ymail emails
+## Orbituary for nominee to move nominee to deceased
 
-## Orbituary create invoices and paypal fee
 ## Subtract amount from everyones balance on orbituarry creation
+## Orbituary create invoices and paypal fee
 ## Member view invoices
 ## Invoice on notification optional
 ## Orbituary add to wallet when paid
 ## Edit dashboard
 ## Hide payments tab make it invopices
-## Orbituary for nominee to move nominee to deceased
-## Ymail emails
-## Deposits and payments combined plus invoices
+
+Obituary Created for $6
+
+User with $10 
+Subtract 6 from balance. 
+New balance $4
+Mark obituarry as paid
+Send obituary notifications
+Send payment notification
+
+User with $3
+Subtract 6 from balance
+New balance -$3
+Mark obituary as unpaid
+Send obiturary notification
+Obituary displayed on home
+
+When user deposits $3
+Balance equal or above $0
+Mark obituary as paid
+Send payment notification with invoice
+
+When deposit happens...
+Check for unpaid invoices and obituaries
+Mark paid and send notifications
+
+
+CM0000000220
+CM0000000348
+CM000558
+CM000679
+CM000681
+CM001145
+CM001418
+CM001553
+CM001568
+CM001953
+Members 

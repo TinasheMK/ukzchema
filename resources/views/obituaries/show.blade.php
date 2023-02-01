@@ -9,7 +9,7 @@
     <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
         <i class="nc-icon nc-simple-remove"></i>
     </button>
-    <span>Members are paying <strong class="ml-2 h6">£{{$obituary->minAmount()}}</strong> excluding transaction charges</span>
+    <span>Members are paying <strong class="ml-2 h6">£{{$obituary->donated_amount}}</strong> excluding transaction charges</span>
 </div>
 <div class="row">
     {{-- <div class="col-md-5">
@@ -41,7 +41,7 @@
             </div>
             @if (!$obituary->hasPaid())
                 <div class="card-footer pt-0">
-                    <donate-button :client_id="'{{env('PAYPAL_CLIENT')}}'" :min="{{$obituary->minAmount()}}" :obituary="{{$obituary}}"
+                    <donate-button :client_id="'{{env('PAYPAL_CLIENT')}}'" :min="{{$obituary->donated_amount}}" :obituary="{{$obituary}}"
                         :route="'{{route('members-area.submit_donation')}}'" :user="{{$user}}">
                         @csrf
                     </donate-button>

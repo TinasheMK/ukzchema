@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Notification;
 use TCG\Voyager\Events\BreadDataAdded;
+use TheSeer\Tokenizer\Exception;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -58,29 +59,29 @@ class EventServiceProvider extends ServiceProvider
                 $members = target_group($notification);
                 $notification->update(["target_total" => $members->count()]);
 
-                $date = strtotime("+1 week");
-                $dueDate = date("D M d, Y G:i", $date);
-                for($x = 0; $x < $members->count() ; $x++){
-                    $invoice = Invoice::create([
-                        "invoice_date" => date("D M d, Y G:i"),
-                        "type" => $notification->type,
-                        "subtotal" => $notification->amount,
-                        "total" => $notification->amount,
-                        "member_id"=> $members[$x]->id,
-                        "status" => "unpaid",
-                        "due_date" => $dueDate,
+                // $date = strtotime("+2 week");
+                // $dueDate = date("D M d, Y G:i", $date);
+                // for($x = 0; $x < $members->count() ; $x++){
+                //     $invoice = Invoice::create([
+                //         "invoice_date" => date("D M d, Y G:i"),
+                //         "type" => $notification->type,
+                //         "subtotal" => $notification->amount,
+                //         "total" => $notification->amount,
+                //         "member_id"=> $members[$x]->id,
+                //         "status" => "unpaid",
+                //         "due_date" => $dueDate,
 
-                    ]);
+                //     ]);
 
-                    // dd($invoice);
+                //     // dd($invoice);
 
-                    InvoiceItem::create([
-                        "title" => $notification->invoice_title,
-                        "amount" => $notification->amount,
-                        "invoice_id"=> $invoice->id
-                    ]);
-                }
-                // Notification::send($members, new AdminNotification($notification));
+                //     InvoiceItem::create([
+                //         "title" => $notification->invoice_title,
+                //         "amount" => $notification->amount,
+                //         "invoice_id"=> $invoice->id
+                //     ]);
+                // }
+                Notification::send($members, new AdminNotification($notification));
             }
         });
 
@@ -89,10 +90,60 @@ class EventServiceProvider extends ServiceProvider
          * when there are many users so que this up
          */
         Event::listen(ObituaryAdded::class, function ($event) {
+            $obituary = $event->obituary;
             logger("Obituary added event fired", [$event]);
-            dd("hey");
+            // dd($obituary->obituary);
             $members = Member::all();
-            Notification::send($members, new ObituaryAddedNotification($event->obituary));
+
+
+            // $date = strtotime("+2 week");
+            // $dueDate = date("D M d, Y G:i", $date);
+
+
+            // for($x = 0; $x <= $members->count()-1 ; $x++){
+            //     // dd($members[$x]->user_id);
+
+            //     $user = User::find($members[$x]->user_id);
+            //     // dd($user);
+            //     if($user){
+            //         $user->forceWithdrawFloat(200, ['description' => 'payment for obituary']);
+            //         // if($user->balanceFloat >= 0){
+            //         //     $paid_status = "paid";
+            //         // }else{
+            //         //     $paid_status = "unpaid";
+            //         // }
+
+
+            //         // $invoice = Invoice::create([
+            //         //     "invoice_date" => date("D M d, Y G:i"),
+            //         //     "type" => "Obituary",
+            //         //     "subtotal" => $obituary->donated_amount,
+            //         //     "total" => $obituary->donated_amount,
+            //         //     "member_id"=> $members[$x]->id,
+            //         //     "status" => $paid_status,
+            //         //     "due_date" => $dueDate,
+
+            //         // ]);
+
+            //         // dd($invoice);
+
+            //         // InvoiceItem::create([
+            //         //     "title" => $obituary->full_name,
+            //         //     "amount" => $obituary->donated_amount,
+            //         //     "invoice_id"=> $invoice->id
+            //         // ]);
+            //     }else{
+            //         print_r($members[$x]->id);
+            //         print_r("<br>");
+            //         // $x++;
+            //     }
+
+
+
+            // }
+
+
+            // Notification::send($members, new ObituaryAddedNotification($event->obituary));
         });
     }
 
