@@ -22,12 +22,11 @@ members without user accounts
 ## Orbituary for nominee to move nominee to deceased
 
 ## Subtract amount from everyones balance on orbituarry creation
+## Automatically pay orbituary when balance above required
 ## Orbituary create invoices and paypal fee
-## Member view invoices
-## Invoice on notification optional
 ## Orbituary add to wallet when paid
 ## Edit dashboard
-## Hide payments tab make it invopices
+## Hide payments tab make it invoices
 
 Obituary Created for $6
 

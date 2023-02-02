@@ -68,6 +68,12 @@ class Obituary extends Model
         // dd($has_donated);
         return isset($has_donated);
     }
+    public function hasPaidId($id){
+        $has_donated = Donation::whereMemberIdAndObituaryId($id, $this->id)
+            ->first();
+        // dd($has_donated);
+        return isset($has_donated);
+    }
 
     // public function getFullNameBrowseAttribute(){
     //     if($this->member_type === "nominee") {

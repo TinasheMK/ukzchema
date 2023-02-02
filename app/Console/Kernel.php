@@ -100,32 +100,30 @@ class Kernel extends ConsoleKernel
                                 logger("Invoice created for member:", [$members[$x]->id]);
                             }
                             else{
-                                logger("Obituary already invoiced:",  [$invoiced->id] );
-                                if ($user->balanceFloat >= $obituaries[$y]->donated_amount) {
-                                    $paid_status = "paid";
-                                    $user->forceWithdrawFloat($obituaries[$y]->donated_amount, ['description' => 'payment for obituary']);
-                                    $donation = $members[$x]->donations()->create([
-                                        "obituary_id" => $obituaries[$y]->id,
-                                        "orderID" => "wallet",
-                                        "amount" => $obituaries[$y]->donated_amount,
-                                        "on" => now()
-                                    ]);
-                                    $invoiced->status = "paid";
-                                    logger("Donation added for member:", [$members[$x]->id]);
-
-
-                                } else {
-                                    $paid_status = "unpaid";
-                                    logger("Insufficient funds for member:", [$members[$x]->id]);
-
+                                if ($invoiced->status != "paid") {
+                                    logger("Obituary already invoiced:", [$invoiced->id]);
+                                    if ($user->balanceFloat >= $obituaries[$y]->donated_amount) {
+                                        if ($obituaries->hasPaidId($members[$x]->id)) {
+                                            $paid_status = "paid";
+                                            $user->forceWithdrawFloat($obituaries[$y]->donated_amount, ['description' => 'payment for obituary']);
+                                            $donation = $members[$x]->donations()->create([
+                                                "obituary_id" => $obituaries[$y]->id,
+                                                "orderID" => "wallet",
+                                                "amount" => $obituaries[$y]->donated_amount,
+                                                "on" => now()
+                                            ]);
+                                            $invoiced->status = "paid";
+                                            $invoiced->save();
+                                            logger("Donation added for member:", [$members[$x]->id]);
+                                        }
+                                    } else {
+                                        $paid_status = "unpaid";
+                                        logger("Insufficient funds for member:", [$members[$x]->id]);
+                                    }
                                 }
-
                             }
 
                         } else {
-                            // print_r($members[$x]->id);
-                            // print_r("<br>");
-                            // $x++;
                             logger("Failed to invoice member:", [$members[$x]->user_id]);
                         }
 
