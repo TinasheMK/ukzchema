@@ -59,11 +59,11 @@ class SharedBaseController extends Controller
                 "route" => route('members-area.home'),
                 "icon" => "nc-bank"
             ],
-            [
-                "name" => "Obituaries",
-                "route" => route('members-area.obituary'),
-                "icon" => "nc-sound-wave"
-            ],
+            // [
+            //     "name" => "Obituaries",
+            //     "route" => route('members-area.obituary'),
+            //     "icon" => "nc-sound-wave"
+            // ],
             [
                 "name" => "Transactions",
                 "route" => route('members-area.deposits'),
