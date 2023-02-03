@@ -83,6 +83,10 @@ class Kernel extends ConsoleKernel
 
                         if ($user ) {
                             $invoiced = Invoice::whereMemberIdAndType($user->member_id, $obituaries[$y]->id)->first();
+
+                            // Create invoice for an obituary for this member
+                            // otherwise if invoice exists and is unpaid
+                            // check balance and pay if sufficient funds
                             if (!$invoiced) {
                                 if ($user->balanceFloat >= $obituaries[$y]->donated_amount) {
                                     $paid_status = "paid";
@@ -92,17 +96,17 @@ class Kernel extends ConsoleKernel
                                         "amount" => $obituaries[$y]->donated_amount,
                                         "on" => now()
                                     ]);
-                                    logger("Donation added for member:", [$members[$x]->id]);
+                                    logger("New invoice to be created and Donation added for member:", [$members[$x]->id]);
+                                    logger("Obituary is:", [$obituaries[$y]->id]);
 
                                 } else {
                                     $paid_status = "unpaid";
                                     logger("Insufficient funds for member:", [$members[$x]->id]);
-
                                 }
                                 $user->forceWithdrawFloat($obituaries[$y]->donated_amount, ['description' => 'payment for obituary']);
+                                logger("Withdraw for member on obituary:", [$obituaries[$y]->id]);
                                 $date = strtotime("+2 week");
                                 $dueDate = date("D M d, Y G:i", $date);
-                                logger("Withdraw for member:", [$obituaries[$y]->id]);
 
                                 $invoice = Invoice::create([
                                     "invoice_date" => date("D M d, Y G:i"),
@@ -122,11 +126,10 @@ class Kernel extends ConsoleKernel
                             }
                             else{
                                 if ($invoiced->status != "paid") {
-                                    logger("Obituary already invoiced:", [$invoiced->id]);
+                                    // logger("Obituary already invoiced:", [$invoiced->id]);
                                     if ($user->balanceFloat >= $obituaries[$y]->donated_amount) {
-                                        if ($obituaries[$y]->hasPaidId($members[$x]->id)) {
+                                        // if (!$obituaries[$y]->hasPaidId($members[$x]->id)) {
                                             $paid_status = "paid";
-                                            $user->forceWithdrawFloat($obituaries[$y]->donated_amount, ['description' => 'payment for obituary']);
                                             $donation = $members[$x]->donations()->create([
                                                 "obituary_id" => $obituaries[$y]->id,
                                                 "orderID" => "wallet",
@@ -136,11 +139,13 @@ class Kernel extends ConsoleKernel
                                             $invoiced->status = "paid";
                                             $invoiced->save();
                                             logger("Donation added for member:", [$members[$x]->id]);
-                                        }
+                                        // }
                                     } else {
                                         $paid_status = "unpaid";
                                         logger("Insufficient funds for member:", [$members[$x]->id]);
                                     }
+                                }else{
+                                    logger("Member already paid obituary:", [$obituaries[$y]->id]);
                                 }
                             }
 
