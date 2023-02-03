@@ -7,6 +7,8 @@ use App\Models\Invoice;
 use App\Models\InvoiceItem;
 use Illuminate\Http\Request;
 use App\User;
+use App\Notifications\DepositNotification;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Auth;
 
 class DepositController extends SharedBaseController
@@ -25,11 +27,10 @@ class DepositController extends SharedBaseController
         $member = $user->memberDetails;
         if (!isset($member)) {
             my_log("Deposit Received for user ID: {$user->id} {$user->name}", "System couldn't save. Please enter manually\nDeposited Amount: £{$amount}");
-            logger("Deposit Received for user ID: {$user->id} {$user->name}" + "System couldn't save. Please enter manually\nDeposited Amount: £{$amount}");
+            logger("Deposit Received for user ID: {$user->id} {$user->name} System couldn't save. Please enter manually\nDeposited Amount: £{$amount}");
         }else{
             $user->depositFloat($amount);
             $member->balance = $member->balance + $amount;
-
             $member->deposits()->create([
                 "amount" => $amount,
                 "payment_ref" => $request->payment_ref,
@@ -61,7 +62,10 @@ class DepositController extends SharedBaseController
             ]);
 
             $member->save();
+            Notification::route('mail', $member->email)->notify(new DepositNotification($amount));
         }
+        // dd($request);
+
         return redirect(route('members-area.deposits'))->with([
             'message'    => "Your deposit of £{$amount} was successfully received.",
             'alert-type' => 'success',

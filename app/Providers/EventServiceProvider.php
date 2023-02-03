@@ -96,51 +96,6 @@ class EventServiceProvider extends ServiceProvider
             $members = Member::all();
 
 
-            // $date = strtotime("+2 week");
-            // $dueDate = date("D M d, Y G:i", $date);
-
-
-            // for($x = 0; $x <= $members->count()-1 ; $x++){
-            //     // dd($members[$x]->user_id);
-
-            //     $user = User::find($members[$x]->user_id);
-            //     // dd($user);
-            //     if($user){
-            //         $user->forceWithdrawFloat(200, ['description' => 'payment for obituary']);
-            //         // if($user->balanceFloat >= 0){
-            //         //     $paid_status = "paid";
-            //         // }else{
-            //         //     $paid_status = "unpaid";
-            //         // }
-
-
-            //         // $invoice = Invoice::create([
-            //         //     "invoice_date" => date("D M d, Y G:i"),
-            //         //     "type" => "Obituary",
-            //         //     "subtotal" => $obituary->donated_amount,
-            //         //     "total" => $obituary->donated_amount,
-            //         //     "member_id"=> $members[$x]->id,
-            //         //     "status" => $paid_status,
-            //         //     "due_date" => $dueDate,
-
-            //         // ]);
-
-            //         // dd($invoice);
-
-            //         // InvoiceItem::create([
-            //         //     "title" => $obituary->full_name,
-            //         //     "amount" => $obituary->donated_amount,
-            //         //     "invoice_id"=> $invoice->id
-            //         // ]);
-            //     }else{
-            //         print_r($members[$x]->id);
-            //         print_r("<br>");
-            //         // $x++;
-            //     }
-
-
-
-            // }
 
 
             // Notification::send($members, new ObituaryAddedNotification($event->obituary));

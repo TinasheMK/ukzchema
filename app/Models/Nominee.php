@@ -42,13 +42,15 @@ class Nominee extends Model
     }
 
     public function toDeceased(){
-        DeceasedMember::create([
-            'id' => $this->member_id.'_'.$this->id,
-            'email' => $this->email,
-            'first_name' => $this->full_name,
-            'zimbabwean_by' => $this->zimbabwean_by,
-            'member_type' => 'Nominee',
-            'dob' => $this->dob,
+        DeceasedNominee::create([
+            'name' => $this->full_name,
+            'email' =>  $this->email,
+            'member_id'=> $this->member_id,
+            'full_name'=> $this->full_name,
+            'dob'=> $this->dob,
+            'dod'=>$this->dod,
+            'zimbabwean_by'=> $this->zimbabwean_by,
+
         ]);
         $this->delete();
     }

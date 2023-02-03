@@ -83,7 +83,7 @@ Member
                             {{str_limit($obituary->biography)}}
                         </span>
                         <div class="comment-footer pr-2">
-                            <span class="text-muted float-right">{{format_date($obituary->dod, 'M d Y')}}</span>
+                            <span class="text-muted float-right">{{format_date($obituary->created_at, 'M d Y')}}</span>
                             <a href="{{route('members-area.obituary-show', $obituary->id)}}"
                                 class="btn btn-info btn-sm">
                                 @if ($obituary->hasPaid())
