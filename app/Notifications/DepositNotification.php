@@ -51,7 +51,7 @@ class DepositNotification extends Notification
             [
                 'action' => "View Account",
                 'link' => route("splash"),
-                'message' => "You successfully deposited {{$this->amount->date}}. Login to your account for more information.",
+                'message' => "You successfully deposited {{$this->amount}}. Login to your account for more information.",
                 'deceased' => $this->claim->deceased_name
             ]
         );
