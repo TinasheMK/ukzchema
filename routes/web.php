@@ -46,6 +46,8 @@ Route::get('/account/change-password', 'AccountController@changePasswordForm')->
 
 Route::group(['prefix' => 'admin'], function () {
     Route::post('/nominee-deceased','NomineeController@deceased')->name("nominee.deceased");
+    Route::get('/deposit-manually/{id}','DepositController@manual')->name("deposit.manual");
+    Route::post('/deposit-manually','DepositController@manually')->name("deposit.manually");
 
     Route::post('/reject-applicant','ApplicantController@reject')->name("applicant.reject");
     Route::post('/accept-applicant', 'ApplicantController@accept')->name("applicant.accept");

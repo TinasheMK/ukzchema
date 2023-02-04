@@ -6,6 +6,7 @@ use App\User;
 use App\VoyagerActions\DeleteAction as UKZDeleteAction;
 use App\VoyagerActions\UKZEditAction;
 use App\VoyagerActions\UnpaidMember;
+use App\VoyagerActions\Deposit;
 use App\VoyagerActions\ViewAction as UKZViewAction;
 use App\VoyagerActions\ViewDonations;
 use App\VoyagerActions\ViewNominees;
@@ -40,6 +41,7 @@ class AppServiceProvider extends ServiceProvider
         // Voyager::addAction(ViewNominees::class);
         Voyager::addAction(ViewDonations::class);
         Voyager::addAction(UnpaidMember::class);
+        Voyager::addAction(Deposit::class);
         Voyager::replaceAction(DeleteAction::class, UKZDeleteAction::class);
         Voyager::replaceAction(ViewAction::class, UKZViewAction::class);
         Voyager::replaceAction(EditAction::class, UKZEditAction::class);
