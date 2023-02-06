@@ -76,7 +76,7 @@ export default {
             this.amount = (this.amount);
             this.amount = this.amount.toFixed(2);
 
-            this.amount1 = (this.amount/0.9871)+0.30-this.amount;
+            this.amount1 = (this.amount/0.9871)+0.30;
             this.amount1 = this.amount1.toFixed(2);
             console.log(this.amount, this.amount1)
             return action.order.create({
@@ -87,11 +87,10 @@ export default {
               },
               purchase_units: [
                 {
-                  reference_id: "d9f80740-38f0-11e8-b467-0ed5f89r717b",
                   description: `Chema payment for ${this.obituary.full_name}`,
                   amount: {
                     currency_code: "GBP",
-                    value: this.amount + this.amount1
+                    value: this.amount1
                   }
                 }
               ]
