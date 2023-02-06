@@ -91,16 +91,8 @@ export default {
                   description: `Chema payment for ${this.obituary.full_name}`,
                   amount: {
                     currency_code: "GBP",
-                    value: this.amount
+                    value: this.amount + this.amount1
                   }
-                },
-                {
-                    reference_id: "d9f80740-38f0-11e8-b467-0ed5f89f717b",
-                    description: `Charges`,
-                    amount: {
-                        currency_code: "GBP",
-                        value: this.amount1
-                    }
                 }
               ]
             });

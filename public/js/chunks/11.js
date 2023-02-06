@@ -70,14 +70,7 @@ __webpack_require__(/*! ../../libs/bootstrap-notify */ "./resources/js/libs/boot
               description: "Chema payment for ".concat(_this.obituary.full_name),
               amount: {
                 currency_code: "GBP",
-                value: _this.amount
-              }
-            }, {
-              reference_id: "d9f80740-38f0-11e8-b467-0ed5f89f717b",
-              description: "Charges",
-              amount: {
-                currency_code: "GBP",
-                value: _this.amount1
+                value: _this.amount + _this.amount1
               }
             }]
           });

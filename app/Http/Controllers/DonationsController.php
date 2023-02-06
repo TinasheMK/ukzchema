@@ -66,14 +66,21 @@ class DonationsController extends SharedBaseController
         $obituary = Obituary::find($request->obituary_id);
 
         $user = User::find(Auth::user()->id);
-        $user->depositFloat($order->amount->value);
+
+        $amount = $order->amount->value;
+        $amount = $amount - 0.3;
+        $amount = $amount * 0.9871;
+        $amount = round($amount, 2);
+
+
+        $user->depositFloat($amount);
 
         // $obituary->donated_amount = $obituary->donated_amount + $order->amount->value;
         // $obituary->save();
         $donation = $member->donations()->create([
             "obituary_id" => $obituary->id,
             "orderID" => $request->orderID,
-            "amount" => $order->amount->value,
+            "amount" => $amount,
             "on" => now()
         ]);
 

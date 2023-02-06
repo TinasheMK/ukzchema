@@ -23,6 +23,9 @@ class DepositController extends SharedBaseController
             ]);
         }
         $amount = getAmount($request->payment_ref);
+        $amount = $amount - 0.3;
+        $amount = $amount * 0.9871;
+        $amount = round($amount, 2);
         // $user = Auth::user();
         $user = User::find(Auth::user()->id);
         $member = $user->memberDetails;

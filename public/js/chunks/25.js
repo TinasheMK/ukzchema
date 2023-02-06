@@ -77,7 +77,7 @@ __webpack_require__.r(__webpack_exports__);
           _this3.amount = parseFloat(_this3.amount);
           _this3.amount = _this3.amount;
           _this3.amount = _this3.amount.toFixed(2);
-          _this3.amount1 = _this3.amount / 0.9871 + 0.30 - _this3.amount;
+          _this3.amount1 = _this3.amount / 0.9871 + 0.30;
           _this3.amount1 = _this3.amount1.toFixed(2);
           console.log("Paypal payment of: ", _this3.amount);
           return action.order.create({
@@ -87,15 +87,7 @@ __webpack_require__.r(__webpack_exports__);
               shipping_preference: "NO_SHIPPING"
             },
             purchase_units: [{
-              reference_id: "d9f80740-38f0-11e8-b467-0ed5f89f7165",
               description: "Funds Deposit for user: ".concat(_this3.user.id, " (").concat(_this3.user.name, ")"),
-              amount: {
-                currency_code: "GBP",
-                value: _this3.amount
-              }
-            }, {
-              reference_id: "d9f80740-38f0-11e8-b467-0ed5f89f718b",
-              description: "Charges",
               amount: {
                 currency_code: "GBP",
                 value: _this3.amount1
