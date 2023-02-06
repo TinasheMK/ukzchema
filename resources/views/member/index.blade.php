@@ -6,7 +6,7 @@ Member
 
 @section('content')
 <div class="row">
-    @if (Auth::user()->role_id =1)
+    @if (Auth::user()->role_id==1)
         <div class="col-md-6 col-sm-6">
             <div class="card card-stats">
                 <div class="card-body ">
