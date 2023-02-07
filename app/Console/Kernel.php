@@ -38,8 +38,6 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
 
-        $this->billBoardMembers();
-
         // $schedule->command('inspire')->hourly();
         $schedule->call(function () {
             DB::table('applicants')->where([
@@ -50,6 +48,8 @@ class Kernel extends ConsoleKernel
 
         $schedule->call(function () {
             // logger("User balance Cron running:");
+            $this->billBoardMembers();
+
 
             $users = User::all();
             for ($x = 0; $x <= $users->count() - 1; $x++) {
