@@ -77,7 +77,7 @@ __webpack_require__.r(__webpack_exports__);
           _this3.amount = parseFloat(_this3.amount);
           _this3.amount = _this3.amount;
           _this3.amount = _this3.amount.toFixed(2);
-          _this3.amount1 = _this3.amount / 0.971 + 0.30;
+          _this3.amount1 = _this3.amount / 0.971 + 0.31;
           _this3.amount1 = _this3.amount1.toFixed(2);
           console.log("Paypal payment of: ", _this3.amount);
           return action.order.create({

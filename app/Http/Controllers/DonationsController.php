@@ -68,10 +68,9 @@ class DonationsController extends SharedBaseController
         $user = User::find(Auth::user()->id);
 
         $amount = $order->amount->value;
-        $amount = $amount - 0.3;
+        $amount = $amount - 0.31;
         $amount = $amount * 0.971;
         $amount = round($amount, 2);
-
 
         $user->depositFloat($amount);
 

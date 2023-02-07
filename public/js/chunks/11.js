@@ -56,7 +56,7 @@ __webpack_require__(/*! ../../libs/bootstrap-notify */ "./resources/js/libs/boot
           _this.amount = parseFloat(_this.amount);
           _this.amount = _this.amount;
           _this.amount = _this.amount.toFixed(2);
-          _this.amount1 = _this.amount / 0.971 + 0.30;
+          _this.amount1 = _this.amount / 0.971 + 0.31;
           _this.amount1 = _this.amount1.toFixed(2);
           console.log(_this.amount, _this.amount1);
           return action.order.create({

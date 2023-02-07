@@ -76,7 +76,7 @@ export default {
             this.amount = (this.amount);
             this.amount = this.amount.toFixed(2);
 
-            this.amount1 = (this.amount/0.971)+0.30;
+            this.amount1 = (this.amount/0.971)+0.31;
             this.amount1 = this.amount1.toFixed(2);
             console.log(this.amount, this.amount1)
             return action.order.create({
