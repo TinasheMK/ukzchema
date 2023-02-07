@@ -3,6 +3,7 @@
 namespace App\Console;
 
 
+use App\Models\BoardMember;
 use App\Models\Donation;
 use App\Models\Invoice;
 use App\Models\InvoiceItem;
@@ -37,6 +38,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
 
+        $this->billBoardMembers();
 
         // $schedule->command('inspire')->hourly();
         $schedule->call(function () {
@@ -59,10 +61,7 @@ class Kernel extends ConsoleKernel
                 }else{
                     // logger("User balance update failed:", [$users[$x]->id]  );
                 }
-
             }
-
-
         })->everyMinute();
 
 
@@ -163,6 +162,55 @@ class Kernel extends ConsoleKernel
             }
         })->everyMinute();
 
+
+
+    }
+
+    public function billBoardMembers(){
+        $members = BoardMember::all();
+        $obituaries = Obituary::all();
+        for ($y = 0; $y <= $obituaries->count() - 1; $y++) {
+            for ($x = 0; $x <= $members->count() - 1; $x++) {
+
+                $user = User::find($members[$x]->member->user_id);
+
+                // logger("Obituary Cron running:", [$members[$x]->user_id]  );
+
+                if ($user ) {
+                    $invoiced = Invoice::whereMemberIdAndType($user->member_id, $obituaries[$y]->id)->first();
+
+                    if (!$invoiced) {
+                        $donation = $members[$x]->member->donations()->create([
+                            "obituary_id" => $obituaries[$y]->id,
+                            "orderID" => "wallet",
+                            "amount" => 0,
+                            "on" => now()
+                        ]);
+
+                        $date = strtotime("+2 week");
+                        $dueDate = date("D M d, Y G:i", $date);
+
+                        $invoice = Invoice::create([
+                            "invoice_date" => date("D M d, Y G:i"),
+                            "type" => $obituaries[$y]->id,
+                            "subtotal" => 0,
+                            "total" => 0,
+                            "member_id" => $members[$x]->member->id,
+                            "status" => "paid",
+                            "due_date" => $dueDate,
+                        ]);
+                        InvoiceItem::create([
+                            "title" => $obituaries[$y]->full_name,
+                            "amount" => 0,
+                            "invoice_id" => $invoice->id
+                        ]);
+                    }
+                }
+
+
+
+            }
+        }
     }
 
     /**
