@@ -69,7 +69,7 @@ class DonationsController extends SharedBaseController
 
         $amount = $order->amount->value;
         $amount = $amount - 0.3;
-        $amount = $amount * 0.9871;
+        $amount = $amount * 0.971;
         $amount = round($amount, 2);
 
 

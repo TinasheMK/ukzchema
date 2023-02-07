@@ -127,7 +127,7 @@ export default {
             this.amount = (this.amount);
             this.amount = this.amount.toFixed(2);
 
-            this.amount1 = (this.amount/0.9871)+0.30;
+            this.amount1 = (this.amount/0.971)+0.30;
             this.amount1 = this.amount1.toFixed(2);
 
             console.log("Paypal payment of: ", this.amount);
