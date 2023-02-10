@@ -170,7 +170,7 @@ class Kernel extends ConsoleKernel
         $schedule->call(function () {
             try{
                 logger("Reminders Cron running");
-                Notification::route('mail', $member->email)->notify(new TerminationNotification($member));
+                Notification::route('mail', 'tinashekmakarudze@gmail.com')->notify(new Reminder1Notification("30"));
 
                 logger("Email sent");
 
