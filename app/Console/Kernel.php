@@ -177,6 +177,7 @@ class Kernel extends ConsoleKernel
 
 
                 $invoice = Invoice::whereStatus("unpaid")->get();
+
                 for ($y = 0; $y <= $invoice->count() - 1; $y++) {
                     logger("Invoice processing", [$invoice[$y]]);
                     $datenow    = date("Y-m-d H:i:s");
@@ -197,26 +198,32 @@ class Kernel extends ConsoleKernel
                         logger("First reminder for invoice", [$invoice[$y]]);
 
                         try{
-                            $email = User::find($invoice[$y]->user_id)->memberDetails;
+                            $email = Member::find($invoice[$y]->member_id);
 
                             $invoice[$y]->reminder = 2;
                             $invoice[$y]->save();
                             Notification::send($email, new Reminder1Notification($invoice[$y]->amount));
+                            logger("Reminder sent to", [$email->id]);
 
-                        }catch(ErrorException $e){}
+                        }catch(ErrorException $e){
+                            logger("Member not found", [$email->id]);
+                        }
                     }
 
                     if ($days_ago7 > $datenow && $invoice[$y]->reminder !=2) {
                         logger("Second reminder for invoice", [$invoice[$y]]);
 
                         try{
-                            $email = User::find($invoice[$y]->user_id)->memberDetails;
+                            $email = Member::find($invoice[$y]->member_id);
                             $invoice[$y]->reminder = 2;
                             $invoice[$y]->save();
-
-
                             Notification::send($email, new Reminder2Notification($invoice[$y]->amount,$days_ago2,$datenow));
-                        }catch(ErrorException $e){}
+                            logger("Reminder sent to", [$email->id]);
+
+                        }catch(ErrorException $e){
+                            logger("Member not found", [$email->id]);
+
+                        }
                     }
 
                 }
