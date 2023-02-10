@@ -192,25 +192,30 @@ class Kernel extends ConsoleKernel
                     logger("due 4 ", [ $days_ago4]);
                     logger("due 7 ", [ $days_ago7]);
 
-                    if ($days_ago2>=$datenow && $days_ago4<=$datenow && $invoice[$y]->reminder !=1) {
+                    if ($days_ago2<=$datenow && $days_ago4>=$datenow && $invoice[$y]->reminder !=1) {
                         logger("First reminder for invoice", [$invoice[$y]]);
 
-                        $email = User::find($invoice[$y]->user_id)->memberDetails;
+                        try{
+                            $email = User::find($invoice[$y]->user_id)->memberDetails;
 
-                        $invoice[$y]->reminder = 2;
-                        $invoice[$y]->save();
-                        Notification::send($email, new Reminder1Notification($invoice[$y]->amount));
+                            $invoice[$y]->reminder = 2;
+                            $invoice[$y]->save();
+                            Notification::send($email, new Reminder1Notification($invoice[$y]->amount));
+
+                        }catch(Exception $e){}
                     }
 
                     if ($days_ago7 > $datenow && $invoice[$y]->reminder !=2) {
                         logger("Second reminder for invoice", [$invoice[$y]]);
 
-                        $email = User::find($invoice[$y]->user_id)->memberDetails;
-                        $invoice[$y]->reminder = 2;
-                        $invoice[$y]->save();
+                        try{
+                            $email = User::find($invoice[$y]->user_id)->memberDetails;
+                            $invoice[$y]->reminder = 2;
+                            $invoice[$y]->save();
 
 
-                        Notification::send($email, new Reminder2Notification($invoice[$y]->amount,$days_ago2,$datenow));
+                            Notification::send($email, new Reminder2Notification($invoice[$y]->amount,$days_ago2,$datenow));
+                        }catch(Exception $e){}
                     }
 
                 }
