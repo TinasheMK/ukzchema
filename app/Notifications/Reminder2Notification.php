@@ -55,8 +55,8 @@ class Reminder2Notification extends Notification
 
                 Dear member
                 Account suspended
-                A payment of £….. is still pending after reminder sent on ………
-                Your account has been suspended since …./22 and is going to be terminated in 3 days.
+                A payment of £{$amount} is still pending after reminder sent on {$reminder_date}
+                Your account has been suspended since {$suspension_date} and is going to be terminated in 3 days.
                 Please settle outstanding amount at your earliest.
                 >>If you do not wish to continue with your membership, please just ignore this nofication.
                 >>If you want to avoid termination, please make a payment within the next 72 hours.
@@ -65,9 +65,6 @@ class Reminder2Notification extends Notification
                 Best wishes
                 Admin Team
                 UKZ Chema Association
-
-
-
                 ",
 
             ]

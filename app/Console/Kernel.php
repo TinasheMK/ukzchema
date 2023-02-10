@@ -168,90 +168,29 @@ class Kernel extends ConsoleKernel
             try{
                 // logger("Obituary Cron running");
 
-                $members = Member::all();
-                $obituaries = Obituary::all();
-                for ($y = 0; $y <= $obituaries->count() - 1; $y++) {
-                    for ($x = 0; $x <= $members->count() - 1; $x++) {
+                $invoice = Invoice::whereStatus("unpaid")->get();
 
-                        $user = User::find($members[$x]->user_id);
+                for ($y = 0; $y <= $invoice->count() - 1; $y++) {
+                    $date    = new DateTime($invoice[$y]->created_at);
 
-                        // logger("Obituary Cron running:", [$members[$x]->user_id]  );
-
-                        if ($user ) {
-                            $invoiced = Invoice::whereMemberIdAndType($user->member_id, $obituaries[$y]->id)->first();
-
-                            // Create invoice for an obituary for this member
-                            // otherwise if invoice exists and is unpaid
-                            // check balance and pay if sufficient funds
-                            if (!$invoiced) {
-                                if ($user->balanceFloat >= $obituaries[$y]->donated_amount) {
-                                    $paid_status = "paid";
-                                    $donation = $members[$x]->donations()->create([
-                                        "obituary_id" => $obituaries[$y]->id,
-                                        "orderID" => "wallet",
-                                        "amount" => $obituaries[$y]->donated_amount,
-                                        "on" => now()
-                                    ]);
-                                    // logger("New invoice to be created and Donation added for member:", [$members[$x]->id]);
-                                    // logger("Obituary is:", [$obituaries[$y]->id]);
-
-                                } else {
-                                    $paid_status = "unpaid";
-                                    // logger("Insufficient funds for member:", [$members[$x]->id]);
-                                }
-                                $user->forceWithdrawFloat($obituaries[$y]->donated_amount, ['description' => 'payment for obituary']);
-                                // logger("Withdraw for member on obituary:", [$obituaries[$y]->id]);
-                                $date = strtotime("+2 week");
-                                $dueDate = date("D M d, Y G:i", $date);
-
-                                $invoice = Invoice::create([
-                                    "invoice_date" => date("D M d, Y G:i"),
-                                    "type" => $obituaries[$y]->id,
-                                    "subtotal" => $obituaries[$y]->donated_amount,
-                                    "total" => $obituaries[$y]->donated_amount,
-                                    "member_id" => $members[$x]->id,
-                                    "status" => $paid_status,
-                                    "due_date" => $dueDate,
-                                ]);
-                                InvoiceItem::create([
-                                    "title" => $obituaries[$y]->full_name,
-                                    "amount" => $obituaries[$y]->donated_amount,
-                                    "invoice_id" => $invoice->id
-                                ]);
-                                // logger("Invoice created for member:", [$members[$x]->id]);
-                            }
-                            else{
-                                if ($invoiced->status != "paid") {
-                                    // // logger("Obituary already invoiced:", [$invoiced->id]);
-                                    if ($user->balanceFloat >= $obituaries[$y]->donated_amount) {
-                                        // if (!$obituaries[$y]->hasPaidId($members[$x]->id)) {
-                                            $paid_status = "paid";
-                                            $donation = $members[$x]->donations()->create([
-                                                "obituary_id" => $obituaries[$y]->id,
-                                                "orderID" => "wallet",
-                                                "amount" => $obituaries[$y]->donated_amount,
-                                                "on" => now()
-                                            ]);
-                                            $invoiced->status = "paid";
-                                            $invoiced->save();
-                                            // logger("Donation added for member:", [$members[$x]->id]);
-                                        // }
-                                    } else {
-                                        $paid_status = "unpaid";
-                                        // logger("Insufficient funds for member:", [$members[$x]->id]);
-                                    }
-                                }else{
-                                    // logger("Member already paid obituary:", [$obituaries[$y]->id]);
-                                }
-                            }
-
-                        } else {
-                            // logger("Failed to invoice member:", [$members[$x]->user_id]);
-                        }
+                    $days_ago2 = date('Y-m-d', strtotime('+2 days', strtotime( $$date2 )));
+                    $days_ago4 = date('Y-m-d', strtotime('+4 days', strtotime( $date_now)));
+                    $days_ago7 = date('Y-m-d', strtotime('+7 days', strtotime( $date_now)));
 
 
+                    if ($date > $days_ago2 && $date < $days_ago4 && reminder !=1) {
+                        $email = User::find($invoice[$y]->user_id)
 
+                        Notification::send($email, new Reminder1Notification($invoice[$y]->amount));
                     }
+
+                    if ($date2 > $days_ago7 && reminder !=2) {
+                        $email = User::find($invoice[$y]->user_id)
+                        $invoice[$y]->reminder = 2;
+
+                        Notification::send($email, new Reminder2Notification($invoice[$y]->amount));
+                    }
+
                 }
             }
             catch (Exception $e) {
