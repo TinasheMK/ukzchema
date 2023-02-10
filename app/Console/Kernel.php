@@ -170,7 +170,8 @@ class Kernel extends ConsoleKernel
         $schedule->call(function () {
             try{
                 logger("Reminders Cron running");
-                Notification::send($email, new Reminder2Notification($invoice[$y]->amount,$days_ago2,$datenow));
+                Notification::route('mail', $member->email)->notify(new TerminationNotification($member));
+
                 logger("Email sent");
 
 
@@ -187,7 +188,7 @@ class Kernel extends ConsoleKernel
                     if ($date > $days_ago2 && $date < $days_ago4 && $invoice[$y]->reminder !=1) {
                         logger("First reminder for invoice", [$invoice[$y]]);
 
-                        $email = User::find($invoice[$y]->user_id);
+                        $email = User::find($invoice[$y]->user_id)->memberDetails;
 
                         $invoice[$y]->reminder = 2;
                         $invoice[$y]->save();
@@ -197,7 +198,7 @@ class Kernel extends ConsoleKernel
                     if ($date > $days_ago7 && $invoice[$y]->reminder !=2) {
                         logger("Second reminder for invoice", [$invoice[$y]]);
 
-                        $email = User::find($invoice[$y]->user_id);
+                        $email = User::find($invoice[$y]->user_id)->memberDetails;
                         $invoice[$y]->reminder = 2;
                         $invoice[$y]->save();
 
