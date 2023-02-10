@@ -219,10 +219,8 @@ class Kernel extends ConsoleKernel
                             $invoice[$y]->save();
                             Notification::send($email, new Reminder2Notification($invoice[$y]->amount,$days_ago2,$datenow));
                             logger("Reminder sent to", [$email->id]);
-
                         }catch(ErrorException $e){
                             logger("Member not found", [$email->id]);
-
                         }
                     }
 

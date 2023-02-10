@@ -44,8 +44,8 @@ class Reminder1Notification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-        ->from("noreply@ukzchema.co.uk", "UKZ Deposits")
-        ->subject("UKZChema Successful Deposit")
+        ->from("noreply@ukzchema.co.uk", "UKZ Payment Reminder")
+        ->subject("UKZChema Payment Reminder")
         ->markdown(
             'mail.member.deposit',
             [

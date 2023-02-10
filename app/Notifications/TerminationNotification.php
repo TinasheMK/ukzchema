@@ -44,8 +44,8 @@ class TerminationNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-        ->from("noreply@ukzchema.co.uk", "UKZ Deposits")
-        ->subject("UKZChema Successful Deposit")
+        ->from("noreply@ukzchema.co.uk", "UKZ Account Termination")
+        ->subject("UKZChema Account Termination")
         ->markdown(
             'mail.member.deposit',
             [
