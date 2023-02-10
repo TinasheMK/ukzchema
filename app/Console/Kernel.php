@@ -178,18 +178,21 @@ class Kernel extends ConsoleKernel
                 $invoice = Invoice::whereStatus("unpaid")->get();
                 for ($y = 0; $y <= $invoice->count() - 1; $y++) {
                     logger("Invoice processing", [$invoice[$y]]);
+                    $datenow    = date("Y-m-d H:i:s");
+
                     $date    = $invoice[$y]->created_at;
 
                     $days_ago2 = date('Y-m-d H:i:s', strtotime('+3 days', strtotime( $date)));
                     $days_ago4 = date('Y-m-d H:i:s', strtotime('+4 days', strtotime( $date)));
                     $days_ago7 = date('Y-m-d H:i:s', strtotime('+7 days', strtotime( $date)));
 
+                    logger("date now", [$datenow]);
                     logger("date", [$date]);
                     logger("due 2 ", [ $days_ago2]);
                     logger("due 4 ", [ $days_ago4]);
                     logger("due 7 ", [ $days_ago7]);
 
-                    if ($date >= $days_ago2 && $date <= $days_ago4 && $invoice[$y]->reminder !=1) {
+                    if ($days_ago2>=$datenow && $days_ago4<=$datenow && $invoice[$y]->reminder !=1) {
                         logger("First reminder for invoice", [$invoice[$y]]);
 
                         $email = User::find($invoice[$y]->user_id)->memberDetails;
@@ -199,14 +202,13 @@ class Kernel extends ConsoleKernel
                         Notification::send($email, new Reminder1Notification($invoice[$y]->amount));
                     }
 
-                    if ($date > $days_ago7 && $invoice[$y]->reminder !=2) {
+                    if ($days_ago7 > $datenow && $invoice[$y]->reminder !=2) {
                         logger("Second reminder for invoice", [$invoice[$y]]);
 
                         $email = User::find($invoice[$y]->user_id)->memberDetails;
                         $invoice[$y]->reminder = 2;
                         $invoice[$y]->save();
 
-                        $datenow    = date("Y-m-d H:i:s");
 
                         Notification::send($email, new Reminder2Notification($invoice[$y]->amount,$days_ago2,$datenow));
                     }
