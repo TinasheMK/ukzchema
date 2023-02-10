@@ -12,6 +12,7 @@ use App\Models\Obituary;
 use App\Notifications\Reminder1Notification;
 use App\Notifications\Reminder2Notification;
 use App\User;
+use ErrorException;
 use Illuminate\Support\Carbon;
 use Log;
 use Illuminate\Support\Facades\Notification;
@@ -202,7 +203,7 @@ class Kernel extends ConsoleKernel
                             $invoice[$y]->save();
                             Notification::send($email, new Reminder1Notification($invoice[$y]->amount));
 
-                        }catch(Exception $e){}
+                        }catch(ErrorException $e){}
                     }
 
                     if ($days_ago7 > $datenow && $invoice[$y]->reminder !=2) {
@@ -215,7 +216,7 @@ class Kernel extends ConsoleKernel
 
 
                             Notification::send($email, new Reminder2Notification($invoice[$y]->amount,$days_ago2,$datenow));
-                        }catch(Exception $e){}
+                        }catch(ErrorException $e){}
                     }
 
                 }
