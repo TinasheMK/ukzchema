@@ -180,12 +180,12 @@ class Kernel extends ConsoleKernel
                     logger("Invoice processing", [$invoice[$y]]);
                     $date    = $invoice[$y]->created_at;
 
-                    $days_ago2 = date('Y-m-d H:i:s', strtotime('+2 days', strtotime( $date)));
+                    $days_ago2 = date('Y-m-d H:i:s', strtotime('+3 days', strtotime( $date)));
                     $days_ago4 = date('Y-m-d H:i:s', strtotime('+4 days', strtotime( $date)));
                     $days_ago7 = date('Y-m-d H:i:s', strtotime('+7 days', strtotime( $date)));
 
 
-                    if ($date > $days_ago2 && $date < $days_ago4 && $invoice[$y]->reminder !=1) {
+                    if ($date >= $days_ago2 && $date <= $days_ago4 && $invoice[$y]->reminder !=1) {
                         logger("First reminder for invoice", [$invoice[$y]]);
 
                         $email = User::find($invoice[$y]->user_id)->memberDetails;
