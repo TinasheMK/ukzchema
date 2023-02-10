@@ -7,21 +7,21 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class Reminder3Notification extends Notification
+class TerminationNotification extends Notification
 {
     use Queueable;
 
-    public $amount;
+    public $member;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($amount)
+    public function __construct($member)
     {
         //
-        $this->amount = $amount;
+        $this->member = $member;
     }
 
     /**
@@ -49,9 +49,9 @@ class Reminder3Notification extends Notification
         ->markdown(
             'mail.member.deposit',
             [
-                'action' => "View Account",
+                'action' => "Suspended Account",
                 'link' => route("splash"),
-                'message' => "You successfully deposited {{$this->amount}}. Login to your account for more information.",
+                'message' => "Your account on UKZ Chema was suspended. Please get in touch with support for more information.",
 
             ]
         );

@@ -314,9 +314,12 @@ $member = $dataTypeContent;
                         {{ strtolower($dataType->getTranslatedAttribute('display_name_singular')) }}?</h4>
                 </div>
                 <div class="modal-footer">
-                    <form action="{{ route('voyager.'.$dataType->slug.'.index') }}" id="delete_form" method="POST">
-                        {{ method_field('DELETE') }}
-                        {{ csrf_field() }}
+                    {{-- <form action="{{ route('voyager.'.$dataType->slug.'.index') }}" id="delete_form" method="POST"> --}}
+                    <form action="{{ route('delete.member',$member->id) }}" id="delete_form" method="POST">
+                        {{-- {{ method_field('DELETE') }} --}}
+                        {{-- {{ csrf_field() }}
+                         --}}
+                         @csrf
                         <input type="submit" class="btn btn-danger pull-right delete-confirm"
                             value="Yes terminate! {{ strtolower($dataType->getTranslatedAttribute('display_name_singular')) }}">
                     </form>
@@ -340,9 +343,9 @@ $member = $dataTypeContent;
                 deleteFormAction = form.action;
             }
 
-            form.action = deleteFormAction.match(/\/[0-9]+$/)
-                ? deleteFormAction.replace(/([0-9]+$)/, $(this).data('id'))
-                : deleteFormAction + '/' + $(this).data('id');
+            // form.action = deleteFormAction.match(/\/[0-9]+$/)
+            //     ? deleteFormAction.replace(/([0-9]+$)/, $(this).data('id'))
+            //     : deleteFormAction + '/' + $(this).data('id');
 
             $('#delete_modal').modal('show');
         });

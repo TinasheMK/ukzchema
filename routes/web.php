@@ -49,6 +49,8 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/deposit-manually/{id}','DepositController@manual')->name("deposit.manual");
     Route::post('/deposit-manually','DepositController@manually')->name("deposit.manually");
 
+    Route::post('/delete-member/{member}','MemberController@delete')->name("delete.member");
+
     Route::post('/reject-applicant','ApplicantController@reject')->name("applicant.reject");
     Route::post('/accept-applicant', 'ApplicantController@accept')->name("applicant.accept");
     Route::post('/accept-applicant-paid', 'ApplicantController@acceptpaid')->name("applicant.acceptpaid");

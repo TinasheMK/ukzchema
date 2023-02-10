@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Member;
 use App\Models\Obituary;
+use App\Notifications\TerminationNotification;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 
 class MemberController extends SharedBaseController
 {
@@ -53,5 +55,17 @@ class MemberController extends SharedBaseController
     public function store(Request $request)
     {
         return $request->all();
+    }
+
+    public function delete(Member $member)
+    {
+
+        $member->delete();
+        Notification::route('mail', $member->email)->notify(new TerminationNotification($member));
+
+        return back()->with([
+            'message'    => 'Successfully deleted member',
+            'alert-type' => 'success',
+        ]);
     }
 }
