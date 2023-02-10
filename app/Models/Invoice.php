@@ -19,6 +19,7 @@ class Invoice extends Model
         "subtotal",
         "total",
         "type",
+        "reminder",
         "created_at",
         "updated_at",
     ];

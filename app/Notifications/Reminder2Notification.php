@@ -12,16 +12,20 @@ class Reminder2Notification extends Notification
     use Queueable;
 
     public $amount;
+    public $reminder_date;
+    public $suspension_date;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($amount)
+    public function __construct($amount, $reminder_date, $suspension_date)
     {
         //
         $this->amount = $amount;
+        $this->suspension_date = $suspension_date;
+        $this->reminder_date = $reminder_date;
     }
 
     /**
@@ -55,8 +59,8 @@ class Reminder2Notification extends Notification
 
                 Dear member
                 Account suspended
-                A payment of £{$amount} is still pending after reminder sent on {$reminder_date}
-                Your account has been suspended since {$suspension_date} and is going to be terminated in 3 days.
+                A payment of £{{$this->amount}} is still pending after reminder sent on {{$this->reminder_date}}
+                Your account has been suspended since {{$this->suspension_date}} and is going to be terminated in 3 days.
                 Please settle outstanding amount at your earliest.
                 >>If you do not wish to continue with your membership, please just ignore this nofication.
                 >>If you want to avoid termination, please make a payment within the next 72 hours.

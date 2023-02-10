@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class Remider1Notification extends Notification
+class Reminder1Notification extends Notification
 {
     use Queueable;
 
@@ -55,7 +55,7 @@ class Remider1Notification extends Notification
 
                 Dear member
                 Reminder of payment due.
-                A payment of £{$amount} is still pending after funeral announcement made 72 hours ago.
+                A payment of £{{ $this->amount }} is still pending after funeral announcement made 72 hours ago.
                 We wish to highlight the urgency of this issue as per our constitution.
                 Please settle outstanding amount at your earliest
                 We look forward to receiving your payment receipt in order to avoid suspension.

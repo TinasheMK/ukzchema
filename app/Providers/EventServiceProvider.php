@@ -98,7 +98,7 @@ class EventServiceProvider extends ServiceProvider
 
 
 
-            // Notification::send($members, new ObituaryAddedNotification($event->obituary));
+            Notification::send($members, new ObituaryAddedNotification($event->obituary));
         });
     }
 

@@ -9,9 +9,12 @@ use App\Models\Invoice;
 use App\Models\InvoiceItem;
 use App\Models\Member;
 use App\Models\Obituary;
+use App\Notifications\Reminder1Notification;
+use App\Notifications\Reminder2Notification;
 use App\User;
 use Illuminate\Support\Carbon;
 use Log;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Console\Scheduling\Schedule;
@@ -166,35 +169,40 @@ class Kernel extends ConsoleKernel
         // Reminders
         $schedule->call(function () {
             try{
-                // logger("Obituary Cron running");
+                logger("Reminders Cron running");
 
                 $invoice = Invoice::whereStatus("unpaid")->get();
 
                 for ($y = 0; $y <= $invoice->count() - 1; $y++) {
-                    $date    = new DateTime($invoice[$y]->created_at);
+                    $date    = $invoice[$y]->created_at;
 
-                    $days_ago2 = date('Y-m-d', strtotime('+2 days', strtotime( $$date2 )));
-                    $days_ago4 = date('Y-m-d', strtotime('+4 days', strtotime( $date_now)));
-                    $days_ago7 = date('Y-m-d', strtotime('+7 days', strtotime( $date_now)));
+                    $days_ago2 = date('Y-m-d H:i:s', strtotime('+2 days', strtotime( $date)));
+                    $days_ago4 = date('Y-m-d H:i:s', strtotime('+4 days', strtotime( $date)));
+                    $days_ago7 = date('Y-m-d H:i:s', strtotime('+7 days', strtotime( $date)));
 
 
-                    if ($date > $days_ago2 && $date < $days_ago4 && reminder !=1) {
-                        $email = User::find($invoice[$y]->user_id)
+                    if ($date > $days_ago2 && $date < $days_ago4 && $invoice[$y]->reminder !=1) {
+                        $email = User::find($invoice[$y]->user_id);
 
+                        $invoice[$y]->reminder = 2;
+                        $invoice[$y]->save();
                         Notification::send($email, new Reminder1Notification($invoice[$y]->amount));
                     }
 
-                    if ($date2 > $days_ago7 && reminder !=2) {
-                        $email = User::find($invoice[$y]->user_id)
+                    if ($date > $days_ago7 && $invoice[$y]->reminder !=2) {
+                        $email = User::find($invoice[$y]->user_id);
                         $invoice[$y]->reminder = 2;
+                        $invoice[$y]->save();
 
-                        Notification::send($email, new Reminder2Notification($invoice[$y]->amount));
+                        $datenow    = date("Y-m-d H:i:s");
+
+                        Notification::send($email, new Reminder2Notification($invoice[$y]->amount,$days_ago2,$datenow));
                     }
 
                 }
             }
             catch (Exception $e) {
-                // Log::alert($e);
+                logger("Failed to invoice member:", [$e]);
             }
         })->everyMinute();
 
