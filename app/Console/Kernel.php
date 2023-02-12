@@ -188,7 +188,7 @@ class Kernel extends ConsoleKernel
                     $days_ago2 = date('Y-m-d H:i:s', strtotime('+3 days', strtotime( $date)));
                     $days_ago4 = date('Y-m-d H:i:s', strtotime('+4 days', strtotime( $date)));
                     $days_ago7 = date('Y-m-d H:i:s', strtotime('+7 days', strtotime( $date)));
-                    $days_ago10 = date('Y-m-d H:i:s', strtotime('+10 days', strtotime( $date)));
+                    $days_ago10 = date('Y-m-d H:i:s', strtotime('+11 days', strtotime( $date)));
 
                     // logger("date now", [$datenow]);
                     // logger("date", [$date]);

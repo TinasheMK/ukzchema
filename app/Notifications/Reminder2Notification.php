@@ -60,7 +60,6 @@ class Reminder2Notification extends Notification
 Dear member:\n
 A payment of £".$this->amount." is still pending after reminder sent on ".date('Y-m-d', strtotime($this->reminder_date))."
 Please settle outstanding amount at your earliest. \n
--If you do not wish to continue with your membership, please just ignore this nofication.\n
 -If you want to avoid termination, please make a payment within the next 72 hours.\n
 Please do not hesitate to contact us on accounts@ukzchema.co.uk with any further questions.
 
