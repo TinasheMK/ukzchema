@@ -59,7 +59,7 @@ class Reminder2Notification extends Notification
 
                 Dear member
 
-                A payment of £"+$this->amount+" is still pending after reminder sent on"+$this->reminder_date+"
+                A payment of £".$this->amount." is still pending after reminder sent on".$this->reminder_date."
 
                 Please settle outstanding amount at your earliest.
                 >>If you do not wish to continue with your membership, please just ignore this nofication.
