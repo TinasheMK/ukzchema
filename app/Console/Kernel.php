@@ -197,17 +197,17 @@ class Kernel extends ConsoleKernel
                     if ($days_ago2<=$datenow && $days_ago4>=$datenow && $invoice[$y]->reminder !=1) {
                         logger("First reminder for invoice", [$invoice[$y]]);
 
-                        // try{
+                        try{
                             $email = Member::find($invoice[$y]->member_id);
 
                             // $invoice[$y]->reminder = 2;
                             $invoice[$y]->save();
-                            Notification::send($email, new Reminder1Notification($invoice[$y]->amount));
+                            Notification::send($email, new Reminder1Notification($invoice[$y]->total));
                             logger("Reminder sent to", [$email->id]);
 
-                        // }catch(ErrorException $e){
-                        //     logger("Member not found", [$email->id]);
-                        // }
+                        }catch(ErrorException $e){
+                            logger("Member not found", [$email->id]);
+                        }
                     }
 
                     if ($days_ago7 > $datenow && $invoice[$y]->reminder !=2) {
@@ -217,7 +217,7 @@ class Kernel extends ConsoleKernel
                             $email = Member::find($invoice[$y]->member_id);
                             $invoice[$y]->reminder = 2;
                             $invoice[$y]->save();
-                            Notification::send($email, new Reminder2Notification($invoice[$y]->amount,$days_ago2,$datenow));
+                            Notification::send($email, new Reminder2Notification($invoice[$y]->total,$days_ago2,$datenow));
                             logger("Reminder sent to", [$email->id]);
                         }catch(ErrorException $e){
                             logger("Member not found", [$email->id]);
