@@ -200,7 +200,7 @@ class Kernel extends ConsoleKernel
                         try{
                             $email = Member::find($invoice[$y]->member_id);
 
-                            // $invoice[$y]->reminder = 2;
+                            $invoice[$y]->reminder = 1;
                             $invoice[$y]->save();
                             Notification::send($email, new Reminder1Notification($invoice[$y]->total));
                             logger("Reminder sent to", [$email->id]);
