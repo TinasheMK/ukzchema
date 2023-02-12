@@ -7,16 +7,16 @@ UKZ Chema Board Member has added an Obituary. Details:
     <img src="{{asset('storage/'.$obituary->photo)}}" height="84" alt="{{$obituary->full_name}}">
 </p>
 
-## Members are paying {{$obituary->minAmount()}} excluding transaction charges
+## Members are paying £{{$obituary->donated_amount()}} excluding transaction charges
 
-<br>**Total Goal Amount: £{{$obituary->goal_amount}}**
+<br>**Total Amount For The Claim: £{{$obituary->goal_amount}}**
 <br>**Member ID:** {{$obituary->member_id}}
 <br>**Deceased Membership Type:** {{$obituary->member_type}}
 <br>**Deceased Name:** {{$obituary->full_name}}
 <br>**Contact** {{$obituary->phone}}
 <br>
-<br>**Biography:** <br>
-{{$obituary->biography}}
+<br>**Date of Death:** <br>
+{{$obituary->dod}}
 <br>
 Please Login to your dashboard and complete your payment.
 

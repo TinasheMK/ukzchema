@@ -108,7 +108,7 @@ class Kernel extends ConsoleKernel
                                 }
                                 $user->forceWithdrawFloat($obituaries[$y]->donated_amount, ['description' => 'payment for obituary']);
                                 // logger("Withdraw for member on obituary:", [$obituaries[$y]->id]);
-                                $date = strtotime("+2 week");
+                                $date = strtotime("+3 days");
                                 $dueDate = date("D M d, Y G:i", $date);
 
                                 $invoice = Invoice::create([
@@ -256,7 +256,7 @@ class Kernel extends ConsoleKernel
                             "on" => now()
                         ]);
 
-                        $date = strtotime("+2 week");
+                        $date = strtotime("+3 days");
                         $dueDate = date("D M d, Y G:i", $date);
 
                         $invoice = Invoice::create([
