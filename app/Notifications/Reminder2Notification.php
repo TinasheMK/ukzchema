@@ -57,7 +57,7 @@ class Reminder2Notification extends Notification
                 'link' => route("splash"),
                 'message' => "
 
-Dear member:<br>
+Dear member:\n
 A payment of £".$this->amount." is still pending after reminder sent on ".date('Y-m-d', strtotime($this->reminder_date))."
 Please settle outstanding amount at your earliest. \n
 -If you do not wish to continue with your membership, please just ignore this nofication.\n
