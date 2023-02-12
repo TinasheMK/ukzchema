@@ -57,11 +57,11 @@ class Reminder2Notification extends Notification
                 'link' => route("splash"),
                 'message' => "
 
-Dear member:
-A payment of £".$this->amount." is still pending after reminder sent on".$this->reminder_date."
-Please settle outstanding amount at your earliest.
--If you do not wish to continue with your membership, please just ignore this nofication.
--If you want to avoid termination, please make a payment within the next 72 hours.
+Dear member:<br>
+A payment of £".$this->amount." is still pending after reminder sent on ".date('Y-m-d', strtotime($this->reminder_date))."
+Please settle outstanding amount at your earliest.<br>
+-If you do not wish to continue with your membership, please just ignore this nofication.<br>
+-If you want to avoid termination, please make a payment within the next 72 hours.<br>
 Please do not hesitate to contact us on accounts@ukzchema.co.uk with any further questions.
 
 Best wishes
