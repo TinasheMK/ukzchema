@@ -194,7 +194,7 @@ class Kernel extends ConsoleKernel
                     logger("due 4 ", [ $days_ago4]);
                     logger("due 7 ", [ $days_ago7]);
 
-                    if ($days_ago2<=$datenow && $days_ago4>=$datenow && $invoice[$y]->reminder !=1) {
+                    if ($days_ago2<=$datenow && $days_ago4>=$datenow && !$invoice[$y]->reminder) {
                         logger("First reminder for invoice", [$invoice[$y]]);
 
                         try{
@@ -210,12 +210,12 @@ class Kernel extends ConsoleKernel
                         }
                     }
 
-                    if ($days_ago7 > $datenow && $invoice[$y]->reminder !=2) {
+                    if ($days_ago7 < $datenow && $invoice[$y]->reminder !=2) {
                         logger("Second reminder for invoice", [$invoice[$y]]);
 
                         try{
                             $email = Member::find($invoice[$y]->member_id);
-                            // $invoice[$y]->reminder = 2;
+                            $invoice[$y]->reminder = 2;
                             $invoice[$y]->save();
                             Notification::send($email, new Reminder2Notification($invoice[$y]->total,$days_ago2,$datenow));
                             logger("Reminder sent to", [$email->id]);
