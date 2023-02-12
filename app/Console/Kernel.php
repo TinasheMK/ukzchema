@@ -11,6 +11,7 @@ use App\Models\Member;
 use App\Models\Obituary;
 use App\Notifications\Reminder1Notification;
 use App\Notifications\Reminder2Notification;
+use App\Notifications\TerminationNotification;
 use App\User;
 use ErrorException;
 use Illuminate\Support\Carbon;
@@ -187,12 +188,14 @@ class Kernel extends ConsoleKernel
                     $days_ago2 = date('Y-m-d H:i:s', strtotime('+3 days', strtotime( $date)));
                     $days_ago4 = date('Y-m-d H:i:s', strtotime('+4 days', strtotime( $date)));
                     $days_ago7 = date('Y-m-d H:i:s', strtotime('+7 days', strtotime( $date)));
+                    $days_ago10 = date('Y-m-d H:i:s', strtotime('+10 days', strtotime( $date)));
 
-                    logger("date now", [$datenow]);
-                    logger("date", [$date]);
-                    logger("due 2 ", [ $days_ago2]);
-                    logger("due 4 ", [ $days_ago4]);
-                    logger("due 7 ", [ $days_ago7]);
+                    // logger("date now", [$datenow]);
+                    // logger("date", [$date]);
+                    // logger("due 2 ", [ $days_ago2]);
+                    // logger("due 4 ", [ $days_ago4]);
+                    // logger("due 7 ", [ $days_ago7]);
+                    // logger("due 10 ", [ $days_ago10]);
 
                     if ($days_ago2<=$datenow && $days_ago4>=$datenow && !$invoice[$y]->reminder) {
                         logger("First reminder for invoice", [$invoice[$y]]);
@@ -219,6 +222,20 @@ class Kernel extends ConsoleKernel
                             $invoice[$y]->save();
                             Notification::send($email, new Reminder2Notification($invoice[$y]->total,$days_ago2,$datenow));
                             logger("Reminder sent to", [$email->id]);
+                        }catch(ErrorException $e){
+                            logger("Member not found", [$email->id]);
+                        }
+                    }
+
+                    if ($days_ago10 < $datenow) {
+                        logger("Second reminder for invoice", [$invoice[$y]]);
+
+                        try{
+                            $member = Member::find($invoice[$y]->member_id);
+                            Notification::send($member, new TerminationNotification($member));
+                            $member->delete();
+                            $member->save();
+                            logger("Member deleted", [$member->id]);
                         }catch(ErrorException $e){
                             logger("Member not found", [$email->id]);
                         }
