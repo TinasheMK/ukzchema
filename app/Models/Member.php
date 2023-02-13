@@ -67,7 +67,7 @@ class Member extends Model
             $member->deleted_at= date("Y-m-d H:i:s");
             $member->save();
             // $member->user->delete();
-            // logger("Member was deleted");
+            logger("Member was deleted", [$member]);
         });
         static::creating(function ($model) {
             $f_name = $model->first_name[0] ?? '';
