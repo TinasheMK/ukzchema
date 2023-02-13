@@ -64,6 +64,8 @@ class Member extends Model
                 TerminatedMember::create($term);
                 $member->nominees()->delete();
             }
+            $member->deleted_at= date("Y-m-d H:i:s");
+            $member->save();
             // $member->user->delete();
             // logger("Member was deleted");
         });
