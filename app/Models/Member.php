@@ -65,7 +65,6 @@ class Member extends Model
                 $member->nominees()->delete();
             }
             $member->deleted_at= date("Y-m-d H:i:s");
-            $member->save();
             // $member->user->delete();
             logger("Member was deleted", [$member]);
         });

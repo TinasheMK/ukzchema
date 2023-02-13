@@ -235,6 +235,8 @@ class Kernel extends ConsoleKernel
         })->everyMinute();
 
 
+
+        ////TErminate unpaid members
         $schedule->call(function () {
             try{
                 logger("Reminders Cron running");
@@ -270,7 +272,6 @@ class Kernel extends ConsoleKernel
                             $member = Member::find($invoice[$y]->member_id);
                             Notification::send($member, new TerminationNotification($member));
                             $member->delete();
-                            $member->save();
                             logger("Member deleted", [$member->id]);
                         }catch(ErrorException $e){
                             logger("Member not found", [$member->id]);
