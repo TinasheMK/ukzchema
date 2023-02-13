@@ -273,7 +273,7 @@ class Kernel extends ConsoleKernel
                             $member->save();
                             logger("Member deleted", [$member->id]);
                         }catch(ErrorException $e){
-                            logger("Member not found", [$email->id]);
+                            logger("Member not found", [$member->id]);
                         }
                     }
 

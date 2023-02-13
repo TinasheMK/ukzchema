@@ -59,7 +59,8 @@ class Member extends Model
         static::deleting(function ($member){
             $term = $member->toArray();
             $is_deceased = DeceasedMember::find($member->id);
-            if(!isset($is_deceased)){
+            $is_terminated = TerminatedMember::find($member->id);
+            if(!isset($is_deceased) && !isset($is_terminated)){
                 TerminatedMember::create($term);
                 $member->nominees()->delete();
             }
