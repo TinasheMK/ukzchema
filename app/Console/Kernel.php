@@ -227,6 +227,42 @@ class Kernel extends ConsoleKernel
                         }
                     }
 
+                }
+            }
+            catch (Exception $e) {
+                logger("Failed to invoice member:", [$e]);
+            }
+        })->everyMinute();
+
+
+        $schedule->call(function () {
+            try{
+                logger("Reminders Cron running");
+                // Notification::route('mail', 'tinashekmakarudze@gmail.com')->notify(new Reminder1Notification("30"));
+
+                // logger("Email sent");
+
+
+                $invoice = Invoice::whereStatus("unpaid")->get();
+
+                for ($y = 0; $y <= $invoice->count() - 1; $y++) {
+                    logger("Invoice processing", [$invoice[$y]]);
+                    $datenow    = date("Y-m-d H:i:s");
+
+                    $date    = $invoice[$y]->created_at;
+
+                    $days_ago2 = date('Y-m-d H:i:s', strtotime('+3 days', strtotime( $date)));
+                    $days_ago4 = date('Y-m-d H:i:s', strtotime('+4 days', strtotime( $date)));
+                    $days_ago7 = date('Y-m-d H:i:s', strtotime('+7 days', strtotime( $date)));
+                    $days_ago10 = date('Y-m-d H:i:s', strtotime('+11 days', strtotime( $date)));
+
+                    // logger("date now", [$datenow]);
+                    // logger("date", [$date]);
+                    // logger("due 2 ", [ $days_ago2]);
+                    // logger("due 4 ", [ $days_ago4]);
+                    // logger("due 7 ", [ $days_ago7]);
+                    // logger("due 10 ", [ $days_ago10]);
+
                     if ($days_ago10 < $datenow) {
                         logger("Second reminder for invoice", [$invoice[$y]]);
 
