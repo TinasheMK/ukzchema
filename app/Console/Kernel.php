@@ -272,16 +272,21 @@ class Kernel extends ConsoleKernel
                     // logger("due 7 ", [ $days_ago7]);
                     // logger("due 10 ", [ $days_ago10]);
 
-                    if ($days_ago10 < $datenow) {
-                        logger("Second reminder for invoice", [$invoice[$y]]);
+                    $member = Member::find($invoice[$y]->member_id);
+                    logger('Member is:', [$member]);
+                    if(isset($member) && $member != NULL){
 
-                        try{
-                            $member = Member::find($invoice[$y]->member_id);
-                            Notification::send($member, new TerminationNotification($member));
-                            $member->delete();
-                            logger("Member deleted", [$member->id]);
-                        }catch(ErrorException $e){
-                            logger("Member not found", [$member->id]);
+                        if ($days_ago10 < $datenow) {
+                            logger("Termination for member", [$invoice[$y]]);
+
+                            try{
+                                $member = Member::find($invoice[$y]->member_id);
+                                Notification::send($member, new TerminationNotification($member));
+                                $member->delete();
+                                logger("Member deleted", [$member->id]);
+                            }catch(ErrorException $e){
+                                logger("Member not found", [$member->id]);
+                            }
                         }
                     }
 
