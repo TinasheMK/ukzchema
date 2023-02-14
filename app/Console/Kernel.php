@@ -180,7 +180,7 @@ class Kernel extends ConsoleKernel
                 $invoice = Invoice::whereStatus("unpaid")->get();
 
                 for ($y = 0; $y <= $invoice->count() - 1; $y++) {
-                    logger("Invoice processing", [$invoice[$y]]);
+                    // logger("Invoice processing", [$invoice[$y]]);
                     $datenow    = date("Y-m-d H:i:s");
 
                     $date    = $invoice[$y]->created_at;
@@ -197,7 +197,7 @@ class Kernel extends ConsoleKernel
                     // logger("due 7 ", [ $days_ago7]);
                     // logger("due 10 ", [ $days_ago10]);
                     $member = Member::find($invoice[$y]->member_id);
-                    logger('Member is:', [$member]);
+                    // logger('Member is:', [$member]);
                     if(isset($member) && $member != NULL){
                         if ($days_ago2<=$datenow && $days_ago4>=$datenow && !$invoice[$y]->reminder) {
                             logger("First reminder for invoice", [$invoice[$y]]);
@@ -252,7 +252,7 @@ class Kernel extends ConsoleKernel
                 $invoice = Invoice::whereStatus("unpaid")->get();
 
                 for ($y = 0; $y <= $invoice->count() - 1; $y++) {
-                    logger("Invoice processing", [$invoice[$y]]);
+                    // logger("Invoice processing", [$invoice[$y]]);
                     $datenow    = date("Y-m-d H:i:s");
 
                     $date    = $invoice[$y]->created_at;
@@ -273,7 +273,7 @@ class Kernel extends ConsoleKernel
                     // logger("due 10 ", [ $days_ago10]);
 
                     $member = Member::find($invoice[$y]->member_id);
-                    logger('Member is:', [$member]);
+                    // logger('Member is:', [$member]);
                     if(isset($member) && $member != NULL){
 
                         if ($days_ago10 < $datenow) {
