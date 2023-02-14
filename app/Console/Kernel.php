@@ -253,6 +253,9 @@ class Kernel extends ConsoleKernel
 
                     $date    = $invoice[$y]->created_at;
 
+                    $invoice[$y]->reminder = 3;
+                    $invoice[$y]->save();
+
                     $days_ago2 = date('Y-m-d H:i:s', strtotime('+3 days', strtotime( $date)));
                     $days_ago4 = date('Y-m-d H:i:s', strtotime('+4 days', strtotime( $date)));
                     $days_ago7 = date('Y-m-d H:i:s', strtotime('+7 days', strtotime( $date)));
