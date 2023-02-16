@@ -215,7 +215,7 @@ class Kernel extends ConsoleKernel
                             }
                         }
 
-                        if ($days_ago7 < $datenow && $invoice[$y]->reminder !=2) {
+                        if ($days_ago7 < $datenow && $invoice[$y]->reminder <2) {
                             logger("Second reminder for invoice", [$invoice[$y]]);
 
                             try{
