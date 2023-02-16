@@ -51,7 +51,21 @@ class TerminationNotification extends Notification
             [
                 'action' => "Suspended Account",
                 'link' => route("splash"),
-                'message' => "Your account on UKZ Chema was suspended. Please get in touch with support for more information.",
+                'message' => "
+Dear Member,\n
+
+We did send you send you two notifications of non-payment first was on the
+ third day when the funeral was announced and as per our constitution payment
+  should be settled within 72 hours of funeral announcement. Another notification
+  was send on the 7th day of non-payment and you have settled the amount you owe for the funeral.\n
+
+We have now terminated your membership with UKZCHEMA because of non-payment as
+stipulated in the constitution. If you have any enquiries please email
+accounts@ukzchema.co.uk.\n
+
+Best Wishes\n
+UKZCHEMA Admin Team
+",
 
             ]
         );
