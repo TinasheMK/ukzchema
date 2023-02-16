@@ -197,7 +197,7 @@ class Kernel extends ConsoleKernel
                     // logger("due 7 ", [ $days_ago7]);
                     // logger("due 10 ", [ $days_ago10]);
                     $member = Member::find($invoice[$y]->member_id);
-                    // logger('Member is:', [$member]);
+                    logger('Member is:', [$member]);
                     if(isset($member) && $member != NULL){
                         if ($days_ago2<=$datenow && $days_ago4>=$datenow && !$invoice[$y]->reminder) {
                             logger("First reminder for invoice", [$invoice[$y]]);
@@ -243,10 +243,9 @@ class Kernel extends ConsoleKernel
         ////TErminate unpaid members
         $schedule->call(function () {
             try{
-                logger("Reminders Cron running");
+                logger("Termination Cron running");
                 // Notification::route('mail', 'tinashekmakarudze@gmail.com')->notify(new Reminder1Notification("30"));
 
-                // logger("Email sent");
 
 
                 $invoice = Invoice::whereStatus("unpaid")->get();
@@ -273,7 +272,7 @@ class Kernel extends ConsoleKernel
                     // logger("due 10 ", [ $days_ago10]);
 
                     $member = Member::find($invoice[$y]->member_id);
-                    // logger('Member is:', [$member]);
+                    logger('Member is:', [$member]);
                     if(isset($member) && $member != NULL){
 
                         if ($days_ago10 < $datenow) {
@@ -283,7 +282,7 @@ class Kernel extends ConsoleKernel
                                 $member = Member::find($invoice[$y]->member_id);
                                 Notification::send($member, new TerminationNotification($member));
                                 $member->delete();
-                                logger("Member deleted", [$member->id]);
+                                logger("Member terminated", [$member->id]);
                             }catch(ErrorException $e){
                                 logger("Member not found", [$member->id]);
                             }
