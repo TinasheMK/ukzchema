@@ -197,7 +197,7 @@ class Kernel extends ConsoleKernel
                     // logger("due 7 ", [ $days_ago7]);
                     // logger("due 10 ", [ $days_ago10]);
                     $member = Member::find($invoice[$y]->member_id);
-                    logger('Member is:', [$member]);
+                    // logger('Member is:', [$member]);
                     if(isset($member) && $member != NULL){
                         if ($days_ago2<=$datenow && $days_ago4>=$datenow && !$invoice[$y]->reminder) {
                             logger("First reminder for invoice", [$invoice[$y]]);
@@ -215,7 +215,7 @@ class Kernel extends ConsoleKernel
                             }
                         }
 
-                        if ($days_ago7 < $datenow && $invoice[$y]->reminder <2) {
+                        if ($days_ago7 < $datenow && $invoice[$y]->reminder !=2) {
                             logger("Second reminder for invoice", [$invoice[$y]]);
 
                             try{
@@ -272,7 +272,7 @@ class Kernel extends ConsoleKernel
                     // logger("due 10 ", [ $days_ago10]);
 
                     $member = Member::find($invoice[$y]->member_id);
-                    logger('Member is:', [$member]);
+                    // logger('Member is:', [$member]);
                     if(isset($member) && $member != NULL){
 
                         if ($days_ago10 < $datenow) {
