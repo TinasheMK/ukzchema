@@ -37,9 +37,9 @@ $member = $dataTypeContent;
     {{ $dataType->display_name_singular }} - {{$member->id}}
     <br>
     @can('edit', $dataTypeContent)
-    <a href="{{ route('voyager.'.$dataType->slug.'.edit', $dataTypeContent->getKey()) }}" class="btn btn-info">
+    <a href="{{ route('voyager.'.'members'.'.show', $dataTypeContent->getKey()) }}" class="btn btn-success mx-4">
         <span class="glyphicon glyphicon-pencil"></span>&nbsp;
-        {{ __('voyager::generic.edit') }}
+        Restore
     </a>
     @endcan
 
@@ -51,8 +51,6 @@ $member = $dataTypeContent;
         Restore
         <i class="voyager-trash"></i> <span class="hidden-xs hidden-sm">{{ __('voyager::generic.restore') }}</span>
     </a>
-    jk
-    <div>akjsdjkasdj</div>
     @else
     <a href="javascript:;" title="Terminate" class="btn btn-danger delete" data-id="{{ $dataTypeContent->getKey() }}"
         id="delete-{{ $dataTypeContent->getKey() }}">
@@ -73,11 +71,7 @@ $member = $dataTypeContent;
             <ul class="nav nav-tabs" role="tablist">
                 <li role="presentation" class="active"><a href="#profile" aria-controls="profile" role="tab"
                         data-toggle="tab">Member Details</a></li>
-                <li role="presentation"><a href="#nok" aria-controls="nok" role="tab" data-toggle="tab">Next Of Kin</a>
-                </li>
-                <li role="presentation"><a href="#nominees" aria-controls="nominees" role="tab"
-                        data-toggle="tab">Nominees</a>
-                </li>
+
             </ul>
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="profile">
@@ -116,7 +110,7 @@ $member = $dataTypeContent;
                                 <h3 class="panel-title">Date of Birth</h3>
                             </div>
                             <div class="panel-body" style="padding-top:0;">
-                                <p>{{$member->dob->format('d.m.Y')}}</p>
+                                {{-- <p>{{$member->dob->format('d.m.Y')}}</p> --}}
                             </div>
                         </div>
                         <div class="col-12 col-md-4 px-0">
@@ -196,7 +190,7 @@ $member = $dataTypeContent;
                             </div>
                             <div class="panel-body" style="padding-top:0;">
                                 @if ($member->nok_dob)
-                                <p>{{$member->nok_dob->format('d.m.Y')}}</p>
+                                {{-- <p>{{$member->nok_dob->format('d.m.Y')}}</p> --}}
                                 @endif
                             </div>
                         </div>
@@ -256,44 +250,6 @@ $member = $dataTypeContent;
                             </div>
                             <div class="panel-body" style="padding-top:0;">
                                 <p>{{$member->nok_country}}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div role="tabpanel" class="tab-pane" id="nominees">
-                    <div class="row">
-                        <div class="col-md-12 mx-0 px-0">
-                            <div class="panel panel-bordered">
-                                <div class="panel-body p-1">
-                                    <div class="table-responsive">
-                                        <table id="dataTable" class="table table-hover" style="min-height: 150px">
-                                            <thead>
-                                                <tr>
-                                                    <th>Full Name</th>
-                                                    <th>Email</th>
-                                                    <th>Zimbabwean By</th>
-                                                    <th>Date of Birth</th>
-                                                    <th>Updated At</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @forelse ($member->nominees as $nominee)
-                                                    <tr>
-                                                        <th scope="row" class="text-capitalize">{{$nominee->full_name}}</th>
-                                                        <td>{{$nominee->email ?? ''}}</td>
-                                                        <td class="text-capitalize">{{$nominee->zimbabwean_by}}</td>
-                                                        <td>{{$nominee->dob}}</td>
-                                                        <td>{{$nominee->updated_at}}</td>
-                                                    </tr>
-                                                @empty
-                                                    <tr>
-                                                        <td colspan="5" class="text-center">No nominee added</td>
-                                                    </tr>
-                                                @endforelse
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>

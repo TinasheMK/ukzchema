@@ -12,7 +12,8 @@ class Member extends Model
     public $incrementing = false;
 
     use Notifiable;
-
+    use SoftDeletes;
+    protected $dates = ['deleted_at'];
     protected $fillable = [
         "id",
         "user_id",
