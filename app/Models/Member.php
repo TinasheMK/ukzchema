@@ -74,11 +74,12 @@ class Member extends Model
             $l_name = $model->last_name[0] ?? '';
 
             $prefix = strtoupper($l_name . $f_name);
-            $prefix2 = "CM";
+            $prefix2 = "ACjM";
 
             $counter = Member::count();
             $padded = 0;
             $member_id = null;
+            // dd("Woii");
             do {
                 $counter++;
                 $padded = str_pad($counter, 6, '0', STR_PAD_LEFT);
