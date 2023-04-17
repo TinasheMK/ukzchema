@@ -29,23 +29,9 @@ class UsersTableSeeder extends Seeder
         fclose($file);
 
         foreach($a as $user){
-
-            $old = explode('/', $user[1]);
-
-            $newdate = $old[2]."/".$old[1]."/".$old[0];
-
-            $joined = strtotime($newdate);
-
-            print_r("Date");
-            print_r($joined );
-            print_r("    ");
+            // print_r($user);
 
             $member = Member::find($user[0]);
-            $member->created_at = $joined;
-            $member->save;
-            if($member ==null){
-                print_r($user[0]);
-            }
             print_r($member->id);
 
             $user1 = User::find($member->user_id);

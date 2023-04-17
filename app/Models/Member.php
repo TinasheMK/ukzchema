@@ -37,6 +37,7 @@ class Member extends Model
         "nok_phone",
         "nok_street",
         "nok_zip",
+        "created_at",
         "orderID",
         "bio"
     ];
