@@ -23,6 +23,8 @@ class DepositController extends SharedBaseController
             ]);
         }
         $amount = getAmount($request->payment_ref);
+        dd($amount);
+
         $amount = $amount - 0.31;
         $amount = $amount * 0.971;
         $amount = round($amount, 2);
@@ -33,6 +35,7 @@ class DepositController extends SharedBaseController
             my_log("Deposit Received for user ID: {$user->id} {$user->name}", "System couldn't save. Please enter manually\nDeposited Amount: £{$amount}");
             logger("Deposit Received for user ID: {$user->id} {$user->name} System couldn't save. Please enter manually\nDeposited Amount: £{$amount}");
         }else{
+            dd($amount);
             $user->depositFloat($amount);
             $member->balance = $member->balance + $amount;
             $member->deposits()->create([

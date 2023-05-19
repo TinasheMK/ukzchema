@@ -65,12 +65,18 @@ class ApplicantController extends Controller
         return view("auth.submitted", compact('applicant'));
     }
 
+
+    public function joiningForm(Applicant $applicant){
+        return view('pages.joinpayment', ["applicant" => $applicant]);
+    }
+
     public function accept(Request $request)
     {
         if (!isset($request->applicant_id)) return abort(404);
         $applicant = Applicant::findOrFail($request->applicant_id);
 
         $request = requestPayment($applicant);
+
 
         if($request->statusCode !== 201){
             return back()->with([
@@ -191,6 +197,50 @@ class ApplicantController extends Controller
         }
         return redirect(route('members-area.home'));
     }
+
+
+    public function joiningfee(Applicant $applicant,Request $request)
+    {
+        if(!isset($request->payment_ref)){
+            return back()->with([
+                'message'    => "Failed to validate your payment. Please contact support",
+                'alert-type' => 'danger',
+            ]);
+        }
+        $amount = getAmount($request->payment_ref);
+
+
+        $amount = $amount - 0.31;
+        $amount = $amount * 0.971;
+        $amount = round($amount, 2);
+
+
+        if (!isset($applicant)) return abort(404);
+        $user = User::create([
+            'name' => $applicant->full_name,
+            'email' =>  $applicant->email,
+            'avatar'    => 'users/default.png',
+            'password'  =>  bcrypt($request->password)
+        ]);
+        $user->markEmailAsVerified();
+
+        $member = $user->memberDetails()->create($applicant->toArray());
+        $nominees = [];
+
+        foreach ($applicant->nominees as $key => $nominee) {
+            array_push($nominees, new Nominee($nominee));
+        }
+        try {
+            $member->nominees()->saveMany($nominees);
+            $applicant->delete();
+        } catch (\Throwable $th) {
+            my_log("failed_to_save_nominees", $th->getMessage());
+        }
+        return redirect(route('members-area.home'));
+
+    }
+
+
 
     public function reject(Request $request)
     {

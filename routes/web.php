@@ -22,6 +22,11 @@ Route::group(['middleware' => ['guest']], function () {
     Route::post('/reset-password', 'AuthController@storeResetPassword');
 
     Route::get('/join-now', 'ApplicantController@form')->name('apply');
+    Route::get('/joining-payment/{applicant}', 'ApplicantController@joiningForm')->name('joinpay');
+
+    Route::post('/joining-payment/submit/{applicant}', 'ApplicantController@joiningfee')->name('application.submit_deposit');
+
+
     // Route::get('/join-now',  function () {return redirect()->route('splash');})->name('apply');
     Route::get('/submitted/{code}', 'ApplicantController@submitted')->name('submitted');
     Route::get('/complete/{applicant?}', 'ApplicantController@completeRegForm')->name('applicant.complete');

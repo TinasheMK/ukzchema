@@ -80,6 +80,8 @@ __webpack_require__.r(__webpack_exports__);
           _this3.amount1 = _this3.amount / 0.971 + 0.31;
           _this3.amount1 = _this3.amount1.toFixed(2);
           console.log("Paypal payment of: ", _this3.amount);
+          console.log(data);
+          console.log(action);
           return action.order.create({
             application_context: {
               brand_name: "UKZ Chema Association",

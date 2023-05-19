@@ -75,7 +75,7 @@ class Member extends Model
             $l_name = $model->last_name[0] ?? '';
 
             $prefix = strtoupper($l_name . $f_name);
-            $prefix2 = "ACjM";
+            $prefix2 = "CM";
 
             $counter = Member::count();
             $padded = 0;

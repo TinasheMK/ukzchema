@@ -25,6 +25,8 @@ Vue.component("small-footer", () =>
     import ("./components/SmallFooter"));
 Vue.component("account-sidebar", () =>
     import ("./components/account/Sidebar"));
+Vue.component("account-sidebar", () =>
+    import ("./components/account/Sidebar"));
 
 /**
  * Members area components
@@ -46,6 +48,8 @@ Vue.component("donate-button", () =>
     import ("./components/member/DonateButton"));
 Vue.component("deposit-modal", () =>
     import ("./components/member/DepositModal"));
+Vue.component("joining-payment-modal", () =>
+    import ("./components/member/JoiningPaymentModal"));
 Vue.component("deposits-table", () =>
     import ("./components/member/DepositsTable"));
 Vue.component("claims-table", () =>

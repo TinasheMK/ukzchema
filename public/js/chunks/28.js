@@ -1,39 +1,131 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[28],{
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/member/MemberNav.vue?vue&type=script&lang=js&":
-/*!***************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/member/MemberNav.vue?vue&type=script&lang=js& ***!
-  \***************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/member/JoiningPaymentModal.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/member/JoiningPaymentModal.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["user", "nav_links", "balance"],
+  props: ['route', 'user', 'client_id'],
+  mounted: function mounted() {
+    var _this = this;
+    console.log(this.user, this.client_id);
+    $("#joiningPaymentModal").on("show.bs.modal", function (e) {
+      if (!_this.open) {
+        var scr = document.createElement("script");
+        scr.src = "https://www.paypal.com/sdk/js?client-id=".concat(_this.client_id, "&currency=GBP");
+        scr.addEventListener("load", _this.loadPayPal);
+        scr.addEventListener("error", _this.loadError);
+        document.body.append(scr);
+        _this.script = scr;
+      }
+    });
+    $('#joiningPaymentModal').on('hidden.bs.modal', function (e) {
+      if (_this.error) {
+        _this.error = false;
+        $(_this.script).remove();
+        _this.load = false;
+      }
+    });
+  },
   data: function data() {
-    return {};
+    return {
+      open: false,
+      error: false,
+      amount: 103,
+      payment_ref: null,
+      script: null
+    };
   },
   methods: {
-    page: function page(link) {
-      var parts = link.split("/");
-      return parts[parts.length - 1];
-    }
-  },
-  computed: {
-    currentPage: function currentPage() {
-      if (!this.$route || !this.$route.path) return null;
-      return this.page(this.$route.path);
+    finalise: function finalise(payment_ref) {
+      var _this2 = this;
+      console.log(payment_ref);
+      $.notify({
+        icon: "nc-icon nc-check-2",
+        message: "Paid Joining Fee Successfully. Please wait to be redirected to login page and check your email."
+      }, {
+        type: "primary",
+        timer: 5000,
+        placement: {
+          from: "top",
+          align: "right"
+        }
+      });
+      this.payment_ref = payment_ref;
+      setTimeout(function () {
+        return _this2.$refs.form.submit();
+      }, 80);
+    },
+    loadError: function loadError() {
+      this.error = true;
+    },
+    loadPayPal: function loadPayPal(e) {
+      var _this3 = this;
+      this.open = true;
+      console.log(e, "Loaded Successfully");
+      if (typeof paypal === "undefined") {
+        this.error = true;
+        return;
+      }
+      paypal.Buttons({
+        createOrder: function createOrder(data, action) {
+          _this3.amount = parseFloat(103);
+          _this3.amount = _this3.amount;
+          _this3.amount = _this3.amount.toFixed(2);
+          _this3.amount1 = _this3.amount / 0.971 + 0.31;
+          _this3.amount1 = _this3.amount1.toFixed(2);
+          console.log("Paypal payment of: ", _this3.amount);
+          return action.order.create({
+            application_context: {
+              brand_name: "UKZ Chema Association",
+              user_action: "PAY_NOW",
+              shipping_preference: "NO_SHIPPING"
+            },
+            purchase_units: [{
+              description: "Joining fee for applicant: ".concat(_this3.user.id, " (").concat(_this3.user.first_name, ")"),
+              amount: {
+                currency_code: "GBP",
+                value: _this3.amount1
+              }
+            }]
+          });
+        },
+        onApprove: function onApprove(data, actions) {
+          return actions.order.capture().then(function (details) {
+            if (details.status == "COMPLETED") {
+              _this3.orderID = data.orderID;
+              _this3.finalise(data.orderID);
+            } else {
+              $.notify({
+                icon: "nc-icon nc-simple-remove",
+                message: "Error saving your payment, contact support with ID: ".concat(data.orderID)
+              }, {
+                type: "danger",
+                timer: 8000,
+                placement: {
+                  from: "top",
+                  align: "right"
+                }
+              });
+            }
+          });
+        }
+      }).render(this.$refs.paypal);
     }
   }
 });
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/member/MemberNav.vue?vue&type=template&id=4223b31f&":
-/*!*************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/member/MemberNav.vue?vue&type=template&id=4223b31f& ***!
-  \*************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/member/JoiningPaymentModal.vue?vue&type=template&id=0e7d4155&":
+/*!***********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/member/JoiningPaymentModal.vue?vue&type=template&id=0e7d4155& ***!
+  \***********************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -45,63 +137,138 @@ var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
   return _c("div", {
-    staticClass: "sidebar",
+    staticClass: "modal fade",
     attrs: {
-      "data-color": "primary",
-      "data-active-color": "primary"
+      id: "joiningPaymentModal",
+      tabindex: "-1",
+      role: "dialog",
+      "aria-labelledby": "joiningPaymentModalTitle",
+      "aria-hidden": "true"
     }
   }, [_c("div", {
-    staticClass: "logo"
-  }, [_c("a", {
-    staticClass: "simple-text logo-mini",
+    staticClass: "modal-dialog",
     attrs: {
-      href: _vm.user.home
+      role: "document"
     }
   }, [_c("div", {
-    staticClass: "logo-image-small"
-  }, [_c("img", {
+    staticClass: "modal-content"
+  }, [_vm._m(0), _vm._v(" "), _c("div", {
+    staticClass: "modal-body"
+  }, [_c("div", {
+    staticClass: "col-12 mb-2"
+  }, [_c("label", {
     attrs: {
-      src: _vm.user.avatar,
-      alt: ""
+      "for": "_amount"
     }
-  })])]), _vm._v(" "), _c("a", {
-    staticClass: "simple-text logo-normal",
-    attrs: {
-      href: _vm.user.home
-    }
-  }, [_vm._v("\n        " + _vm._s(_vm.user.name) + "\n        "), _c("br"), _vm._v(" "), _c("small", [_vm._v("£ " + _vm._s(_vm.balance))])])]), _vm._v(" "), _c("div", {
-    staticClass: "sidebar-wrapper"
-  }, [_c("ul", {
-    staticClass: "nav"
-  }, [_vm.user.is_admin ? _c("li", [_c("a", {
-    attrs: {
-      href: _vm.user.home
-    }
-  }, [_c("i", {
-    staticClass: "nc-icon nc-compass-05"
-  }), _vm._v(" "), _c("p", [_vm._v("Admin Dashboard")])])]) : _vm._e(), _vm._v(" "), _vm._l(_vm.nav_links, function (nav) {
-    return _c("li", {
-      key: nav.name,
-      "class": _vm.page(nav.route) === _vm.currentPage ? "active" : ""
-    }, [_c("a", {
-      attrs: {
-        href: nav.route
+  }, [_vm._v("Joining Fee Amount")]), _vm._v(" "), _c("p", [_vm._v("Please note payment will include additional transaction charges that are not part of the deposit.")]), _vm._v(" "), _c("div", {
+    staticClass: "input-group mb-3"
+  }, [_vm._m(1), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model.number",
+      value: _vm.amount,
+      expression: "amount",
+      modifiers: {
+        number: true
       }
-    }, [_c("i", {
-      "class": "nc-icon " + nav.icon
-    }), _vm._v(" "), _c("p", [_vm._v(_vm._s(nav.name))])])]);
-  }), _vm._v(" "), _c("li", [_c("a", {
+    }],
+    staticClass: "form-control",
     attrs: {
-      href: _vm.user.logout
+      id: "_amount",
+      value: "3",
+      disabled: "",
+      type: "number",
+      placeholder: "Amount",
+      "aria-label": "Amount",
+      "aria-describedby": "amount"
+    },
+    domProps: {
+      value: _vm.amount
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.amount = _vm._n($event.target.value);
+      },
+      blur: function blur($event) {
+        return _vm.$forceUpdate();
+      }
     }
+  })])]), _vm._v(" "), !_vm.open && !_vm.error ? _c("p", {
+    staticClass: "text-center"
   }, [_c("i", {
-    staticClass: "fa fa-sign-out",
+    staticClass: "fa fa-circle-o-notch fa-spin"
+  }), _vm._v(" Loading PayPal\n        ")]) : _vm._e(), _vm._v(" "), _vm.error ? _c("p", {
+    staticClass: "text-danger text-center"
+  }, [_c("i", {
+    staticClass: "fa fa-frown-o"
+  }), _vm._v("\n          Error loading PayPal. Refresh this page.\n        ")]) : _vm._e(), _vm._v(" "), _vm.open ? _c("h5", {
+    staticClass: "h6"
+  }, [_vm._v("Deposit method:")]) : _vm._e(), _vm._v(" "), _c("div", {
+    ref: "paypal",
+    staticClass: "mx-2 mt-3"
+  }), _vm._v(" "), _c("form", {
+    ref: "form",
+    attrs: {
+      action: _vm.route,
+      method: "POST"
+    }
+  }, [_vm._t("default"), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.payment_ref,
+      expression: "payment_ref"
+    }],
+    attrs: {
+      type: "hidden",
+      name: "payment_ref"
+    },
+    domProps: {
+      value: _vm.payment_ref
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.payment_ref = $event.target.value;
+      }
+    }
+  })], 2)])])])]);
+};
+var staticRenderFns = [function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
+    staticClass: "modal-header"
+  }, [_c("h5", {
+    staticClass: "modal-title",
+    attrs: {
+      id: "joiningPaymentModalTitle"
+    }
+  }, [_vm._v("Pay Joining Fee")]), _vm._v(" "), _c("button", {
+    staticClass: "close",
+    attrs: {
+      type: "button",
+      "data-dismiss": "modal",
+      "aria-label": "Close"
+    }
+  }, [_c("span", {
     attrs: {
       "aria-hidden": "true"
     }
-  }), _vm._v(" "), _c("p", [_vm._v("Logout")])])])], 2)])]);
-};
-var staticRenderFns = [];
+  }, [_vm._v("×")])])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
+    staticClass: "input-group-prepend"
+  }, [_c("span", {
+    staticClass: "input-group-text",
+    attrs: {
+      id: "amount"
+    }
+  }, [_vm._v("£")])]);
+}];
 render._withStripped = true;
 
 
@@ -217,17 +384,17 @@ function normalizeComponent(
 
 /***/ }),
 
-/***/ "./resources/js/components/member/MemberNav.vue":
-/*!******************************************************!*\
-  !*** ./resources/js/components/member/MemberNav.vue ***!
-  \******************************************************/
+/***/ "./resources/js/components/member/JoiningPaymentModal.vue":
+/*!****************************************************************!*\
+  !*** ./resources/js/components/member/JoiningPaymentModal.vue ***!
+  \****************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _MemberNav_vue_vue_type_template_id_4223b31f___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MemberNav.vue?vue&type=template&id=4223b31f& */ "./resources/js/components/member/MemberNav.vue?vue&type=template&id=4223b31f&");
-/* harmony import */ var _MemberNav_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MemberNav.vue?vue&type=script&lang=js& */ "./resources/js/components/member/MemberNav.vue?vue&type=script&lang=js&");
+/* harmony import */ var _JoiningPaymentModal_vue_vue_type_template_id_0e7d4155___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./JoiningPaymentModal.vue?vue&type=template&id=0e7d4155& */ "./resources/js/components/member/JoiningPaymentModal.vue?vue&type=template&id=0e7d4155&");
+/* harmony import */ var _JoiningPaymentModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./JoiningPaymentModal.vue?vue&type=script&lang=js& */ "./resources/js/components/member/JoiningPaymentModal.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -237,9 +404,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _MemberNav_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _MemberNav_vue_vue_type_template_id_4223b31f___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _MemberNav_vue_vue_type_template_id_4223b31f___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _JoiningPaymentModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _JoiningPaymentModal_vue_vue_type_template_id_0e7d4155___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _JoiningPaymentModal_vue_vue_type_template_id_0e7d4155___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -249,38 +416,38 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/member/MemberNav.vue"
+component.options.__file = "resources/js/components/member/JoiningPaymentModal.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/components/member/MemberNav.vue?vue&type=script&lang=js&":
-/*!*******************************************************************************!*\
-  !*** ./resources/js/components/member/MemberNav.vue?vue&type=script&lang=js& ***!
-  \*******************************************************************************/
+/***/ "./resources/js/components/member/JoiningPaymentModal.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************!*\
+  !*** ./resources/js/components/member/JoiningPaymentModal.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MemberNav_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./MemberNav.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/member/MemberNav.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MemberNav_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_JoiningPaymentModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./JoiningPaymentModal.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/member/JoiningPaymentModal.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_JoiningPaymentModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/components/member/MemberNav.vue?vue&type=template&id=4223b31f&":
-/*!*************************************************************************************!*\
-  !*** ./resources/js/components/member/MemberNav.vue?vue&type=template&id=4223b31f& ***!
-  \*************************************************************************************/
+/***/ "./resources/js/components/member/JoiningPaymentModal.vue?vue&type=template&id=0e7d4155&":
+/*!***********************************************************************************************!*\
+  !*** ./resources/js/components/member/JoiningPaymentModal.vue?vue&type=template&id=0e7d4155& ***!
+  \***********************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_MemberNav_vue_vue_type_template_id_4223b31f___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!../../../../node_modules/vue-loader/lib??vue-loader-options!./MemberNav.vue?vue&type=template&id=4223b31f& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/member/MemberNav.vue?vue&type=template&id=4223b31f&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_MemberNav_vue_vue_type_template_id_4223b31f___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_JoiningPaymentModal_vue_vue_type_template_id_0e7d4155___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!../../../../node_modules/vue-loader/lib??vue-loader-options!./JoiningPaymentModal.vue?vue&type=template&id=0e7d4155& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/member/JoiningPaymentModal.vue?vue&type=template&id=0e7d4155&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_JoiningPaymentModal_vue_vue_type_template_id_0e7d4155___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_MemberNav_vue_vue_type_template_id_4223b31f___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_JoiningPaymentModal_vue_vue_type_template_id_0e7d4155___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

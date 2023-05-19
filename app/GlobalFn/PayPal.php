@@ -35,6 +35,7 @@ function getAmount($oder_id)
         $response = $client->execute(new OrdersGetRequest($oder_id));
         $res = (object)$response->result;
 
+        // dd($response);
         $amount = $res->purchase_units[0]->amount->value;
         return $amount;
     } catch (\Throwable $th) {
@@ -42,6 +43,10 @@ function getAmount($oder_id)
         return null;
     }
 }
+
+
+
+
 function buildRequestBody($applicant)
 {
     return array(
@@ -76,6 +81,8 @@ function requestPayment(Applicant $applicant)
     $client = payPalClient();
     try {
         $response = $client->execute($request);
+        dd($response);
+
         return $response;
     } catch (\Throwable $th) {
         logger($th->getMessage(), [$th->statusCode]);

@@ -29,47 +29,49 @@ class UsersTableSeeder extends Seeder
         fclose($file);
 
         foreach($a as $user){
-
-            $old = explode('/', $user[1]);
-
-            $newdate = $old[2]."/".$old[1]."/".$old[0];
-
-            $joined = strtotime($newdate);
-
-            print_r("Date");
-            print_r($joined );
-            print_r("    ");
+            // print_r($user);
 
             $member = Member::find($user[0]);
-            $member->created_at = $joined;
-            $member->save;
-            if($member ==null){
-                print_r($user[0]);
-            }
-            print_r($member->id);
+            // print_r($member->id);
 
-            $user1 = User::find($member->user_id);
-            if($user1){
-                if($user[2]>0){
-                    $user1->depositFloat($user[2]);
-                    print_r(" $user1->id");
-                    print_r(" $user1->balanceFloat");
-                    print_r(" \n");
+            if($member){
+                $user1 = User::find($member->user_id);
+                if($user1){
+                    if($user[2]>0){
+                        $user1->depositFloat($user[2]);
+                        print_r(" $member->id ");
+                        print_r(" $user1->id");
+                        print_r(" $user1->balanceFloat");
+                        print_r(" \n");
 
-                }
-                if($user[2]<0){
-                    $user1->forceWithdrawFloat(-1*$user[2], ['description' => 'payment for obituary']);
+                    }
+                    if($user[2]<0){
+                        $user1->forceWithdrawFloat(-1*$user[2], ['description' => 'payment for obituary']);
 
-                    // $user1->forceWithdrawFloat($user[2]);
-                    print_r(" $user1->id");
-                    print_r(" $user1->balanceFloat");
-                    print_r(" \n");
+                        // $user1->forceWithdrawFloat($user[2]);
+                        print_r(" $user1->id");
+                        print_r(" $user1->balanceFloat");
+                        print_r(" \n");
+
+                    }
+
+                }else{
+                    print_r("\n");
+                    print_r($user[0]);
+                    print_r("User Not found");
+                    print_r("\n");
 
                 }
 
             }else{
-                print_r($user[0]);
-                print_r("Not found");
+                    print_r("\n");
+                    print_r($user[0]);
+                    print_r("Member Not found");
+                    print_r("\n");
+
+
+
+
             }
 
 

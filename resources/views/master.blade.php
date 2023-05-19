@@ -24,6 +24,8 @@
         @endguest
 
         @yield('content')
+        <new-message :level="'{{session('level') ?? 'primary'}}'" :message="'{{session('message') ?? null}}'">
+        </new-message>
         <cookie-view></cookie-view>
         <small-footer
             :about_us="'{{route('about.us')}}'"

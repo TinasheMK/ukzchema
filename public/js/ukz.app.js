@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "js/chunks/" + ({}[chunkId]||chunkId) + ".js?v=" + {"0":"c523b","1":"93e20","2":"46c3d","3":"e8a57","4":"5d15e","5":"5d27b","6":"b4db7","7":"d9a43","8":"b3745","9":"8b6b8","10":"c5bcb","11":"3577d","12":"73892","13":"2b589","14":"6b954","15":"fc334","16":"e9948","17":"97b46","18":"b6eba","19":"06ecb","20":"cd6f8","21":"03c45","22":"a2fe4","23":"c4dec","24":"2233f","25":"98d4a","26":"fae3e","27":"bfb65","28":"30777","29":"dcb40","30":"6d212","31":"fb568","32":"c7f68","33":"e614e"}[chunkId] + ""
+/******/ 		return __webpack_require__.p + "js/chunks/" + ({}[chunkId]||chunkId) + ".js?v=" + {"0":"c523b","1":"93e20","2":"46c3d","3":"e8a57","4":"7ba14","5":"ff5a9","6":"4730d","7":"0e5e9","8":"8893a","9":"54446","10":"e615d","11":"b5eb4","12":"79ca7","13":"4d0aa","14":"26c11","15":"36fcd","16":"9cc1f","17":"e9237","18":"4df94","19":"19361","20":"a5ad3","21":"506a5","22":"a7201","23":"3e4f4","24":"01bc4","25":"6e8f3","26":"c018d","27":"d4b11","28":"37dd7","29":"acd01","30":"b34a8","31":"4b30d","32":"82bf7","33":"168bb","34":"6ea2d"}[chunkId] + ""
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -87473,34 +87473,37 @@ __webpack_require__.r(__webpack_exports__);
 //     import ('./components/applicant/SubmitPayment'))
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('header-view', function () {
-  return __webpack_require__.e(/*! import() */ 19).then(__webpack_require__.bind(null, /*! ./components/HeaderView */ "./resources/js/components/HeaderView.vue"));
+  return __webpack_require__.e(/*! import() */ 20).then(__webpack_require__.bind(null, /*! ./components/HeaderView */ "./resources/js/components/HeaderView.vue"));
 });
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("nav-view", function () {
-  return __webpack_require__.e(/*! import() */ 20).then(__webpack_require__.bind(null, /*! ./components/Nav */ "./resources/js/components/Nav.vue"));
+  return __webpack_require__.e(/*! import() */ 21).then(__webpack_require__.bind(null, /*! ./components/Nav */ "./resources/js/components/Nav.vue"));
 });
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("guest-nav", function () {
-  return __webpack_require__.e(/*! import() */ 18).then(__webpack_require__.bind(null, /*! ./components/GuestNav */ "./resources/js/components/GuestNav.vue"));
+  return __webpack_require__.e(/*! import() */ 19).then(__webpack_require__.bind(null, /*! ./components/GuestNav */ "./resources/js/components/GuestNav.vue"));
 });
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("loaded-view", function () {
-  return Promise.all(/*! import() */[__webpack_require__.e(4), __webpack_require__.e(6)]).then(__webpack_require__.bind(null, /*! ./components/Loaded */ "./resources/js/components/Loaded.vue"));
+  return Promise.all(/*! import() */[__webpack_require__.e(5), __webpack_require__.e(7)]).then(__webpack_require__.bind(null, /*! ./components/Loaded */ "./resources/js/components/Loaded.vue"));
 });
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("footer-view", function () {
-  return __webpack_require__.e(/*! import() */ 17).then(__webpack_require__.bind(null, /*! ./components/Footer */ "./resources/js/components/Footer.vue"));
+  return __webpack_require__.e(/*! import() */ 18).then(__webpack_require__.bind(null, /*! ./components/Footer */ "./resources/js/components/Footer.vue"));
 });
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("cookie-view", function () {
-  return __webpack_require__.e(/*! import() */ 16).then(__webpack_require__.bind(null, /*! ./components/Cookie */ "./resources/js/components/Cookie.vue"));
+  return __webpack_require__.e(/*! import() */ 17).then(__webpack_require__.bind(null, /*! ./components/Cookie */ "./resources/js/components/Cookie.vue"));
 });
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("bread-crumb", function () {
-  return __webpack_require__.e(/*! import() */ 15).then(__webpack_require__.bind(null, /*! ./components/BreadCrumb */ "./resources/js/components/BreadCrumb.vue"));
+  return __webpack_require__.e(/*! import() */ 16).then(__webpack_require__.bind(null, /*! ./components/BreadCrumb */ "./resources/js/components/BreadCrumb.vue"));
 });
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("application-form", function () {
-  return __webpack_require__.e(/*! import() */ 14).then(__webpack_require__.bind(null, /*! ./components/ApplicationForm */ "./resources/js/components/ApplicationForm.vue"));
+  return __webpack_require__.e(/*! import() */ 15).then(__webpack_require__.bind(null, /*! ./components/ApplicationForm */ "./resources/js/components/ApplicationForm.vue"));
 });
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("small-footer", function () {
-  return __webpack_require__.e(/*! import() */ 21).then(__webpack_require__.bind(null, /*! ./components/SmallFooter */ "./resources/js/components/SmallFooter.vue"));
+  return __webpack_require__.e(/*! import() */ 22).then(__webpack_require__.bind(null, /*! ./components/SmallFooter */ "./resources/js/components/SmallFooter.vue"));
 });
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("account-sidebar", function () {
-  return __webpack_require__.e(/*! import() */ 22).then(__webpack_require__.bind(null, /*! ./components/account/Sidebar */ "./resources/js/components/account/Sidebar.vue"));
+  return __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! ./components/account/Sidebar */ "./resources/js/components/account/Sidebar.vue"));
+});
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("account-sidebar", function () {
+  return __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! ./components/account/Sidebar */ "./resources/js/components/account/Sidebar.vue"));
 });
 
 /**
@@ -87508,28 +87511,31 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("account-sidebar", function
  */
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("member-loaded", function () {
-  return Promise.all(/*! import() */[__webpack_require__.e(4), __webpack_require__.e(13)]).then(__webpack_require__.bind(null, /*! ./components/member/MemberLoaded */ "./resources/js/components/member/MemberLoaded.vue"));
+  return Promise.all(/*! import() */[__webpack_require__.e(5), __webpack_require__.e(14)]).then(__webpack_require__.bind(null, /*! ./components/member/MemberLoaded */ "./resources/js/components/member/MemberLoaded.vue"));
 });
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("member-nav", function () {
-  return __webpack_require__.e(/*! import() */ 28).then(__webpack_require__.bind(null, /*! ./components/member/MemberNav */ "./resources/js/components/member/MemberNav.vue"));
+  return __webpack_require__.e(/*! import() */ 29).then(__webpack_require__.bind(null, /*! ./components/member/MemberNav */ "./resources/js/components/member/MemberNav.vue"));
 });
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("obituary-view", function () {
-  return __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.bind(null, /*! ./components/member/ObituaryView */ "./resources/js/components/member/ObituaryView.vue"));
+  return __webpack_require__.e(/*! import() */ 9).then(__webpack_require__.bind(null, /*! ./components/member/ObituaryView */ "./resources/js/components/member/ObituaryView.vue"));
 });
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("new-message", function () {
-  return Promise.all(/*! import() */[__webpack_require__.e(3), __webpack_require__.e(33)]).then(__webpack_require__.bind(null, /*! ./components/member/NewMessage */ "./resources/js/components/member/NewMessage.vue"));
+  return Promise.all(/*! import() */[__webpack_require__.e(3), __webpack_require__.e(34)]).then(__webpack_require__.bind(null, /*! ./components/member/NewMessage */ "./resources/js/components/member/NewMessage.vue"));
 });
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("nominees-form", function () {
-  return Promise.all(/*! import() */[__webpack_require__.e(3), __webpack_require__.e(12)]).then(__webpack_require__.bind(null, /*! ./components/member/NomineesForm */ "./resources/js/components/member/NomineesForm.vue"));
+  return Promise.all(/*! import() */[__webpack_require__.e(3), __webpack_require__.e(13)]).then(__webpack_require__.bind(null, /*! ./components/member/NomineesForm */ "./resources/js/components/member/NomineesForm.vue"));
 });
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("donations-table", function () {
   return __webpack_require__.e(/*! import() */ 27).then(__webpack_require__.bind(null, /*! ./components/member/DonationsTable */ "./resources/js/components/member/DonationsTable.vue"));
 });
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("donate-button", function () {
-  return Promise.all(/*! import() */[__webpack_require__.e(3), __webpack_require__.e(11)]).then(__webpack_require__.bind(null, /*! ./components/member/DonateButton */ "./resources/js/components/member/DonateButton.vue"));
+  return Promise.all(/*! import() */[__webpack_require__.e(3), __webpack_require__.e(12)]).then(__webpack_require__.bind(null, /*! ./components/member/DonateButton */ "./resources/js/components/member/DonateButton.vue"));
 });
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("deposit-modal", function () {
   return __webpack_require__.e(/*! import() */ 25).then(__webpack_require__.bind(null, /*! ./components/member/DepositModal */ "./resources/js/components/member/DepositModal.vue"));
+});
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("joining-payment-modal", function () {
+  return __webpack_require__.e(/*! import() */ 28).then(__webpack_require__.bind(null, /*! ./components/member/JoiningPaymentModal */ "./resources/js/components/member/JoiningPaymentModal.vue"));
 });
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("deposits-table", function () {
   return __webpack_require__.e(/*! import() */ 26).then(__webpack_require__.bind(null, /*! ./components/member/DepositsTable */ "./resources/js/components/member/DepositsTable.vue"));
@@ -87538,13 +87544,13 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("claims-table", function ()
   return __webpack_require__.e(/*! import() */ 24).then(__webpack_require__.bind(null, /*! ./components/member/ClaimsTable */ "./resources/js/components/member/ClaimsTable.vue"));
 });
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("dob-input", function () {
-  return __webpack_require__.e(/*! import() */ 7).then(__webpack_require__.bind(null, /*! ./components/base/DOB */ "./resources/js/components/base/DOB.vue"));
+  return __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.bind(null, /*! ./components/base/DOB */ "./resources/js/components/base/DOB.vue"));
 });
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("country-picker", function () {
   return __webpack_require__.e(/*! import() */ 23).then(__webpack_require__.bind(null, /*! ./components/base/CountryPicker */ "./resources/js/components/base/CountryPicker.vue"));
 });
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("notifications-table", function () {
-  return __webpack_require__.e(/*! import() */ 29).then(__webpack_require__.bind(null, /*! ./components/member/NotificationsTable */ "./resources/js/components/member/NotificationsTable.vue"));
+  return __webpack_require__.e(/*! import() */ 30).then(__webpack_require__.bind(null, /*! ./components/member/NotificationsTable */ "./resources/js/components/member/NotificationsTable.vue"));
 });
 
 /***/ }),
@@ -90611,8 +90617,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\tinas\Documents\GitHub\ukzchema\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\tinas\Documents\GitHub\ukzchema\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\USER\Documents\GitHub\client\ukzchema\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\USER\Documents\GitHub\client\ukzchema\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

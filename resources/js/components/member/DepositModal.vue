@@ -131,6 +131,9 @@ export default {
             this.amount1 = this.amount1.toFixed(2);
 
             console.log("Paypal payment of: ", this.amount);
+            console.log(data);
+            console.log(action);
+
             return action.order.create({
               application_context: {
                 brand_name: "UKZ Chema Association",
