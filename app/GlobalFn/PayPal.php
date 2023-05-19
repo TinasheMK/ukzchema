@@ -81,7 +81,7 @@ function requestPayment(Applicant $applicant)
     $client = payPalClient();
     try {
         $response = $client->execute($request);
-        dd($response);
+        // dd($response);
 
         return $response;
     } catch (\Throwable $th) {

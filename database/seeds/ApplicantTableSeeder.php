@@ -47,7 +47,7 @@ class ApplicantTableSeeder extends Seeder
 
             $id++;
         }
-        dd($id);
+        // dd($id);
 
     }
 }
