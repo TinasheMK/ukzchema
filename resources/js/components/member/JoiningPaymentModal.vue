@@ -85,7 +85,7 @@ export default {
     return {
       open: false,
       error: false,
-      amount: 103,
+      amount: 100,
       payment_ref: null,
       script: null
     };
@@ -125,7 +125,7 @@ export default {
         .Buttons({
           createOrder: (data, action) => {
 
-            this.amount = parseFloat(103);
+            this.amount = parseFloat(100);
             this.amount = (this.amount);
             this.amount = this.amount.toFixed(2);
 

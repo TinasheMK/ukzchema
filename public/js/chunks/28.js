@@ -36,7 +36,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       open: false,
       error: false,
-      amount: 103,
+      amount: 100,
       payment_ref: null,
       script: null
     };
@@ -74,7 +74,7 @@ __webpack_require__.r(__webpack_exports__);
       }
       paypal.Buttons({
         createOrder: function createOrder(data, action) {
-          _this3.amount = parseFloat(103);
+          _this3.amount = parseFloat(100);
           _this3.amount = _this3.amount;
           _this3.amount = _this3.amount.toFixed(2);
           _this3.amount1 = _this3.amount / 0.971 + 0.31;
