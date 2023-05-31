@@ -67,6 +67,11 @@ class ApplicantController extends Controller
 
 
     public function joiningForm(Applicant $applicant){
+        $member = Member::findByEmail()->get();
+        if($member != null){
+            return view('pages.joinpaymentexists', ["applicant" => $applicant]);
+        }
+
         return view('pages.joinpayment', ["applicant" => $applicant]);
     }
 
