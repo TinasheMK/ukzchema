@@ -97,7 +97,7 @@ export default {
       $.notify(
         {
           icon: "nc-icon nc-check-2",
-          message: "Paid Joining Fee Successfully. Please wait to be redirected to set password."
+          message: "Paid Joining Fee Successfully. Please wait to be redirected to reset password."
         },
         {
           type: "primary",

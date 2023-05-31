@@ -241,7 +241,7 @@ class ApplicantController extends Controller
         } catch (\Throwable $th) {
             my_log("failed_to_save_nominees", $th->getMessage());
         }
-        return redirect(route('members-area.home'));
+        return redirect(route('forgot.password'));
 
     }
 

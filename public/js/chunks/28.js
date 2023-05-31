@@ -47,7 +47,7 @@ __webpack_require__.r(__webpack_exports__);
       console.log(payment_ref);
       $.notify({
         icon: "nc-icon nc-check-2",
-        message: "Paid Joining Fee Successfully. Please wait to be redirected to set password."
+        message: "Paid Joining Fee Successfully. Please wait to be redirected to reset password."
       }, {
         type: "primary",
         timer: 5000,
