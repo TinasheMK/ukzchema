@@ -82,7 +82,7 @@
                                         <h3 class="panel-title">Deposit Amount (	&#163;)</h3>
                                     </div>
                                     <div class="ml-4">
-                                        <input name="amount" type="number" style="width:120px" class="form-control col-3"
+                                        <input name="amount" step=".01" type="number" style="width:120px" class="form-control col-3"
                                             value="" required value="{{$claim->amount}}" placeholder="{{$claim->amount}}">
 
                                     </div>
