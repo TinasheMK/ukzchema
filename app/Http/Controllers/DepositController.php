@@ -70,6 +70,7 @@ class DepositController extends SharedBaseController
 
             $member->save();
             Notification::route('mail', $member->email)->notify(new DepositNotification($amount));
+
         }
         // dd($request);
 
@@ -94,7 +95,13 @@ class DepositController extends SharedBaseController
     {
         $member = Member::find($request->id);
         $user = User::find($member->user_id);
-        $user->depositFloat($request->amount);
+
+        if($request->amount>0){
+            $user->depositFloat($request->amount);
+        }else if($request->amount<0) {
+            $user->forceWithdrawFloat(-1*$request->amount, ['description' => 'manual withdrawal by admin']);
+        }
+
         $date = strtotime("+2 week");
         $dueDate = date("D M d, Y G:i", $date);
 

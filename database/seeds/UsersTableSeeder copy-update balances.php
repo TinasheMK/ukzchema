@@ -39,19 +39,19 @@ class UsersTableSeeder extends Seeder
                 if($user1){
                     if($user[2]>0){
                         $user1->depositFloat($user[2]);
-                        print_r(" $member->id ");
-                        print_r(" $user1->id");
-                        print_r(" $user1->balanceFloat");
-                        print_r(" \n");
+                        // print_r(" $member->id ");
+                        // print_r(" $user1->id");
+                        // print_r(" $user1->balanceFloat");
+                        // print_r(" \n");
 
                     }
                     if($user[2]<0){
                         $user1->forceWithdrawFloat(-1*$user[2], ['description' => 'payment for obituary']);
 
                         // $user1->forceWithdrawFloat($user[2]);
-                        print_r(" $user1->id");
-                        print_r(" $user1->balanceFloat");
-                        print_r(" \n");
+                        // print_r(" $user1->id");
+                        // print_r(" $user1->balanceFloat");
+                        // print_r(" \n");
 
                     }
 
