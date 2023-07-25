@@ -102,6 +102,10 @@ class DepositController extends SharedBaseController
             $user->forceWithdrawFloat(-1*$request->amount, ['description' => 'manual withdrawal by admin']);
         }
 
+        $bal = $user->balanceFloat;
+        $member->balance =  "$bal";
+        $member->save();
+
         $date = strtotime("+2 week");
         $dueDate = date("D M d, Y G:i", $date);
 
