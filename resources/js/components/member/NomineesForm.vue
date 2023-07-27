@@ -35,14 +35,15 @@
                 </div>
                 <div class="col-md-12">
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input
-                      :name="'nominees['+i+'][email]'"
-                      type="email"
+                    <label for="exampleInputEmail1">Date Stamp</label>
+                    <datepicker
+                      format="dd MMMM yyyy"
+                      :initialView="'year'"
+                      v-model="nominee.date_stamp"
                       :disabled="!unlocked"
-                      class="form-control"
-                      v-model="nominee.email"
-                    />
+                      :name="'nominees['+i+'][date_stamp]'"
+                      :input-class="unlocked ? 'form-control dob' : 'form-control nom'"
+                    ></datepicker>
                   </div>
                 </div>
                 <div class="col-md-12">
@@ -118,7 +119,7 @@
               <button type="submit" class="btn btn-danger">Delete</button>
             </div>
           </form>
-          
+
         </div>
       </div>
     </div>

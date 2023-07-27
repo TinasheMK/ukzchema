@@ -72,6 +72,14 @@
                         </div>
                         <div class="col-12 col-lg-4">
                             <div class="panel-heading" style="border-bottom:0;">
+                                <h3 class="panel-title">Date Stamp</h3>
+                            </div>
+                            <div class="panel-body" style="padding-top:0;">
+                                <p style="text-transform: capitalize">{{$nominee->date_stamp}}</p>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-4">
+                            <div class="panel-heading" style="border-bottom:0;">
                                 <h3 class="panel-title">Zimbabwean By</h3>
                             </div>
                             <div class="panel-body" style="padding-top:0;">

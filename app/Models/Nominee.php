@@ -11,6 +11,7 @@ class Nominee extends Model
     protected $fillable = [
         "member_id",
         "full_name",
+        "date_stamp",
         "email",
         "dob",
         "zimbabwean_by",

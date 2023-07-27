@@ -167,29 +167,22 @@ var render = function render() {
       attrs: {
         "for": "exampleInputEmail1"
       }
-    }, [_vm._v("Email address")]), _vm._v(" "), _c("input", {
-      directives: [{
-        name: "model",
-        rawName: "v-model",
-        value: nominee.email,
-        expression: "nominee.email"
-      }],
-      staticClass: "form-control",
+    }, [_vm._v("Date Stamp")]), _vm._v(" "), _c("datepicker", {
       attrs: {
-        name: "nominees[" + i + "][email]",
-        type: "email",
-        disabled: !_vm.unlocked
+        format: "dd MMMM yyyy",
+        initialView: "year",
+        disabled: !_vm.unlocked,
+        name: "nominees[" + i + "][date_stamp]",
+        "input-class": _vm.unlocked ? "form-control dob" : "form-control nom"
       },
-      domProps: {
-        value: nominee.email
-      },
-      on: {
-        input: function input($event) {
-          if ($event.target.composing) return;
-          _vm.$set(nominee, "email", $event.target.value);
-        }
+      model: {
+        value: nominee.date_stamp,
+        callback: function callback($$v) {
+          _vm.$set(nominee, "date_stamp", $$v);
+        },
+        expression: "nominee.date_stamp"
       }
-    })])]), _vm._v(" "), _c("div", {
+    })], 1)]), _vm._v(" "), _c("div", {
       staticClass: "col-md-12"
     }, [_c("div", {
       staticClass: "form-group"
@@ -339,7 +332,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.dob {\r\n  background-color: #ffffff !important;\r\n  color: #7d7a75 !important;\r\n  cursor: pointer !important;\n}\r\n", ""]);
+exports.push([module.i, "\n.dob {\n  background-color: #ffffff !important;\n  color: #7d7a75 !important;\n  cursor: pointer !important;\n}\n", ""]);
 
 // exports
 
