@@ -54,7 +54,7 @@ class Kernel extends ConsoleKernel
 
         // Update member balance on user balance cron
         $schedule->call(function () {
-            logger("User balance Cron running:");
+            // logger("User balance Cron running:");
             $this->billBoardMembers();
 
 
@@ -64,7 +64,7 @@ class Kernel extends ConsoleKernel
                 if($member){
                     $bal = $users[$x]->balanceFloat;
                     $member->balance =  "$bal";
-                    logger( $member->balance );
+                    // logger( $member->balance );
                     $member->save();
                     // logger("Balance updated user:", [$users[$x]->id]  );
                 }else{
@@ -177,7 +177,7 @@ class Kernel extends ConsoleKernel
                                         ]);
                                     }
                                     logger("Member already paid obituary:", [$obituaries[$y]->id]);
-                                    logger("Orbituary status",$hasPaid );
+                                    logger("Orbituary status",$hasPaid->id );
                                 }
                             }
 
