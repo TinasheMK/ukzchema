@@ -135,7 +135,8 @@ class Kernel extends ConsoleKernel
                             else{
                                 if ($invoiced->status != "paid") {
                                     logger("Obituary already invoiced:", [$invoiced->id]);
-                                    if ($user->balanceFloat >= $obituaries[$y]->donated_amount) {
+                                    // if ($user->balanceFloat >= $obituaries[$y]->donated_amount) {
+                                    if ($user->balanceFloat >= 0) {
                                         // if (!$obituaries[$y]->hasPaidId($members[$x]->id)) {
                                             $paid_status = "paid";
                                             $donation = $members[$x]->donations()->create([
