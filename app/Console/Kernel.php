@@ -86,7 +86,7 @@ class Kernel extends ConsoleKernel
 
                         $user = User::find($members[$x]->user_id);
 
-                        logger("Obituary Cron running:", [$members[$x]->user_id]  );
+                        logger("Obituary Cron running:", [$members[$x]->id]  );
 
                         if ($user ) {
                             $invoiced = Invoice::whereMemberIdAndType($user->member_id, $obituaries[$y]->id)->first();
