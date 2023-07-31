@@ -43,7 +43,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
 
-        // $schedule->command('inspire')->hourly();
+        // Delete rejected applicants after 24hrs
         $schedule->call(function () {
             DB::table('applicants')->where([
                 ['status', '=', 'rejected'],
@@ -78,7 +78,7 @@ class Kernel extends ConsoleKernel
         // Billing of orbituaries cron
         $schedule->call(function () {
             try{
-                logger("Obituary Cron running");
+                // logger("Obituary Cron running");
                 $members = Member::all();
                 $obituaries = Obituary::all();
                 for ($y = 0; $y <= $obituaries->count() - 1; $y++) {
@@ -86,8 +86,8 @@ class Kernel extends ConsoleKernel
 
                         $user = User::find($members[$x]->user_id);
 
-                        logger("Obituary Cron running:", [$members[$x]->id] );
-                        logger("Obituary", [$obituaries[$y]->id] );
+                        // logger("Obituary Cron running:", [$members[$x]->id] );
+                        // logger("Obituary", [$obituaries[$y]->id] );
 
                         if ($user ) {
                             $invoiced = Invoice::whereMemberIdAndType($user->member_id, $obituaries[$y]->id)->first();
@@ -178,13 +178,13 @@ class Kernel extends ConsoleKernel
                                             "on" => now()
                                         ]);
                                     }
-                                    logger("Member already paid obituary:", [$obituaries[$y]->id]);
+                                    // logger("Member already paid obituary:", [$obituaries[$y]->id]);
                                     // logger("Orbituary status",$hasPaid->id );
                                 }
                             }
 
                         } else {
-                            logger("Failed to invoice member:", [$members[$x]->user_id]);
+                            // logger("Failed to invoice member:", [$members[$x]->user_id]);
                         }
                     }
                 }
@@ -198,7 +198,7 @@ class Kernel extends ConsoleKernel
         // Reminders
         $schedule->call(function () {
             try{
-                logger("Reminders Cron running");
+                // logger("Reminders Cron running");
                 // Notification::route('mail', 'tinashekmakarudze@gmail.com')->notify(new Reminder1Notification("30"));
 
                 // logger("Email sent");
@@ -227,7 +227,7 @@ class Kernel extends ConsoleKernel
                     // logger('Member is:', [$member]);
                     if(isset($member) && $member != NULL){
                         if ($days_ago2<=$datenow && $days_ago4>=$datenow && !$invoice[$y]->reminder) {
-                            logger("First reminder for invoice", [$invoice[$y]]);
+                            // logger("First reminder for invoice", [$invoice[$y]]);
 
                             try{
                                 $email = Member::find($invoice[$y]->member_id);
@@ -235,24 +235,24 @@ class Kernel extends ConsoleKernel
                                 $invoice[$y]->reminder = 1;
                                 $invoice[$y]->save();
                                 Notification::send($email, new Reminder1Notification($invoice[$y]->total));
-                                logger("Reminder sent to", [$email->id]);
+                                // logger("Reminder sent to", [$email->id]);
 
                             }catch(ErrorException $e){
-                                logger("Member not found", [$email->id]);
+                                // logger("Member not found", [$email->id]);
                             }
                         }
 
                         if ($days_ago7 < $datenow && $invoice[$y]->reminder <2) {
-                            logger("Second reminder for invoice", [$invoice[$y]]);
+                            // logger("Second reminder for invoice", [$invoice[$y]]);
 
                             try{
                                 $email = Member::find($invoice[$y]->member_id);
                                 $invoice[$y]->reminder = 2;
                                 $invoice[$y]->save();
                                 Notification::send($email, new Reminder2Notification($invoice[$y]->total,$days_ago2,$datenow));
-                                logger("Reminder sent to", [$email->id]);
+                                // logger("Reminder sent to", [$email->id]);
                             }catch(ErrorException $e){
-                                logger("Member not found", [$email->id]);
+                                // logger("Member not found", [$email->id]);
                             }
                         }
                     }
