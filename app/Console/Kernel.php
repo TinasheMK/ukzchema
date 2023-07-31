@@ -177,7 +177,7 @@ class Kernel extends ConsoleKernel
                                         ]);
                                     }
                                     logger("Member already paid obituary:", [$obituaries[$y]->id]);
-                                    logger("Orbituary status",$hasPaid->id );
+                                    // logger("Orbituary status",$hasPaid->id );
                                 }
                             }
 
