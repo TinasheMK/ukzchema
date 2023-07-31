@@ -78,7 +78,7 @@ class Kernel extends ConsoleKernel
         // Billing of orbituaries cron
         $schedule->call(function () {
             try{
-                // logger("Obituary Cron running");
+                logger("Obituary Cron running");
                 $members = Member::all();
                 $obituaries = Obituary::all();
                 for ($y = 0; $y <= $obituaries->count() - 1; $y++) {
@@ -86,7 +86,7 @@ class Kernel extends ConsoleKernel
 
                         $user = User::find($members[$x]->user_id);
 
-                        // logger("Obituary Cron running:", [$members[$x]->user_id]  );
+                        logger("Obituary Cron running:", [$members[$x]->user_id]  );
 
                         if ($user ) {
                             $invoiced = Invoice::whereMemberIdAndType($user->member_id, $obituaries[$y]->id)->first();
@@ -133,7 +133,7 @@ class Kernel extends ConsoleKernel
                             }
                             else{
                                 if ($invoiced->status != "paid") {
-                                    // // logger("Obituary already invoiced:", [$invoiced->id]);
+                                    logger("Obituary already invoiced:", [$invoiced->id]);
                                     if ($user->balanceFloat >= $obituaries[$y]->donated_amount) {
                                         // if (!$obituaries[$y]->hasPaidId($members[$x]->id)) {
                                             $paid_status = "paid";
@@ -145,7 +145,7 @@ class Kernel extends ConsoleKernel
                                             ]);
                                             $invoiced->status = "paid";
                                             $invoiced->save();
-                                            // logger("Donation added for member:", [$members[$x]->id]);
+                                            logger("Donation added for member:", [$members[$x]->id]);
                                         // }
                                     } else {
                                         $hasPaid = Donation::whereMemberIdAndObituaryId($user->member_id, $obituaries[$y]->id)->first();
@@ -176,7 +176,8 @@ class Kernel extends ConsoleKernel
                                             "on" => now()
                                         ]);
                                     }
-                                    // logger("Member already paid obituary:", [$obituaries[$y]->id]);
+                                    logger("Member already paid obituary:", [$obituaries[$y]->id]);
+                                    logger("Orbituary status",$hasPaid );
                                 }
                             }
 
