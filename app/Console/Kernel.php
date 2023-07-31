@@ -165,6 +165,17 @@ class Kernel extends ConsoleKernel
                                         // logger("Insufficient funds for member:", [$members[$x]->id]);
                                     }
                                 }else{
+                                    $hasPaid = Donation::whereMemberIdAndObituaryId($user->member_id, $obituaries[$y]->id)->first();
+                                    if(!isset($hasPaid)) {
+
+                                        $paid_status = "paid";
+                                        $donation = $members[$x]->donations()->create([
+                                            "obituary_id" => $obituaries[$y]->id,
+                                            "orderID" => "wallet",
+                                            "amount" => $obituaries[$y]->donated_amount,
+                                            "on" => now()
+                                        ]);
+                                    }
                                     // logger("Member already paid obituary:", [$obituaries[$y]->id]);
                                 }
                             }
