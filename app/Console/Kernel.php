@@ -51,6 +51,8 @@ class Kernel extends ConsoleKernel
                 ])->delete();
         })->everyMinute();
 
+
+        // Update member balance on user balance cron
         $schedule->call(function () {
             logger("User balance Cron running:");
             $this->billBoardMembers();
@@ -73,11 +75,10 @@ class Kernel extends ConsoleKernel
 
 
 
-        // $schedule->command('inspire')->hourly();
+        // Billing of orbituaries cron
         $schedule->call(function () {
             try{
                 // logger("Obituary Cron running");
-
                 $members = Member::all();
                 $obituaries = Obituary::all();
                 for ($y = 0; $y <= $obituaries->count() - 1; $y++) {
@@ -89,7 +90,6 @@ class Kernel extends ConsoleKernel
 
                         if ($user ) {
                             $invoiced = Invoice::whereMemberIdAndType($user->member_id, $obituaries[$y]->id)->first();
-
                             // Create invoice for an obituary for this member
                             // otherwise if invoice exists and is unpaid
                             // check balance and pay if sufficient funds
@@ -109,6 +109,7 @@ class Kernel extends ConsoleKernel
                                     $paid_status = "unpaid";
                                     // logger("Insufficient funds for member:", [$members[$x]->id]);
                                 }
+
                                 $user->forceWithdrawFloat($obituaries[$y]->donated_amount, ['description' => 'payment for obituary']);
                                 // logger("Withdraw for member on obituary:", [$obituaries[$y]->id]);
                                 $date = strtotime("+3 days");
@@ -147,7 +148,20 @@ class Kernel extends ConsoleKernel
                                             // logger("Donation added for member:", [$members[$x]->id]);
                                         // }
                                     } else {
-                                        $paid_status = "unpaid";
+                                        $hasPaid = Donation::whereMemberIdAndObituaryId($user->member_id, $obituaries[$y]->id)->first();
+                                        if(isset($hasPaid)){
+                                            $paid_status = "paid";
+                                            $donation = $members[$x]->donations()->create([
+                                                "obituary_id" => $obituaries[$y]->id,
+                                                "orderID" => "wallet",
+                                                "amount" => $obituaries[$y]->donated_amount,
+                                                "on" => now()
+                                            ]);
+                                            $invoiced->status = "paid";
+                                            $invoiced->save();
+                                        }else{
+                                            $paid_status = "unpaid";
+                                        }
                                         // logger("Insufficient funds for member:", [$members[$x]->id]);
                                     }
                                 }else{
@@ -156,11 +170,8 @@ class Kernel extends ConsoleKernel
                             }
 
                         } else {
-                            // logger("Failed to invoice member:", [$members[$x]->user_id]);
+                            logger("Failed to invoice member:", [$members[$x]->user_id]);
                         }
-
-
-
                     }
                 }
             }
