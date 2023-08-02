@@ -45,7 +45,6 @@ class Member extends Model
     protected $casts = [
         'dob' => 'datetime:d M Y',
         'nok_dob' => 'datetime:d M Y',
-        'balance' => 'float',
     ];
 
     public function toDeceased(){

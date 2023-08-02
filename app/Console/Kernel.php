@@ -62,11 +62,14 @@ class Kernel extends ConsoleKernel
             for ($x = 0; $x <= $users->count() - 1; $x++) {
                 $member = $users[$x]->memberDetails;
                 if($member){
-                    $bal = sprintf("%.2f", $users[$x]->balanceFloat);
-                    $member->balance =  "$bal";
-                    // logger( $member->balance );
-                    $member->save();
-                    // logger("Balance updated user:", [$users[$x]->id]  );
+                    $bal = number_format($users[$x]->balanceFloat, 2, '.', '');
+                    // logger("Member balance updated with value:", [$bal] );
+                    if($member->balance !=  $bal){
+                        $member->balance =  $bal;
+                        $member->save();
+                    }
+
+                    // logger("Balance updated member:", [$member]  );
                 }else{
                     // logger("User balance update failed:", [$users[$x]->id]  );
                 }
@@ -134,7 +137,7 @@ class Kernel extends ConsoleKernel
                             }
                             else{
                                 if ($invoiced->status != "paid") {
-                                    logger("Obituary already invoiced:", [$invoiced->id]);
+                                    // logger("Obituary already invoiced:", [$invoiced->id]);
                                     // if ($user->balanceFloat >= $obituaries[$y]->donated_amount) {
                                     if ($user->balanceFloat >= 0) {
                                         // if (!$obituaries[$y]->hasPaidId($members[$x]->id)) {
@@ -147,7 +150,7 @@ class Kernel extends ConsoleKernel
                                             ]);
                                             $invoiced->status = "paid";
                                             $invoiced->save();
-                                            logger("Donation added for member:", [$members[$x]->id]);
+                                            // logger("Donation added for member:", [$members[$x]->id]);
                                         // }
                                     } else {
                                         $hasPaid = Donation::whereMemberIdAndObituaryId($user->member_id, $obituaries[$y]->id)->first();
