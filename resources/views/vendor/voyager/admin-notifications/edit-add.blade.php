@@ -54,7 +54,7 @@
                                 </div>
                             </div>
                             <hr style="margin:0;">
-                            <div class="col-12 col-lg-12">
+                            <!-- <div class="col-12 col-lg-12">
                                 <h4>Generate Invoice With Notification</h4>
                             </div>
                             <div class="col-12 col-lg-12">
@@ -64,7 +64,7 @@
                             <div class="col-12 col-lg-12">
                                 <label for="">Amount</label>
                                 <input name="amount" type="number" class="form-control" required>
-                            </div>
+                            </div>-->
                             <div class="col-12 col-lg-12">
                                 <button type="submit" class="btn btn-success">{{ __('Publish Notification') }}</button>
                             </div>
