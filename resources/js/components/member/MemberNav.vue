@@ -9,7 +9,7 @@
       <a :href="user.home" class="simple-text logo-normal">
           {{user.name}}
           <br>
-          <small>£ {{balance}}</small>
+          <small>£ {{balance.toFixed(2)}}</small>
         </a>
     </div>
     <div class="sidebar-wrapper">

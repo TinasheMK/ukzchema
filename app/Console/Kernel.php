@@ -62,7 +62,7 @@ class Kernel extends ConsoleKernel
             for ($x = 0; $x <= $users->count() - 1; $x++) {
                 $member = $users[$x]->memberDetails;
                 if($member){
-                    $bal = $users[$x]->balanceFloat;
+                    $bal = sprintf("%.2f", $users[$x]->balanceFloat);
                     $member->balance =  "$bal";
                     // logger( $member->balance );
                     $member->save();
