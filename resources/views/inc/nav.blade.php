@@ -22,7 +22,7 @@
                     <a type="button" data-toggle="modal" data-target="#depositModal"
                         class="nav-link btn btn-success btn-sm" href="javascript:;">
                         <i class="nc-icon nc-share-66"></i>
-                        Deposit
+                        Donate
                     </a>
                 </li>
             </ul>

@@ -7,7 +7,7 @@
             <span v-if="donate && !error" class="mr-1">
               <i class="fa fa-circle-o-notch fa-spin"></i>
             </span>
-            <span>Pay £{{min}}</span>
+            <span>Donate £{{min}}</span>
           </button>
         </div>
       </div>

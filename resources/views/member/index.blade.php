@@ -76,7 +76,7 @@ Member
                     <div class="comment-text w-100">
                         <h6 class="font-medium">{{$obituary->full_name}}
                             @if ($obituary->hasPaid())
-                                <span class="badge badge-success">Paid</span>
+                                <span class="badge badge-success">Donated</span>
                             @endif
                         </h6>
                         <span class="m-b-15 d-block">
@@ -89,7 +89,7 @@ Member
                                 @if ($obituary->hasPaid())
                                     View
                                 @else
-                                    Pay
+                                    Donate
                                 @endif
                             </a>
                         </div>

@@ -159,7 +159,7 @@ var render = function render() {
     staticClass: "mr-1"
   }, [_c("i", {
     staticClass: "fa fa-circle-o-notch fa-spin"
-  })]) : _vm._e(), _vm._v(" "), _c("span", [_vm._v("Pay £" + _vm._s(_vm.min))])])])]) : _vm._e()]), _vm._v(" "), _vm.error ? _c("p", {
+  })]) : _vm._e(), _vm._v(" "), _c("span", [_vm._v("Donate £" + _vm._s(_vm.min))])])])]) : _vm._e()]), _vm._v(" "), _vm.error ? _c("p", {
     staticClass: "text-danger text-center mt-2"
   }, [_c("i", {
     staticClass: "fa fa-frown-o"
@@ -223,7 +223,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.currency-err {\r\n  border-color: var(--danger) !important;\n}\r\n", ""]);
+exports.push([module.i, "\n.currency-err {\n  border-color: var(--danger) !important;\n}\n", ""]);
 
 // exports
 

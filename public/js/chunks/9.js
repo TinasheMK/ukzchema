@@ -58,7 +58,7 @@ var render = function render() {
     staticClass: "mt-0"
   }, [_vm._v(_vm._s(_vm.obituary.full_name) + " "), _vm.donated ? _c("span", {
     staticClass: "badge badge-success"
-  }, [_vm._v("Paid")]) : _vm._e()]), _vm._v(" "), _c("p", [_vm._v(_vm._s(_vm._f("truncate")(_vm.obituary.biography, 150)) + "\n          "), _c("br"), _vm._v(" "), _c("small", {
+  }, [_vm._v("Donated")]) : _vm._e()]), _vm._v(" "), _c("p", [_vm._v(_vm._s(_vm._f("truncate")(_vm.obituary.biography, 150)) + "\n          "), _c("br"), _vm._v(" "), _c("small", {
     staticClass: "text-muted mt-2"
   }, [_vm._v("Posted on " + _vm._s(_vm.obituary.created_at))])]), _vm._v(" "), _c("a", {
     staticClass: "stretched-link",
@@ -85,7 +85,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.obt-name{\r\n    font-size: 20px;\n}\r\n", ""]);
+exports.push([module.i, "\n.obt-name{\n    font-size: 20px;\n}\n", ""]);
 
 // exports
 
