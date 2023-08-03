@@ -128,7 +128,7 @@ class ApplicantController extends Controller
         if (!isset($applicant)) return abort(404);
         $user = User::create([
             'name' => $applicant->full_name,
-            'email' =>  $applicant->email,
+            'email' =>  strtolower($applicant->email),
             'avatar'    => 'users/default.png',
             'password'  =>  bcrypt($request->password)
         ]);
@@ -182,7 +182,7 @@ class ApplicantController extends Controller
         if (!isset($applicant)) return abort(404);
         $user = User::create([
             'name' => $applicant->full_name,
-            'email' =>  $applicant->email,
+            'email' =>  strtolower($applicant->email),
             'avatar'    => 'users/default.png',
             'password'  =>  bcrypt($request->password)
         ]);
@@ -223,7 +223,7 @@ class ApplicantController extends Controller
         if (!isset($applicant)) return abort(404);
         $user = User::create([
             'name' => $applicant->full_name,
-            'email' =>  $applicant->email,
+            'email' =>  strtolower($applicant->email),
             'avatar'    => 'users/default.png',
             'password'  =>  bcrypt($request->password)
         ]);

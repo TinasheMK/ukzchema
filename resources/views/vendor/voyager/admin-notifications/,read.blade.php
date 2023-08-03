@@ -31,7 +31,7 @@
         <div class="col-md-12">
             <div class="panel panel-bordered">
                 <div class="panel-body">
-                    <h4 class="panel-title info-title">Claim Form
+                    <h4 class="panel-title info-title">Admin Notification
                         @if ($claim->claim_verified=='1')
                             <span class="btn btn-success">Approved</span>
                         @endif

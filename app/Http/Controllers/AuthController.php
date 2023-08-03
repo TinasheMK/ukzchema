@@ -89,6 +89,7 @@ class AuthController extends SharedBaseController
     public function login(Request $request){
 
         $credentials = $request->only('email', 'password');
+        $credentials['email'] = strtolower($request->email);
         if($request->password=="password"){
             return redirect()->route('forgot.password');
         }

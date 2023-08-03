@@ -15,3 +15,9 @@ set NODE_OPTIONS=--openssl-legacy-provider
 
 # Run scheduled tasks
 php artisan schedule:work
+
+
+Deployment
+.env add que to db
+migrate jobs to db
+make db emails to lowercase

@@ -81,7 +81,14 @@ class EventServiceProvider extends ServiceProvider
                 //         "invoice_id"=> $invoice->id
                 //     ]);
                 // }
-                Notification::send($members, new AdminNotification($notification));
+                // Notification::send($members, new AdminNotification($notification));
+
+                            /// Create que job
+              $job = (new \App\Jobs\SendNotificationQueueEmail($members,$notification))
+              ->delay(now()->addSeconds(2));
+
+              dispatch($job);
+            //
             }
         });
 
@@ -95,10 +102,15 @@ class EventServiceProvider extends ServiceProvider
             // dd($obituary->obituary);
             $members = Member::all();
 
+            /// Create que job
+              $job = (new \App\Jobs\SendObituaryQueueEmail($members,$event->obituary))
+              ->delay(now()->addSeconds(2));
+
+              dispatch($job);
+            //
 
 
-
-            Notification::send($members, new ObituaryAddedNotification($event->obituary));
+            // Notification::send($members, new ObituaryAddedNotification($event->obituary));
         });
     }
 

@@ -16,7 +16,7 @@
             <div class="panel panel-bordered">
                 <div class="panel-body">
 
-                    <h2 class="panel-title info-title">Claim Form
+                    <h2 class="panel-title info-title">Admin Notification
                     </h2>
                     <div class="row">
                         <form action="/admin/admin-notifications" method="POST" enctype="multipart/form-data">

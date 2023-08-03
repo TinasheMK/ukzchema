@@ -121,3 +121,5 @@ Route::get('/applicants/set-to-null', function(){
 Route::get('/storeLinkGenerate', 'NomineeController@storeLinkGenerate');
 // Route::get('/storeLinkGenerate', 'NomineeController@storeLinkGenerate');
 
+
+Route::get('send/mail', [SendMailController::class, 'send_mail'])->name('send_mail');
