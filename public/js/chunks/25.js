@@ -36,7 +36,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       open: false,
       error: false,
-      amount: null,
+      amount: 10,
       payment_ref: null,
       script: null
     };
@@ -74,6 +74,10 @@ __webpack_require__.r(__webpack_exports__);
       }
       paypal.Buttons({
         createOrder: function createOrder(data, action) {
+          if (_this3.amount == NaN) {
+            _this3.amount = 10;
+          }
+          console.log(_this3.amount);
           _this3.amount = parseFloat(_this3.amount);
           _this3.amount = _this3.amount;
           _this3.amount = _this3.amount.toFixed(2);

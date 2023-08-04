@@ -83,7 +83,7 @@ export default {
     return {
       open: false,
       error: false,
-      amount: null,
+      amount: 10,
       payment_ref: null,
       script: null
     };
@@ -123,6 +123,10 @@ export default {
         .Buttons({
           createOrder: (data, action) => {
 
+            if(this.amount==NaN){
+                this.amount =10;
+            }
+            console.log(this.amount);
             this.amount = parseFloat(this.amount);
             this.amount = (this.amount);
             this.amount = this.amount.toFixed(2);
