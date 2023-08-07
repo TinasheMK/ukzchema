@@ -1,10 +1,11 @@
 <?php
 
+use App\Models\Applicant;
 use App\Models\BoardMember;
 use App\Models\Testimonial;
-use Illuminate\Support\Facades\Route;
 use TCG\Voyager\Facades\Voyager;
-use App\Models\Applicant;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 
 
 Route::group(['middleware' => ['guest']], function () {
@@ -116,6 +117,10 @@ Route::get('/applicants/set-to-null', function(){
         $user->save();
     }
     return ($user);
+});
+
+Route::get('/developer/migrate', function(){
+    return Artisan::call('migrate');
 });
 
 Route::get('/storeLinkGenerate', 'NomineeController@storeLinkGenerate');
