@@ -29,7 +29,7 @@ class AuthController extends SharedBaseController
     }
 
     public function sendResetLink(Request $request){
-        $user = User::whereEmail($request->email)->first();
+        $user = User::whereEmail(strtolower($request->email))->first();
         if(!isset($user)){
             $user = new User(['email' => $request->email]);
         }else{
