@@ -186,6 +186,17 @@ $member = $dataTypeContent;
                                 <p>{{$member->country}}</p>
                             </div>
                         </div>
+
+                    </div>
+                    <div class="row">
+                    <div class="col-12 col-md-4 px-0">
+                            <div class="panel-heading" style="border-bottom:0;">
+                                <h3 class="panel-title">Balance</h3>
+                            </div>
+                            <div class="panel-body" style="padding-top:0;">
+                                <p>£{{$member->user->balanceFloat}}</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div role="tabpanel" class="tab-pane" id="nok">
