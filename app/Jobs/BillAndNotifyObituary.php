@@ -78,7 +78,7 @@ class BillAndNotifyObituary implements ShouldQueue
                     "invoice_id" => $invoice->id
                 ]);
 
-                Notification::send($this->members[$i], new ObituaryAddedNotification($this->obituary));
+                // Notification::send($this->members[$i], new ObituaryAddedNotification($this->obituary));
 
         } catch (\Exception $e) {
             $this->obituary->unBilledMembers()->attach($this->members[$i]->id);
