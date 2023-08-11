@@ -63,7 +63,7 @@ class DonationsController extends SharedBaseController
             ]);
         }
 
-        dd($member);
+        // dd($member);
         // $obituary = Obituary::find($request->obituary_id);
 
         $user = User::find(Auth::user()->id);
