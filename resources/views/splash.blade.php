@@ -173,7 +173,7 @@ Home
         <!-- Related Project Slide-->
         <div class="related-project-slide owl-carousel">
           <!-- Single Slide-->
-          @foreach ($board_members as $board)
+          <!-- @foreach ($board_members as $board)
           <div class="single-portfolio-area no-boxshadow border mt-3">
             <img src="{{asset('storage/'.$board->photo)}}" alt="">
             <div class="overlay-content">
@@ -189,7 +189,7 @@ Home
                 </div>
             </div>
           </div>
-          @endforeach
+          @endforeach -->
         </div>
       </div>
     </div>
