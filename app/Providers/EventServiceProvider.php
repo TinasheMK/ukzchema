@@ -59,31 +59,6 @@ class EventServiceProvider extends ServiceProvider
                 $members = target_group($notification);
                 $notification->update(["target_total" => $members->count()]);
 
-                // $date = strtotime("+2 week");
-                // $dueDate = date("D M d, Y G:i", $date);
-                // for($x = 0; $x < $members->count() ; $x++){
-                //     $invoice = Invoice::create([
-                //         "invoice_date" => date("D M d, Y G:i"),
-                //         "type" => $notification->type,
-                //         "subtotal" => $notification->amount,
-                //         "total" => $notification->amount,
-                //         "member_id"=> $members[$x]->id,
-                //         "status" => "unpaid",
-                //         "due_date" => $dueDate,
-
-                //     ]);
-
-                //     // dd($invoice);
-
-                //     InvoiceItem::create([
-                //         "title" => $notification->invoice_title,
-                //         "amount" => $notification->amount,
-                //         "invoice_id"=> $invoice->id
-                //     ]);
-                // }
-                // Notification::send($members, new AdminNotification($notification));
-
-                            /// Create que job
               $job = (new \App\Jobs\SendNotificationQueueEmail($members,$notification))
               ->delay(now()->addSeconds(2));
 
@@ -103,14 +78,13 @@ class EventServiceProvider extends ServiceProvider
             $members = Member::all();
 
             /// Create que job
-              $job = (new \App\Jobs\SendObituaryQueueEmail($members,$event->obituary))
+              $job = (new \App\Jobs\BillAndNotifyObituary($members,$event->obituary))
               ->delay(now()->addSeconds(2));
 
               dispatch($job);
             //
 
 
-            // Notification::send($members, new ObituaryAddedNotification($event->obituary));
         });
     }
 

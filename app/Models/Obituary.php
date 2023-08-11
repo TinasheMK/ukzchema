@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Events\ObituaryAdded;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Facades\Auth;
 
 class Obituary extends Model
@@ -74,6 +75,16 @@ class Obituary extends Model
         // dd($has_donated);
         return isset($has_donated);
     }
+
+    public function invoices(){
+        return $this->hasMany(Invoice::class);
+    }
+
+    public function unBilledMembers(): BelongsToMany
+    {
+        return $this->belongsToMany(Member::class);
+    }
+
 
     // public function getFullNameBrowseAttribute(){
     //     if($this->member_type === "nominee") {

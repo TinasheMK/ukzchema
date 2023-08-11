@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Invoice;
 use App\Models\Member;
 use App\Models\Obituary;
 use App\Notifications\TerminationNotification;
@@ -16,26 +17,30 @@ class MemberController extends SharedBaseController
 
     public function index(){
         $members_count = count(Member::all());
-        $obituaries = Obituary::orderBy('created_at', 'desc')
-            ->limit(3)
-            ->get();
+        // $obituaries = Obituary::orderBy('created_at', 'desc')
+        //     ->limit(3)
+        //     ->get();
         $member = Auth::user()->memberDetails;
         $user = User::find(Auth::user()->id);
         $admin = new Collection([]);
         $payment = new Collection([]);
         $obituary = new Collection([]);
+        $invoices  = new Collection([]);
         if (isset($member)) {
+            $invoices = Invoice::whereMemberId($member->id )->get();
             $all = $member->notifications;
             $admin = $this->filterType($all, "admin");
             $payment = $this->filterType($all, "payment");
             $obituary = $this->filterType($all, "obituary");
         }
+
+        // dd($invoices[0]->obituary);
         return view('member.index',
         compact('members_count',
             'admin',
             'payment',
             'obituary',
-            'obituaries'));
+            'invoices'));
     }
 
     private function filterType($notifications, $type)

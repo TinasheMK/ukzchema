@@ -21,7 +21,7 @@
     <form ref="form" :action="route" method="POST" id="submit_donation">
       <slot></slot>
       <input type="hidden" name="orderID" v-model="orderID" />
-      <input type="hidden" name="obituary_id" :value="obituary_id" />
+      <input type="hidden" name="invoice_id" :value="invoice_id" />
     </form>
   </div>
 </template>
@@ -29,13 +29,13 @@
 <script>
 require("../../libs/bootstrap-notify");
 export default {
-  props: ["obituary", "min", "route", "client_id"],
+  props: ["invoice", "min", "route", "client_id"],
   data() {
     return {
       donate: false,
       amount: this.min,
       loaded: false,
-      obituary_id: this.obituary.id,
+      invoice_id: this.invoice.id,
       amount_err: false,
       orderID: null,
       error: false,
@@ -43,7 +43,7 @@ export default {
     };
   },
   mounted() {
-    console.log(this.obituary, this.min);
+    console.log(this.invoice, this.min);
   },
   methods: {
     loadError(){
@@ -87,7 +87,7 @@ export default {
               },
               purchase_units: [
                 {
-                  description: `Chema payment for ${this.obituary.full_name}`,
+                  description: `${this.invoice.description}`,
                   amount: {
                     currency_code: "GBP",
                     value: this.amount1

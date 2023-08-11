@@ -12,6 +12,9 @@ class Donation extends Model
     protected $fillable = [
         "member_id", //paid by
         "obituary_id",
+        "invoice_id",
+        "payment_ref",
+        "description",
         "amount",
         "on",
         "orderID"

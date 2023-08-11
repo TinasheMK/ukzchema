@@ -13,6 +13,9 @@ class Invoice extends Model
         "id",
         "user_id",
         "member_id",
+        "obituary_id",
+        "description",
+        "type",
         "status",
         "invoice_date",
         "due_date",
@@ -26,6 +29,9 @@ class Invoice extends Model
 
     public function member(){
         return $this->belongsTo(Member::class);
+    }
+    public function obituary(){
+        return $this->belongsTo(Obituary::class);
     }
     public function invoice_items(){
         return $this->hasMany(InvoiceItem::class);

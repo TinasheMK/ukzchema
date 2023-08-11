@@ -66,7 +66,7 @@ Route::group(['prefix' => 'admin'], function () {
 Route::group(['middleware' => ['auth', /*'role:member'*/], "prefix" => "member"], function () {
     Route::get('/', 'MemberController@index')->name('members-area.home');
     Route::get('/obituaries', 'ObituaryController@index')->name('members-area.obituary');
-    Route::get('/obituaries/{obituary}', 'ObituaryController@show')->name('members-area.obituary-show');
+    Route::get('/obituaries/{invoice}', 'ObituaryController@show')->name('members-area.obituary-show');
 
     Route::get('/claims', 'ClaimsController@index')->name('members-area.claims');
     Route::get('/claims/approve/{claim}', 'ClaimsController@approve')->name('claim.approve');

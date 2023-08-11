@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "js/chunks/" + ({}[chunkId]||chunkId) + ".js?v=" + {"0":"c523b","1":"93e20","2":"46c3d","3":"e8a57","4":"7ba14","5":"ff5a9","6":"4730d","7":"0e5e9","8":"8893a","9":"3f91f","10":"e615d","11":"b5eb4","12":"78d72","13":"535fa","14":"26c11","15":"36fcd","16":"9cc1f","17":"e9237","18":"4df94","19":"19361","20":"a5ad3","21":"506a5","22":"a7201","23":"3e4f4","24":"01bc4","25":"c54c1","26":"c018d","27":"d4b11","28":"0704e","29":"6b86b","30":"b34a8","31":"4b30d","32":"82bf7","33":"168bb","34":"6ea2d"}[chunkId] + ""
+/******/ 		return __webpack_require__.p + "js/chunks/" + ({}[chunkId]||chunkId) + ".js?v=" + {"0":"c523b","1":"93e20","2":"46c3d","3":"e8a57","4":"7f837","5":"ff5a9","6":"4730d","7":"6c2f0","8":"619b7","9":"8cd78","10":"9f60f","11":"23be3","12":"bff7c","13":"8d721","14":"7d4c2","15":"4af20","16":"1e046","17":"d8293","18":"5b582","19":"10e7b","20":"cd6df","21":"1a321","22":"2029a","23":"6f8e5","24":"6ddc1","25":"0fb6d","26":"6aca5","27":"e9221","28":"5f1de","29":"4fd47","30":"a3c88","31":"9b7ec","32":"7a3b5","33":"87201","34":"a113e"}[chunkId] + ""
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -90617,8 +90617,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\USER\Documents\GitHub\client\ukzchema\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\USER\Documents\GitHub\client\ukzchema\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\USER\Documents\GitHub\ukzchema\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\USER\Documents\GitHub\ukzchema\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

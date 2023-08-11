@@ -10,6 +10,7 @@ class Deposit extends Model
         "member_id",
         "payment_ref",
         "amount",
+        "description",
         "date",
         "invoice_id",
         "type",

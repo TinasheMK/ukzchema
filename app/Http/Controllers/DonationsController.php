@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Donation;
+use App\Models\Invoice;
 use App\Models\Member;
 use App\Models\Obituary;
 use App\Notifications\NewDonationReceived;
@@ -54,7 +55,6 @@ class DonationsController extends SharedBaseController
 
         $order = $response->result->purchase_units[0];
         $member = Auth::user()->memberDetails;
-        // dd($member);
         if (!isset($member)) {
             my_log("User doesn't have member's details", "\n\nFailed to save user's donation\nAmount: £{$order->amount->value}\nPayment Ref: *{$request->orderID}*");
             return redirect(route('members-area.payments'))->with([
@@ -63,7 +63,8 @@ class DonationsController extends SharedBaseController
             ]);
         }
 
-        $obituary = Obituary::find($request->obituary_id);
+        dd($member);
+        // $obituary = Obituary::find($request->obituary_id);
 
         $user = User::find(Auth::user()->id);
 
@@ -72,20 +73,31 @@ class DonationsController extends SharedBaseController
         $amount = $amount * 0.971;
         $amount = round($amount, 2);
 
-        $user->depositFloat($amount);
+        $user->depositFloat($request->amount);
 
-        // $obituary->donated_amount = $obituary->donated_amount + $order->amount->value;
-        // $obituary->save();
-        $donation = $member->donations()->create([
-            "obituary_id" => $obituary->id,
+
+        // Mark invoice paid and make donation
+        $invoice = Invoice::find($request->invoice_id);
+
+
+        $donation = $user->memberDetails->donations()->create([
+            "invoice_id" => $invoice->id,
+            "obituary_id" => $invoice->obituary->id,
             "orderID" => $request->orderID,
-            "amount" => $amount,
+            "payment_ref" => "Wallet payment",
+            "amount" => $invoice->total,
+            "description" => $invoice->description,
             "on" => now()
         ]);
+        $invoice->status = "paid";
+        $invoice->save();
 
 
 
-        Notification::send($member, new NewDonationReceived($order, $donation, $obituary->donated_amount));
+
+
+
+        Notification::send($member, new NewDonationReceived($order, $donation, $invoice->amount));
 
         return redirect(route('members-area.payments'))->with([
             'message'    => "Your donation was successfully received. Thank you!",

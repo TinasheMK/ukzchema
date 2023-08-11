@@ -69,24 +69,24 @@ Member
                 <h4 class="card-title"><i class="nc-icon nc-sound-wave"></i> Latest Obituaries</h4>
             </div>
             <div class="comment-widgets">
-                @forelse ($obituaries as $key => $obituary)
+                @forelse ($invoices as $key => $invoice)
                 <div class="d-flex flex-row mb-3 mt-0">
-                    <div class="p-2"><img src="{{asset('storage/'.$obituary->photo)}}" alt width="50"
+                    <div class="p-2"><img src="{{asset('storage/'.$invoice->obituary->photo)}}" alt width="50"
                             class="rounded-circle"></div>
                     <div class="comment-text w-100">
-                        <h6 class="font-medium">{{$obituary->full_name}}
-                            @if ($obituary->hasPaid())
+                        <h6 class="font-medium">{{$invoice->obituary->full_name}}
+                            @if ($invoice->status=='paid')
                                 <span class="badge badge-success">Donated</span>
                             @endif
                         </h6>
                         <span class="m-b-15 d-block">
-                            {{str_limit($obituary->biography)}}
+                            {{str_limit($invoice->obituary->biography)}}
                         </span>
                         <div class="comment-footer pr-2">
-                            <span class="text-muted float-right">{{format_date($obituary->created_at, 'M d Y')}}</span>
-                            <a href="{{route('members-area.obituary-show', $obituary->id)}}"
+                            <span class="text-muted float-right">{{format_date($invoice->obituary->created_at, 'M d Y')}}</span>
+                            <a href="{{route('members-area.obituary-show', $invoice->id)}}"
                                 class="btn btn-info btn-sm">
-                                @if ($obituary->hasPaid())
+                                @if ($invoice->status=='paid')
                                     View
                                 @else
                                     Donate
@@ -95,7 +95,7 @@ Member
                         </div>
                     </div>
                 </div>
-                    @if ($obituaries->count() > 1 && $key < $obituaries->count() - 1)
+                    @if ($invoices->count() > 1 && $key < $invoices->count() - 1)
                     <hr>
                     @endif
                 @empty

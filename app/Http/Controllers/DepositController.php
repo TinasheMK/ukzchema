@@ -37,42 +37,27 @@ class DepositController extends SharedBaseController
         }else{
             // dd($amount);
             $user->depositFloat($amount);
-            $member->balance = $member->balance + $amount;
+            $bal = $user->balanceFloat;
+            $member->balance ="$bal";
+
             $member->deposits()->create([
                 "amount" => $amount,
                 "payment_ref" => $request->payment_ref,
                 "date" => date("D M d, Y G:i"),
                 "balance" => $user->balanceFloat,
                 "type" => "Deposit",
-                "invoice_id" => $request->payment_ref
+                "description" => "Paypal deposit by member"
 
             ]);
 
 
             $date = strtotime("+1 week");
             $dueDate = date("D M d, Y G:i", $date);
-
-            $invoice = Invoice::create([
-                "invoice_date" => date("D M d, Y G:i"),
-                "type" => "deposit",
-                "subtotal" => $amount,
-                "total" => $amount,
-                "member_id"=> $member->id,
-                "status" => "paid",
-                "due_date" => $dueDate,
-
-            ]);
-            InvoiceItem::create([
-                "title" => "UKZChema Deposit",
-                "amount" => $amount,
-                "invoice_id"=> $invoice->id
-            ]);
-
             $member->save();
+            $this->payInvoices($user);
             Notification::route('mail', $member->email)->notify(new DepositNotification($amount));
 
         }
-        // dd($request);
 
         return redirect(route('members-area.deposits'))->with([
             'message'    => "Your deposit of £{$amount} was successfully received.",
@@ -106,24 +91,16 @@ class DepositController extends SharedBaseController
         $member->balance =  "$bal";
         $member->save();
 
-        $date = strtotime("+2 week");
-        $dueDate = date("D M d, Y G:i", $date);
-
-        $invoice = Invoice::create([
-            "invoice_date" => date("D M d, Y G:i"),
-            "type" => 'MailPayment',
-            "subtotal" => $request->amount,
-            "total" => $request->amount,
-            "member_id" => $member->id,
-            "status" =>'paid',
-            "due_date" => $dueDate,
-        ]);
-        InvoiceItem::create([
-            "title" => $member->full_name."Manual Deposit",
+        $member->deposits()->create([
             "amount" => $request->amount,
-            "invoice_id" => $invoice->id
+            "payment_ref" => $request->payment_ref,
+            "date" => date("D M d, Y G:i"),
+            "balance" => $user->balanceFloat,
+            "type" => "Deposit",
+            "description" => "Admin deposit for member"
         ]);
-
+        $this->payInvoices($user);
+        Notification::route('mail', $member->email)->notify(new DepositNotification($request->amount));
 
         $redirect = redirect()->route("voyager.members.index");
 
@@ -131,5 +108,26 @@ class DepositController extends SharedBaseController
             'message'    => __('voyager::generic.successfully_updated')." Deposit. Please wait a minute for transaction to reflect.",
             'alert-type' => 'success',
         ]);
+    }
+
+    public function payInvoices(User $user){
+
+        if ($user->balanceFloat >= 0) {
+            $invoices = Invoice::whereMemberIdAndStatus($user->member_id, "unpaid")->get();
+
+            for ($x = 0; $x <= $invoices->count() - 1; $x++) {
+                $user->memberDetails->donations()->create([
+                    "invoice_id" => $invoices[$x]->id,
+                    "obituary_id" => $invoices[$x]->obituary->id,
+                    "payment_ref" => "Wallet payment",
+                    "amount" => $invoices[$x]->total,
+                    "description" => $invoices[$x]->description,
+                    "on" => now()
+                ]);
+                $invoices[$x]->status = "paid";
+                $invoices[$x]->save();
+            }
+        }
+
     }
 }

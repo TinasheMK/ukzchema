@@ -11,13 +11,13 @@
 __webpack_require__.r(__webpack_exports__);
 __webpack_require__(/*! ../../libs/bootstrap-notify */ "./resources/js/libs/bootstrap-notify.js");
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["obituary", "min", "route", "client_id"],
+  props: ["invoice", "min", "route", "client_id"],
   data: function data() {
     return {
       donate: false,
       amount: this.min,
       loaded: false,
-      obituary_id: this.obituary.id,
+      invoice_id: this.invoice.id,
       amount_err: false,
       orderID: null,
       error: false,
@@ -25,7 +25,7 @@ __webpack_require__(/*! ../../libs/bootstrap-notify */ "./resources/js/libs/boot
     };
   },
   mounted: function mounted() {
-    console.log(this.obituary, this.min);
+    console.log(this.invoice, this.min);
   },
   methods: {
     loadError: function loadError() {
@@ -66,7 +66,7 @@ __webpack_require__(/*! ../../libs/bootstrap-notify */ "./resources/js/libs/boot
               shipping_preference: "NO_SHIPPING"
             },
             purchase_units: [{
-              description: "Chema payment for ".concat(_this.obituary.full_name),
+              description: "".concat(_this.invoice.description),
               amount: {
                 currency_code: "GBP",
                 value: _this.amount1
@@ -198,10 +198,10 @@ var render = function render() {
   }), _vm._v(" "), _c("input", {
     attrs: {
       type: "hidden",
-      name: "obituary_id"
+      name: "invoice_id"
     },
     domProps: {
-      value: _vm.obituary_id
+      value: _vm.invoice_id
     }
   })], 2)]);
 };
