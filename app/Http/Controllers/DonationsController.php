@@ -63,7 +63,7 @@ class DonationsController extends SharedBaseController
             ]);
         }
 
-        // dd($member);
+        dd($member);
         // $obituary = Obituary::find($request->obituary_id);
 
         $user = User::find(Auth::user()->id);
@@ -97,7 +97,7 @@ class DonationsController extends SharedBaseController
 
 
 
-        // Notification::send($member, new NewDonationReceived($order, $donation, $invoice->amount));
+        Notification::send($member, new NewDonationReceived($order, $donation, $invoice->amount));
 
         return redirect(route('members-area.payments'))->with([
             'message'    => "Your donation was successfully received. Thank you!",
