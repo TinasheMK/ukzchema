@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Wallet extends Model
 {
 
-    protected $table = "wallet";
+    protected $table = "wallets";
 }
