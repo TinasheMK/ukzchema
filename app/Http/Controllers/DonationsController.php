@@ -73,7 +73,7 @@ class DonationsController extends SharedBaseController
         $amount = $amount * 0.971;
         $amount = round($amount, 2);
 
-        $user->depositFloat($request->amount);
+        $user->depositFloat($amount);
 
 
         // Mark invoice paid and make donation
