@@ -173,23 +173,7 @@ Home
         <!-- Related Project Slide-->
         <div class="related-project-slide owl-carousel">
           <!-- Single Slide-->
-          <!-- @foreach ($board_members as $board)
-          <div class="single-portfolio-area no-boxshadow border mt-3">
-            <img src="{{asset('storage/'.$board->photo)}}" alt="">
-            <div class="overlay-content">
-              <div class="portfolio-title">
-                <a href="portfolio-details-one.html">{{$board->member->full_name}}</a>
-              </div>
-              <div class="portfolio-links">
-                <a class="image-popup" href="{{asset('storage/'.$board->photo)}}" data-effect="mfp-zoom-in"
-                  title="{{$board->member->full_name ?? ''}}">
-                  <i class="lni-play"></i></a>
-                  <a href="{{$board->fb_username}}"><i class="lni-facebook-filled"></i></a>
-                  <a href=""><i class="lni-telegram"></i></a>
-                </div>
-            </div>
-          </div>
-          @endforeach -->
+
         </div>
       </div>
     </div>
