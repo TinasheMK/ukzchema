@@ -55,7 +55,7 @@ class DepositController extends SharedBaseController
             $dueDate = date("D M d, Y G:i", $date);
             $member->save();
             $this->payInvoices($user);
-            // Notification::route('mail', $member->email)->notify(new DepositNotification($amount));
+            Notification::route('mail', $member->email)->notify(new DepositNotification($amount));
 
         }
 
@@ -100,7 +100,7 @@ class DepositController extends SharedBaseController
             "description" => "Admin deposit for member"
         ]);
         $this->payInvoices($user);
-        // Notification::route('mail', $member->email)->notify(new DepositNotification($request->amount));
+        Notification::route('mail', $member->email)->notify(new DepositNotification($request->amount));
 
         $redirect = redirect()->route("voyager.members.index");
 
