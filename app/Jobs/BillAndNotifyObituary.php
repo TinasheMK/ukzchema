@@ -17,7 +17,7 @@ use Mail;
 class BillAndNotifyObituary implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-    protected $members;
+    protected $member;
     protected $obituary;
     public $timeout = 7200; // 2 hours
 
@@ -26,9 +26,9 @@ class BillAndNotifyObituary implements ShouldQueue
      *
      * @return void
      */
-    public function __construct($members, $obituary)
+    public function __construct($member, $obituary)
     {
-        $this->members = $members;
+        $this->member = $member;
         $this->obituary = $obituary;
     }
 
@@ -39,14 +39,14 @@ class BillAndNotifyObituary implements ShouldQueue
      */
     public function handle()
     {
-        for ($i =0; $i<=$this->members->count(); $i++) {
+        // for ($i =0; $i<=$this->members->count(); $i++) {
             try {
 
-                if($this->obituary->member_id==$this->members[$i]->id){
-                    continue;
-                };
+                if($this->obituary->member_id==$this->member->id){
 
-                $user = User::find($this->members[$i]->user_id);
+
+
+                $user = User::find($this->member->user_id);
 
                 // Invoice member
                 $user->forceWithdrawFloat($this->obituary->donated_amount, ['description' => 'Payment for obituary']);
@@ -67,7 +67,7 @@ class BillAndNotifyObituary implements ShouldQueue
                     "subtotal" => $this->obituary->donated_amount,
                     "obituary_id" => $this->obituary->id,
                     "total" => $this->obituary->donated_amount,
-                    "member_id" => $this->members[$i]->id,
+                    "member_id" => $this->member->id,
                     "status" => $paid_status,
                     "due_date" => $dueDate,
                 ]);
@@ -78,13 +78,14 @@ class BillAndNotifyObituary implements ShouldQueue
                     "invoice_id" => $invoice->id
                 ]);
 
-                Notification::send($this->members[$i], new ObituaryAddedNotification($this->obituary));
+                Notification::send($this->member, new ObituaryAddedNotification($this->obituary));
+            };
 
         } catch (\Exception $e) {
-            $this->obituary->unBilledMembers()->attach($this->members[$i]->id);
+            $this->obituary->unBilledMembers()->attach($this->member->id);
             logger($e);
-            continue;
+            // continue;
         }
         }
-    }
+    // }
 }
