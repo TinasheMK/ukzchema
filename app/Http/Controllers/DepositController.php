@@ -99,6 +99,7 @@ class DepositController extends SharedBaseController
             "type" => "Deposit",
             "description" => "Admin deposit for member"
         ]);
+
         $this->payInvoices($user);
 
         $redirect = redirect()->route("voyager.members.index");

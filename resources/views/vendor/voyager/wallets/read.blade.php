@@ -66,7 +66,7 @@
                                 <h3 class="panel-title">Current Balance</h3>
                             </div>
                             <div class="panel-body" style="padding-top:0;">
-                                <p>£ {{$claim->balance}}</p>
+                                <p>£ {{$claim->user->balanceFloat}}</p>
                             </div>
                         </div>
                     </div>
