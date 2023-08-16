@@ -78,7 +78,7 @@ class EventServiceProvider extends ServiceProvider
             $members = Member::all();
 
             /// Create que job
-            for ($i =0; $i<=$members->count(); $i++) {
+            for ($i =0; $i<$members->count(); $i++) {
                 $job = (new \App\Jobs\BillAndNotifyObituary($members[$i], $event->obituary));
                 dispatch($job);
             }

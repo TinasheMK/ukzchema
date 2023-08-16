@@ -111,6 +111,10 @@ class Member extends Model
         return $this->hasMany(Invoice::class);
     }
 
+    public function boardMember(){
+        return $this->hasOne(BoardMember::class);
+    }
+
 
     public function getNextOfKin(){
         return (object) [

@@ -42,14 +42,18 @@ class BillAndNotifyObituary implements ShouldQueue
         // for ($i =0; $i<=$this->members->count(); $i++) {
             try {
 
-                if($this->obituary->member_id==$this->member->id){
+                if($this->obituary->member_id!=$this->member->id){
 
 
 
                 $user = User::find($this->member->user_id);
+                $donateAmount = $this->obituary->donated_amount;
+                if(isset($this->member->boardMember)){
+                    $donateAmount = 0;
+                }
 
                 // Invoice member
-                $user->forceWithdrawFloat($this->obituary->donated_amount, ['description' => 'Payment for obituary']);
+                $user->forceWithdrawFloat($donateAmount, ['description' => 'Payment for obituary']);
                 // logger("Withdraw for member on obituary:", [$obituaries[$y]->id]);
                 $date = strtotime("+3 days");
                 $dueDate = date("D M d, Y G:i", $date);
@@ -64,9 +68,9 @@ class BillAndNotifyObituary implements ShouldQueue
                     "invoice_date" => date("D M d, Y G:i"),
                     "type" => "Obituary",
                     "description" => "Obituary for (".strval($this->obituary->member_id) .") ". strval($this->obituary->full_name),
-                    "subtotal" => $this->obituary->donated_amount,
+                    "subtotal" => $donateAmount,
                     "obituary_id" => $this->obituary->id,
-                    "total" => $this->obituary->donated_amount,
+                    "total" => $donateAmount,
                     "member_id" => $this->member->id,
                     "status" => $paid_status,
                     "due_date" => $dueDate,
@@ -74,7 +78,7 @@ class BillAndNotifyObituary implements ShouldQueue
 
                 InvoiceItem::create([
                     "title" => $this->obituary->full_name,
-                    "amount" => $this->obituary->donated_amount,
+                    "amount" => $donateAmount,
                     "invoice_id" => $invoice->id
                 ]);
 
