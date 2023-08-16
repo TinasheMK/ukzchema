@@ -45,7 +45,6 @@ class BillAndNotifyObituary implements ShouldQueue
                 if($this->obituary->member_id!=$this->member->id){
 
 
-
                 $user = User::find($this->member->user_id);
                 $donateAmount = $this->obituary->donated_amount;
                 if(isset($this->member->boardMember)){
@@ -67,7 +66,7 @@ class BillAndNotifyObituary implements ShouldQueue
                 $invoice = Invoice::create([
                     "invoice_date" => date("D M d, Y G:i"),
                     "type" => "Obituary",
-                    "description" => "Obituary for (".strval($this->obituary->member_id) .") ". strval($this->obituary->full_name),
+                    "description" => "Obituary for ". strval($this->obituary->full_name),
                     "subtotal" => $donateAmount,
                     "obituary_id" => $this->obituary->id,
                     "total" => $donateAmount,

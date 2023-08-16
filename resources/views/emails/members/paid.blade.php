@@ -1,7 +1,7 @@
 @component('mail::message')
 # Hello, {{$user->name}}!
 
-Thank you for your {{$order->description}} of £{{$payment->amount}}
+Thank you for paying the {{$order->description}} of £{{$payment->amount}}
 
 Payment Ref: {{$payment->orderID}}
 

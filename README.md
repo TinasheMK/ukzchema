@@ -12,22 +12,8 @@ php artisan schedule:work
 # Run jobs
 php artisan queue:work
 
-Donations table 
--- make member_id not null
--- Add desription not null
--- Amount not null
--- Description not null
--- Add Invoice id not null 
--- Add payment ref not null
-
-Invoices table
--- Add invoice description not null and display on bread
--- Invoice type not null -- Obituary or Deposit
--- Invoice member id not null
--- Invoice to be related to obituary
-
-Obituary bread
--- Make member id required
+# Depl
+member_obituary make meber not unique
 
 //todo
 Kernel refactor code get unpaid invoices and reminder not 3

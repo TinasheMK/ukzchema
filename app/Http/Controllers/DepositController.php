@@ -100,7 +100,6 @@ class DepositController extends SharedBaseController
             "description" => "Admin deposit for member"
         ]);
         $this->payInvoices($user);
-        Notification::route('mail', $member->email)->notify(new DepositNotification($request->amount));
 
         $redirect = redirect()->route("voyager.members.index");
 
