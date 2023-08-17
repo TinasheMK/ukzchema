@@ -59,12 +59,12 @@ class EventServiceProvider extends ServiceProvider
                 $members = target_group($notification);
                 $notification->update(["target_total" => $members->count()]);
 
-            //   $job = (new \App\Jobs\SendNotificationQueueEmail($members,$notification))
-            //   ->delay(now()->addSeconds(2));
+              $job = (new \App\Jobs\SendNotificationQueueEmail($members,$notification))
+              ->delay(now()->addSeconds(2));
 
-            //   dispatch($job);
+              dispatch($job);
 
-              Notification::send($members, new AdminNotification($notification));
+            //   Notification::send($members, new AdminNotification($notification));
 
             //
             }

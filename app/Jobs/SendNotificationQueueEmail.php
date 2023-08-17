@@ -44,8 +44,6 @@ class SendNotificationQueueEmail implements ShouldQueue
 
 
             } catch (\Exception $e) {
-                // Log error
-                // Flag email for retry
                 continue;
             }
         }
