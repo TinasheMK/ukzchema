@@ -52,7 +52,7 @@ class BillAndNotifyObituary implements ShouldQueue
 
                 // Invoice member
                 $user->forceWithdrawFloat($donateAmount, ['description' => 'Payment for obituary']);
-                // logger("Withdraw for member on obituary:", [$obituaries[$y]->id]);
+                logger("Invoice job version 45. On obituary", [$this->obituary->id]);
                 $date = strtotime("+3 days");
                 $dueDate = date("D M d, Y G:i", $date);
                 $paid_status = "unpaid";

@@ -54,63 +54,63 @@ class Kernel extends ConsoleKernel
 
 
         // Payment Reminders
-        // $schedule->call(function () {
-        //     try{
-        //         // logger("Reminders Cron running");
+        $schedule->call(function () {
+            try{
+                // logger("Reminders Cron running");
 
-        //         $invoice = Invoice::whereStatus("unpaid")->get();
+                $invoice = Invoice::whereStatus("unpaid")->get();
 
-        //         for ($y = 0; $y <= $invoice->count() - 1; $y++) {
-        //             // logger("Invoice processing", [$invoice[$y]]);
-        //             $datenow    = date("Y-m-d H:i:s");
+                for ($y = 0; $y <= $invoice->count() - 1; $y++) {
+                    // logger("Invoice processing", [$invoice[$y]]);
+                    $datenow    = date("Y-m-d H:i:s");
 
-        //             $date    = $invoice[$y]->created_at;
+                    $date    = $invoice[$y]->created_at;
 
-        //             $days_ago2 = date('Y-m-d H:i:s', strtotime('+3 days', strtotime( $date)));
-        //             $days_ago4 = date('Y-m-d H:i:s', strtotime('+4 days', strtotime( $date)));
-        //             $days_ago7 = date('Y-m-d H:i:s', strtotime('+7 days', strtotime( $date)));
-        //             $days_ago10 = date('Y-m-d H:i:s', strtotime('+11 days', strtotime( $date)));
-        //             $member = Member::find($invoice[$y]->member_id);
-        //             // logger('Member is:', [$member]);
-        //             if(isset($member) && $member != NULL){
-        //                 if ($days_ago2<=$datenow && $days_ago4>=$datenow && !$invoice[$y]->reminder) {
-        //                     // logger("First reminder for invoice", [$invoice[$y]]);
+                    $days_ago2 = date('Y-m-d H:i:s', strtotime('+3 days', strtotime( $date)));
+                    $days_ago4 = date('Y-m-d H:i:s', strtotime('+4 days', strtotime( $date)));
+                    $days_ago7 = date('Y-m-d H:i:s', strtotime('+7 days', strtotime( $date)));
+                    $days_ago10 = date('Y-m-d H:i:s', strtotime('+11 days', strtotime( $date)));
+                    $member = Member::find($invoice[$y]->member_id);
+                    // logger('Member is:', [$member]);
+                    if(isset($member) && $member != NULL){
+                        if ($days_ago2<=$datenow && $days_ago4>=$datenow && !$invoice[$y]->reminder) {
+                            // logger("First reminder for invoice", [$invoice[$y]]);
 
-        //                     try{
-        //                         $email = Member::find($invoice[$y]->member_id);
+                            try{
+                                $email = Member::find($invoice[$y]->member_id);
 
-        //                         $invoice[$y]->reminder = 1;
-        //                         $invoice[$y]->save();
-        //                         Notification::send($email, new Reminder1Notification($invoice[$y]->total));
-        //                         // logger("Reminder sent to", [$email->id]);
+                                $invoice[$y]->reminder = 1;
+                                $invoice[$y]->save();
+                                Notification::send($email, new Reminder1Notification($invoice[$y]->total));
+                                // logger("Reminder sent to", [$email->id]);
 
-        //                     }catch(ErrorException $e){
-        //                         // logger("Member not found", [$email->id]);
-        //                     }
-        //                 }
+                            }catch(ErrorException $e){
+                                // logger("Member not found", [$email->id]);
+                            }
+                        }
 
-        //                 if ($days_ago7 < $datenow && $invoice[$y]->reminder <2) {
-        //                     // logger("Second reminder for invoice", [$invoice[$y]]);
+                        if ($days_ago7 < $datenow && $invoice[$y]->reminder <2) {
+                            // logger("Second reminder for invoice", [$invoice[$y]]);
 
-        //                     try{
-        //                         $email = Member::find($invoice[$y]->member_id);
-        //                         $invoice[$y]->reminder = 2;
-        //                         $invoice[$y]->save();
-        //                         Notification::send($email, new Reminder2Notification($invoice[$y]->total,$days_ago2,$datenow));
-        //                         // logger("Reminder sent to", [$email->id]);
-        //                     }catch(ErrorException $e){
-        //                         // logger("Member not found", [$email->id]);
-        //                     }
-        //                 }
-        //             }
+                            try{
+                                $email = Member::find($invoice[$y]->member_id);
+                                $invoice[$y]->reminder = 2;
+                                $invoice[$y]->save();
+                                Notification::send($email, new Reminder2Notification($invoice[$y]->total,$days_ago2,$datenow));
+                                // logger("Reminder sent to", [$email->id]);
+                            }catch(ErrorException $e){
+                                // logger("Member not found", [$email->id]);
+                            }
+                        }
+                    }
 
 
-        //         }
-        //     }
-        //     catch (Exception $e) {
-        //         logger("Failed to invoice member:", [$e]);
-        //     }
-        // })->everyMinute();
+                }
+            }
+            catch (Exception $e) {
+                logger("Failed to invoice member:", [$e]);
+            }
+        })->everyMinute();
 
 
         // Bill unBilled members for obituary
