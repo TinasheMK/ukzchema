@@ -77,7 +77,7 @@ class EventServiceProvider extends ServiceProvider
         Event::listen(ObituaryAdded::class, function ($event) {
             $obituary = $event->obituary;
             logger("Obituary added event fired", [$event]);
-            // dd($obituary->obituary);
+
             $members = Member::all();
 
             /// Create que job
@@ -87,8 +87,6 @@ class EventServiceProvider extends ServiceProvider
             }
             //
             Notification::send($members, new ObituaryAddedNotification($event->obituary));
-
-
 
         });
     }
