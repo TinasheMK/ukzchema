@@ -39,7 +39,6 @@ class BillAndNotifyObituary implements ShouldQueue
      */
     public function handle()
     {
-        // for ($i =0; $i<=$this->members->count(); $i++) {
             try {
 
                 if($this->obituary->member_id!=$this->member->id){
@@ -81,7 +80,6 @@ class BillAndNotifyObituary implements ShouldQueue
                     "invoice_id" => $invoice->id
                 ]);
 
-                Notification::send($this->member, new ObituaryAddedNotification($this->obituary));
             };
 
         } catch (\Exception $e) {
