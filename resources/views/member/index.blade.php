@@ -84,7 +84,7 @@ Member
                         </span>
                         <div class="comment-footer pr-2">
                             <span class="text-muted float-right">{{format_date($invoice->obituary->created_at, 'M d Y')}}</span>
-                            <a href="{{route('members-area.obituary-show', $invoice->id)}}"
+                            <a href="{{route('members-area.obituary-show', $invoice->obituary->id)}}"
                                 class="btn btn-info btn-sm">
                                 @if ($invoice->status=='paid')
                                     View
