@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class ClaimNotificationDeathCert extends Notification implements ShouldQueue
+class ClaimNotificationDeathCert extends Notification
 {
     use Queueable;
 

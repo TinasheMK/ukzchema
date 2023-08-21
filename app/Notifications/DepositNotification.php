@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class DepositNotification extends Notification implements ShouldQueue
+class DepositNotification extends Notification
 {
     use Queueable;
 

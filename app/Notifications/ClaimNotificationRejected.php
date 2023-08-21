@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class ClaimNotificationRejected extends Notification implements ShouldQueue
+class ClaimNotificationRejected extends Notification
 {
     use Queueable;
 

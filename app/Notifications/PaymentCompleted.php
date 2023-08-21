@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notification;
 use NotificationChannels\Telegram\TelegramChannel;
 use NotificationChannels\Telegram\TelegramMessage;
 
-class PaymentCompleted extends Notification implements ShouldQueue
+class PaymentCompleted extends Notification
 {
     use Queueable;
 
