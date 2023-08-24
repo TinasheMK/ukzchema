@@ -96,20 +96,21 @@ class EventServiceProvider extends ServiceProvider
 
                     $notifyMembers->push((object) $members[$i]);
                 }else{
-                    $skippedMembers->push((object) $members[$i]);
+                    $skippedMembers->push((object) $members[$i]->id);
 
                 }
 
                 $event->obituary->skipped_members = $skippedMembers;
 
-                logger("Obituary is", [$event->obituary->id]);
-                logger("Skipped members for obituar", [$skippedMembers]);
 
 
 
 
 
             }
+
+            logger("Obituary is", [$event->obituary->id]);
+            logger("Skipped members for obituary:", [strval($skippedMembers)]);
             // dd($members->count());
 
             //
