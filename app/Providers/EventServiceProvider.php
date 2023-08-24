@@ -15,6 +15,7 @@ use App\Notifications\NewApplicant as NotificationsNewApplicant;
 use App\Notifications\NotifyAcceptedApplicant;
 use App\Notifications\ObituaryAddedNotification;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Event;
@@ -79,14 +80,40 @@ class EventServiceProvider extends ServiceProvider
             logger("Obituary added event fired", [$event]);
 
             $members = Member::all();
+            $notifyMembers = collect([]);
+            $skippedMembers = collect([]);
 
             /// Create que job
             for ($i =0; $i<$members->count(); $i++) {
-                $job = (new \App\Jobs\BillAndNotifyObituary($members[$i], $event->obituary));
-                dispatch($job);
+                $date1 = Carbon::createFromDate($members[$i]->created_at);
+
+                $date2 = Carbon::createFromDate($event->obituary->dod);
+
+                $result = $date2->gt($date1);
+                if($result){
+                    $job = (new \App\Jobs\BillAndNotifyObituary($members[$i], $event->obituary));
+                    dispatch($job);
+
+                    $notifyMembers->push((object) $members[$i]);
+                }else{
+                    $skippedMembers->push((object) $members[$i]);
+
+                }
+
+                $event->obituary->skipped_members = $skippedMembers;
+
+                logger("Obituary is", [$event->obituary->id]);
+                logger("Skipped members for obituar", [$skippedMembers]);
+
+
+
+
+
             }
+            // dd($members->count());
+
             //
-            Notification::send($members, new ObituaryAddedNotification($event->obituary));
+            Notification::send($notifyMembers, new ObituaryAddedNotification($event->obituary));
 
         });
     }

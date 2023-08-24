@@ -196,6 +196,8 @@ $member = $dataTypeContent;
                             <div class="panel-body" style="padding-top:0;">
                                 <p>£{{$member->user->balanceFloat}}</p>
                             </div>
+                            <p>{{dd($member->user)}}</p>
+
                         </div>
                     </div>
                 </div>
