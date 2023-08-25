@@ -109,7 +109,6 @@
                                           </tr>
                                           </thead>
                                           <tbody>
-                                            {{-- {{dd($invoice->invoice_items)}} --}}
                                             @foreach ($invoice->invoice_items as $item)
                                                 <tr>
                                                     @if ($item->units)

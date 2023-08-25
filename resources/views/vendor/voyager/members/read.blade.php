@@ -72,11 +72,11 @@ $member = $dataTypeContent;
         <div class="col-md-12">
             <ul class="nav nav-tabs" role="tablist">
                 <li role="presentation" class="active"><a href="#profile" aria-controls="profile" role="tab"
-                        data-toggle="tab">Member Details</a></li>
+                        data-toggle="tab">Member Details:</a></li>
                 <li role="presentation"><a href="#nok" aria-controls="nok" role="tab" data-toggle="tab">Next Of Kin</a>
                 </li>
                 <li role="presentation"><a href="#nominees" aria-controls="nominees" role="tab"
-                        data-toggle="tab">Nominees</a>
+                        data-toggle="tab">Nominees:</a>
                 </li>
             </ul>
             <div class="tab-content">
@@ -93,7 +93,7 @@ $member = $dataTypeContent;
                         @if ($member->middle_name)
                         <div class="col-12 col-md-4 px-0">
                             <div class="panel-heading" style="border-bottom:0;">
-                                <h3 class="panel-title">Middle Name</h3>
+                                <h3 class="panel-title">Middle Name:</h3>
                             </div>
                             <div class="panel-body" style="padding-top:0;">
                                 <p>{{$member->middle_name}}</p>
@@ -102,7 +102,7 @@ $member = $dataTypeContent;
                         @endif
                         <div class="col-12 col-md-4 px-0">
                             <div class="panel-heading" style="border-bottom:0;">
-                                <h3 class="panel-title">Last Name</h3>
+                                <h3 class="panel-title">Last Name:</h3>
                             </div>
                             <div class="panel-body" style="padding-top:0;">
                                 <p>{{$member->last_name}}</p>
@@ -110,7 +110,7 @@ $member = $dataTypeContent;
                         </div>
                         <div class="col-12 col-md-4 px-0">
                             <div class="panel-heading" style="border-bottom:0;">
-                                <h3 class="panel-title">Joined Date</h3>
+                                <h3 class="panel-title">Joined Date:</h3>
                             </div>
                             <div class="panel-body" style="padding-top:0;">
                                 <p>{{$member->created_at->format('Y-m-d')}}</p>
@@ -121,7 +121,7 @@ $member = $dataTypeContent;
                     <div class="row">
                         <div class="col-12 col-md-4 px-0">
                             <div class="panel-heading" style="border-bottom:0;">
-                                <h3 class="panel-title">Date of Birth</h3>
+                                <h3 class="panel-title">Date of Birth:</h3>
                             </div>
                             <div class="panel-body" style="padding-top:0;">
                                 <p>{{$member->dob->format('d.m.Y')}}</p>
@@ -129,7 +129,7 @@ $member = $dataTypeContent;
                         </div>
                         <div class="col-12 col-md-4 px-0">
                             <div class="panel-heading" style="border-bottom:0;">
-                                <h3 class="panel-title">Email</h3>
+                                <h3 class="panel-title">Email:</h3>
                             </div>
                             <div class="panel-body" style="padding-top:0;">
                                 <p>{{$member->email}}</p>
@@ -137,7 +137,7 @@ $member = $dataTypeContent;
                         </div>
                         <div class="col-12 col-md-4 px-0">
                             <div class="panel-heading" style="border-bottom:0;">
-                                <h3 class="panel-title">Phone</h3>
+                                <h3 class="panel-title">Phone:</h3>
                             </div>
                             <div class="panel-body" style="padding-top:0;">
                                 <p>{{$member->phone}}</p>
@@ -148,7 +148,7 @@ $member = $dataTypeContent;
                     <div class="row">
                         <div class="col-md-12 px-0">
                             <div class="panel-heading" style="border-bottom:0;">
-                                <h3 class="panel-title">Address Line 1</h3>
+                                <h3 class="panel-title">Address Line 1:</h3>
                             </div>
                             <div class="panel-body" style="padding-top:0;">
                                 <p>{{$member->street}}</p>
@@ -156,7 +156,7 @@ $member = $dataTypeContent;
                         </div>
                         <div class="col-md-12 px-0">
                             <div class="panel-heading" style="border-bottom:0;">
-                                <h3 class="panel-title">Address Line 2</h3>
+                                <h3 class="panel-title">Address Line 2:</h3>
                             </div>
                             <div class="panel-body" style="padding-top:0;">
                                 <p>{{$member->apartment}}</p>
@@ -164,7 +164,7 @@ $member = $dataTypeContent;
                         </div>
                         <div class="col-12 col-md-4 px-0">
                             <div class="panel-heading" style="border-bottom:0;">
-                                <h3 class="panel-title">City</h3>
+                                <h3 class="panel-title">City:</h3>
                             </div>
                             <div class="panel-body" style="padding-top:0;">
                                 <p>{{$member->city}}</p>
@@ -172,7 +172,7 @@ $member = $dataTypeContent;
                         </div>
                         <div class="col-12 col-md-4 px-0">
                             <div class="panel-heading" style="border-bottom:0;">
-                                <h3 class="panel-title">ZIP</h3>
+                                <h3 class="panel-title">ZIP:</h3>
                             </div>
                             <div class="panel-body" style="padding-top:0;">
                                 <p>{{$member->zip}}</p>
@@ -180,7 +180,7 @@ $member = $dataTypeContent;
                         </div>
                         <div class="col-12 col-md-4 px-0">
                             <div class="panel-heading" style="border-bottom:0;">
-                                <h3 class="panel-title">Country</h3>
+                                <h3 class="panel-title">Country:</h3>
                             </div>
                             <div class="panel-body" style="padding-top:0;">
                                 <p>{{$member->country}}</p>
@@ -191,7 +191,7 @@ $member = $dataTypeContent;
                     <div class="row">
                     <div class="col-12 col-md-4 px-0">
                             <div class="panel-heading" style="border-bottom:0;">
-                                <h3 class="panel-title">Balance</h3>
+                                <h3 class="panel-title">Balance:</h3>
                             </div>
                             <div class="panel-body" style="padding-top:0;">
                                 <p>£{{$member->user->balanceFloat}}</p>
@@ -204,7 +204,7 @@ $member = $dataTypeContent;
                     <div class="row">
                         <div class="col-md-12 px-0">
                             <div class="panel-heading" style="border-bottom:0;">
-                                <h3 class="panel-title">Full Name</h3>
+                                <h3 class="panel-title">Full Name:</h3>
                             </div>
                             <div class="panel-body" style="padding-top:0;">
                                 <p>{{$member->nok_full_name}}</p>
@@ -212,7 +212,7 @@ $member = $dataTypeContent;
                         </div>
                         <div class="col-12 col-md-4 px-0">
                             <div class="panel-heading" style="border-bottom:0;">
-                                <h3 class="panel-title">Date of Birth</h3>
+                                <h3 class="panel-title">Date of Birth:</h3>
                             </div>
                             <div class="panel-body" style="padding-top:0;">
                                 @if ($member->nok_dob)
@@ -222,7 +222,7 @@ $member = $dataTypeContent;
                         </div>
                         <div class="col-12 col-md-4 px-0">
                             <div class="panel-heading" style="border-bottom:0;">
-                                <h3 class="panel-title">Email</h3>
+                                <h3 class="panel-title">Email:</h3>
                             </div>
                             <div class="panel-body" style="padding-top:0;">
                                 <p>{{$member->nok_email}}</p>
@@ -230,7 +230,7 @@ $member = $dataTypeContent;
                         </div>
                         <div class="col-12 col-md-4 px-0">
                             <div class="panel-heading" style="border-bottom:0;">
-                                <h3 class="panel-title">Phone</h3>
+                                <h3 class="panel-title">Phone:</h3>
                             </div>
                             <div class="panel-body" style="padding-top:0;">
                                 <p>{{$member->nok_phone}}</p>
@@ -240,7 +240,7 @@ $member = $dataTypeContent;
                     <div class="row">
                         <div class="col-md-12 px-0">
                             <div class="panel-heading" style="border-bottom:0;">
-                                <h3 class="panel-title">Address Line 1</h3>
+                                <h3 class="panel-title">Address Line 1:</h3>
                             </div>
                             <div class="panel-body" style="padding-top:0;">
                                 <p>{{$member->nok_street}}</p>
@@ -248,7 +248,7 @@ $member = $dataTypeContent;
                         </div>
                         <div class="col-md-12 px-0">
                             <div class="panel-heading" style="border-bottom:0;">
-                                <h3 class="panel-title">Address Line 2</h3>
+                                <h3 class="panel-title">Address Line 2:</h3>
                             </div>
                             <div class="panel-body" style="padding-top:0;">
                                 <p>{{$member->nok_apartment}}</p>
@@ -256,7 +256,7 @@ $member = $dataTypeContent;
                         </div>
                         <div class="col-12 col-md-4 px-0">
                             <div class="panel-heading" style="border-bottom:0;">
-                                <h3 class="panel-title">City</h3>
+                                <h3 class="panel-title">City:</h3>
                             </div>
                             <div class="panel-body" style="padding-top:0;">
                                 <p>{{$member->nok_city}}</p>
@@ -264,7 +264,7 @@ $member = $dataTypeContent;
                         </div>
                         <div class="col-12 col-md-4 px-0">
                             <div class="panel-heading" style="border-bottom:0;">
-                                <h3 class="panel-title">ZIP</h3>
+                                <h3 class="panel-title">ZIP:</h3>
                             </div>
                             <div class="panel-body" style="padding-top:0;">
                                 <p>{{$member->nok_zip ?? "--"}}</p>
@@ -272,7 +272,7 @@ $member = $dataTypeContent;
                         </div>
                         <div class="col-12 col-md-4 px-0">
                             <div class="panel-heading" style="border-bottom:0;">
-                                <h3 class="panel-title">Country</h3>
+                                <h3 class="panel-title">Country:</h3>
                             </div>
                             <div class="panel-body" style="padding-top:0;">
                                 <p>{{$member->nok_country}}</p>

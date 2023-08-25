@@ -13,9 +13,6 @@ Claims
                     <div class="update mr-auto ml-2">
                         <h4 class="card-title">Claims</h4>
                     </div>
-                    {{-- @php
-                        dd($claims)
-                    @endphp --}}
                     <div class="update ml-auto mr-2">
                         <a href="{{route('members-area.claim')}}" class="btn btn-primary btn-round">New Claim</a>
                     </div>
