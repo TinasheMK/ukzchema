@@ -26,7 +26,7 @@ class SharedBaseController extends Controller
         if(!$this->user) return;
         $nav_links = json_encode($this->getNavLinks());
 
-        $is_admin = $this->user->hasRole('admin');
+        $is_admin = ($this->user->hasRole('admin')||$this->user->hasRole('UKZChema_Admin'));
         if(!$is_admin) $is_admin = $this->user->hasRole('board_member');
         $shared = [
             "avatar" => $this->user->avatar(),

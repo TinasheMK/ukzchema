@@ -38,10 +38,11 @@ class ApplicantController extends Controller
 
         $redirect_code = encrypt("{$applicant->id}:{$applicant->email}");
 
-        Notification::route('mail', setting('admin.email', 'support@ukzchema.co.uk'))
-            ->notify(new NewApplicant($applicant));
+        // Notification::route('mail', setting('admin.email', 'support@ukzchema.co.uk'))
+        //     ->notify(new NewApplicant($applicant));
 
-        $route = route("submitted", $redirect_code);
+        // $route = route("submitted", $redirect_code);
+        $route = route('joinpay', $applicant->id);
 
         return compact('route');
     }
