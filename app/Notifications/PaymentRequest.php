@@ -53,14 +53,15 @@ class PaymentRequest extends Notification
         ]);
     }
 
-    // public function toTelegram($notifiable)
-    // {
-    //     $admin = Auth::user();
-    //     $message = "Board Member *({$admin->name})* accepted applicant *{$notifiable->full_name}*";
-    //     return TelegramMessage::create()
-    //         ->to(env('TELEGRAM_RECEIVER'))
-    //         ->content($message);
-    // }
+    public function toTelegram($notifiable)
+    {
+        $admin = Auth::user();
+        $message = "Board Member accepted applicant *{$notifiable->full_name}*";
+        // $message = "Board Member *({$admin->name})* accepted applicant *{$notifiable->full_name}*";
+        return TelegramMessage::create()
+            ->to(env('TELEGRAM_RECEIVER'))
+            ->content($message);
+    }
 
     /**
      * Get the array representation of the notification.
