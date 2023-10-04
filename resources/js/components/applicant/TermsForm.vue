@@ -31,10 +31,8 @@
       >I live in the United Kingdom. All nominees live in the UK</label>
     </div>
     <div class="row mt-3">
-        <label
-        class="custom-control-label"
-        for="resident"
-      >You will be required to pay a joining fee of £100 excluding charges afte form submission.</label>
+        <p
+      >You will be required to pay a joining fee of £100 excluding charges after form submission.</p>
       <div class="col-12 text-center" @click="submit()">
         <button class="btn radix-btn">Submit Details</button>
       </div>
