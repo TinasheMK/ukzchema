@@ -232,7 +232,12 @@ var render = function render() {
     }
   }, [_vm._v("I live in the United Kingdom. All nominees live in the UK")])]), _vm._v(" "), _c("div", {
     staticClass: "row mt-3"
-  }, [_c("div", {
+  }, [_c("label", {
+    staticClass: "custom-control-label",
+    attrs: {
+      "for": "resident"
+    }
+  }, [_vm._v("You will be required to pay a joining fee of £100 excluding charges afte form submission.")]), _vm._v(" "), _c("div", {
     staticClass: "col-12 text-center",
     on: {
       click: function click($event) {
