@@ -4,7 +4,7 @@
 On behalf of the **UKZ Chema Board** we welcome you to the family.
 
 <br>
-Click the button below to pay your Joining fee of £{{setting('member.join_fee', '100')}} and you will be redirected
+If you have not already paid click the button below to pay your Joining fee of £{{setting('member.join_fee', '100')}} and you will be redirected
 to create your login password.
 
 @component('mail::button', ['url' => route('joinpay', $applicant->id), 'color' => 'success'])
