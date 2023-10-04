@@ -12,7 +12,6 @@ use NotificationChannels\Telegram\TelegramMessage;
 
 class NewApplicant extends Notification implements ShouldQueue
 {
-    use Queueable;
 
     public $applicant;
 

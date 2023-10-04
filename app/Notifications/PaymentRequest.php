@@ -12,7 +12,6 @@ use NotificationChannels\Telegram\TelegramMessage;
 
 class PaymentRequest extends Notification
 {
-    use Queueable;
 
     protected $approve;
 
