@@ -34,9 +34,18 @@
             <div class="container h-100">
                 <div class="row h-100 align-items-center">
                     <div class="col-12">
-                        <div class="breadcrumb-content">
+                        <div class="breadcrumb-content pb-4 mb-4">
                             <h2 class="breadcrumb-title">Join Now</h2>
-                        <p class="text-center">By continuing you are agreeing that, you have read and understood the <a href="{{route('constitution')}}">UKZ Chema Association's Constitution</a> and you are ready to become a member</p>
+                        <small class="text-center">
+
+                        By continuing you are agreeing that, you have read and understood the
+                        <a href="{{route('constitution')}}">UKZ Chema Association's Constitution</a>
+                        and you are ready to become a member. As per UKZ Chema Association Constitution
+                        in order to become a member you should be a UK resident as well as your nominees.
+                        Please be aware if your application does not meet these requirements your membership
+                         will be terminated and joining fee refunded.
+
+</small>
                         </div>
                     </div>
                 </div>

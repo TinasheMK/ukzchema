@@ -214,7 +214,7 @@ var staticRenderFns = [function () {
     }
   }, [_c("h5", {
     staticClass: "mb-1"
-  }, [_vm._v("Next of kin details")]), _vm._v(" "), _c("p", [_vm._v("The person we can contact in case of emergency and to whom funds are released in the event of your passing on.\n              "), _c("strong", [_vm._v(" (next of kin is not a nominee) ")])])]);
+  }, [_vm._v("Next of kin details")]), _vm._v(" "), _c("p", [_vm._v("The person we can contact in case of emergency and to whom funds are\n              released in the event of your passing on. NOK can reside in any country and next of kin is not a nominee.\n              ")])]);
 }, function () {
   var _vm = this,
     _c = _vm._self._c;

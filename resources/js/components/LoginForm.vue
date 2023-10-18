@@ -35,8 +35,9 @@
           <div v-show="step === 2">
             <div id="step-2">
               <h5 class="mb-1">Next of kin details</h5>
-              <p>The person we can contact in case of emergency and to whom funds are released in the event of your passing on.
-                <strong> (next of kin is not a nominee) </strong>
+              <p>The person we can contact in case of emergency and to whom funds are released in the event of your
+                passing on. NOK can reside in any country and next of kin is not a nominee.
+                <!-- <strong> (next of kin is not a nominee) </strong> -->
               </p>
             </div>
             <nextof-kin @done="formCompleted($event, 2)"></nextof-kin>
