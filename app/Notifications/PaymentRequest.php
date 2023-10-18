@@ -10,9 +10,9 @@ use Illuminate\Support\Facades\Auth;
 use NotificationChannels\Telegram\TelegramChannel;
 use NotificationChannels\Telegram\TelegramMessage;
 
-class PaymentRequest extends Notification
+class PaymentRequest extends Notification implements ShouldQueue
 {
-
+    use Queueable;
     protected $approve;
 
     /**
