@@ -79,11 +79,30 @@ class Member extends Model
             $counter = Member::count();
             $padded = 0;
             $member_id = null;
+
             do {
                 $counter++;
                 $padded = str_pad($counter, 6, '0', STR_PAD_LEFT);
                 $member_id = $prefix2 . $padded;
             } while (Member::find($member_id) != null);
+
+            // dd(Member::find($member_id));
+
+            $mem = Member::find($member_id);
+            for ($x = 0; $x < 10; $x++) {
+                if ($mem == null) {
+                  break;
+                }
+
+                $counter++;
+                $padded = str_pad($counter, 6, '0', STR_PAD_LEFT);
+                $member_id = $prefix2 . $padded;
+                $mem = Member::find($member_id);
+
+            }
+
+
+
             // dd($member_id);
             logger("Creating Member ID: {$member_id}");
             $model->id = $member_id;
