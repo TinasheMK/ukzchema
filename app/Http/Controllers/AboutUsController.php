@@ -24,7 +24,7 @@ class AboutUsController extends Controller
             $member_id = $prefix2 . $padded;
         } while (Member::find($member_id) != null);
 
-        dd(Member::find($member_id));
+        dd($member_id);
         return view("pages.about");
     }
 }
