@@ -83,7 +83,7 @@ class Member extends Model
                 $counter++;
                 $padded = str_pad($counter, 6, '0', STR_PAD_LEFT);
                 $member_id = $prefix2 . $padded;
-            } while (Member::find($member_id) != null);
+            } while (Member::withTrashed()->find($member_id) != null);
             logger("Creating Member ID: {$member_id}");
             $model->id = $member_id;
         });

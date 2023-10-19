@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class AboutUsController extends Controller
 {
     public function index(){
-        dd(Member::find("CM003381"));
+        dd(Member::withTrashed()->find("CM003381"));
         return view("pages.about");
     }
 }
