@@ -89,7 +89,7 @@ class Member extends Model
             // dd(Member::find($member_id));
 
             $mem = Member::find($member_id);
-            for ($x = 0; $x < 10; $x++) {
+            for ($x = 0; true; $x++) {
                 if ($mem == null) {
                   break;
                 }
