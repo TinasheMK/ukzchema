@@ -194,9 +194,7 @@ $member = $dataTypeContent;
                                 <h3 class="panel-title">Balance:</h3>
                             </div>
                             <div class="panel-body" style="padding-top:0;">
-                            @if($member->user)
-                               <p>£{{$member->user->balanceFloat}}</p>
-                            @endIf
+                                <p>£{{$member->user->balanceFloat}}</p>
                             </div>
 
                         </div>
