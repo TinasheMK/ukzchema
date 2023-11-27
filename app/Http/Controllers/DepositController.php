@@ -43,7 +43,7 @@ class DepositController extends SharedBaseController
             $member->deposits()->create([
                 "amount" => $amount,
                 "payment_ref" => $request->payment_ref,
-                "date" => date("D M d, Y G:i"),
+                "date" => now(),
                 "balance" => $user->balanceFloat,
                 "type" => "Deposit",
                 "description" => "Paypal deposit by member"
