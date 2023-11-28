@@ -6,6 +6,7 @@
 /storage
 # /vendor
 .env
+.zip
 # .godaddy
 # .env.backup
 # .phpunit.result.cache
