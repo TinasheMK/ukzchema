@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notification;
 use NotificationChannels\Telegram\TelegramChannel;
 use NotificationChannels\Telegram\TelegramMessage;
 
-class NewDonationReceived extends Notification
+class NewDonationReceived extends Notification implements ShouldQueue
 {
     use Queueable;
 
