@@ -104,9 +104,6 @@ class EventServiceProvider extends ServiceProvider
 
 
 
-
-
-
             }
 
             logger("Obituary is", [$event->obituary->id]);

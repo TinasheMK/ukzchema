@@ -21,7 +21,7 @@ class User extends \TCG\Voyager\Models\User implements Wallet, WalletFloat
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','avatar'
+        'id','name', 'email', 'password','avatar'
     ];
 
     /**

@@ -1,0 +1,44 @@
+<?php
+
+use App\Models\Member;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+use App\User;
+
+class UsersTableSeeder extends Seeder
+{
+    /**
+     * Run the database seeders.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        $userIds = [];
+
+        $members = Member::all();
+
+
+        $members = Member::all();
+        $count = 0;
+
+        foreach($members as $m){
+            if(count($m->nominees)==0){
+                $count++;
+                print($m->id);
+                print(" (".$m->created_at.") ");
+                print("  : nominee count ->");
+                print(count($m->nominees));
+                print("\n");
+            }
+
+
+        }
+        print($count);
+        print("\n");
+        // print_r($userIds);CM000593  : nominee count ->6
+
+    }
+}

@@ -114,85 +114,111 @@ class Kernel extends ConsoleKernel
 
 
         // Bill unBilled members for obituary
-        // $schedule->call(function () {
-        //     // find obituary from 3 days \AddGroupToSettingsTable
-        //     $obituaries = Obituary::whereDate('created_at','>',Carbon::today()->subDays(3))->get();
-        //     // logger($obituaries->count());
-        //     // logger('Obituaries cron running');
-        //     // Fidn all Members
-        //     $members = Member::all();
-        //     // For each member check that invoice with obituary id exists
-        //     for ($y = 0; $y <= $obituaries->count() - 1; $y++) {
-        //         for ($x = 0; $x <= $members->count() - 1; $x++) {
-        //             $user = User::find($members[$x]->user_id)
-        //                                ->where('created_at','<',$obituaries[$y]->created_at)
-        //                                ->get();
+        $schedule->call(function () {
+            // find obituary from 3 days \AddGroupToSettingsTable
+            $obituaries = Obituary::whereDate('created_at','>',Carbon::today()->subDays(3))->get();
+            logger($obituaries->count());
+            // logger('Obituaries cron running');
+            // Find all Members
+            $members = Member::all();
+            logger($members->count());
+            // For each member check that invoice with obituary id exists
+            for ($y = 0; $y <= $obituaries->count() - 1; $y++) {
+                // logger('Inside loop');
 
-        //             // $user = User::find($members[$x]->user_id);
+                    for ($x = 0; $x <= $members->count() - 1; $x++) {
 
-        //             // logger("User found:", [$user[$x]] );
-        //             // logger("Obituary", [$obituaries[$y]->id] );
+                        try{
+                            // logger($members[$x]->user_id);
 
-        //             if ($user) {
-        //                 $invoiced = Invoice::whereMemberIdAndObituaryId($members[$x]->id, $obituaries[$y]->id)->first();
-        //                 if (!$invoiced) {
-        //                     try {
-
-        //                         if($obituaries[$y]->member_id==$members[$x]->id){
-        //                             continue;
-        //                         };
-
-        //                         $user = User::find($members[$x]->user_id);
-
-        //                         // Invoice member
-        //                         // logger("User balance before withdraw for member on obituary:", [$user->balanceFloat]);
-
-        //                         $user->forceWithdrawFloat($obituaries[$y]->donated_amount, ['description' => 'Payment for obituary']);
-        //                         // logger("User balance after withdraw for member on obituary:", [$user->balanceFloat]);
-        //                         $date = strtotime("+3 days");
-        //                         $dueDate = date("D M d, Y G:i", $date);
-        //                         $paid_status = "unpaid";
+                            $user = $members[$x]->user;
 
 
-        //                         if ($user->balanceFloat >= 0) {
-        //                             $paid_status = "paid";
-        //                         }
 
-        //                         $invoice = Invoice::create([
-        //                             "invoice_date" => date("D M d, Y G:i"),
-        //                             "type" => "Obituary",
-        //                             "description" => "Obituary for (".strval($obituaries[$y]->member_id) .") ". strval($obituaries[$y]->full_name),
-        //                             "subtotal" => $obituaries[$y]->donated_amount,
-        //                             "obituary_id" => $obituaries[$y]->id,
-        //                             "total" => $obituaries[$y]->donated_amount,
-        //                             "member_id" => $members[$x]->id,
-        //                             "status" => $paid_status,
-        //                             "due_date" => $dueDate,
-        //                         ]);
+                            // $user = User::find($members[$x]->user_id);
 
-        //                         InvoiceItem::create([
-        //                             "title" => $obituaries[$y]->full_name,
-        //                             "amount" => $obituaries[$y]->donated_amount,
-        //                             "invoice_id" => $invoice->id
-        //                         ]);
+                            // logger("User found:", [$user[$x]] );
+                            // logger("Obituary", [$obituaries[$y]->id] );
 
-        //                         Notification::send($members[$x], new ObituaryAddedNotification($obituaries[$y]));
+                            if ($user && $user->created_at < $obituaries[$y]->created_at) {
+                                $invoiced = Invoice::whereMemberIdAndObituaryId($members[$x]->id, $obituaries[$y]->id)->first();
 
-        //                 } catch (\Exception $e) {
-        //                     // $obituaries[$y]->unBilledMembers()->attach($members[$x]->id);
-        //                     logger($e);
-        //                     continue;
-        //                 }
-        //                 }
+                                if (!$invoiced) {
+                                    logger("Creating invoice for user.", [$members[$x]->user_id]);
+                                    try {
 
-        //             } else {
-        //                 logger("Failed to invoice member:", [$members[$x]->user_id]);
-        //             }
-        //         }
-        //     }
+                                        if($obituaries[$y]->member_id!=$members[$x]->id){
 
 
-        // })->everyMinute();
+                                        $user = User::find($members[$x]->user_id);
+                                        $donateAmount = $obituaries[$y]->donated_amount;
+                                        if(isset($members[$x]->boardMember)){
+                                            $donateAmount = 0;
+                                        }
+
+                                        // Invoice member
+                                        $user->forceWithdrawFloat($donateAmount, ['description' => 'Payment for obituary']);
+                                        logger("Withdrawal for obituary complete.", [$user->id]);
+                                        $date = strtotime("+3 days");
+                                        $dueDate = date("D M d, Y G:i", $date);
+                                        $paid_status = "unpaid";
+
+
+                                        if ($user->balanceFloat >= 0) {
+                                            $paid_status = "paid";
+                                        }
+
+                                        $invoice = Invoice::create([
+                                            "invoice_date" => date("D M d, Y G:i"),
+                                            "type" => "Obituary",
+                                            "description" => "Obituary for ". strval($obituaries[$y]->full_name),
+                                            "subtotal" => $donateAmount,
+                                            "obituary_id" => $obituaries[$y]->id,
+                                            "total" => $donateAmount,
+                                            "member_id" => $members[$x]->id,
+                                            "status" => $paid_status,
+                                            "due_date" => $dueDate,
+                                        ]);
+
+                                        InvoiceItem::create([
+                                            "title" => $obituaries[$y]->full_name,
+                                            "amount" => $donateAmount,
+                                            "invoice_id" => $invoice->id
+                                        ]);
+
+                                        logger('Invoice created');
+
+
+
+                                    };
+
+                                } catch (\Exception $e) {
+                                    $obituaries[$y]->unBilledMembers()->attach($members[$x]->id);
+                                    logger('An error occured');
+                                    logger($members[$x]->user_id);
+                                    logger($e);
+                                    // continue;
+                                }
+                                }else{
+                                    // logger('Inside another loop');
+                                    // logger($x);
+                                    // logger($invoiced->id);
+                                }
+
+                            } else {
+                                logger("Failed to invoice member:", [$members[$x]->user_id]);
+                            }
+
+                        } catch (\Exception $e) {
+                            // $obituaries[$y]->unBilledMembers()->attach($members[$x]->id);
+                            logger('An error occured');
+                            logger($e);
+                            // continue;
+                        }
+                    }
+
+            }
+        })->everyMinute();
 
 
         // // Terminate unpaid members after certain days
